@@ -1,10 +1,10 @@
-package CampusConnect.back;
+package CampusConnect.CCBack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackApplicationTests {
+class CcBackApplicationTests {
 
 	@Test
 	void contextLoads() {

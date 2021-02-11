@@ -1,0 +1,18 @@
+version: '3.8'
+
+volumes:
+  ccb_volume:
+
+services:
+  db:
+    container_name: ccb_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: CCBPUser 
+      POSTGRES_PASSWORD: CCBPPassword 
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ccb_volume:/var/lib/postgresql/data/

@@ -1,6 +1,6 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.InformacionUsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ class InformacionUsuarioService {
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("/usuarios")
-    public Iterable<InformacionUsuario> findAllForos() {
+    public Iterable<UsuarioGeneral> findAllForos() {
         return repository.findAll();
     }
 
     @GetMapping("/usuarios/{id}")
-    public InformacionUsuario findForoById(@PathVariable("id") Long id) {
+    public UsuarioGeneral findForoById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 }

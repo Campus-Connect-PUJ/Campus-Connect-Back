@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UsuarioGeneral {
@@ -29,6 +30,8 @@ public class UsuarioGeneral {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estiloAprendizaje;
 
+    @OneToOne
+    @JoinColumn(name = "caracteristicaId")
     private CaracteristicasUsuario caracteristicas;
 
     public CaracteristicasUsuario getCaracteristicas() {

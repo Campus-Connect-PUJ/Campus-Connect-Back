@@ -3,15 +3,26 @@ package CampusConnect.CCBack.Model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class CaracteristicasUsuario {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String identidadGenero; // que tipo de dato seria esto?
     private String perfilContexto; // que es esto?
     private String raza; // esto si seria un string?
     private String lugarOrigen;
     private Date fechaNacimiento;
+
+    @OneToOne(mappedBy = "caracteristicas")
+    private UsuarioGeneral usuario;
 
 	public String getIdentidadGenero() {
 		return identidadGenero;

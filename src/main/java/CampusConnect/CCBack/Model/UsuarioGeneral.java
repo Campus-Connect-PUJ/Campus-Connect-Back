@@ -34,6 +34,19 @@ public class UsuarioGeneral {
     @JoinColumn(name = "caracteristicaId")
     private CaracteristicasUsuario caracteristicas;
 
+    public UsuarioGeneral() { }
+
+    public UsuarioGeneral(String nombre, String correo, String carrera,
+                          Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
+                          CaracteristicasUsuario caracteristicas) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.carrera = carrera;
+        this.semestre = semestre;
+        this.estiloAprendizaje = estiloAprendizaje;
+        this.caracteristicas = caracteristicas;
+	}
+
     public CaracteristicasUsuario getCaracteristicas() {
 		return caracteristicas;
 	}

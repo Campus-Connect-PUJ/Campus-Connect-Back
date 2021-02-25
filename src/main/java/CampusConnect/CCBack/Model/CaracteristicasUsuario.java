@@ -15,9 +15,9 @@ public class CaracteristicasUsuario {
     @GeneratedValue
     private Long id;
 
-    private String identidadGenero; // que tipo de dato seria esto?
-    private String perfilContexto; // que es esto?
-    private String raza; // esto si seria un string?
+    private String identidadGenero;
+    private String perfilContexto; // TODO: esto es una clase propia
+    private String raza;
     private String lugarOrigen;
     private Date fechaNacimiento;
 

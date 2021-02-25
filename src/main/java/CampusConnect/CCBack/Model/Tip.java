@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Tip {
@@ -24,6 +23,4 @@ public class Tip {
         joinColumns = @JoinColumn(name = "idTip"),
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> respuestas;
-
-
 }

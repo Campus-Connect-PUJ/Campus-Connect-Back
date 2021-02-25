@@ -4,12 +4,12 @@ volumes:
   ccb_volume:
 
 services:
-  db:
+  postgres:
     container_name: ccb_postgres
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: CCBPUser 
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: CCBPPassword 
       POSTGRES_DB: postgres
     ports:

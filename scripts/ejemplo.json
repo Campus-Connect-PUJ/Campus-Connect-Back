@@ -1,0 +1,24 @@
+[
+  {
+    "nombre" : "algo",
+    "descripcion" : "es cul",
+    "tematicas" : "esto no tambien podria ser una lista",
+    "calificacion" : 5,
+    "requisitos" : "ser cul",
+    "caracteristicas" : [
+      "investigacion",
+      "algo asi"
+    ]
+  },
+  {
+    "nombre" : "algo mas",
+    "descripcion" : "no es tan cul como algo",
+    "tematicas" : "sigo pensando que esto seria una lista",
+    "calificacion" : 4.5,
+    "requisitos" : "ser cul, pero no tanto",
+    "caracteristicas" : [
+      "investigacion"
+    ]
+  }
+
+]

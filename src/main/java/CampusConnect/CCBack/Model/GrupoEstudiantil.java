@@ -20,7 +20,7 @@ public class GrupoEstudiantil {
     private String descripcion;
     private String tematicas;
     private float calificacion;
-    private float requisitos;
+    private String requisitos;
 
     @ManyToMany
     @JoinTable (
@@ -32,10 +32,10 @@ public class GrupoEstudiantil {
 	public String getNombre() {
 		return nombre;
 	}
-	public float getRequisitos() {
+	public String getRequisitos() {
 		return requisitos;
 	}
-	public void setRequisitos(float requisitos) {
+	public void setRequisitos(String requisitos) {
 		this.requisitos = requisitos;
 	}
 	public float getCalificacion() {

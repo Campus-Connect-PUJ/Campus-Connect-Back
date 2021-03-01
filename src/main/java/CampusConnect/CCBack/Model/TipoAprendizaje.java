@@ -16,8 +16,11 @@ public class TipoAprendizaje {
 
     private String descripcion;
 
-    @ManyToMany(mappedBy = "estiloAprendizaje")
+    @ManyToMany(mappedBy = "estilosAprendizaje")
     private List<UsuarioGeneral> usuarios;
+
+    @ManyToMany(mappedBy = "tiposAprendizaje")
+    private List<Tip> tips;
 
 	public String getDescripcion() {
 		return descripcion;

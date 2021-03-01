@@ -10,44 +10,35 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Caracteristica {
+public class UsuarioCAE {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String nombre;
+    private String rolCAE;
 
     @ManyToMany
     @JoinTable (
-        name = "CaracteristicasUsuario",
-        joinColumns = @JoinColumn(name = "idCaracteristica"),
+        name = "RolesCAE",
+        joinColumns = @JoinColumn(name = "idRolCAE"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuarios;
 
-    @ManyToMany
-    @JoinTable (
-        name = "CaracteristicasEvento",
-        joinColumns = @JoinColumn(name = "idCaracteristica"),
-        inverseJoinColumns = @JoinColumn(name = "idEvento"))
-    private List<Eventos> eventos;
+	public String getRolCAE() {
+		return rolCAE;
+	}
 
-	public String getNombre() {
-		return nombre;
-	}
-	public List<Eventos> getEventos() {
-		return eventos;
-	}
-	public void setEventos(List<Eventos> eventos) {
-		this.eventos = eventos;
-	}
 	public List<UsuarioGeneral> getUsuarios() {
 		return usuarios;
 	}
+
 	public void setUsuarios(List<UsuarioGeneral> usuarios) {
 		this.usuarios = usuarios;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setRolCAE(String rolCAE) {
+		this.rolCAE = rolCAE;
 	}
+
 }

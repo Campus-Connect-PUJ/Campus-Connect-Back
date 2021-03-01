@@ -21,7 +21,7 @@ public class CaracteristicasUsuario {
     private String lugarOrigen;
     private Date fechaNacimiento;
 
-    @OneToOne(mappedBy = "caracteristicas")
+    @OneToOne(mappedBy = "caracteristicasUsuario")
     private UsuarioGeneral usuario;
 
 	public String getIdentidadGenero() {
@@ -53,5 +53,11 @@ public class CaracteristicasUsuario {
 	}
 	public void setIdentidadGenero(String identidadGenero) {
 		this.identidadGenero = identidadGenero;
+	}
+	public UsuarioGeneral getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioGeneral usuario) {
+		this.usuario = usuario;
 	}
 }

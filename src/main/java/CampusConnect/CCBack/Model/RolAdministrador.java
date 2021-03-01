@@ -10,7 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Tip {
+public class RolAdministrador {
 
     @Id
     @GeneratedValue
@@ -19,16 +19,16 @@ public class Tip {
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     @ManyToMany
     @JoinTable (
-        name = "TipoAprendizajeTip",
-        joinColumns = @JoinColumn(name = "idTip"),
-        inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
-    private List<TipoAprendizaje> tiposAprendizaje;
+        name = "RolesAdministrador",
+        joinColumns = @JoinColumn(name = "idRolAdministrador"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
+    private List<UsuarioGeneral> usuarios;
 
-	public List<TipoAprendizaje> getRespuestas() {
-		return tiposAprendizaje;
+	public List<UsuarioGeneral> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setRespuestas(List<TipoAprendizaje> respuestas) {
-		this.tiposAprendizaje = respuestas;
+	public void setUsuarios(List<UsuarioGeneral> usuarios) {
+		this.usuarios = usuarios;
 	}
 }

@@ -1,0 +1,152 @@
+[
+  {
+    "nombre" : "Academos",
+    "descripcion" : "Favorecemos espacios de pensamiento colectivo en miras de una construcción conjunta, contextualizada y pertinente de conocimiento.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "investigación",
+      "reflexión"
+    ]
+  },
+  {
+    "nombre" : "ACI",
+    "descripcion" : "Promovemos la ingeniería, la educación técnica, la investigación científica, la búsqueda, y el desarrollo de estándares para el diseño de construcciones que incorporen al concreto y materiales relacionados",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "investigación",
+      "búsqueda",
+      "desarrollo"
+    ]
+  },
+  {
+    "nombre" : "ACM",
+    "descripcion" : "Promovemos una comunidad en la que sus integrantes ofrezcan y se beneficien de servicios con fines educativos y científicos en el área de la computación moderna",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "investigación",
+      "educativo"
+    ]
+  },
+  {
+    "nombre" : "Benkos",
+    "descripcion" : "Buscamos consolidar y proponer espacios de diálogo que entiendan el papel de las Universidades como instituciones que deben estar al servicio de las problemáticas que más afectan al país.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "dialogo"
+    ]
+  },
+  {
+    "nombre" : "Derecho Crítico",
+    "descripcion" : "Construimos a partir de la praxis, es decir, a partir de la relación dialéctica y sustancial entre la teoría y la práctica a partir de tres enfoques: académico y teórico, de incidencia universitaria y práctico.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "discusión",
+      "política"
+    ]
+  },
+  {
+    "nombre" : "IEEE",
+    "descripcion" : "Fomentar la innovación tecnológica y la excelencia para el beneficio de la humanidad. La rama se encuentra dividida en capítulos de sociedades técnicas(subgrupos), los cuales trabajan en proyectos en un área determinada, ofrecen conferencias relacionadas con temas de actualidad tecnológica y desarrolla trabajos sociales en colegios y comunidades con el apoyo de algunos programas de IEEE, para generar un mayor impacto.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "innovación",
+      "tecnología",
+      "desarrollo"
+    ]
+  },
+  {
+    "nombre" : "IISE",
+    "descripcion" : "Fortalecer las competencias de los Futuros Ingenieros Industriales Javerianos a través de proyectos e iniciativas desarrolladas dentro del grupo.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "IMIG",
+    "descripcion" : "Cultivar el interés por la Medicina Interna en sus miembros participantes mediante la realización de actividades académicas que fomenten el aprendizaje y la discusión de temas relevantes a la especialidad.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "medicina"
+    ]
+  },
+  {
+    "nombre" : "Ingeniería sin Fronteras",
+    "descripcion" : "Proveer en los estudiantes de ingeniería un aprendizaje adicional al obtenido en clase a través de un contacto directo con casos reales relacionados con las diferentes áreas de ingeniería civil.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "JADE",
+    "descripcion" : "Realizar la practica del debate competitivo, el desarrollo de habilidades de argumentación y expresión oral y la difusión del pensamiento critico.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "MAJIIS",
+    "descripcion" : "Fortalecer la investigación en la Facultad de Medicina generando espacios para el entrenamiento y la producción investigativa; promover las oportunidades de internacionalización de los estudiantes de Medicina de la PUJ, a través de ASCEMCOL-IFMSA; incrementar el impacto social y académico de la Facultad de Medicina.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "investigación"
+    ]
+  },
+  {
+    "nombre" : "MENTE",
+    "descripcion" : "Promover la responsabilidad social sobre la salud mental, por medio de información básica sobre estas enfermedades y asi empoderar a la población estudiantil de la Universidad Javeriana",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "NOVAINGENIO",
+    "descripcion" : "",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "ONUJ",
+    "descripcion" : "El grupo tiene como objetivo la preparación, union y capacitación de estudiantes de la Pontificia Universidad Javeriana para representar a la universidad en los modelos de naciones unidas (MUN) a nivel nacional e internacional.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "SUMAK",
+    "descripcion" : "Somos una comunidad de pensamiento interdiciplinario, holístico y critico en diversas carreras, enfocados en la resolución de problemas de forma sostenible y perspectiva humana.",
+    "tematicas" : "",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+    ]
+  }
+]

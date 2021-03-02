@@ -2,7 +2,7 @@
   {
     "nombre" : "Academos",
     "descripcion" : "Favorecemos espacios de pensamiento colectivo en miras de una construcción conjunta, contextualizada y pertinente de conocimiento.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -13,7 +13,7 @@
   {
     "nombre" : "ACI",
     "descripcion" : "Promovemos la ingeniería, la educación técnica, la investigación científica, la búsqueda, y el desarrollo de estándares para el diseño de construcciones que incorporen al concreto y materiales relacionados",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -25,7 +25,7 @@
   {
     "nombre" : "ACM",
     "descripcion" : "Promovemos una comunidad en la que sus integrantes ofrezcan y se beneficien de servicios con fines educativos y científicos en el área de la computación moderna",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -36,7 +36,7 @@
   {
     "nombre" : "Benkos",
     "descripcion" : "Buscamos consolidar y proponer espacios de diálogo que entiendan el papel de las Universidades como instituciones que deben estar al servicio de las problemáticas que más afectan al país.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -46,7 +46,7 @@
   {
     "nombre" : "Derecho Crítico",
     "descripcion" : "Construimos a partir de la praxis, es decir, a partir de la relación dialéctica y sustancial entre la teoría y la práctica a partir de tres enfoques: académico y teórico, de incidencia universitaria y práctico.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -57,7 +57,7 @@
   {
     "nombre" : "IEEE",
     "descripcion" : "Fomentar la innovación tecnológica y la excelencia para el beneficio de la humanidad. La rama se encuentra dividida en capítulos de sociedades técnicas(subgrupos), los cuales trabajan en proyectos en un área determinada, ofrecen conferencias relacionadas con temas de actualidad tecnológica y desarrolla trabajos sociales en colegios y comunidades con el apoyo de algunos programas de IEEE, para generar un mayor impacto.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -69,16 +69,17 @@
   {
     "nombre" : "IISE",
     "descripcion" : "Fortalecer las competencias de los Futuros Ingenieros Industriales Javerianos a través de proyectos e iniciativas desarrolladas dentro del grupo.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      ""
     ]
   },
   {
     "nombre" : "IMIG",
     "descripcion" : "Cultivar el interés por la Medicina Interna en sus miembros participantes mediante la realización de actividades académicas que fomenten el aprendizaje y la discusión de temas relevantes a la especialidad.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -88,7 +89,7 @@
   {
     "nombre" : "Ingeniería sin Fronteras",
     "descripcion" : "Proveer en los estudiantes de ingeniería un aprendizaje adicional al obtenido en clase a través de un contacto directo con casos reales relacionados con las diferentes áreas de ingeniería civil.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -97,7 +98,7 @@
   {
     "nombre" : "JADE",
     "descripcion" : "Realizar la practica del debate competitivo, el desarrollo de habilidades de argumentación y expresión oral y la difusión del pensamiento critico.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -106,7 +107,7 @@
   {
     "nombre" : "MAJIIS",
     "descripcion" : "Fortalecer la investigación en la Facultad de Medicina generando espacios para el entrenamiento y la producción investigativa; promover las oportunidades de internacionalización de los estudiantes de Medicina de la PUJ, a través de ASCEMCOL-IFMSA; incrementar el impacto social y académico de la Facultad de Medicina.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -116,7 +117,7 @@
   {
     "nombre" : "MENTE",
     "descripcion" : "Promover la responsabilidad social sobre la salud mental, por medio de información básica sobre estas enfermedades y asi empoderar a la población estudiantil de la Universidad Javeriana",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -125,7 +126,7 @@
   {
     "nombre" : "NOVAINGENIO",
     "descripcion" : "",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -134,7 +135,7 @@
   {
     "nombre" : "ONUJ",
     "descripcion" : "El grupo tiene como objetivo la preparación, union y capacitación de estudiantes de la Pontificia Universidad Javeriana para representar a la universidad en los modelos de naciones unidas (MUN) a nivel nacional e internacional.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
@@ -143,10 +144,146 @@
   {
     "nombre" : "SUMAK",
     "descripcion" : "Somos una comunidad de pensamiento interdiciplinario, holístico y critico en diversas carreras, enfocados en la resolución de problemas de forma sostenible y perspectiva humana.",
-    "tematicas" : "",
+    "tematicas" : "Actualidad y academia",
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+    ]
+  },
+  {
+    "nombre" : "AES",
+    "descripcion" : "Promovemos espacios que enriquezcan los conocimientos y talentos de los estudiantes de la carrera de estudios musicales,especialmente aquellos en elénfasis de ingeniería",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Estudios musicales",
+      "Facultad de artes",
+      "Talento"
+    ]
+  },
+  {
+    "nombre" : "AISEC",
+    "descripcion" : "AIESEC es la organización de jóvenes más grande del mundo, que busca desarrollar la próxima generación de líderes y conectarlos con aliados corporativos y ONG",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "Interfacultades" : [
+      "Lideres"
+    ]
+  },
+  {
+    "nombre" : "Angie Baquiro",
+    "descripcion" : "Lideramos iniciativas que conduzcan al desarrollo del bienestar de la población Colombiana, enfocados en la realización de actividades de acompañamiento al paciente pediátrico que impulsan el educar, prevenir, promover y sanar",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Facultad de Médicina",
+      "Acompañamiento",
+      "Paciente pediátrico"
+    ]
+  },
+  {
+    "nombre" : "Constructores de sonrisas",
+    "descripcion" : "Promocionamos estrategias de educación y prevención de las enfermedades orales de mayor prevalencia en nuestro país enfocándose en las poblaciones más vulnerables",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Facultad de Odontología",
+      "Prevenir enfermedades"
+    ]
+  },
+  {
+    "nombre" : "Creemos",
+    "descripcion" : "Estimular el desarrollo integral de la comunidad universitaria, promoviendo tanto la excelencia académica como las capacidades e intereses únicos de cada estudiante mediante los diversos equipos de trabajo enfocados en el desarrollo y posicionamiento de las ideas y proyectos de toda la comunidad",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Facultad de Médicina",
+      "excelencia académica"
+    ]
+  },
+  {
+    "nombre" : "El propio",
+    "descripcion" : "Buscamos la integridad física, intelectual y emocional de todo estudiante de ingeniería electrónica",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Facultad de ingeniería",
+      "Ingeniería electrónica"
+    ]
+  },
+  {
+    "nombre" : "Entretejiendo",
+    "descripcion" : "Realizamos tejidos colectivos tanto artísticos como afectivos",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Tejidos"
+    ]
+  },
+  {
+    "nombre" : "Javeriano apoya javeriano",
+    "descripcion" : "Realizamos actividades con el fin de recaudar fondos y así becar a estudiantes de diferentes carreras y semestres",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "interfacultades",
+      "recaudar fondos"
+    ]
+  },
+  {
+    "nombre" : "Lenguaje coeur",
+    "descripcion" : "Proporcionar apoyo académico complementario a los estudiantes de la Licenciatura en Lenguas Modernas en el aprendizaje del inglés y el francés como lenguas extranjeras y en el desarrollo de habilidades pedagógicas para su enseñanza",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Facultad de comunicación",
+      "Licenciatura en Lenguas Modernas",
+      "Inglés",
+      "Francés",
+      "Habilidades pedagógicas"
+    ]
+  },
+  {
+    "nombre" : "Out of town",
+    "descripcion" : "Darle la bienvenida y apoyo a los estudiantes de intercambio que vienen a la Pontificia Universidad Javeriana",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "interfacultades",
+      "bienvenida",
+      "estudiantes de intercambio"
+    ]
+  },
+  {
+    "nombre" : "Somos Colombia",
+    "descripcion" : "Apoyamos a estudiantes provenientes de las diferentes regiones de Colombia durante su permanencia en la Pontificia Universidad Javeriana-Bogotá",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "interfacultades",
+      "regiones de Colombia"
+    ]
+  },
+  {
+    "nombre" : "Vitae",
+    "descripcion" : "Busca favorecer espacios de acompañamiento al proceso de hospitalización de los pacientes adultos del Hospital Universitario San Ignacio buscando su bienestar durante el tiempo de permanencia en la institución",
+    "tematicas" : "Social y comunidad Javeriana",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Médicina",
+      "Bienestar pacientes"
     ]
   }
 ]

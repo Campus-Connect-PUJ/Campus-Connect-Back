@@ -1,11 +1,7 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Model.UsuarioGeneralRepository;
-
-import java.util.ArrayList;
-import java.util.List;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

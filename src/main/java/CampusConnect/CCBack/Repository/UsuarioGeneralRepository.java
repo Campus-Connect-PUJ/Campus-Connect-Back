@@ -1,4 +1,6 @@
-package CampusConnect.CCBack.Model;
+package CampusConnect.CCBack.Repository;
+
+import CampusConnect.CCBack.Model.UsuarioGeneral;
 
 import org.springframework.data.repository.CrudRepository;
 

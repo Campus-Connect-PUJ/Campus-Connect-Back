@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Caracteristica {
 
@@ -18,6 +20,7 @@ public class Caracteristica {
 
     private String nombre;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "CaracteristicasUsuario",
@@ -25,6 +28,7 @@ public class Caracteristica {
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuarios;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "CaracteristicasEvento",

@@ -68,7 +68,7 @@ public class UsuarioGeneral {
         this.correo = correo;
         this.carrera = carrera;
         this.semestre = semestre;
-        this.estiloAprendizaje = estiloAprendizaje;
+        this.estilosAprendizaje = estiloAprendizaje;
         this.caracteristicasUsuario = caracteristicas;
 	}
 

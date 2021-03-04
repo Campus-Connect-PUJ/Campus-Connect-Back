@@ -14,7 +14,6 @@ class GruposEstudiantilesService {
     @Autowired
     private GrupoEstudiantilRepository repository;
 
-    // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("/grupos_estudiantiles")
     public Iterable<GrupoEstudiantil> findAllForos() {
         return repository.findAll();

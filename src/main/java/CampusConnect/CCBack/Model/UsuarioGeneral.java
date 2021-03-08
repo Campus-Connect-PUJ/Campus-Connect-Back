@@ -2,7 +2,9 @@ package CampusConnect.CCBack.Model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,9 +25,10 @@ public class UsuarioGeneral {
     private String carrera;
     private Integer semestre;
 
-    @OneToOne
-    @JoinColumn(name = "caracteristicaId")
-    private CaracteristicasUsuario caracteristicasUsuario;
+    @OneToOne(mappedBy = "usuario",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+    private InformacionUsuario informacionUsuario;
 
     // relaciones muchos a muchos  ---------------------
 
@@ -63,21 +66,15 @@ public class UsuarioGeneral {
 
 	public UsuarioGeneral(String nombre, String correo, String carrera,
                           Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          CaracteristicasUsuario caracteristicas) {
+                          InformacionUsuario caracteristicas) {
         this.nombre = nombre;
         this.correo = correo;
         this.carrera = carrera;
         this.semestre = semestre;
         this.estilosAprendizaje = estiloAprendizaje;
-        this.caracteristicasUsuario = caracteristicas;
+        this.informacionUsuario = caracteristicas;
 	}
 
-    public CaracteristicasUsuario getCaracteristicas() {
-		return caracteristicasUsuario;
-	}
-	public void setCaracteristicas(final CaracteristicasUsuario caracteristicas) {
-		this.caracteristicasUsuario = caracteristicas;
-	}
 	public String getCorreo() {
 		return correo;
 	}
@@ -110,12 +107,12 @@ public class UsuarioGeneral {
 		this.estilosAprendizaje = estiloAprendizaje;
 	}
 
-	public CaracteristicasUsuario getCaracteristicasUsuario() {
-		return caracteristicasUsuario;
+	public InformacionUsuario getCaracteristicasUsuario() {
+		return informacionUsuario;
 	}
 
-	public void setCaracteristicasUsuario(CaracteristicasUsuario caracteristicasUsuario) {
-		this.caracteristicasUsuario = caracteristicasUsuario;
+	public void setCaracteristicasUsuario(InformacionUsuario caracteristicasUsuario) {
+		this.informacionUsuario = caracteristicasUsuario;
 	}
 
 	public List<Asignatura> getMonitorDe() {

@@ -56,4 +56,4 @@ build/
 ### VS Code ###
 .vscode/
 
-scripts/*/init.sql
+scripts/*/*.sql

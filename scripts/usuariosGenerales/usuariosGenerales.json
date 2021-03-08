@@ -1,0 +1,15 @@
+[
+  {
+    "nombre": "admin",
+    "correo": "campusconnect2021@gmail.com",
+    "carrera": "",
+    "semestre": 0,
+    "caracteristicas": {
+      "identidadGenero": "",
+      "raza": "",
+      "perfilContexto": "",
+      "lugarOrigen": "",
+      "fechaNacimiento": "1623-01-01 00:00:00"
+    }
+  }
+]

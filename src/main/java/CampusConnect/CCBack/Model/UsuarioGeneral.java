@@ -104,10 +104,10 @@ public class UsuarioGeneral {
         this.semestre = semestre;
     }
 	public List<TipoAprendizaje> getEstiloAprendizaje() {
-		return estiloAprendizaje;
+		return estilosAprendizaje;
 	}
 	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
-		this.estiloAprendizaje = estiloAprendizaje;
+		this.estilosAprendizaje = estiloAprendizaje;
 	}
 
 	public CaracteristicasUsuario getCaracteristicasUsuario() {

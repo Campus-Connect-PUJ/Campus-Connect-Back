@@ -163,12 +163,13 @@
     ]
   },
   {
-    "nombre" : "AISEC",
+    "nombre" : "AIESEC",
     "descripcion" : "AIESEC es la organización de jóvenes más grande del mundo, que busca desarrollar la próxima generación de líderes y conectarlos con aliados corporativos y ONG",
     "tematicas" : "Social y comunidad Javeriana",
     "calificacion" : 0,
     "requisitos" : "",
-    "Interfacultades" : [
+    "caracteristicas" : [
+      "Interfacultades",
       "Lideres"
     ]
   },
@@ -284,6 +285,181 @@
     "caracteristicas" : [
       "Médicina",
       "Bienestar pacientes"
+    ]
+  },
+  {
+    "nombre" : "CEAE-Comité estudiantil de administración de empresas",
+    "descripcion" : "Realizamos actividades y proyectos dirigidos a los estudiantes de la carrera de administración de empresas y carreras afines con el fin de contribuir en su formación",
+    "tematicas" : "Conexión y afinidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Ciencias económicas y administrativas",
+      "Administración de empresas"
+    ]
+  },
+  {
+    "nombre" : "CEE-Comité de estudiantes de economía",
+    "descripcion" : "Facilitamos espacios de integración académica de los estudiantes de economía brindándoles valores y compromisos que los encaminan hacia la excelencia",
+    "tematicas" : "Conexión y afinidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Ciencias económicas y administrativas",
+      "Economía"
+    ]
+  },
+  {
+    "nombre" : "DEJ-Desarrollo empresarial universitario",
+    "descripcion" : "Favorecemos espacios de formación, investigación y servicio para que los estudiantes crezcan en habilidades de emprendimiento con la generación de encuentros de intercambio interdisciplinar",
+    "tematicas" : "Conexión y afinidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Ciencias económicas y administrativas",
+      "Formación",
+      "Investigación",
+      "Emprendimiento",
+      "Interdisciplinar"
+    ]
+  },
+  {
+    "nombre" : "Serendipia",
+    "descripcion" : "Ofrecer actividades y espacios extracurriculares para los estudiantes de arquitectura y diseño entre tercer y octavo semester que buscan actividades de interés adicionales a las ofrecidas por la facultad. Se pretende lograr un alcance que permita la relación más directa entre estudiantes y facultad",
+    "tematicas" : "Conexión y afinidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Ciencias económicas y administrativas",
+      "Arquitectura",
+      "Diseño",
+      "Ultimos semestres",
+      "Extracurriculares"
+    ]
+  },
+  {
+    "nombre" : "Faro",
+    "descripcion" : "Propiciar un encuentro con Dios en el ambiente universitario, a partir de actividades de formación y relacionamiento",
+    "tematicas" : "Cuerpo y espiritualidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Interfacultades",
+      "Dios",
+      "Espiritual",
+      "Formación",
+      "Relacionamiento"
+    ]
+  },
+  {
+    "nombre" : "Kung-fu",
+    "descripcion" : "Escuela de Kung Fu que busca a través de la práctica física, disciplinar el cuerpo y la mente, para lograr una transformación interna",
+    "tematicas" : "Cuerpo y espiritualidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Interfacultades",
+      "Kung Fu",
+      "Práctica física",
+      "Disciplinar",
+      "Cuerpo",
+      "Mente"
+    ]
+  },
+  {
+    "nombre" : "Uranio",
+    "descripcion" : "Hacer del mensaje de Jesús, una experiencia de vida, con la que se logre potenciar el crecimiento en la formación espiritual y personal",
+    "tematicas" : "Cuerpo y espiritualidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Interfacultades",
+      "Jesus",
+      "Vida",
+      "Espiritual",
+      "Personal"
+    ]
+  },
+  {
+    "nombre" : "CRU-Vida para la universidad",
+    "descripcion" : "Servir a la comunidad Javeriana por medio de proyectos de alcance académico o social para mostrar el amor de Jesús como factor importante",
+    "tematicas" : "Cuerpo y espiritualidad",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Interfacultades",
+      "Espiritual",
+      "Jesus",
+      "Proyectos",
+      "Servir"
+    ]
+  },
+  {
+    "nombre" : "EcoArte",
+    "descripcion" : "Promovemos conciencia e interés ambiental y social a través del arte y el diseño como un mecanismo universal placentero para la trasmisión de conceptos y valores ecológicos",
+    "tematicas" : "Medio ambiente",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Estudios ambientales y rurales",
+      "Ambiental",
+      "Social",
+      "Ecológico"
+    ]
+  },
+  {
+    "nombre" : "Grupo javeriano de herpetologia",
+    "descripcion" : "Nos enfocamos en la generación y divulgación del conocimiento científico de la herpetofauna, a través de discusiones abiertas de la promoción de la educación Ambiental y la conservación de la biodiversidad colombiana mediante exposiciones, publicaciones y trabajos de campo",
+    "tematicas" : "Medio ambiente",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Estudios ambientales",
+      "Ambiental",
+      "Herpetofauna",
+      "Reptiles",
+      "Anfibios",
+      "Cientifico",
+      "Biodiversidad"
+    ]
+  },
+  {
+    "nombre" : "Grupo javeriano de ornitologia",
+    "descripcion" : "Busca generar espacios para adquirir y comunicar el conocimiento, estudio y cuidado de las aves dentro de la universidad. Además de brindar apoyo a proyectos a nivel local, regional y nacional",
+    "tematicas" : "Medio ambiente",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Estudios ambientales",
+      "Aves",
+      "Proyectos",
+      "Cientifico"
+    ]
+  },
+  {
+    "nombre" : "Primatologia javeriana",
+    "descripcion" : "Contribuir a la conservación de los primates colombianos promoviendo la divulgación de información que lleve hacia una sensibilización y conocimiento de las especies existentes en el país, sus amenazas y su importancia para el funcionamiento de los ecosistemas",
+    "tematicas" : "Medio ambiente",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Estudios ambientales",
+      "Primates",
+      "Cientifico",
+      "Divulgación"
+    ]
+  },
+  {
+    "nombre" : "Protección animal javeriana",
+    "descripcion" : "Promovemos la construcción de un pensamiento crítico y reflexivo a traves de la realización de diversas actividades que fomenten la sensibilización respecto al trato hacia los animales no humanos a partir de acciones cotidianas",
+    "tematicas" : "Medio ambiente",
+    "calificacion" : 0,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Interfacultades",
+      "Animales",
+      "Adopción",
+      "Domesticos"
     ]
   }
 ]

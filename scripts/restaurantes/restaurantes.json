@@ -1,0 +1,32 @@
+{
+  "restaurantes" : [
+    {
+      "nombre" : "il Posto",
+      "tipo": [
+        "cocina italiana"
+      ],
+      "descripcion" : "Disfruta en el posto de exquisitas recetas artesanales italianas, que incluyen una rica variedad de sándwiches, pastas, pizzas, sopas, pastelería y postres. Productos frescos, saludables y recién horneados",
+      "localizacion" : {
+        "id": 1,
+        "descripcion": "piso 5"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro"
+      ],
+      "precioMin":6000,
+      "precioMax":30000
+    }
+
+  ],
+  "ubicaciones": [
+    {
+      "id": 1,
+      "nombre": "Ed. Jorge Hoyos S.J",
+      "descripcion": "edificio en la cra x con y y es cafe con ventanas grandes"
+    }
+  ]
+}

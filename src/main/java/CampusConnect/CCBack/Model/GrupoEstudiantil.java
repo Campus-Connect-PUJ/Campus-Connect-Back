@@ -2,6 +2,7 @@ package CampusConnect.CCBack.Model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,9 +18,14 @@ public class GrupoEstudiantil {
     private Long id;
 
     private String nombre;
+
+    @Column(length = 500)
     private String descripcion;
+
     private String tematicas;
+
     private float calificacion;
+
     private String requisitos;
 
     @ManyToMany

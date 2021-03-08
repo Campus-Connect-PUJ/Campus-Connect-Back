@@ -29,6 +29,7 @@ BASE='./scripts'
 PATHS=(
     'gruposEstudiantiles'
     'restaurantes'
+    'usuariosGenerales'
 )
 
 for path in "${PATHS[@]}"; do

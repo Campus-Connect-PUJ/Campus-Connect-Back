@@ -1,0 +1,19 @@
+[
+  {
+    "comentario": "el usuario 0 es el admin",
+    "idUsuario": 0,
+    "descripcion": "blablabla",
+    "tipoAprendizaje": [
+      "tipo1",
+      "tipo2"
+    ]
+  },
+  {
+    "idUsuario": 0,
+    "descripcion": "blobloblo",
+    "tipoAprendizaje": [
+      "tipo2",
+      "tipo3"
+    ]
+  }
+]

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,15 +22,18 @@ public class UsuarioGeneral {
     private Long id;
 
     private String nombre;
+
     private String correo;
 
-    private String carrera;
     private Integer semestre;
 
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
     private InformacionUsuario informacionUsuario;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Tip> tips;
 
     // relaciones muchos a muchos  ---------------------
 
@@ -64,12 +69,11 @@ public class UsuarioGeneral {
 		this.rolesCAE = rolesCAE;
 	}
 
-	public UsuarioGeneral(String nombre, String correo, String carrera,
+	public UsuarioGeneral(String nombre, String correo,
                           Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
                           InformacionUsuario caracteristicas) {
         this.nombre = nombre;
         this.correo = correo;
-        this.carrera = carrera;
         this.semestre = semestre;
         this.estilosAprendizaje = estiloAprendizaje;
         this.informacionUsuario = caracteristicas;
@@ -87,16 +91,10 @@ public class UsuarioGeneral {
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
-    public String getCarrera(){
-        return this.carrera;
-    }
     public Integer getSemestre(){
         return this.semestre;
     }
 
-    public void setCarrera(final String carrera) {
-        this.carrera = carrera;
-    }
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
@@ -133,5 +131,41 @@ public class UsuarioGeneral {
 
 	public void setRolesAdministrador(List<RolAdministrador> rolesAdministrador) {
 		this.rolesAdministrador = rolesAdministrador;
+	}
+
+	public InformacionUsuario getInformacionUsuario() {
+		return informacionUsuario;
+	}
+
+	public void setInformacionUsuario(InformacionUsuario informacionUsuario) {
+		this.informacionUsuario = informacionUsuario;
+	}
+
+	public List<TipoAprendizaje> getEstilosAprendizaje() {
+		return estilosAprendizaje;
+	}
+
+	public void setEstilosAprendizaje(List<TipoAprendizaje> estilosAprendizaje) {
+		this.estilosAprendizaje = estilosAprendizaje;
+	}
+
+	public List<Caracteristica> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public List<Carrera> getCarrerasUsuario() {
+		return carrerasUsuario;
+	}
+
+	public void setCarrerasUsuario(List<Carrera> carrerasUsuario) {
+		this.carrerasUsuario = carrerasUsuario;
+	}
+
+	public List<Tip> getTips() {
+		return tips;
+	}
+
+	public void setTips(List<Tip> tips) {
+		this.tips = tips;
 	}
 }

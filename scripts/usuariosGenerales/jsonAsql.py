@@ -3,11 +3,11 @@ import sys
 
 # convertir
 
-# postgres=# select * from usuario_general ;
-#  id | carrera | correo | nombre | semestre | caracteristica_id
-# ----+---------+--------+--------+----------+-------------------
-# (0 rows)
+# postgres=# select * from usuario_general;
+#  id | correo | nombre | semestre
+# ----+--------+--------+----------
 #
+# postgres=# select * from informacion_usuario;
 #  id | fecha_nacimiento | identidad_genero | lugar_origen | perfil_contexto | raza | id_usuario
 # ----+------------------+------------------+--------------+-----------------+------+------------
 
@@ -22,12 +22,11 @@ def usuario_a_sql(usuario):
 
     sqlusuario = (
         "insert into {}"
-        "(id, carrera, correo, nombre, semestre)"
-        "values ({}, '{}', '{}', '{}', {});"
+        "(id, correo, nombre, semestre)"
+        "values ({}, '{}', '{}', {});"
     ).format(
         TABLA_USUARIOS,
         ID_USUARIO,
-        usuario['carrera'],
         usuario['correo'],
         usuario['nombre'],
         usuario['semestre']

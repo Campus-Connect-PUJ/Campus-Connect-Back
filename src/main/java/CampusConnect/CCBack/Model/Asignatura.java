@@ -28,7 +28,6 @@ public class Asignatura {
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> monitores;
 
-
     @OneToMany(mappedBy = "asignatura")
     private List<Actividad> actividades;
 

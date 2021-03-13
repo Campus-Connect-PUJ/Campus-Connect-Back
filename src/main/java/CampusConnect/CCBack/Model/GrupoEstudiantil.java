@@ -71,4 +71,7 @@ public class GrupoEstudiantil {
 	public void setCaracteristicas(List<Caracteristica> caracteristicas) {
 		this.caracteristicas = caracteristicas;
 	}
+    public Long getId() {
+        return this.id;
+    }
 }

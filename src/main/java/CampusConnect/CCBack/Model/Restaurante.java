@@ -119,4 +119,7 @@ public class Restaurante {
 		this.descripcion = descripcion;
 	}
 
+    public Long getId() {
+        return this.id;
+    }
 }

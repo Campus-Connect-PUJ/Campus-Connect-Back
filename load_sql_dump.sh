@@ -9,7 +9,7 @@ SQLDUMPNAME="init.sql"
 # carga un sql dump en la base de datos en docker
 # recibe 1 parametro
 #   ubicacion de sql dump
-load (){
+load () {
 	cat $1 | docker exec -i $DOCKERCONTAINER psql -U $DOCKERUSER -d $DOCKERDATABASE
 }
 
@@ -29,6 +29,8 @@ BASE='./scripts'
 PATHS=(
     'gruposEstudiantiles'
     'restaurantes'
+    'usuariosGenerales'
+    'tips'
 )
 
 for path in "${PATHS[@]}"; do

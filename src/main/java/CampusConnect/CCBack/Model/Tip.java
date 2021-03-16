@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Tip {
@@ -15,6 +16,12 @@ public class Tip {
     @Id
     @GeneratedValue
     private Long id;
+
+    private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name="idUsuario")
+    private UsuarioGeneral usuario;
 
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     @ManyToMany
@@ -26,6 +33,14 @@ public class Tip {
 
 	public List<TipoAprendizaje> getRespuestas() {
 		return tiposAprendizaje;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public void setRespuestas(List<TipoAprendizaje> respuestas) {

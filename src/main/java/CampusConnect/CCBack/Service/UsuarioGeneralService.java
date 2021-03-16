@@ -34,7 +34,6 @@ class UsuarioGeneralService {
         UsuarioGeneral ug = new UsuarioGeneral(
             "pruebaDaniel",
             "correo_prueba@prueba.com",
-            "sistemas",
             11,
             null,
             null

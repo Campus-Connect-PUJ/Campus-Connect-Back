@@ -20,7 +20,7 @@ class TipsService {
         return repository.findAll();
     }
 
-    @GetMapping("/tips/{id}")
+    @GetMapping("/tip/{id}")
     public Tip findTipById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }

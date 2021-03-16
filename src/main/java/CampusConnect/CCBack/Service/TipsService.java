@@ -3,6 +3,8 @@ package CampusConnect.CCBack.Service;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Repository.TipRepository;
 
+import java.io.Console;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +20,7 @@ class TipsService {
         return repository.findAll();
     }
 
-    @GetMapping("/tip/{id}")
+    @GetMapping("/tips/{id}")
     public Tip findTipById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }

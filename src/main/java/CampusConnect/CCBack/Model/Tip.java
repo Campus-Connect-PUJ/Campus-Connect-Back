@@ -31,4 +31,8 @@ public class Tip {
 	public void setRespuestas(List<TipoAprendizaje> respuestas) {
 		this.tiposAprendizaje = respuestas;
 	}
+
+    public Long getId() {
+        return this.id;
+    }
 }

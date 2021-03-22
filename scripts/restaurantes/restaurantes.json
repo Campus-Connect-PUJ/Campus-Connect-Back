@@ -101,7 +101,6 @@
       "tiempoEntrega" : 20,
       "franquicia" : "",
       "regimenAlimenticio": [
-        "vegetariano",
         "carnivoro"
       ],
       "precioMin":6400,

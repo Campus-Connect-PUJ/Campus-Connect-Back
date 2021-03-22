@@ -35,6 +35,12 @@ public class UsuarioGeneral {
     @OneToMany(mappedBy = "usuario")
     private List<Tip> tips;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Post> posts;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<RespuestaPost> respuestasPosts;
+
     // relaciones muchos a muchos  ---------------------
 
     @ManyToMany

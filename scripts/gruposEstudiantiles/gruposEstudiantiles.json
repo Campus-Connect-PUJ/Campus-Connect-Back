@@ -73,7 +73,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
-      ""
+      "innovación",
+      "desarrollo"
     ]
   },
   {
@@ -93,6 +94,7 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "educativo"
     ]
   },
   {
@@ -102,6 +104,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "debate",
+      "dialogo"
     ]
   },
   {
@@ -111,7 +115,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
-      "investigación"
+      "investigación",
+      "medicina"
     ]
   },
   {
@@ -121,6 +126,7 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "salud mental"
     ]
   },
   {
@@ -139,6 +145,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "capacitación",
+      "MUN"
     ]
   },
   {
@@ -148,6 +156,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "interdiciplinario",
+      "solución de problemas"
     ]
   },
   {

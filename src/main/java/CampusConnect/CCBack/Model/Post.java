@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,6 +24,8 @@ public class Post {
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
 
+    private String titulo;
+
     private String descripcion;
 
     private Boolean reportado;
@@ -30,9 +33,18 @@ public class Post {
     @ManyToMany(mappedBy = "post")
     private List<RespuestaPost> respuestas;
 
-    Post () {
+    public Post () {
         this.reportado = false;
+        this.respuestas = new ArrayList<RespuestaPost>();
     }
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public LocalTime getFecha() {
 		return fecha;

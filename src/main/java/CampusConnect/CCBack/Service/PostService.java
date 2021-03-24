@@ -28,22 +28,22 @@ class PostService {
     }
 
     @GetMapping("/post/{id}")
-    public Post findById(@PathVariable("id") final Long id) {
+    public Post findById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
     @GetMapping("/post/{id}/respuestas")
-    public RespuestaPost findRespuestasById(@PathVariable("id") final Long id) {
+    public RespuestaPost findRespuestasById(@PathVariable("id") Long id) {
         return rpRepo.findById(id).get();
     }
 
     @PutMapping("/post")
-    public Post crearPost(@RequestBody final Post postData) {
+    public Post crearPost(@RequestBody Post postData) {
 
-        final Post post = new Post();
+        Post post = new Post();
 
         post.setDescripcion(postData.getDescripcion());
-        // post.setFecha(postData.getFecha());
+        post.setFecha(postData.getFecha());
         // post.setRespuestas(postData.getRespuestas()); // no es necesario, ya que el constructor se encarga, ademas un post al ser creado siempre tendra una lista vacia de respuestas
         post.setTitulo(postData.getTitulo());
         post.setUsuario(postData.getUsuario());

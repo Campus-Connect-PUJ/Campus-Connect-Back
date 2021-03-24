@@ -481,10 +481,10 @@
     "caracteristicas" : [
       "diversidad",
       "discusión",
-      "inclusión"
+      "inclusión",
     ]
   },
-  {
+{
     "nombre" : "Polifonía",
     "descripcion" : "Generar un espacio crítico de sensibilización, visibilización, prevención, atención y acción respecto a las violencias basadas en género en el contexto universitario, pormedio de espacios formativos y pedagógicos en el campus y fuera de él",
     "tematicas" : "Diversidad",
@@ -492,10 +492,10 @@
     "requisitos" : "",
     "caracteristicas" : [
       "diversidad",
-      "discusión"
+      "discusión",
     ]
   },
-  {
+{
     "nombre" : "Best Buddies",
     "descripcion" : "Buscamos generar procesos de inclusión con personas con discapacidad a partir de lazos de amistad",
     "tematicas" : "Diversidad",
@@ -503,7 +503,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "diversidad",
-      "acompañamiento"
+      "acompañamiento",
     ]
   },
 {
@@ -514,7 +514,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "diversidad",
-      "acompañamiento"
+      "acompañamiento",
     ]
   },
 {
@@ -525,7 +525,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Debate"
+      "Debate",
     ]
   },
 {
@@ -536,7 +536,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Publicación"
+      "Publicación",
     ]
   },
 {
@@ -547,7 +547,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Publicación"
+      "Publicación",
     ]
   },
 {
@@ -558,7 +558,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Publicación"
+      "Publicación",
     ]
   },
 {
@@ -569,7 +569,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Publicación"
+      "Publicación",
     ]
   },
 {
@@ -580,7 +580,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Difusión"
+      "Difusión",
     ]
   },
 {
@@ -591,7 +591,7 @@
     "requisitos" : "",
     "caracteristicas" : [
       "Medios Comunicación",
-      "Publicación"
+      "Publicación",
     ]
   }
 ]

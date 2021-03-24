@@ -36,7 +36,6 @@ public class Post {
     public Post () {
         this.reportado = false;
         this.respuestas = new ArrayList<RespuestaPost>();
-        this.fecha = LocalTime.now();
     }
 
 	public String getTitulo() {

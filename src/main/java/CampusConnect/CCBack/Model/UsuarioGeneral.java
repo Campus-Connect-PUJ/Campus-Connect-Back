@@ -65,6 +65,9 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
+    @ManyToMany(mappedBy = "usuariosGustaron")
+    private List<Tip> tipsGustados;
+
     public UsuarioGeneral() { }
 
     public List<UsuarioCAE> getRolesCAE() {

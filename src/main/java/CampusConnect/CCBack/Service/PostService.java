@@ -2,15 +2,15 @@ package CampusConnect.CCBack.Service;
 
 import CampusConnect.CCBack.Model.Post;
 import CampusConnect.CCBack.Model.RespuestaPost;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.PostRepository;
 import CampusConnect.CCBack.Repository.RespuestaPostRepository;
-
-import java.util.ArrayList;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +21,9 @@ class PostService {
 
     @Autowired
     private RespuestaPostRepository rpRepo;
+
+    @Autowired
+    private UsuarioGeneralRepository usuarioRepo;
 
     @GetMapping("/posts")
     public Iterable<Post> findAll() {
@@ -37,16 +40,20 @@ class PostService {
         return rpRepo.findById(id).get();
     }
 
-    @PutMapping("/post")
-    public Post crearPost(@RequestBody final Post postData) {
-
-        final Post post = new Post();
-
+    @PostMapping("/post/{id}")
+    public Post crearPost(
+        @RequestBody final Post postData,
+        @PathVariable("id") final Long idUsuario
+        ) {
+        Post post = new Post();
+        UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
+        // no es necesario poner las demas variables, ya que el
+        // constructor se encarga, ademas un post al ser creado
+        // siempre tendra una lista vacia de respuestas, la fecha
+        // puede ser sacada de forma local y no sera reportado
         post.setDescripcion(postData.getDescripcion());
-        // post.setFecha(postData.getFecha());
-        // post.setRespuestas(postData.getRespuestas()); // no es necesario, ya que el constructor se encarga, ademas un post al ser creado siempre tendra una lista vacia de respuestas
         post.setTitulo(postData.getTitulo());
-        post.setUsuario(postData.getUsuario());
+        post.setUsuario(ug);
 
         return repository.save(post);
     }

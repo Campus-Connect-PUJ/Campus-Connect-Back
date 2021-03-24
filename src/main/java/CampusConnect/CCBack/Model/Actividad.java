@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Actividad {
 
@@ -28,6 +30,7 @@ public class Actividad {
     @JoinColumn(name="idAsignatura")
     private Asignatura asignatura;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TiposActividad",

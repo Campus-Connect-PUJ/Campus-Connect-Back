@@ -10,9 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UsuarioGeneral {
@@ -27,22 +28,27 @@ public class UsuarioGeneral {
 
     private Integer semestre;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
     private InformacionUsuario informacionUsuario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Tip> tips;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Post> posts;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<RespuestaPost> respuestasPosts;
 
     // relaciones muchos a muchos  ---------------------
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeUsuario",
@@ -50,18 +56,23 @@ public class UsuarioGeneral {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<UsuarioCAE> rolesCAE;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "monitores")
     private List<Asignatura> monitorDe;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Caracteristica> caracteristicas;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<RolAdministrador> rolesAdministrador;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 

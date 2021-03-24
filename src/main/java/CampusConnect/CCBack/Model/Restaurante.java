@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Restaurante {
 
@@ -41,6 +43,7 @@ public class Restaurante {
     @JoinColumn(name="idLugar")
     private Lugar lugar;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TiposRestaurante",
@@ -48,6 +51,7 @@ public class Restaurante {
         inverseJoinColumns = @JoinColumn(name = "idTipoRestaurante"))
     private List<TipoRestaurante> tiposRestaurante;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "RegimenesAlimenticiosRestaurante",

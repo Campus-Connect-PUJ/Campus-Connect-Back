@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tip {
 
@@ -24,6 +26,7 @@ public class Tip {
     private UsuarioGeneral usuario;
 
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeTip",

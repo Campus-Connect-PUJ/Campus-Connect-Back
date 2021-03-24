@@ -1,7 +1,19 @@
 package CampusConnect.CCBack.Service;
 
+import CampusConnect.CCBack.Model.Asignatura;
+import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Carrera;
+import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.Post;
+import CampusConnect.CCBack.Model.RespuestaPost;
+import CampusConnect.CCBack.Model.RolAdministrador;
+import CampusConnect.CCBack.Model.Tip;
+import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +36,6 @@ class UsuarioGeneralService {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/prueba")
-    public String prueba() {
-        return "hola";
-    }
-
     @GetMapping("/pruebaUsuario")
     public UsuarioGeneral pruebaCreacionUsuario() {
         UsuarioGeneral ug = new UsuarioGeneral(
@@ -49,5 +56,60 @@ class UsuarioGeneralService {
         // ug.setSemestre(11);
 
         return repository.save(ug);
+    }
+
+    @GetMapping("/usuarios/{id}/respuestas_posts")
+    public List<RespuestaPost> respuestasPostsUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getRespuestasPosts();
+    }
+
+    @GetMapping("/usuarios/{id}/posts")
+    public List<Post> postsUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getPosts();
+    }
+
+    @GetMapping("/usuarios/{id}/estilos_aprendizaje")
+    public List<TipoAprendizaje> estilosAprendizajeUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getEstiloAprendizaje();
+    }
+
+    @GetMapping("/usuarios/{id}/roles_cae")
+    public List<UsuarioCAE> rolesCAEUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getRolesCAE();
+    }
+
+    @GetMapping("/usuarios/{id}/monitorias")
+    public List<Asignatura> monitoriasUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getMonitorDe();
+    }
+
+    @GetMapping("/usuarios/{id}/caracteristicas")
+    public List<Caracteristica> caracteristicasUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getCaracteristicas();
+    }
+
+    @GetMapping("/usuarios/{id}/informacion")
+    public InformacionUsuario informacionUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getInformacionUsuario();
+    }
+
+    @GetMapping("/usuarios/{id}/tips")
+    public List<Tip> tipsUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getTips();
+    }
+
+    @GetMapping("/usuarios/{id}/tips_gustados")
+    public List<Tip> tipsGustadosUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getTipsGustados();
+    }
+
+    @GetMapping("/usuarios/{id}/roles_admin")
+    public List<RolAdministrador> rolesAdministradorUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getRolesAdministrador();
+    }
+
+    @GetMapping("/usuarios/{id}/carreras")
+    public List<Carrera> carrerasUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getCarrerasUsuario();
     }
 }

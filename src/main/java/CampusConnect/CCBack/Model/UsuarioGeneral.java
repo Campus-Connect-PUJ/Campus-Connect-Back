@@ -91,12 +91,12 @@ public class UsuarioGeneral {
 
 	public UsuarioGeneral(String nombre, String correo,
                           Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          InformacionUsuario caracteristicas) {
+                          InformacionUsuario informacionUsuario) {
         this.nombre = nombre;
         this.correo = correo;
         this.semestre = semestre;
         this.estilosAprendizaje = estiloAprendizaje;
-        this.informacionUsuario = caracteristicas;
+        this.informacionUsuario = informacionUsuario;
 	}
 
 	public String getCorreo() {
@@ -123,14 +123,6 @@ public class UsuarioGeneral {
 	}
 	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
 		this.estilosAprendizaje = estiloAprendizaje;
-	}
-
-	public InformacionUsuario getCaracteristicasUsuario() {
-		return informacionUsuario;
-	}
-
-	public void setCaracteristicasUsuario(InformacionUsuario caracteristicasUsuario) {
-		this.informacionUsuario = caracteristicasUsuario;
 	}
 
 	public List<Asignatura> getMonitorDe() {
@@ -187,5 +179,29 @@ public class UsuarioGeneral {
 
 	public void setTips(List<Tip> tips) {
 		this.tips = tips;
+	}
+
+	public List<RespuestaPost> getRespuestasPosts() {
+		return respuestasPosts;
+	}
+
+	public void setRespuestasPosts(List<RespuestaPost> respuestasPosts) {
+		this.respuestasPosts = respuestasPosts;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public List<Tip> getTipsGustados() {
+		return tipsGustados;
+	}
+
+	public void setTipsGustados(List<Tip> tipsGustados) {
+		this.tipsGustados = tipsGustados;
 	}
 }

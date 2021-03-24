@@ -126,4 +126,28 @@ public class Restaurante {
     public Long getId() {
         return this.id;
     }
+
+	public List<TipoRestaurante> getTiposRestaurante() {
+		return tiposRestaurante;
+	}
+
+	public void setTiposRestaurante(List<TipoRestaurante> tiposRestaurante) {
+		this.tiposRestaurante = tiposRestaurante;
+	}
+
+	public Lugar getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(Lugar lugar) {
+		this.lugar = lugar;
+	}
+
+	public List<RegimenAlimenticio> getRegimenesAlimenticios() {
+		return regimenesAlimenticios;
+	}
+
+	public void setRegimenesAlimenticios(List<RegimenAlimenticio> regimenesAlimenticios) {
+		this.regimenesAlimenticios = regimenesAlimenticios;
+	}
 }

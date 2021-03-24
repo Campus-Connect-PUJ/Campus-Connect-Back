@@ -7,6 +7,8 @@ import CampusConnect.CCBack.Repository.PostRepository;
 import CampusConnect.CCBack.Repository.RespuestaPostRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 class PostService {
     @Autowired
     private PostRepository repository;
-
-    @Autowired
-    private RespuestaPostRepository rpRepo;
 
     @Autowired
     private UsuarioGeneralRepository usuarioRepo;
@@ -36,8 +35,8 @@ class PostService {
     }
 
     @GetMapping("/post/{id}/respuestas")
-    public RespuestaPost findRespuestasById(@PathVariable("id") final Long id) {
-        return rpRepo.findById(id).get();
+    public List<RespuestaPost> findRespuestasById(@PathVariable("id") final Long id) {
+        return repository.findById(id).get().getRespuestas();
     }
 
     @PostMapping("/post/{id}")

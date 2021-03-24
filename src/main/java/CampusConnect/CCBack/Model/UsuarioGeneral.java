@@ -10,9 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UsuarioGeneral {
@@ -27,22 +28,27 @@ public class UsuarioGeneral {
 
     private Integer semestre;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
     private InformacionUsuario informacionUsuario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Tip> tips;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Post> posts;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<RespuestaPost> respuestasPosts;
 
     // relaciones muchos a muchos  ---------------------
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeUsuario",
@@ -50,20 +56,28 @@ public class UsuarioGeneral {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<UsuarioCAE> rolesCAE;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "monitores")
     private List<Asignatura> monitorDe;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Caracteristica> caracteristicas;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<RolAdministrador> rolesAdministrador;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
+
+    @ManyToMany(mappedBy = "usuariosGustaron")
+    private List<Tip> tipsGustados;
 
     public UsuarioGeneral() { }
 
@@ -77,12 +91,12 @@ public class UsuarioGeneral {
 
 	public UsuarioGeneral(String nombre, String correo,
                           Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          InformacionUsuario caracteristicas) {
+                          InformacionUsuario informacionUsuario) {
         this.nombre = nombre;
         this.correo = correo;
         this.semestre = semestre;
         this.estilosAprendizaje = estiloAprendizaje;
-        this.informacionUsuario = caracteristicas;
+        this.informacionUsuario = informacionUsuario;
 	}
 
 	public String getCorreo() {
@@ -109,14 +123,6 @@ public class UsuarioGeneral {
 	}
 	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
 		this.estilosAprendizaje = estiloAprendizaje;
-	}
-
-	public InformacionUsuario getCaracteristicasUsuario() {
-		return informacionUsuario;
-	}
-
-	public void setCaracteristicasUsuario(InformacionUsuario caracteristicasUsuario) {
-		this.informacionUsuario = caracteristicasUsuario;
 	}
 
 	public List<Asignatura> getMonitorDe() {
@@ -173,5 +179,29 @@ public class UsuarioGeneral {
 
 	public void setTips(List<Tip> tips) {
 		this.tips = tips;
+	}
+
+	public List<RespuestaPost> getRespuestasPosts() {
+		return respuestasPosts;
+	}
+
+	public void setRespuestasPosts(List<RespuestaPost> respuestasPosts) {
+		this.respuestasPosts = respuestasPosts;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public List<Tip> getTipsGustados() {
+		return tipsGustados;
+	}
+
+	public void setTipsGustados(List<Tip> tipsGustados) {
+		this.tipsGustados = tipsGustados;
 	}
 }

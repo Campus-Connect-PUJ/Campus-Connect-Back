@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class GrupoEstudiantil {
 
@@ -28,6 +30,7 @@ public class GrupoEstudiantil {
 
     private String requisitos;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "CaracteristicasGrupoEstudiantil",

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TipoAprendizaje {
 
@@ -16,9 +18,11 @@ public class TipoAprendizaje {
 
     private String descripcion;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "estilosAprendizaje")
     private List<UsuarioGeneral> usuarios;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tiposAprendizaje")
     private List<Tip> tips;
 

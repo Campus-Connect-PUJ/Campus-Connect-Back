@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Eventos {
 
@@ -21,6 +23,7 @@ public class Eventos {
 
     private String descripcion;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "eventos")
     private List<Caracteristica> caracteristicas;
 

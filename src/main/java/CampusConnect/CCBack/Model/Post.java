@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Post {
 
@@ -30,6 +32,7 @@ public class Post {
 
     private Boolean reportado;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "post")
     private List<RespuestaPost> respuestas;
 

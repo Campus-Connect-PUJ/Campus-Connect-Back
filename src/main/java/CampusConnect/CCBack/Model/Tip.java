@@ -31,6 +31,13 @@ public class Tip {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> tiposAprendizaje;
 
+    @ManyToMany
+    @JoinTable (
+        name = "UsuariosGustaronTip",
+        joinColumns = @JoinColumn(name = "idTipGusto"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
+    private List<UsuarioGeneral> usuariosGustaron;
+
 	public List<TipoAprendizaje> getRespuestas() {
 		return tiposAprendizaje;
 	}

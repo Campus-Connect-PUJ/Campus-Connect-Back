@@ -4,7 +4,6 @@ import CampusConnect.CCBack.Model.Post;
 import CampusConnect.CCBack.Model.RespuestaPost;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.PostRepository;
-import CampusConnect.CCBack.Repository.RespuestaPostRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 import java.util.List;

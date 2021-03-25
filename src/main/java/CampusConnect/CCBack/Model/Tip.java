@@ -26,7 +26,6 @@ public class Tip {
     private UsuarioGeneral usuario;
 
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
-    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeTip",

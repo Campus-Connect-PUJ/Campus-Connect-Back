@@ -1,9 +1,9 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.Post;
-import CampusConnect.CCBack.Model.RespuestaPost;
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.PostRepository;
+import CampusConnect.CCBack.Repository.ForoRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 import java.util.List;
@@ -16,43 +16,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-class PostService {
+class ForoService {
     @Autowired
-    private PostRepository repository;
+    private ForoRepository repository;
 
     @Autowired
     private UsuarioGeneralRepository usuarioRepo;
 
-    @GetMapping("/posts")
-    public Iterable<Post> findAll() {
+    @GetMapping("/foros")
+    public Iterable<Foro> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("/post/{id}")
-    public Post findById(@PathVariable("id") final Long id) {
+    @GetMapping("/foro/{id}")
+    public Foro findById(@PathVariable("id") final Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/post/{id}/respuestas")
-    public List<RespuestaPost> findRespuestasById(@PathVariable("id") final Long id) {
+    @GetMapping("/foro/{id}/respuestas")
+    public List<RespuestaForo> findRespuestasById(@PathVariable("id") final Long id) {
         return repository.findById(id).get().getRespuestas();
     }
 
-    @PostMapping("/post/{id}")
-    public Post crearPost(
-        @RequestBody final Post postData,
+    @PostMapping("/foro/{id}")
+    public Foro crearForo(
+        @RequestBody final Foro foroData,
         @PathVariable("id") final Long idUsuario
         ) {
-        Post post = new Post();
+        Foro foro = new Foro();
         UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
         // no es necesario poner las demas variables, ya que el
         // constructor se encarga, ademas un post al ser creado
         // siempre tendra una lista vacia de respuestas, la fecha
         // puede ser sacada de forma local y no sera reportado
-        post.setDescripcion(postData.getDescripcion());
-        post.setTitulo(postData.getTitulo());
-        post.setUsuario(ug);
+        foro.setDescripcion(foroData.getDescripcion());
+        foro.setTitulo(foroData.getTitulo());
+        foro.setUsuario(ug);
 
-        return repository.save(post);
+        return repository.save(foro);
     }
 }

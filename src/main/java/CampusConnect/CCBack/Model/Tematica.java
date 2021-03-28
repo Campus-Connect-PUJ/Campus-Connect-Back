@@ -28,6 +28,10 @@ public class Tematica {
         inverseJoinColumns = @JoinColumn(name = "idGrupoEstudiantil"))
     private List<GrupoEstudiantil> gruposEstudiantiles;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "tematicas")
+    private List<Caracteristica> caracteristicas;
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -44,6 +44,14 @@ public class Caracteristica {
         inverseJoinColumns = @JoinColumn(name = "idGrupoEstudiantil"))
     private List<GrupoEstudiantil> gruposEstudiantiles;
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable (
+        name = "CaracteristicasTematicas",
+        joinColumns = @JoinColumn(name = "idCaracteristica"),
+        inverseJoinColumns = @JoinColumn(name = "idTematica"))
+    private List<Tematica> tematicas;
+
 	public String getNombre() {
 		return nombre;
 	}

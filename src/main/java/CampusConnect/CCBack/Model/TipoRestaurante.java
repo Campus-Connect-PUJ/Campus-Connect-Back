@@ -27,15 +27,15 @@ public class TipoRestaurante {
 		return tipo;
 	}
 
-	public List<Restaurante> getActividades() {
+	public void setTipo(final String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}
 
-	public void setActividades(List<Restaurante> actividades) {
-		this.restaurantes = actividades;
-	}
-
-	public void setTipo(final String tipo) {
-		this.tipo = tipo;
+	public void setRestaurantes(List<Restaurante> restaurantes) {
+		this.restaurantes = restaurantes;
 	}
 }

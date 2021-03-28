@@ -1,25 +1,5 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.Asignatura;
-import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.Carrera;
-import CampusConnect.CCBack.Model.InformacionUsuario;
-import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
-import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.Foro;
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
-import CampusConnect.CCBack.Model.RespuestaForo;
-import CampusConnect.CCBack.Model.Restaurante;
-import CampusConnect.CCBack.Model.RolAdministrador;
-import CampusConnect.CCBack.Model.Tip;
-import CampusConnect.CCBack.Model.TipoAprendizaje;
-import CampusConnect.CCBack.Model.UsuarioCAE;
-import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
-import CampusConnect.CCBack.Repository.ResenhaRestauranteRepository;
-import CampusConnect.CCBack.Repository.RestauranteRepository;
-import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import CampusConnect.CCBack.Model.Asignatura;
+import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Carrera;
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
+import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Model.Restaurante;
+import CampusConnect.CCBack.Model.RolAdministrador;
+import CampusConnect.CCBack.Model.Tip;
+import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.UsuarioCAE;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
+import CampusConnect.CCBack.Repository.RestauranteRepository;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 @RestController
 class UsuarioGeneralService {

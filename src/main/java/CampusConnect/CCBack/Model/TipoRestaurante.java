@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TipoRestaurante {
 
@@ -17,6 +19,7 @@ public class TipoRestaurante {
 
     private String tipo;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tiposRestaurante")
     private List<Restaurante> restaurantes;
 
@@ -24,15 +27,15 @@ public class TipoRestaurante {
 		return tipo;
 	}
 
-	public List<Restaurante> getActividades() {
+	public void setTipo(final String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}
 
-	public void setActividades(List<Restaurante> actividades) {
-		this.restaurantes = actividades;
-	}
-
-	public void setTipo(final String tipo) {
-		this.tipo = tipo;
+	public void setRestaurantes(List<Restaurante> restaurantes) {
+		this.restaurantes = restaurantes;
 	}
 }

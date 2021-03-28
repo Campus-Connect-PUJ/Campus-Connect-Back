@@ -66,6 +66,7 @@
 {
     "idUsuario": 0,
     "descripcion": "Realizar ejercicios de simulación",
+
     "tipoAprendizaje": [
         "Divergente",
         "Kinestesico"
@@ -211,7 +212,7 @@
     "tipoAprendizaje": [
         "Acomodador",
         "Visual",
-	"Aural"
+	      "Aural"
         ]
 },
 {
@@ -244,7 +245,7 @@
     "tipoAprendizaje": [
         "Acomodador",
         "Visual",
-	"LectoEscritura"
+	      "LectoEscritura"
         ]
 },
 {

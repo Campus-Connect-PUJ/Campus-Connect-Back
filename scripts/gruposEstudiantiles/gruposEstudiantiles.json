@@ -73,7 +73,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
-      ""
+      "innovación",
+      "desarrollo"
     ]
   },
   {
@@ -93,6 +94,7 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "educativo"
     ]
   },
   {
@@ -102,6 +104,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "debate",
+      "dialogo"
     ]
   },
   {
@@ -111,7 +115,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
-      "investigación"
+      "investigación",
+      "medicina"
     ]
   },
   {
@@ -121,6 +126,7 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "salud mental"
     ]
   },
   {
@@ -139,6 +145,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "capacitación",
+      "MUN"
     ]
   },
   {
@@ -148,6 +156,8 @@
     "calificacion" : 5,
     "requisitos" : "",
     "caracteristicas" : [
+      "interdiciplinario",
+      "solución de problemas"
     ]
   },
   {
@@ -460,6 +470,128 @@
       "Animales",
       "Adopción",
       "Domesticos"
+    ]
+  },
+  {
+    "nombre" : "Degénero",
+    "descripcion" : "Debatimos y visibilizamos temas en relación al género y los feminismos, teniendo en cuenta las diversas vertientes teóricas y los contextos sociales en los cuales se hace importante y necesario problematizarlos",
+    "tematicas" : "Diversidad",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "diversidad",
+      "discusión",
+      "inclusión"
+    ]
+  },
+  {
+    "nombre" : "Polifonía",
+    "descripcion" : "Generar un espacio crítico de sensibilización, visibilización, prevención, atención y acción respecto a las violencias basadas en género en el contexto universitario, pormedio de espacios formativos y pedagógicos en el campus y fuera de él",
+    "tematicas" : "Diversidad",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "diversidad",
+      "discusión"
+    ]
+  },
+  {
+    "nombre" : "Best Buddies",
+    "descripcion" : "Buscamos generar procesos de inclusión con personas con discapacidad a partir de lazos de amistad",
+    "tematicas" : "Diversidad",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "diversidad",
+      "acompañamiento"
+    ]
+  },
+{
+    "nombre" : "Stonewall Javeriano",
+    "descripcion" : "Fomentar un espacio para la construcción de la vida en común, formando un grupo diverso que transforma identidades desde los factores que nos causan intersecciones como seres sintientes, diversos e iguales dentro de las diferencias",
+    "tematicas" : "Diversidad",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "diversidad",
+      "acompañamiento"
+    ]
+  },
+{
+    "nombre" : "Perioódico Ágora",
+    "descripcion" : "Buscamos un constante debate a nivel coyuntural o en cuestiones académicas para la construcción de conocimiento desde distintas disciplinas",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Debate"
+    ]
+  },
+{
+    "nombre" : "Revista código javeriana",
+    "descripcion" : "Publicar semestralmente diferentes artículos de arte: cuentos, poemas, reseñas, crónicas, fotografías y otros temas de interés",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Publicación"
+    ]
+  },
+{
+    "nombre" : "Revista Cuadrante Phi",
+    "descripcion" : "Publicar artículos filosóficos e interdisciplinares para fomentar el trabajo de los estudiantes de filosofía alrededor de Colombia y otros países hispanos, a la vez hacer entrevistas y organizar eventos académicos gracias a la red de revistas de filosofía en toda Colombia",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Publicación"
+    ]
+  },
+{
+    "nombre" : "Foro javeriano",
+    "descripcion" : "Somos un grupo que fue creado como alternativa de expresión, para facilitar la posibilidad de hacer pública la opinión de las personas, abrir un espacio de debate, discusión, sana crítica, información y sobre todo periodismo serio para la facultad de Ciencia Jurídicas",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Publicación"
+    ]
+  },
+{
+    "nombre" : "Periódico obelisco",
+    "descripcion" : "Generar u espacio de participación estudiantil dentro de la Facultad de Ciencias Políticas y Relaciones Internacionales para que los estudiantes puedan expresar sus ideas a través de un periódico impreso",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Publicación"
+    ]
+  },
+{
+    "nombre" : "Radiando variando",
+    "descripcion" : "Producir contenidos informativos en temáticas como cultura, política y deporte mediante un programa/plataforma multimedial con el fin de conectarse con los diferentes gustos e intereses del público",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Difusión"
+    ]
+  },
+{
+    "nombre" : "Revista 20/20",
+    "descripcion" : "Crear un espacio para la publicación de textos creativos surgidos en la Universidad, ya sea entre los estudiantes del énfasis de Escrituras Creativas de la carrera de Estudios Literarios o de todos aquellos estudiantes interesados",
+    "tematicas" : "Medios Comunicación",
+    "calificacion" : 5,
+    "requisitos" : "",
+    "caracteristicas" : [
+      "Medios Comunicación",
+      "Publicación"
     ]
   }
 ]

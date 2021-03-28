@@ -2,13 +2,18 @@ package CampusConnect.CCBack.Model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UsuarioGeneral {
@@ -18,17 +23,46 @@ public class UsuarioGeneral {
     private Long id;
 
     private String nombre;
+
     private String correo;
 
-    private String carrera;
     private Integer semestre;
 
-    @OneToOne
-    @JoinColumn(name = "caracteristicaId")
-    private CaracteristicasUsuario caracteristicasUsuario;
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+    private InformacionUsuario informacionUsuario;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Tip> tips;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Foro> foros;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<RespuestaForo> respuestasForo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<ResenhaGrupoEstudiantil> resenhaGruposEstudiatiles;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<ResenhaRestaurante> resenhaRestaurantes;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+    private RegimenAlimenticioUsuario regimenAlimenticio;
 
     // relaciones muchos a muchos  ---------------------
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeUsuario",
@@ -36,20 +70,28 @@ public class UsuarioGeneral {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<UsuarioCAE> rolesCAE;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "monitores")
     private List<Asignatura> monitorDe;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Caracteristica> caracteristicas;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<RolAdministrador> rolesAdministrador;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
+
+    @ManyToMany(mappedBy = "usuariosGustaron")
+    private List<Tip> tipsGustados;
 
     public UsuarioGeneral() { }
 
@@ -61,23 +103,16 @@ public class UsuarioGeneral {
 		this.rolesCAE = rolesCAE;
 	}
 
-	public UsuarioGeneral(String nombre, String correo, String carrera,
+	public UsuarioGeneral(String nombre, String correo,
                           Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          CaracteristicasUsuario caracteristicas) {
+                          InformacionUsuario informacionUsuario) {
         this.nombre = nombre;
         this.correo = correo;
-        this.carrera = carrera;
         this.semestre = semestre;
         this.estilosAprendizaje = estiloAprendizaje;
-        this.caracteristicasUsuario = caracteristicas;
+        this.informacionUsuario = informacionUsuario;
 	}
 
-    public CaracteristicasUsuario getCaracteristicas() {
-		return caracteristicasUsuario;
-	}
-	public void setCaracteristicas(final CaracteristicasUsuario caracteristicas) {
-		this.caracteristicasUsuario = caracteristicas;
-	}
 	public String getCorreo() {
 		return correo;
 	}
@@ -90,16 +125,10 @@ public class UsuarioGeneral {
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
-    public String getCarrera(){
-        return this.carrera;
-    }
     public Integer getSemestre(){
         return this.semestre;
     }
 
-    public void setCarrera(final String carrera) {
-        this.carrera = carrera;
-    }
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
@@ -108,14 +137,6 @@ public class UsuarioGeneral {
 	}
 	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
 		this.estilosAprendizaje = estiloAprendizaje;
-	}
-
-	public CaracteristicasUsuario getCaracteristicasUsuario() {
-		return caracteristicasUsuario;
-	}
-
-	public void setCaracteristicasUsuario(CaracteristicasUsuario caracteristicasUsuario) {
-		this.caracteristicasUsuario = caracteristicasUsuario;
 	}
 
 	public List<Asignatura> getMonitorDe() {
@@ -137,4 +158,73 @@ public class UsuarioGeneral {
 	public void setRolesAdministrador(List<RolAdministrador> rolesAdministrador) {
 		this.rolesAdministrador = rolesAdministrador;
 	}
+
+	public InformacionUsuario getInformacionUsuario() {
+		return informacionUsuario;
+	}
+
+	public void setInformacionUsuario(InformacionUsuario informacionUsuario) {
+		this.informacionUsuario = informacionUsuario;
+	}
+
+	public List<TipoAprendizaje> getEstilosAprendizaje() {
+		return estilosAprendizaje;
+	}
+
+	public void setEstilosAprendizaje(List<TipoAprendizaje> estilosAprendizaje) {
+		this.estilosAprendizaje = estilosAprendizaje;
+	}
+
+	public List<Caracteristica> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public List<Carrera> getCarrerasUsuario() {
+		return carrerasUsuario;
+	}
+
+	public void setCarrerasUsuario(List<Carrera> carrerasUsuario) {
+		this.carrerasUsuario = carrerasUsuario;
+	}
+
+	public List<Tip> getTips() {
+		return tips;
+	}
+
+	public void setTips(List<Tip> tips) {
+		this.tips = tips;
+	}
+
+	public List<RespuestaForo> getRespuestasForo() {
+		return respuestasForo;
+	}
+
+	public void setRespuestasForo(List<RespuestaForo> respuestasForo) {
+		this.respuestasForo = respuestasForo;
+	}
+
+	public List<Foro> getForos() {
+		return foros;
+	}
+
+	public void setForos(List<Foro> foros) {
+		this.foros = foros;
+	}
+
+	public List<Tip> getTipsGustados() {
+		return tipsGustados;
+	}
+
+	public void setTipsGustados(List<Tip> tipsGustados) {
+		this.tipsGustados = tipsGustados;
+	}
+
+	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
+        this.resenhaRestaurantes.add(rr);
+	}
+
+	public void agregarResenhaGrupoEstudiantil(ResenhaGrupoEstudiantil rr) {
+        this.resenhaGruposEstudiatiles.add(rr);
+	}
+
 }

@@ -1,7 +1,7 @@
 [
 {
     "idUsuario": 0,
-    "descripcion": "Actividades manuales",
+    "descripcion": "Realizar actividades manuales",
     "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
@@ -9,7 +9,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Proyectos prácticos",
+    "descripcion": "Realizar proyectos prácticos",
     "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
@@ -33,7 +33,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Ejercicios de memorización",
+    "descripcion": "Realizar ejercicios de memorización",
     "tipoAprendizaje": [
         "Convergente",
         "Visual"
@@ -41,7 +41,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Resolución de problemas prácticos",
+    "descripcion": "Desarrolllar la resolución de problemas prácticos",
     "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
@@ -65,7 +65,8 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Ejercicios de simulación",
+    "descripcion": "Realizar ejercicios de simulación",
+
     "tipoAprendizaje": [
         "Divergente",
         "Kinestesico"
@@ -73,7 +74,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Proponer nuevos enfoques a un problema",
+    "descripcion": "Intentar proponer nuevos enfoques a un problema",
     "tipoAprendizaje": [
         "Divergente",
         "LectoEscritura"
@@ -159,7 +160,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Hacerlo tomar apuntes",
+    "descripcion": "Tomar apuntes",
     "tipoAprendizaje": [
         "Asimilador",
         "LectoEscritura"
@@ -199,7 +200,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Trabajos grupales",
+    "descripcion": "Realizar trabajos grupales",
     "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
@@ -207,11 +208,11 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Ejercicios de imaginería",
+    "descripcion": "Realizar ejercicios de imaginería",
     "tipoAprendizaje": [
         "Acomodador",
         "Visual",
-	"Aural"
+	      "Aural"
         ]
 },
 {
@@ -240,11 +241,11 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Composiciones sobre temas puntuales",
+    "descripcion": "Realizar composiciones sobre temas puntuales",
     "tipoAprendizaje": [
         "Acomodador",
         "Visual",
-	"LectoEscritura"
+	      "LectoEscritura"
         ]
 },
 {
@@ -257,7 +258,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Actividades de periodismo, entrevistas",
+    "descripcion": "Realizar actividades de periodismo como entrevistas",
     "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
@@ -275,7 +276,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Hacerle utilizar el ensayo y error.",
+    "descripcion": "Utilizar el ensayo y error.",
     "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
@@ -291,7 +292,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Cuadros sinopticos",
+    "descripcion": "Realizar Cuadros sinopticos",
     "tipoAprendizaje": [
         "Acomodador",
         "Visual"
@@ -299,7 +300,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Instrucciones escritas",
+    "descripcion": "Enfocarse en instrucciones escritas",
     "tipoAprendizaje": [
         "Acomodador",
         "Visual"
@@ -307,7 +308,7 @@
 },
 {
     "idUsuario": 0,
-    "descripcion": "Instrucciones verbales",
+    "descripcion": "Enfocarse en instrucciones verbales",
     "tipoAprendizaje": [
         "Asimilador",
         "Aural"

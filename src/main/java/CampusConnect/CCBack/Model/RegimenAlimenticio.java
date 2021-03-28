@@ -22,7 +22,7 @@ public class RegimenAlimenticio {
 
     @JsonIgnore
     @OneToMany(mappedBy = "regimenAlimenticio")
-    private List<UsuarioGeneral> usuarios;
+    private List<RegimenAlimenticioUsuario> usuarios;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "regimenesAlimenticios")

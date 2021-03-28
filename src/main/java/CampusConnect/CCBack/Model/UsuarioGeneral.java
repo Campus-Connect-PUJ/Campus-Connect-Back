@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -55,9 +54,11 @@ public class UsuarioGeneral {
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaRestaurante> resenhaRestaurantes;
 
-    @ManyToOne
-    @JoinColumn(name="idRegimenAlimenticio")
-    private RegimenAlimenticio regimenAlimenticio;
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+    private RegimenAlimenticioUsuario regimenAlimenticio;
 
     // relaciones muchos a muchos  ---------------------
 

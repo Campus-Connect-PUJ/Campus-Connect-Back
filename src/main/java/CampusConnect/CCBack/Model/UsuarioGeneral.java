@@ -46,6 +46,20 @@ public class UsuarioGeneral {
     @OneToMany(mappedBy = "usuario")
     private List<RespuestaForo> respuestasForo;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<ResenhaGrupoEstudiantil> resenhaGruposEstudiatiles;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<ResenhaRestaurante> resenhaRestaurantes;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+    private RegimenAlimenticioUsuario regimenAlimenticio;
+
     // relaciones muchos a muchos  ---------------------
 
     @JsonIgnore
@@ -204,4 +218,13 @@ public class UsuarioGeneral {
 	public void setTipsGustados(List<Tip> tipsGustados) {
 		this.tipsGustados = tipsGustados;
 	}
+
+	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
+        this.resenhaRestaurantes.add(rr);
+	}
+
+	public void agregarResenhaGrupoEstudiantil(ResenhaGrupoEstudiantil rr) {
+        this.resenhaGruposEstudiatiles.add(rr);
+	}
+
 }

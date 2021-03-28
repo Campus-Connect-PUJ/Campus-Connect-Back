@@ -3,7 +3,6 @@ package CampusConnect.CCBack.Model;
 import java.util.List;
 
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -32,15 +31,23 @@ public class RegimenAlimenticio {
 		return tipo;
 	}
 
-	public List<Restaurante> getActividades() {
+	public void setTipo(final String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}
 
-	public void setActividades(List<Restaurante> actividades) {
-		this.restaurantes = actividades;
+	public void setRestaurantes(List<Restaurante> restaurantes) {
+		this.restaurantes = restaurantes;
 	}
 
-	public void setTipo(final String tipo) {
-		this.tipo = tipo;
+	public List<RegimenAlimenticioUsuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<RegimenAlimenticioUsuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }

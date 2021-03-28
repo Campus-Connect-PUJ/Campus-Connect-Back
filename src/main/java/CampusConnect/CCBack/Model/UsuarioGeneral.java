@@ -218,4 +218,13 @@ public class UsuarioGeneral {
 	public void setTipsGustados(List<Tip> tipsGustados) {
 		this.tipsGustados = tipsGustados;
 	}
+
+	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
+        this.resenhaRestaurantes.add(rr);
+	}
+
+	public void agregarResenhaGrupoEstudiantil(ResenhaGrupoEstudiantil rr) {
+        this.resenhaGruposEstudiatiles.add(rr);
+	}
+
 }

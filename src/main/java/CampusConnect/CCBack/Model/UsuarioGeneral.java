@@ -40,11 +40,11 @@ public class UsuarioGeneral {
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
-    private List<Post> posts;
+    private List<Foro> foros;
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
-    private List<RespuestaPost> respuestasPosts;
+    private List<RespuestaForo> respuestasForo;
 
     // relaciones muchos a muchos  ---------------------
 
@@ -181,20 +181,20 @@ public class UsuarioGeneral {
 		this.tips = tips;
 	}
 
-	public List<RespuestaPost> getRespuestasPosts() {
-		return respuestasPosts;
+	public List<RespuestaForo> getRespuestasForo() {
+		return respuestasForo;
 	}
 
-	public void setRespuestasPosts(List<RespuestaPost> respuestasPosts) {
-		this.respuestasPosts = respuestasPosts;
+	public void setRespuestasForo(List<RespuestaForo> respuestasForo) {
+		this.respuestasForo = respuestasForo;
 	}
 
-	public List<Post> getPosts() {
-		return posts;
+	public List<Foro> getForos() {
+		return foros;
 	}
 
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
+	public void setForos(List<Foro> foros) {
+		this.foros = foros;
 	}
 
 	public List<Tip> getTipsGustados() {

@@ -4,8 +4,8 @@ import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.InformacionUsuario;
-import CampusConnect.CCBack.Model.Post;
-import CampusConnect.CCBack.Model.RespuestaPost;
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.RolAdministrador;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
@@ -58,14 +58,14 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @GetMapping("/usuarios/{id}/respuestas_posts")
-    public List<RespuestaPost> respuestasPostsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getRespuestasPosts();
+    @GetMapping("/usuarios/{id}/respuestas_foros")
+    public List<RespuestaForo> respuestasForosUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getRespuestasForo();
     }
 
-    @GetMapping("/usuarios/{id}/posts")
-    public List<Post> postsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getPosts();
+    @GetMapping("/usuarios/{id}/foros")
+    public List<Foro> postsUsuario(@PathVariable("id") Long id) {
+        return repository.findById(id).get().getForos();
     }
 
     @GetMapping("/usuarios/{id}/estilos_aprendizaje")

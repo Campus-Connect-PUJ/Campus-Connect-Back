@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Post {
+public class Foro {
 
     @Id
     @GeneratedValue
@@ -33,12 +33,13 @@ public class Post {
     private Boolean reportado;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "post")
-    private List<RespuestaPost> respuestas;
+    @ManyToMany(mappedBy = "foro")
+    private List<RespuestaForo> respuestas;
 
-    public Post () {
+    public Foro () {
         this.reportado = false;
-        this.respuestas = new ArrayList<RespuestaPost>();
+        this.respuestas = new ArrayList<RespuestaForo>();
+        this.fecha = LocalTime.now();
     }
 
 	public String getTitulo() {
@@ -81,11 +82,11 @@ public class Post {
 		this.usuario = usuario;
 	}
 
-	public List<RespuestaPost> getRespuestas() {
+	public List<RespuestaForo> getRespuestas() {
 		return respuestas;
 	}
 
-	public void setRespuestas(List<RespuestaPost> respuestas) {
+	public void setRespuestas(List<RespuestaForo> respuestas) {
 		this.respuestas = respuestas;
 	}
 

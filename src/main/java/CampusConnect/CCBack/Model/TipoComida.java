@@ -19,7 +19,7 @@ public class TipoComida {
     private String tipo;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "tiposComidaRestaurante")
+    @ManyToMany(mappedBy = "tiposComida")
     private List<Restaurante> restaurantes;
 
 	public List<Restaurante> getRestaurantes() {

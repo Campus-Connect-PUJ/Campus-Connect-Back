@@ -60,7 +60,7 @@ public class Restaurante {
         name = "TiposComidaRestaurante",
         joinColumns = @JoinColumn(name = "idRestaurante"),
         inverseJoinColumns = @JoinColumn(name = "idTipoComida"))
-    private List<TipoComida> tiposComidaRestaurante;
+    private List<TipoComida> tiposComida;
 
     @JsonIgnore
     @ManyToMany
@@ -172,5 +172,21 @@ public class Restaurante {
 
 	public void setRegimenesAlimenticios(List<RegimenAlimenticio> regimenesAlimenticios) {
 		this.regimenesAlimenticios = regimenesAlimenticios;
+	}
+
+	public List<TipoComida> getTiposComida() {
+		return tiposComida;
+	}
+
+	public void setTiposComida(List<TipoComida> tiposComida) {
+		this.tiposComida = tiposComida;
+	}
+
+	public List<ResenhaRestaurante> getResenhas() {
+		return resenhas;
+	}
+
+	public void setResenhas(List<ResenhaRestaurante> resenhas) {
+		this.resenhas = resenhas;
 	}
 }

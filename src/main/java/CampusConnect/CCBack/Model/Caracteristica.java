@@ -52,22 +52,51 @@ public class Caracteristica {
         inverseJoinColumns = @JoinColumn(name = "idTematica"))
     private List<Tematica> tematicas;
 
-	public String getNombre() {
+    public String getNombre() {
 		return nombre;
 	}
-	public List<Eventos> getEventos() {
+
+    public List<Eventos> getEventos() {
 		return eventos;
 	}
-	public void setEventos(List<Eventos> eventos) {
+
+    public void setEventos(List<Eventos> eventos) {
 		this.eventos = eventos;
 	}
-	public List<UsuarioGeneral> getUsuarios() {
+
+    public List<UsuarioGeneral> getUsuarios() {
 		return usuarios;
 	}
-	public void setUsuarios(List<UsuarioGeneral> usuarios) {
+
+    public void setUsuarios(List<UsuarioGeneral> usuarios) {
 		this.usuarios = usuarios;
 	}
-	public void setNombre(String nombre) {
+
+    public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+    public List<Tematica> getTematicas() {
+		return tematicas;
+	}
+
+    public void setTematicas(List<Tematica> tematicas) {
+		this.tematicas = tematicas;
+	}
+
+    public List<GrupoEstudiantil> getGruposEstudiantiles() {
+		return gruposEstudiantiles;
+	}
+
+    public void setGruposEstudiantiles(List<GrupoEstudiantil> gruposEstudiantiles) {
+		this.gruposEstudiantiles = gruposEstudiantiles;
+	}
+
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

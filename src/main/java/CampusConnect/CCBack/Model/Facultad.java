@@ -36,4 +36,12 @@ public class Facultad {
 		this.nombre = nombre;
 	}
 
+	public List<GrupoEstudiantil> getGruposEstudiantiles() {
+		return gruposEstudiantiles;
+	}
+
+	public void setGruposEstudiantiles(List<GrupoEstudiantil> gruposEstudiantiles) {
+		this.gruposEstudiantiles = gruposEstudiantiles;
+	}
+
 }

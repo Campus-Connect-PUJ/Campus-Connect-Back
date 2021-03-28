@@ -36,6 +36,14 @@ public class RespuestaForo {
         this.puntaje = 0;
     }
 
+    public void like() {
+        this.puntaje++;
+    }
+
+    public void dislike() {
+        this.puntaje++;
+    }
+
 	public int getPuntaje() {
 		return puntaje;
 	}

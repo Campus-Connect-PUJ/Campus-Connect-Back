@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -37,6 +38,10 @@ public class GrupoEstudiantil {
         joinColumns = @JoinColumn(name = "idGrupoEstudiantil"),
         inverseJoinColumns = @JoinColumn(name = "idCaracteristica"))
     private List<Caracteristica> caracteristicas;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "grupoEstudiantil")
+    private List<ResenhaGrupoEstudiantil> resenhas;
 
 	public String getNombre() {
 		return nombre;

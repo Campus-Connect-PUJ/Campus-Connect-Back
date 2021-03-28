@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -58,6 +59,10 @@ public class Restaurante {
         joinColumns = @JoinColumn(name = "idRestaurante"),
         inverseJoinColumns = @JoinColumn(name = "idRegimenAlimenticio"))
     private List<RegimenAlimenticio> regimenesAlimenticios;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurante")
+    private List<ResenhaRestaurante> resenhas;
 
 	public String getNombre() {
 		return nombre;

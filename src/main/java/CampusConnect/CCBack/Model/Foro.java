@@ -32,6 +32,8 @@ public class Foro {
 
     private Boolean reportado;
 
+    private int puntaje;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "foro")
     private List<RespuestaForo> respuestas;
@@ -40,7 +42,16 @@ public class Foro {
         this.reportado = false;
         this.respuestas = new ArrayList<RespuestaForo>();
         this.fecha = LocalTime.now();
+        this.puntaje = 0;
     }
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
 
 	public String getTitulo() {
 		return titulo;

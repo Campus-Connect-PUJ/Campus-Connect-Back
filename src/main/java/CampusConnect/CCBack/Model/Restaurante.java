@@ -40,6 +40,8 @@ public class Restaurante {
     // descripcion breve de la ubicacion en la que se encuentra el restaurante
     private String descripcionLugar;
 
+    private String ambientacion;
+
     @ManyToOne
     @JoinColumn(name="idLugar")
     private Lugar lugar;
@@ -55,6 +57,14 @@ public class Restaurante {
     @JsonIgnore
     @ManyToMany
     @JoinTable (
+        name = "TiposComidaRestaurante",
+        joinColumns = @JoinColumn(name = "idRestaurante"),
+        inverseJoinColumns = @JoinColumn(name = "idTipoComida"))
+    private List<TipoComida> tiposComidaRestaurante;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable (
         name = "RegimenesAlimenticiosRestaurante",
         joinColumns = @JoinColumn(name = "idRestaurante"),
         inverseJoinColumns = @JoinColumn(name = "idRegimenAlimenticio"))
@@ -66,6 +76,14 @@ public class Restaurante {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getAmbientacion() {
+		return ambientacion;
+	}
+
+	public void setAmbientacion(String ambientacion) {
+		this.ambientacion = ambientacion;
 	}
 
 	public String getDescripcionLugar() {

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,6 +40,8 @@ public class Restaurante {
     // descripcion breve de la ubicacion en la que se encuentra el restaurante
     private String descripcionLugar;
 
+    private String ambientacion;
+
     @ManyToOne
     @JoinColumn(name="idLugar")
     private Lugar lugar;
@@ -54,13 +57,33 @@ public class Restaurante {
     @JsonIgnore
     @ManyToMany
     @JoinTable (
+        name = "TiposComidaRestaurante",
+        joinColumns = @JoinColumn(name = "idRestaurante"),
+        inverseJoinColumns = @JoinColumn(name = "idTipoComida"))
+    private List<TipoComida> tiposComida;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable (
         name = "RegimenesAlimenticiosRestaurante",
         joinColumns = @JoinColumn(name = "idRestaurante"),
         inverseJoinColumns = @JoinColumn(name = "idRegimenAlimenticio"))
     private List<RegimenAlimenticio> regimenesAlimenticios;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurante")
+    private List<ResenhaRestaurante> resenhas;
+
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getAmbientacion() {
+		return ambientacion;
+	}
+
+	public void setAmbientacion(String ambientacion) {
+		this.ambientacion = ambientacion;
 	}
 
 	public String getDescripcionLugar() {
@@ -149,5 +172,21 @@ public class Restaurante {
 
 	public void setRegimenesAlimenticios(List<RegimenAlimenticio> regimenesAlimenticios) {
 		this.regimenesAlimenticios = regimenesAlimenticios;
+	}
+
+	public List<TipoComida> getTiposComida() {
+		return tiposComida;
+	}
+
+	public void setTiposComida(List<TipoComida> tiposComida) {
+		this.tiposComida = tiposComida;
+	}
+
+	public List<ResenhaRestaurante> getResenhas() {
+		return resenhas;
+	}
+
+	public void setResenhas(List<ResenhaRestaurante> resenhas) {
+		this.resenhas = resenhas;
 	}
 }

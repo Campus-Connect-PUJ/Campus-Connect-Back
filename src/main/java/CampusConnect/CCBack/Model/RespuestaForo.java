@@ -29,9 +29,28 @@ public class RespuestaForo {
 
     private Boolean reportado;
 
+    private int puntaje;
+
     RespuestaForo () {
         this.reportado = false;
+        this.puntaje = 0;
     }
+
+    public void like() {
+        this.puntaje++;
+    }
+
+    public void dislike() {
+        this.puntaje++;
+    }
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
 
 	public String getTexto() {
 		return texto;

@@ -6,7 +6,6 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.TipRepository;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,4 +35,5 @@ class TipsService {
     public List<UsuarioGeneral> conseguirUsuariosGustaronTip(@PathVariable("id") Long id) {
         return repository.findById(id).get().getUsuariosGustaron();
     }
+  
 }

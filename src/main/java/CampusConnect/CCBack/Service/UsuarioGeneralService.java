@@ -1,29 +1,44 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.Asignatura;
-import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.Carrera;
-import CampusConnect.CCBack.Model.InformacionUsuario;
-import CampusConnect.CCBack.Model.Foro;
-import CampusConnect.CCBack.Model.RespuestaForo;
-import CampusConnect.CCBack.Model.RolAdministrador;
-import CampusConnect.CCBack.Model.Tip;
-import CampusConnect.CCBack.Model.TipoAprendizaje;
-import CampusConnect.CCBack.Model.UsuarioCAE;
-import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import CampusConnect.CCBack.Model.Asignatura;
+import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Carrera;
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
+import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Model.Restaurante;
+import CampusConnect.CCBack.Model.RolAdministrador;
+import CampusConnect.CCBack.Model.Tip;
+import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.UsuarioCAE;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
+import CampusConnect.CCBack.Repository.RestauranteRepository;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 @RestController
 class UsuarioGeneralService {
+
     @Autowired
     private UsuarioGeneralRepository repository;
+
+    @Autowired
+    private RestauranteRepository restauranteRepo;
+
+    @Autowired
+    private GrupoEstudiantilRepository grupoEstudiantilRepo;
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("/usuarios")
@@ -36,25 +51,35 @@ class UsuarioGeneralService {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/pruebaUsuario")
-    public UsuarioGeneral pruebaCreacionUsuario() {
-        UsuarioGeneral ug = new UsuarioGeneral(
-            "pruebaDaniel",
-            "correo_prueba@prueba.com",
-            11,
-            null,
-            null
-            );
+    @PostMapping("/usuario/{id}/resenha_grupo_estudiantil/{id_res}")
+    public UsuarioGeneral crearResenhaGrupoEstudiantil(
+        @RequestBody final ResenhaGrupoEstudiantil foroData,
+        @PathVariable("id") final Long idUsuario,
+        @PathVariable("id_res") final Long idRestaurante
+        ) {
+        ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
+        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        GrupoEstudiantil restaurante = grupoEstudiantilRepo.findById(idRestaurante).get();
+        rr.setEstrellas(foroData.getEstrellas());
+        rr.setGrupoEstudiantil(restaurante);
+        rr.setUsuario(ug);
+        ug.agregarResenhaGrupoEstudiantil(rr);
+        return repository.save(ug);
+    }
 
-        // ug.setCaracteristicas();
-        // ug.setCarrera("sistemas");
-        // ug.setCorreo("estoEsUnCorreo@hola.com");
-        // List<TipoAprendizaje> ta = new ArrayList<>();
-        // ta.add(new TipoAprendizaje());
-        // ug.setEstiloAprendizaje(ta);
-        // ug.setNombre("pruebaDaniel");
-        // ug.setSemestre(11);
-
+    @PostMapping("/usuario/{id}/resenha_restaurante/{id_res}")
+    public UsuarioGeneral crearResentaRestaurante(
+        @RequestBody final ResenhaRestaurante foroData,
+        @PathVariable("id") final Long idUsuario,
+        @PathVariable("id_res") final Long idRestaurante
+        ) {
+        ResenhaRestaurante rr = new ResenhaRestaurante();
+        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        Restaurante restaurante = restauranteRepo.findById(idRestaurante).get();
+        rr.setEstrellas(foroData.getEstrellas());
+        rr.setRestaurante(restaurante);
+        rr.setUsuario(ug);
+        ug.agregarResenhaRestaurante(rr);
         return repository.save(ug);
     }
 

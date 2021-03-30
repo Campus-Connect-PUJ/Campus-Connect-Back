@@ -11,14 +11,17 @@ import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Model.UserCreationDetails;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 class UsuarioGeneralService {
@@ -111,5 +114,22 @@ class UsuarioGeneralService {
     @GetMapping("/usuarios/{id}/carreras")
     public List<Carrera> carrerasUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getCarrerasUsuario();
+    }
+
+    @PostMapping("/createusuario")
+    public String createUsuarioGeneral(@RequestBody UserCreationDetails userCreationDetails){
+        UsuarioGeneral ug = new UsuarioGeneral();
+
+        // ug.setCarrera("sistemas");
+        
+        // List<TipoAprendizaje> ta = new ArrayList<>();
+        // ta.add(new TipoAprendizaje());
+        // ug.setEstiloAprendizaje(ta);
+        ug.setNombre(userCreationDetails.getName()+" "+userCreationDetails.getLast_name());
+        ug.setCorreo(userCreationDetails.getEmail());
+        ug.setSemestre(userCreationDetails.getSemestre_seleccionado());
+        repository.save(ug);
+        
+        return userCreationDetails.toString();
     }
 }

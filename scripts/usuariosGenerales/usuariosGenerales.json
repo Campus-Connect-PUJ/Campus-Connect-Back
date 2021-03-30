@@ -1,14 +1,301 @@
-[
-  {
-    "nombre": "admin",
-    "correo": "campusconnect2021@gmail.com",
-    "semestre": 0,
-    "caracteristicas": {
-      "identidadGenero": "",
-      "raza": "",
-      "perfilContexto": "",
-      "lugarOrigen": "",
-      "fechaNacimiento": "1623-01-01 00:00:00"
+{
+  "usuarios": [
+    {
+      "nombre": "admin",
+      "correo": "campusconnect2021@gmail.com",
+      "semestre": 0,
+      "caracteristicas": {
+        "identidadGenero": "",
+        "raza": "",
+        "perfilContexto": "",
+        "lugarOrigen": "",
+        "fechaNacimiento": "1623-01-01"
+      }
     }
-  }
-]
+  ],
+  "tips": [
+    {
+      "descripcion": "Actividades manuales",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Proyectos prácticos",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Hacer gráficos y mapas",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Visuales"
+      ]
+    },
+    {
+      "descripcion": "Clasificar información",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de memorización",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Resolución de problemas prácticos",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Demostraciones prácticas",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Lluvia de ideas",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de simulación",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Proponer nuevos enfoques a un problema",
+      "tipoAprendizaje": [
+        "Divergente",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Predecir resultados",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Emplear analogías",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Realizar experimentos",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Construir mapas conceptuales",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Resolver puzzles",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "LectoEscritura",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Ensamblar rompecabezas",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Adivinar acertijos",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Utilizar informes escritos",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Investigaciones sobre la materia",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Hacerlo tomar apuntes",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Participar en debates",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Asistir a conferencias",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Encomendarle lectura de textos",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Ordenar datos de una investigación",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Trabajos grupales",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de imaginería",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Trabajo de expresión artística",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Lectura de trozos cortos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Discusión socializada",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Composiciones sobre temas puntuales",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Gráficos ilustrativos sobre los contenidos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Actividades de periodismo, entrevistas",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Elaborar metáforas sobre contenidos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Hacerle utilizar el ensayo y error.",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Usar distintos colores para subrayar",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Cuadros sinopticos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Instrucciones escritas",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Instrucciones verbales",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Aprender de forma ordenada y en secuencia",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Aural"
+      ]
+    }
+  ]
+}

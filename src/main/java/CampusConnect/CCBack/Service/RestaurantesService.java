@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
@@ -15,37 +16,38 @@ import CampusConnect.CCBack.Model.TipoRestaurante;
 import CampusConnect.CCBack.Repository.RestauranteRepository;
 
 @RestController
+@RequestMapping("/restaurante")
 class RestaurantesService {
     @Autowired
     private RestauranteRepository repository;
 
-    @GetMapping("/restaurantes")
+    @GetMapping("all")
     public Iterable<Restaurante> findAllForos() {
         return repository.findAll();
     }
 
-    @GetMapping("/restaurante/{id}")
+    @GetMapping("{id}")
     public Restaurante findForoById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/restaurante/{id}/tipos")
+    @GetMapping("{id}/tipos")
     public List<TipoRestaurante> conseguirTiposRestaurante(@PathVariable("id") Long id) {
         return repository.findById(id).get().getTiposRestaurante();
     }
 
-    @GetMapping("/restaurante/{id}/tipos_comida")
+    @GetMapping("{id}/tipos_comida")
     public List<TipoComida> conseguirTiposComidaRestaurante(@PathVariable("id") Long id) {
         return repository.findById(id).get().getTiposComida();
     }
 
-    @GetMapping("/restaurante/{id}/regimenes_alimenticios")
+    @GetMapping("{id}/regimenes_alimenticios")
     public List<RegimenAlimenticio> conseguirRegimenesAlimenticiosRestaurante(
         @PathVariable("id") Long id) {
         return repository.findById(id).get().getRegimenesAlimenticios();
     }
 
-    @GetMapping("/restaurante/{id}/resenhas")
+    @GetMapping("{id}/resenhas")
     public List<ResenhaRestaurante> conseguirResenhasRestaurante(@PathVariable("id") Long id) {
         return repository.findById(id).get().getResenhas();
     }

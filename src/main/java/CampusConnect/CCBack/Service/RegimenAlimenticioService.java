@@ -20,22 +20,22 @@ class RegimenAlimenticioService {
     @Autowired
     private RegimenAlimenticioRepository repository;
 
-    @GetMapping("s")
+    @GetMapping("all")
     public Iterable<RegimenAlimenticio> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public RegimenAlimenticio findById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/{id}/restaurantes")
+    @GetMapping("{id}/restaurantes")
     public List<Restaurante> conseguirRestaurantesPorRegimen(@PathVariable("id") Long id) {
         return repository.findById(id).get().getRestaurantes();
     }
 
-    @GetMapping("/{id}/usuarios")
+    @GetMapping("{id}/usuarios")
     public List<RegimenAlimenticioUsuario> conseguirUsuariosPorRegimen(@PathVariable("id") Long id) {
         return repository.findById(id).get().getUsuarios();
     }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.Asignatura;
@@ -29,6 +30,7 @@ import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 @RestController
+@RequestMapping("/usuario")
 class UsuarioGeneralService {
 
     @Autowired
@@ -41,17 +43,17 @@ class UsuarioGeneralService {
     private GrupoEstudiantilRepository grupoEstudiantilRepo;
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
-    @GetMapping("/usuarios")
+    @GetMapping("all")
     public Iterable<UsuarioGeneral> findAllForos() {
         return repository.findAll();
     }
 
-    @GetMapping("/usuarios/{id}")
-    public UsuarioGeneral findForoById(@PathVariable("id") Long id) {
+    @GetMapping("{id}")
+    public UsuarioGeneral findById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
-    @PostMapping("/usuario/{id}/resenha_grupo_estudiantil/{id_res}")
+    @PostMapping("{id}/resenha_grupo_estudiantil/{id_res}")
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
         @RequestBody final ResenhaGrupoEstudiantil foroData,
         @PathVariable("id") final Long idUsuario,
@@ -67,7 +69,7 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @PostMapping("/usuario/{id}/resenha_restaurante/{id_res}")
+    @PostMapping("{id}/resenha_restaurante/{id_res}")
     public UsuarioGeneral crearResentaRestaurante(
         @RequestBody final ResenhaRestaurante foroData,
         @PathVariable("id") final Long idUsuario,
@@ -83,58 +85,67 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @GetMapping("/usuarios/{id}/respuestas_foros")
+    @GetMapping("{id}/respuestas_foros")
     public List<RespuestaForo> respuestasForosUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getRespuestasForo();
     }
 
-    @GetMapping("/usuarios/{id}/foros")
+    @GetMapping("{id}/foros")
     public List<Foro> postsUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getForos();
     }
 
-    @GetMapping("/usuarios/{id}/estilos_aprendizaje")
+    @GetMapping("{id}/estilos_aprendizaje")
     public List<TipoAprendizaje> estilosAprendizajeUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getEstiloAprendizaje();
     }
 
-    @GetMapping("/usuarios/{id}/roles_cae")
+    @GetMapping("{id}/roles_cae")
     public List<UsuarioCAE> rolesCAEUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getRolesCAE();
     }
 
-    @GetMapping("/usuarios/{id}/monitorias")
+    @GetMapping("{id}/monitorias")
     public List<Asignatura> monitoriasUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getMonitorDe();
     }
 
-    @GetMapping("/usuarios/{id}/caracteristicas")
+    @GetMapping("{id}/caracteristicas")
     public List<Caracteristica> caracteristicasUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getCaracteristicas();
     }
 
-    @GetMapping("/usuarios/{id}/informacion")
+    @GetMapping("{id}/informacion")
     public InformacionUsuario informacionUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getInformacionUsuario();
     }
 
-    @GetMapping("/usuarios/{id}/tips")
+    @GetMapping("{id}/tips")
     public List<Tip> tipsUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getTips();
     }
 
-    @GetMapping("/usuarios/{id}/tips_gustados")
+    @GetMapping("{id}/tips_gustados")
     public List<Tip> tipsGustadosUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getTipsGustados();
     }
 
-    @GetMapping("/usuarios/{id}/roles_admin")
+    @GetMapping("{id}/roles_admin")
     public List<RolAdministrador> rolesAdministradorUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getRolesAdministrador();
     }
 
-    @GetMapping("/usuarios/{id}/carreras")
+    @GetMapping("{id}/carreras")
     public List<Carrera> carrerasUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getCarrerasUsuario();
+    }
+
+    @PostMapping
+    public UsuarioGeneral create(@RequestBody final UsuarioGeneral data) {
+        UsuarioGeneral ug = new UsuarioGeneral();
+        ug.setCorreo(data.getCorreo());
+        ug.setNombre(data.getNombre());
+        ug.setSemestre(data.getSemestre());
+        return repository.save(ug);
     }
 }

@@ -19,17 +19,17 @@ class TipoRestauranteService {
     @Autowired
     private TipoRestauranteRepository repository;
 
-    @GetMapping("s")
+    @GetMapping("all")
     public Iterable<TipoRestaurante> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public TipoRestaurante findById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/{id}/restaurantes")
+    @GetMapping("{id}/restaurantes")
     public List<Restaurante> conseguirRestaurantesPorTipo(@PathVariable("id") Long id) {
         return repository.findById(id).get().getRestaurantes();
     }

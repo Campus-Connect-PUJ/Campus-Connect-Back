@@ -98,8 +98,7 @@ class GruposEstudiantilesService {
         return repository.save(ug);
     }
 
-
-    @PostMapping("requisito/{idge}/{idr}")
+    @PostMapping("{idge}/requisito/{idr}")
     void agregarRequisito(@PathVariable("idge") Long idge, @PathVariable("idr") Long idr) {
         Requisito c = rService.findById(idr);
         GrupoEstudiantil ge = this.findById(idr);

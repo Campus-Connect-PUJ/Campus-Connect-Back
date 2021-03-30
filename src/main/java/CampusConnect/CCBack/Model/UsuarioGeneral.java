@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -93,7 +94,20 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
-    public UsuarioGeneral() { }
+    public UsuarioGeneral() {
+        this.caracteristicas = new ArrayList<>();
+        this.carrerasUsuario = new ArrayList<>();
+        this.estilosAprendizaje = new ArrayList<>();
+        this.foros = new ArrayList<>();
+        this.monitorDe = new ArrayList<>();
+        this.resenhaRestaurantes = new ArrayList<>();
+        this.resenhaGruposEstudiatiles = new ArrayList<>();
+        this.respuestasForo = new ArrayList<>();
+        this.tipsGustados = new ArrayList<>();
+        this.tips = new ArrayList<>();
+
+        // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
+    }
 
     public List<UsuarioCAE> getRolesCAE() {
 		return rolesCAE;
@@ -225,6 +239,38 @@ public class UsuarioGeneral {
 
 	public void agregarResenhaGrupoEstudiantil(ResenhaGrupoEstudiantil rr) {
         this.resenhaGruposEstudiatiles.add(rr);
+	}
+
+	public List<ResenhaGrupoEstudiantil> getResenhaGruposEstudiatiles() {
+		return resenhaGruposEstudiatiles;
+	}
+
+	public void setResenhaGruposEstudiatiles(List<ResenhaGrupoEstudiantil> resenhaGruposEstudiatiles) {
+		this.resenhaGruposEstudiatiles = resenhaGruposEstudiatiles;
+	}
+
+	public List<ResenhaRestaurante> getResenhaRestaurantes() {
+		return resenhaRestaurantes;
+	}
+
+	public void setResenhaRestaurantes(List<ResenhaRestaurante> resenhaRestaurantes) {
+		this.resenhaRestaurantes = resenhaRestaurantes;
+	}
+
+	public RegimenAlimenticioUsuario getRegimenAlimenticio() {
+		return regimenAlimenticio;
+	}
+
+	public void setRegimenAlimenticio(RegimenAlimenticioUsuario regimenAlimenticio) {
+		this.regimenAlimenticio = regimenAlimenticio;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

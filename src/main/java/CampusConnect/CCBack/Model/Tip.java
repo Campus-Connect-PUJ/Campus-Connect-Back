@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -41,6 +42,11 @@ public class Tip {
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuariosGustaron;
 
+    public Tip() {
+        this.tiposAprendizaje = new ArrayList<>();
+        this.usuariosGustaron = new ArrayList<>();
+    }
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -76,4 +82,8 @@ public class Tip {
 	public void setUsuariosGustaron(List<UsuarioGeneral> usuariosGustaron) {
 		this.usuariosGustaron = usuariosGustaron;
 	}
+
+    public void agregaTipoAprendizaje(TipoAprendizaje ta) {
+        this.tiposAprendizaje.add(ta);
+    }
 }

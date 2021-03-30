@@ -44,4 +44,16 @@ public class Facultad {
 		this.gruposEstudiantiles = gruposEstudiantiles;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+    public void agregarGrupoEstudiantil(GrupoEstudiantil ge) {
+        this.gruposEstudiantiles.add(ge);
+    }
+
 }

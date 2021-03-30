@@ -48,4 +48,24 @@ public class Tematica {
 		this.gruposEstudiantiles = gruposEstudiantiles;
 	}
 
+	public List<Caracteristica> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+    public void agregarGrupoEstudiantil(GrupoEstudiantil ge) {
+        this.gruposEstudiantiles.add(ge);
+    }
+
 }

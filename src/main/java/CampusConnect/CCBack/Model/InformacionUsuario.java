@@ -1,10 +1,13 @@
 package CampusConnect.CCBack.Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,23 +21,35 @@ public class InformacionUsuario {
     private Long id;
 
     private String identidadGenero;
-    private String perfilContexto; // TODO: esto es una clase propia
     private String raza;
     private String lugarOrigen;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
-    // @OneToOne(mappedBy = "caracteristicasUsuario")
+    private String actividadInteres;
+
+    private String hobbies;
+
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioGeneral usuario;
 
 	public String getIdentidadGenero() {
 		return identidadGenero;
+    }
+
+    public String getHobbies() {
+		return hobbies;
 	}
-	public Date getFechaNacimiento() {
+
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getRaza() {
@@ -43,13 +58,8 @@ public class InformacionUsuario {
 	public void setRaza(String raza) {
 		this.raza = raza;
 	}
-	public String getPerfilContexto() {
-		return perfilContexto;
-	}
-	public void setPerfilContexto(String perfilContexto) {
-		this.perfilContexto = perfilContexto;
-	}
-	public String getLugarOrigen() {
+
+    public String getLugarOrigen() {
 		return lugarOrigen;
 	}
 	public void setLugarOrigen(String lugarOrigen) {
@@ -64,4 +74,21 @@ public class InformacionUsuario {
 	public void setUsuario(UsuarioGeneral usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getActividadInteres() {
+		return actividadInteres;
+	}
+
+	public void setActividadInteres(String actividadInteres) {
+		this.actividadInteres = actividadInteres;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

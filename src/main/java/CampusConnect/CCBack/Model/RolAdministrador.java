@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class RolAdministrador {
 
@@ -17,6 +19,7 @@ public class RolAdministrador {
     private Long id;
 
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "RolesAdministrador",

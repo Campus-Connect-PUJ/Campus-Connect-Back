@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UsuarioCAE {
 
@@ -18,6 +20,7 @@ public class UsuarioCAE {
 
     private String rolCAE;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "RolesCAE",

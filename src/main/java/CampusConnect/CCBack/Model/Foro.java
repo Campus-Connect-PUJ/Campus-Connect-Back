@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Post {
+public class Foro {
 
     @Id
     @GeneratedValue
@@ -23,16 +26,48 @@ public class Post {
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
 
+    private String titulo;
+
     private String descripcion;
 
     private Boolean reportado;
 
-    @ManyToMany(mappedBy = "post")
-    private List<RespuestaPost> respuestas;
+    private int puntaje;
 
-    Post () {
+    @JsonIgnore
+    @ManyToMany(mappedBy = "foro")
+    private List<RespuestaForo> respuestas;
+
+    public Foro () {
         this.reportado = false;
+        this.respuestas = new ArrayList<RespuestaForo>();
+        this.fecha = LocalTime.now();
+        this.puntaje = 0;
     }
+
+    public void like() {
+        this.puntaje++;
+    }
+
+    public void dislike() {
+        this.puntaje++;
+    }
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public LocalTime getFecha() {
 		return fecha;
@@ -66,12 +101,20 @@ public class Post {
 		this.usuario = usuario;
 	}
 
-	public List<RespuestaPost> getRespuestas() {
+	public List<RespuestaForo> getRespuestas() {
 		return respuestas;
 	}
 
-	public void setRespuestas(List<RespuestaPost> respuestas) {
+	public void setRespuestas(List<RespuestaForo> respuestas) {
 		this.respuestas = respuestas;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

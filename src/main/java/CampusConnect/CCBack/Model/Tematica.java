@@ -29,6 +29,14 @@ public class Tematica {
     private List<GrupoEstudiantil> gruposEstudiantiles;
 
     @JsonIgnore
+    @ManyToMany
+    @JoinTable (
+        name = "TematicasUsuarioGeneralGustan",
+        joinColumns = @JoinColumn(name = "idTematica"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuarioGeneral"))
+    private List<UsuarioGeneral> usuariosGustaron;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "tematicas")
     private List<Caracteristica> caracteristicas;
 

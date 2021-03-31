@@ -94,6 +94,9 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+    @ManyToMany(mappedBy = "usuariosGustaron")
+    private List<Tematica> tematicasGustan;
+
     public UsuarioGeneral() {
         this.caracteristicas = new ArrayList<>();
         this.carrerasUsuario = new ArrayList<>();

@@ -21,13 +21,15 @@ public class InformacionUsuario {
 
     private String identidadGenero;
 
-    private String perfilContexto; // TODO: esto es una clase propia
-
     private String raza;
 
     private String lugarOrigen;
 
     private LocalDate fechaNacimiento;
+
+    private String actividadInteres;
+
+    private String hobbies;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -38,11 +40,19 @@ public class InformacionUsuario {
 		return identidadGenero;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getHobbies() {
+		return hobbies;
+	}
+
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -52,14 +62,6 @@ public class InformacionUsuario {
 
     public void setRaza(String raza) {
 		this.raza = raza;
-	}
-
-    public String getPerfilContexto() {
-		return perfilContexto;
-	}
-
-    public void setPerfilContexto(String perfilContexto) {
-		this.perfilContexto = perfilContexto;
 	}
 
     public String getLugarOrigen() {
@@ -80,6 +82,22 @@ public class InformacionUsuario {
 
     public void setUsuario(UsuarioGeneral usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getActividadInteres() {
+		return actividadInteres;
+	}
+
+	public void setActividadInteres(String actividadInteres) {
+		this.actividadInteres = actividadInteres;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

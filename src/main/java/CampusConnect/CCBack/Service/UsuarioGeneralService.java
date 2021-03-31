@@ -148,4 +148,5 @@ class UsuarioGeneralService {
         ug.setSemestre(data.getSemestre());
         return repository.save(ug);
     }
+
 }

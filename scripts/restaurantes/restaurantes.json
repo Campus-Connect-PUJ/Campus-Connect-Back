@@ -2,8 +2,18 @@
   "restaurantes" : [
     {
       "nombre" : "il Posto",
-      "tipo": [
-        "cocina italiana"
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cocina italiana",
+        "pasta",
+        "lasaña",
+        "sopa",
+        "sandwiches",
+        "panaderia",
+        "pasterelira",
+        "postres"
       ],
       "descripcion" : "Disfruta en el posto de exquisitas recetas artesanales italianas, que incluyen una rica variedad de sándwiches, pastas, pizzas, sopas, pastelería y postres. Productos frescos, saludables y recién horneados",
       "localizacion" : {
@@ -22,12 +32,27 @@
     },
     {
       "nombre" : "La Central",
-      "tipo": [
-        "desayunos",
+      "tipoRestaurante": [
+        "to go",
+        "buffet",
         "comida rápida",
+        "comida tipica"
+      ],
+      "tipoComida":[
+        "desayunos",
         "cocina italiana",
         "parilla",
-        "comida tipica"
+        "hamburgesa",
+        "comida tipica",
+        "pizza",
+        "perros",
+        "pasta",
+        "ensalada",
+        "lunch box",
+        "carne",
+        "pollo",
+        "pescado",
+        "cerdo"
       ],
       "descripcion" : " En el restaurante La Central brindamos gran variedad de productos; desayunos, almuerzos, comidas rapidas, pizzas, opciones para llevar y un espaccio comodo, un experiencia unica.",
       "localizacion" : {
@@ -47,8 +72,23 @@
     },
     {
       "nombre" : "El Italiano",
-      "tipo": [
-        "cocina italiana"
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cocina italiana",
+        "pasta",
+        "lasaña",
+        "sopa",
+        "sandwiches",
+        "ensalada",
+        "carne",
+        "pescado",
+        "pollo",
+        "postres",
+        "rissotos",
+        "raviolis",
+        "canelones"
       ],
       "descripcion" : "En el restaurante EL italiano ofrecemos una amplia carta, de deliciosos platos italianos que van de la mano de un excelente servicio y un espacio confortable para disfrutar de una tarde en compañia de amigos. ",
       "localizacion" : {
@@ -67,9 +107,23 @@
     },
     {
       "nombre" : "Mirador",
-      "tipo": [
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
         "cocina internacional",
-        "desayunos"
+        "desayunos",
+        "sopa",
+        "crema",
+        "pescado",
+        "entradas",
+        "ensalada",
+        "carne",
+        "pollo",
+        "cerdo",
+        "mariscos",
+        "comida tipica",
+        "postres"
       ],
       "descripcion" : "El restaurante Mirador cuenta con una variedad de comida internacional, tenemos la mejor selección de platos, garantizandote una excelente experiencia gastronomica.",
       "localizacion" : {
@@ -88,9 +142,18 @@
     },
     {
       "nombre" : "La Creperia",
-      "tipo": [
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
         "creperia",
-        "desayunos"
+        "desayunos",
+        "tostadas",
+        "wafles",
+        "sopa",
+        "crema",
+        "ensalada",
+        "creps"
       ],
       "descripcion" : "En La Creperia brindamos un menu balanceado, natural y rico en variedad de sabores, inspirado en los conceptos de armonía, salud y equilibrio.",
       "localizacion" : {
@@ -108,10 +171,13 @@
     },
     {
       "nombre" : "Subway",
-      "tipo": [
+      "tipoRestaurante": [
         "comida rapida"
       ],
-      "descripcion" : "Actualmente, la marca SUBWAY® es la mayor cadena de sándwiches tipo submarino del mundo con más de 40,000 ubicaciones en todo el mundo. Nos hemos convertido en la opción líder para las personas que buscan comidas nutritivas y rápidas que pueda disfrutar toda la familia.",
+      "tipoComida":[
+        "sandwiches"
+      ],
+      "descripcion" : "Actualmente, la marca SUBWAY® es la mayor cadena de sándwiches tipoRestaurante submarino del mundo con más de 40,000 ubicaciones en todo el mundo. Nos hemos convertido en la opción líder para las personas que buscan comidas nutritivas y rápidas que pueda disfrutar toda la familia.",
       "localizacion" : {
         "id": 6,
         "descripcion": "direccion"
@@ -128,8 +194,11 @@
     },
     {
       "nombre" : "Dominos",
-      "tipo": [
+      "tipoRestaurante": [
         "comida rápida"
+      ],
+      "tipoComida":[
+        "pizza"
       ],
       "descripcion" : "Somos la cadena de restaurantes de entrega rápida más grande, exitosa e innovadora de México y para alcanzar el estándar de servicio necesario para lograrlo, mantenemos una estricta política de eficiencia y trato ético y honesto hacia nuestros clientes, proveedores, colaboradores, asociados y a la comunidad en general.",
       "localizacion" : {
@@ -147,8 +216,16 @@
     },
     {
       "nombre" : "El corral",
-      "tipo": [
+      "tipoRestaurante": [
         "comida rapida"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "malteadas",
+        "sandwiches",
+        "wraps",
+        "ensalada",
+        "perros"
       ],
       "descripcion" : "Hamburguesas El Corral, es un restaurante de comidas rápidas que inició en Bogotá (Colombia) en 1983. Desde entonces se ha caracterizado por su decoración que mezcla el arte pop con el retro de una manera exitosa, llamativa y original",
       "localizacion" : {
@@ -166,9 +243,18 @@
     },
     {
       "nombre" : "Crepes & Waffles",
-      "tipo": [
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
         "creperia",
-        "brunch"
+        "brunch",
+        "ensalada",
+        "sopa",
+        "creps",
+        "postres",
+        "pitas",
+        "pancook"
       ],
       "descripcion" : "Un arte que transforma el alimento en amor y alegría, nutre el alma y el cuerpo, cautiva paladares, conquista corazones. Queremos despertar admiración en cada cliente por servir Arte-Sano con amor y alegría a precios razonables.",
       "localizacion" : {
@@ -217,6 +303,185 @@
       "id": 6,
       "nombre": "Fuera del campus",
       "descripcion": "Fuera del campus"
+    }
+  ],
+  "RegimenAlimenticio":[
+    {
+      "id":1,
+      "tipo": "vegetariano"
+    },
+    {
+      "id":2,
+      "tipo": "carnivoro"
+    },
+    {
+      "id":3,
+      "tipo": "saludable"
+    }
+  ],
+  "TipoRestaurante":[
+    {
+      "id":1,
+      "tipo":"De especialidad"
+    },
+    {
+      "id":2,
+      "tipo":"to go"
+    },
+    {
+      "id":2,
+      "tipo":"buffet"
+    },
+    {
+      "id":3,
+      "tipo":"comida rápida"
+    },
+    {
+      "id":4,
+      "tipo":"comida tipica"
+    }
+  ],
+  "TipoCocina":[
+    {
+      "id":1,
+      "tipo": "cocina italiana"
+    },
+    {
+      "id":2,
+      "tipo":"pasta"
+    },
+    {
+      "id":3,
+      "tipo":"lasaña"
+    },
+    {
+      "id":4,
+      "tipo":"sopa"
+    },
+    {
+      "id":5,
+      "tipo":"sandwiches"
+    },
+    {
+      "id":6,
+      "tipo":"panaderia"
+    },
+    {
+      "id":7,
+      "tipo":"pasterelira"
+    },
+    {
+      "id":8,
+      "tipo":"postres"
+    },
+    {
+      "id":9,
+      "tipo":"desayunos"
+    },
+    {
+      "id":10,
+      "tipo":"parilla"
+    },
+    {
+      "id":11,
+      "tipo":"hamburgesa"
+    },
+    {
+      "id":12,
+      "tipo":"cerdo"
+    },
+    {
+      "id":13,
+      "tipo":"pescado"
+    },
+    {
+      "id":14,
+      "tipo":"pollo"
+    },
+    {
+      "id":15,
+      "tipo":"carne"
+    },
+    {
+      "id":16,
+      "tipo":"lunch box"
+    },
+    {
+      "id":17,
+      "tipo":"ensalada"
+    },
+    {
+      "id":18,
+      "tipo":"perros"
+    },
+    {
+      "id":19,
+      "tipo":"pizza"
+    },
+    {
+      "id":20,
+      "tipo":"comida tipica"
+    },
+    {
+      "id":21,
+      "tipo":"rissotos"
+    },
+    {
+      "id":22,
+      "tipo":"raviolis"
+    },
+    {
+      "id":23,
+      "tipo":"canelones"
+    },
+    {
+      "id":24,
+      "tipo": "cocina internacional"
+      
+    },
+    {
+      "id":25,
+      "tipo":"crema"
+    },
+    {
+      "id":26,
+      "tipo":"entradas"
+    },
+    {
+      "id":27,
+      "tipo":"mariscos"
+    },
+    {
+      "id":28,
+      "tipo":"creperia"
+    },
+    {
+      "id":29,
+      "tipo":"tostadas"
+    },
+    {
+      "id":30,
+      "tipo":"wafles"
+    },
+    {
+      "id":31,
+      "tipo":"creps"
+    },
+    {
+      "id":32,
+      "tipo":"malteadas"
+    },
+    {
+      "id":33,
+      "tipo":"wraps"
+    },
+    {
+      "id":34,
+      "tipo":"pitas"
+    },
+    {
+      "id":35,
+      "tipo":"pancook"
     }
   ]
 }

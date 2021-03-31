@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Service;
 
+import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Repository.TematicaRepository;
@@ -30,5 +31,4 @@ class TematicasService {
     public List<GrupoEstudiantil> gruposDeTematica(@PathVariable("id") final Long id) {
         return repository.findById(id).get().getGruposEstudiantiles();
     }
-
 }

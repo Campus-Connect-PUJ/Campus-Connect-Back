@@ -29,6 +29,10 @@ public class Carrera {
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuarios;
 
+    @ManyToOne
+    @JoinColumn(name="idFacultad")
+    private Facultad facultad;
+
 	public String getNombre() {
 		return nombre;
 	}

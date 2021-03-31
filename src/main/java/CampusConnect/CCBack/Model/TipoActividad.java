@@ -1,10 +1,10 @@
 package CampusConnect.CCBack.Model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +19,7 @@ public class TipoActividad {
 
     private String tipo;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tiposActividad")
     private List<Actividad> actividades;
 

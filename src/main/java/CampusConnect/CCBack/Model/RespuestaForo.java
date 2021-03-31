@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class RespuestaPost {
+public class RespuestaForo {
 
     @Id
     @GeneratedValue
@@ -18,8 +18,8 @@ public class RespuestaPost {
     private LocalTime fecha;
 
     @ManyToOne
-    @JoinColumn(name="idPost")
-    private Post post;
+    @JoinColumn(name="idForo")
+    private Foro foro;
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
@@ -29,9 +29,28 @@ public class RespuestaPost {
 
     private Boolean reportado;
 
-    RespuestaPost () {
+    private int puntaje;
+
+    RespuestaForo () {
         this.reportado = false;
+        this.puntaje = 0;
     }
+
+    public void like() {
+        this.puntaje++;
+    }
+
+    public void dislike() {
+        this.puntaje++;
+    }
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
 
 	public String getTexto() {
 		return texto;
@@ -65,12 +84,12 @@ public class RespuestaPost {
 		this.usuario = usuario;
 	}
 
-	public Post getPost() {
-		return post;
+	public Foro getForo() {
+		return foro;
 	}
 
-	public void setPost(Post post) {
-		this.post = post;
+	public void setForo(Foro foro) {
+		this.foro = foro;
 	}
 
 }

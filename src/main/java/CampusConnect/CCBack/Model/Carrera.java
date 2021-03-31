@@ -1,20 +1,16 @@
 package CampusConnect.CCBack.Model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Carrera {
@@ -25,6 +21,7 @@ public class Carrera {
 
     private String nombre;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "UsuarioCarrera",

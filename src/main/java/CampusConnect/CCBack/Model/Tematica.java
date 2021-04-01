@@ -29,6 +29,14 @@ public class Tematica {
     private List<GrupoEstudiantil> gruposEstudiantiles;
 
     @JsonIgnore
+    @ManyToMany
+    @JoinTable (
+        name = "TematicasUsuarioGeneralGustan",
+        joinColumns = @JoinColumn(name = "idTematica"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuarioGeneral"))
+    private List<UsuarioGeneral> usuariosGustaron;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "tematicas")
     private List<Caracteristica> caracteristicas;
 
@@ -47,5 +55,25 @@ public class Tematica {
 	public void setGruposEstudiantiles(List<GrupoEstudiantil> gruposEstudiantiles) {
 		this.gruposEstudiantiles = gruposEstudiantiles;
 	}
+
+	public List<Caracteristica> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+    public void agregarGrupoEstudiantil(GrupoEstudiantil ge) {
+        this.gruposEstudiantiles.add(ge);
+    }
 
 }

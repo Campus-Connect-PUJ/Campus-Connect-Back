@@ -50,4 +50,16 @@ public class RegimenAlimenticio {
 	public void setUsuarios(List<RegimenAlimenticioUsuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void agregarRestaurante(Restaurante res) {
+        this.restaurantes.add(res);
+	}
 }

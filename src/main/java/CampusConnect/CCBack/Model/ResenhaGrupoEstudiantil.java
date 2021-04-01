@@ -47,4 +47,12 @@ public class ResenhaGrupoEstudiantil {
 		this.usuario = usuario;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

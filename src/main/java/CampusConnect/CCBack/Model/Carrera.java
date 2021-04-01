@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -28,6 +29,10 @@ public class Carrera {
         joinColumns = @JoinColumn(name = "idCarrera"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuarios;
+
+    @ManyToOne
+    @JoinColumn(name="idFacultad")
+    private Facultad facultad;
 
 	public String getNombre() {
 		return nombre;

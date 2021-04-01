@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,12 +27,41 @@ public class TipoAprendizaje {
     @ManyToMany(mappedBy = "tiposAprendizaje")
     private List<Tip> tips;
 
+    public TipoAprendizaje() {
+        this.usuarios = new ArrayList<>();
+        this.tips = new ArrayList<>();
+    }
+
 	public String getDescripcion() {
 		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<UsuarioGeneral> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<UsuarioGeneral> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public List<Tip> getTips() {
+		return tips;
+	}
+
+	public void setTips(List<Tip> tips) {
+		this.tips = tips;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

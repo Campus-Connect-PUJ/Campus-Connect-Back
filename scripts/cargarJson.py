@@ -41,9 +41,16 @@ def main(archivo):
     # parse file
     datos = json.loads(data)
 
-    id_admin = cargar_usuarios(datos['usuarios'])
-    cargar_tips(datos['tips'], id_admin)
-    cargar_grupos_estudiantiles(datos['grupos'])
+    # id_admin = cargar_usuarios(datos['usuarios'])
+    # cargar_tips(datos['tips'], id_admin)
+    # cargar_grupos_estudiantiles(datos['grupos'])
+    cargar_restaurantes(
+        datos['restaurantes'],
+        datos['ubicaciones'],
+        datos['RegimenAlimenticio'],
+        datos['TipoRestaurante'],
+        datos['TipoCocina']
+    )
 
 def cargar_usuarios(usuarios):
 
@@ -73,7 +80,7 @@ def cargar_usuarios(usuarios):
     return(id_admin)
 
 def cargar_tips(tips, id_admin):
-    """ya que todos los tips son con admin, se recibe un id"""
+    """ya que todos los tips son con admin, se recibe el id del admin"""
 
     tipoAprendizaje = {}
 
@@ -146,31 +153,106 @@ def cargar_grupos_estudiantiles(grupos):
         }
         print(post(url, msggrp))
 
-def agrupar2(dic, valores, locurl):
-    """Guarda valores los valores despues de crearlos, evita que aparezcan repetidos"""
-    url = BASEURL + locurl
-    for valor in valores:
-        idv = valor['id']
+def cargar_restaurantes(
+        restaurantes,
+        ubicaciones_json,
+        regimenes_alimenticios_json,
+        tipos_restaurante_json,
+        tipos_cocina_json
+):
+    # estos diccionarios son para traducir entre los valores que se
+    # tienen localmente y los ids de los objetos que se tienen en la
+    # bd
 
-        if idv not in dic:
-            # print(valor)
-            msg = {
-                "nombre": valor['nombre'],
-                "descripcion": valor['descripcion']
-            }
-            ret = post(url, msg)
-
-            print(ret)
-
-            if 'error' not in ret:
-                dic[idv] = int(ret['id'])
-    return dic
-
-def cargar_restaurantes(restaurantes, ubicaciones_json):
     ubicaciones = {}
-    for grupo in ubicaciones_json:
-        ubicaciones = agrupar2(
-            ubicaciones, ubicaciones_json, 'caracteristica')
+    regimenes_alimenticios = {}
+    tipos_restaurante = {}
+    tipos_cocina = {}
+
+    # se supone que no hay elementos repetidos en el json
+    url = BASEURL + 'lugar'
+    for ubicacion in ubicaciones_json:
+        msg = {
+            "nombre": ubicacion['nombre'],
+            "descripcion": ubicacion['descripcion']
+        }
+        ret = post(url, msg)
+        print(ret)
+        if 'error' not in ret:
+            # guarda el id del objeto relacionado al id local
+            ubicaciones[ubicacion['id']] = int(ret['id'])
+
+    url = BASEURL + 'regimen_alimenticio'
+    for regimen_alimenticio in regimenes_alimenticios_json:
+        msg = {
+            "tipo": regimen_alimenticio['tipo'],
+        }
+        ret = post(url, msg)
+        print(ret)
+        if 'error' not in ret:
+            # guarda el id del objeto relacionado al id local
+            regimenes_alimenticios[regimen_alimenticio['tipo']] = int(ret['id'])
+
+    url = BASEURL + 'tipo_restaurante'
+    for tipo_cocina in tipos_restaurante_json:
+        msg = {
+            "tipo": tipo_cocina['tipo'],
+        }
+        ret = post(url, msg)
+        print(ret)
+        if 'error' not in ret:
+            # guarda el id del objeto relacionado al id local
+            tipos_restaurante[tipo_cocina['tipo']] = int(ret['id'])
+
+    url = BASEURL + 'tipo_comida'
+    for tipo_cocina in tipos_cocina_json:
+        msg = {
+            "tipo": tipo_cocina['tipo'],
+        }
+        ret = post(url, msg)
+        print(ret)
+        if 'error' not in ret:
+            # guarda el id del objeto relacionado al id local
+            tipos_cocina[tipo_cocina['tipo']] = int(ret['id'])
+
+    url = BASEURL + 'restaurante'
+    for restaurante in restaurantes:
+
+        # se convierte de los valores en el json a los ids
+
+        loc = ubicaciones[restaurante['localizacion']['id']]
+
+        regimenes_id = []
+        for car in restaurante['regimenAlimenticio']:
+            regimenes_id += [int(regimenes_alimenticios[car])]
+
+        tipo_res_id = []
+        for car in restaurante['tipoRestaurante']:
+            tipo_res_id += [int(tipos_restaurante[car])]
+
+        tipo_comida_id = []
+        for car in restaurante['tipoComida']:
+            tipo_comida_id += [int(tipos_cocina[car])]
+
+        msg = {
+            "restaurante": {
+                "nombre": restaurante['nombre'],
+                "descripcion" : restaurante['descripcion'],
+                "ambientacion": 'no esta en el json',
+                "descripcionlugar": restaurante['localizacion']['descripcion'],
+                "franquicia": restaurante['franquicia'],
+                "preciomax": restaurante['precioMax'],
+                "preciomin": restaurante['precioMin'],
+                "tiempoentrega": restaurante['tiempoEntrega']
+            },
+            "idLugar": loc,
+            "tiposRestaurante": tipo_res_id,
+            "regimenesAlimenticios": regimenes_id,
+            "tiposComida": tipo_comida_id
+        }
+
+        # print(msg)
+        print(post(url, msg))
 
 if len(sys.argv) == 1:
     print("se debe especificar el archivo para leer")

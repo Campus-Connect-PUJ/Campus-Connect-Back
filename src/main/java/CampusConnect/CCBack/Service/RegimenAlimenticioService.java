@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +40,13 @@ class RegimenAlimenticioService {
     @GetMapping("{id}/usuarios")
     public List<RegimenAlimenticioUsuario> conseguirUsuariosPorRegimen(@PathVariable("id") Long id) {
         return repository.findById(id).get().getUsuarios();
+    }
+
+    @PostMapping
+    public RegimenAlimenticio create(@RequestBody final RegimenAlimenticio dato) {
+        RegimenAlimenticio c = new RegimenAlimenticio();
+        c.setTipo(dato.getTipo());
+        return repository.save(c);
     }
 
 }

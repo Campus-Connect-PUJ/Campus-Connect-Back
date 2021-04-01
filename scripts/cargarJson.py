@@ -41,9 +41,9 @@ def main(archivo):
     # parse file
     datos = json.loads(data)
 
-    # id_admin = cargar_usuarios(datos['usuarios'])
-    # cargar_tips(datos['tips'], id_admin)
-    # cargar_grupos_estudiantiles(datos['grupos'])
+    id_admin = cargar_usuarios(datos['usuarios'])
+    cargar_tips(datos['tips'], id_admin)
+    cargar_grupos_estudiantiles(datos['grupos'])
     cargar_restaurantes(
         datos['restaurantes'],
         datos['ubicaciones'],
@@ -57,6 +57,7 @@ def cargar_usuarios(usuarios):
     urlug = BASEURL + 'usuario'
     urliu = BASEURL + 'informacion_usuario/'
 
+    print("cargando usuarios")
     id_admin = 1
     for usuario in usuarios:
 
@@ -84,10 +85,13 @@ def cargar_tips(tips, id_admin):
 
     tipoAprendizaje = {}
 
+    print("cargando tipos de aprendizaje")
     for tip in tips:
         tipoAprendizaje = agrupar(tipoAprendizaje, tip['tipoAprendizaje'], "descripcion", 'tipo_aprendizaje')
 
     url = BASEURL + 'tip'
+
+    print("cargando tips")
 
     for tip in tips:
 
@@ -112,6 +116,7 @@ def cargar_grupos_estudiantiles(grupos):
     facultades = {}
     requisitos = {}
 
+    print("cargando caracteristicas, tematicas, facultades y requisitos")
     for grupo in grupos:
         caracteristicas = agrupar(
             caracteristicas, grupo['caracteristicas'], "nombre", 'caracteristica')
@@ -126,6 +131,7 @@ def cargar_grupos_estudiantiles(grupos):
 
     url = BASEURL + 'grupo_estudiantil'
 
+    print("cargando grupos estudiantiles")
     for grupo in grupos:
 
         grcar = []
@@ -170,6 +176,7 @@ def cargar_restaurantes(
     tipos_cocina = {}
 
     # se supone que no hay elementos repetidos en el json
+    print("cargando lugares")
     url = BASEURL + 'lugar'
     for ubicacion in ubicaciones_json:
         msg = {
@@ -182,6 +189,7 @@ def cargar_restaurantes(
             # guarda el id del objeto relacionado al id local
             ubicaciones[ubicacion['id']] = int(ret['id'])
 
+    print("cargando regimenes alimenticios")
     url = BASEURL + 'regimen_alimenticio'
     for regimen_alimenticio in regimenes_alimenticios_json:
         msg = {
@@ -193,6 +201,7 @@ def cargar_restaurantes(
             # guarda el id del objeto relacionado al id local
             regimenes_alimenticios[regimen_alimenticio['tipo']] = int(ret['id'])
 
+    print("cargando tipos de restaurante")
     url = BASEURL + 'tipo_restaurante'
     for tipo_cocina in tipos_restaurante_json:
         msg = {
@@ -204,6 +213,7 @@ def cargar_restaurantes(
             # guarda el id del objeto relacionado al id local
             tipos_restaurante[tipo_cocina['tipo']] = int(ret['id'])
 
+    print("cargando tipos de comida")
     url = BASEURL + 'tipo_comida'
     for tipo_cocina in tipos_cocina_json:
         msg = {
@@ -215,6 +225,7 @@ def cargar_restaurantes(
             # guarda el id del objeto relacionado al id local
             tipos_cocina[tipo_cocina['tipo']] = int(ret['id'])
 
+    print("cargando restaurantes")
     url = BASEURL + 'restaurante'
     for restaurante in restaurantes:
 

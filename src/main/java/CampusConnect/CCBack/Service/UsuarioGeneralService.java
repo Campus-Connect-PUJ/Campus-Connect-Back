@@ -13,8 +13,10 @@ import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UserCreationDetails;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Repository.InformacionUsuarioRepository;
 
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 class UsuarioGeneralService {
     @Autowired
     private UsuarioGeneralRepository repository;
+
+    @Autowired
+    private InformacionUsuarioRepository repositoryInformacion;
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("/usuarios")
@@ -128,8 +133,20 @@ class UsuarioGeneralService {
         ug.setNombre(userCreationDetails.getName()+" "+userCreationDetails.getLast_name());
         ug.setCorreo(userCreationDetails.getEmail());
         ug.setSemestre(userCreationDetails.getSemestre_seleccionado());
+
+        String identidadGenero = userCreationDetails.getGenero();
+        String raza = userCreationDetails.getEtnico();
+        String lugarOrigen = userCreationDetails.getNacimiento();
+        Date fechaNacimiento = userCreationDetails.getMyDate();
+        String religion = userCreationDetails.getReligion();
+        String sexo = userCreationDetails.getSexo();
+        List<String> carreras_seleccionadas = userCreationDetails.getCarreras_seleccionadas();
+        UsuarioGeneral usuario = ug;
+        InformacionUsuario infoUsuario = new InformacionUsuario(identidadGenero, raza, lugarOrigen, fechaNacimiento, religion, sexo,carreras_seleccionadas, usuario);
+
         repository.save(ug);
-        
+        repositoryInformacion.save(infoUsuario);
+
         return userCreationDetails.toString();
     }
 }

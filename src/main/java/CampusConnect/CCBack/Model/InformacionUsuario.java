@@ -1,10 +1,12 @@
 package CampusConnect.CCBack.Model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import javax.persistence.ElementCollection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,6 +26,11 @@ public class InformacionUsuario {
     private String raza;
     private String lugarOrigen;
     private Date fechaNacimiento;
+	private String religion;
+	private String sexo;
+
+	@ElementCollection(targetClass=String.class)
+	private List<String> carreras_seleccionadas;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -66,4 +73,43 @@ public class InformacionUsuario {
 	public void setUsuario(UsuarioGeneral usuario) {
 		this.usuario = usuario;
 	}
+
+
+	public String getReligion() {
+		return this.religion;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+	public String getSexo() {
+		return this.sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public List<String> getCarreras_seleccionadas() {
+		return this.carreras_seleccionadas;
+	}
+
+	public void setCarreras_seleccionadas(List<String> carreras_seleccionadas) {
+		this.carreras_seleccionadas = carreras_seleccionadas;
+	}
+
+
+	public InformacionUsuario(String identidadGenero, String raza, String lugarOrigen, Date fechaNacimiento, String religion, String sexo, List<String> carreras_seleccionadas, UsuarioGeneral usuario) {
+		this.identidadGenero = identidadGenero;
+		this.raza = raza;
+		this.lugarOrigen = lugarOrigen;
+		this.fechaNacimiento = fechaNacimiento;
+		this.religion = religion;
+		this.sexo = sexo;
+		this.carreras_seleccionadas = carreras_seleccionadas;
+		this.usuario = usuario;
+	}
+
+
 }

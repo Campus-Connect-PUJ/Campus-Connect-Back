@@ -58,4 +58,8 @@ public class RegimenAlimenticio {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void agregarRestaurante(Restaurante res) {
+        this.restaurantes.add(res);
+	}
 }

@@ -94,21 +94,21 @@ class RestaurantesService {
             System.out.println(a);
             RegimenAlimenticio c = raService.findById(a);
             res.agregarRegimenAlimenticio(c);
-            // c.agregarGrupoEstudiantil(ug);
+            c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposComida()) {
             System.out.println(a);
             TipoComida c = tcService.findById(a);
             res.agregarTipoComida(c);
-            // c.agregarGrupoEstudiantil(ug);
+            c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposRestaurante()) {
             System.out.println(a);
             TipoRestaurante c = trService.findById(a);
             res.agregarTipoRestaurante(c);
-            // c.agregarGrupoEstudiantil(ug);
+            c.agregarRestaurante(res);
         }
 
         return repository.save(res);

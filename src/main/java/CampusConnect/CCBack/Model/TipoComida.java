@@ -51,4 +51,8 @@ public class TipoComida {
 		this.id = id;
 	}
 
+	public void agregarRestaurante(Restaurante res) {
+        this.restaurantes.add(res);
+	}
+
 }

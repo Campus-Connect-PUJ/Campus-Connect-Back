@@ -13,9 +13,10 @@ import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UserCreationDetails;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-import CampusConnect.CCBack.Repository.InformacionUsuarioRepository;
+import CampusConnect.CCBack.Repository.CarreraRepository;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ class UsuarioGeneralService {
     private UsuarioGeneralRepository repository;
 
     @Autowired
-    private InformacionUsuarioRepository repositoryInformacion;
+    private CarreraRepository carrera_repository;
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("/usuarios")
@@ -140,12 +141,23 @@ class UsuarioGeneralService {
         Date fechaNacimiento = userCreationDetails.getMyDate();
         String religion = userCreationDetails.getReligion();
         String sexo = userCreationDetails.getSexo();
+        
         List<String> carreras_seleccionadas = userCreationDetails.getCarreras_seleccionadas();
-        UsuarioGeneral usuario = ug;
-        InformacionUsuario infoUsuario = new InformacionUsuario(identidadGenero, raza, lugarOrigen, fechaNacimiento, religion, sexo,carreras_seleccionadas, usuario);
+        Iterable<Carrera> carreras = this.carrera_repository.findAll();
+        List<Carrera> carreras_seleccionadas_obj = new ArrayList<Carrera>();
+        for(String carrera_sel : carreras_seleccionadas){
+            for(Carrera carrera: carreras){
+                if(carrera.getNombre().equals(carrera_sel)){
+                    carreras_seleccionadas_obj.add(carrera);
+                }
+            }
+        }
+        ug.setCarrerasUsuario(carreras_seleccionadas_obj);
 
+        InformacionUsuario infoUsuario = new InformacionUsuario(identidadGenero, raza, lugarOrigen, fechaNacimiento, religion, sexo, ug);
+        ug.setInformacionUsuario(infoUsuario);
         repository.save(ug);
-        repositoryInformacion.save(infoUsuario);
+
 
         return userCreationDetails.toString();
     }

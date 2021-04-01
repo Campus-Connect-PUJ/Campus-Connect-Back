@@ -22,11 +22,7 @@ public class Carrera {
     private String nombre;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable (
-        name = "UsuarioCarrera",
-        joinColumns = @JoinColumn(name = "idCarrera"),
-        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
+    @ManyToMany(mappedBy = "carrerasUsuario")
     private List<UsuarioGeneral> usuarios;
 
 	public String getNombre() {
@@ -36,5 +32,12 @@ public class Carrera {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+    @Override
+    public String toString() {
+        return "{" +
+            ", nombre='" + getNombre() + "'" +
+            "}";
+    }
 
 }

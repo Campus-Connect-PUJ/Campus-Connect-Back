@@ -72,8 +72,12 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuarios")
     private List<RolAdministrador> rolesAdministrador;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
+    //@JsonIgnore
+    @ManyToMany
+	@JoinTable (
+        name = "UsuarioCarrera",
+        joinColumns = @JoinColumn(name = "idUsuario"),
+        inverseJoinColumns = @JoinColumn(name = "idCarrera"))
     private List<Carrera> carrerasUsuario;
 
     @ManyToMany(mappedBy = "usuariosGustaron")

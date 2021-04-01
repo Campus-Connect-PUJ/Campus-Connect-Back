@@ -29,9 +29,6 @@ public class InformacionUsuario {
 	private String religion;
 	private String sexo;
 
-	@ElementCollection(targetClass=String.class)
-	private List<String> carreras_seleccionadas;
-
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -91,24 +88,17 @@ public class InformacionUsuario {
 		this.sexo = sexo;
 	}
 
-	public List<String> getCarreras_seleccionadas() {
-		return this.carreras_seleccionadas;
-	}
-
-	public void setCarreras_seleccionadas(List<String> carreras_seleccionadas) {
-		this.carreras_seleccionadas = carreras_seleccionadas;
-	}
-
-
-	public InformacionUsuario(String identidadGenero, String raza, String lugarOrigen, Date fechaNacimiento, String religion, String sexo, List<String> carreras_seleccionadas, UsuarioGeneral usuario) {
+	public InformacionUsuario(String identidadGenero, String raza, String lugarOrigen, Date fechaNacimiento, String religion, String sexo, UsuarioGeneral usuario) {
 		this.identidadGenero = identidadGenero;
 		this.raza = raza;
 		this.lugarOrigen = lugarOrigen;
 		this.fechaNacimiento = fechaNacimiento;
 		this.religion = religion;
 		this.sexo = sexo;
-		this.carreras_seleccionadas = carreras_seleccionadas;
 		this.usuario = usuario;
+	}
+	public InformacionUsuario() {
+		
 	}
 
 

@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -44,6 +45,14 @@ public class GrupoEstudiantil {
     @JsonIgnore
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Tematica> tematicas;
+
+    public GrupoEstudiantil() {
+        this.facultades      = new ArrayList<>();
+        this.requisitos      = new ArrayList<>();
+        this.tematicas       = new ArrayList<>();
+        this.caracteristicas = new ArrayList<>();
+        this.resenhas        = new ArrayList<>();
+    }
 
 	public String getNombre() {
 		return nombre;
@@ -112,5 +121,29 @@ public class GrupoEstudiantil {
 	public void setTematicas(List<Tematica> tematicas) {
 		this.tematicas = tematicas;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+    public void agregarCaracteristica(Caracteristica c) {
+        this.caracteristicas.add(c);
+    }
+
+    public void agregarTematica(Tematica t) {
+        this.tematicas.add(t);
+    }
+
+    public void agregarFacultad(Facultad f) {
+        this.facultades.add(f);
+    }
+
+    public void agregarRequisito(Requisito r) {
+        this.requisitos.add(r);
+    }
+
+    public void agregarResenha(ResenhaGrupoEstudiantil r) {
+        this.resenhas.add(r);
+    }
 
 }

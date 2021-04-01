@@ -57,6 +57,10 @@ public class Facultad {
 		this.id = id;
 	}
 
+    public void agregarGrupoEstudiantil(GrupoEstudiantil ge) {
+        this.gruposEstudiantiles.add(ge);
+    }
+
 	public List<Carrera> getCarreras() {
 		return carreras;
 	}

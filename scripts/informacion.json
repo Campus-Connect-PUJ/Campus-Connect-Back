@@ -1,0 +1,1497 @@
+{
+  "usuarios": [
+    {
+      "nombre": "admin",
+      "correo": "campusconnect2021@gmail.com",
+      "semestre": 0,
+      "caracteristicas": {
+        "identidadGenero": "",
+        "raza": "",
+        "lugarOrigen": "",
+        "fechaNacimiento": "1623-01-01"
+      }
+    }
+  ],
+  "tips": [
+    {
+      "descripcion": "Actividades manuales",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Proyectos prácticos",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Hacer gráficos y mapas",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Visuales"
+      ]
+    },
+    {
+      "descripcion": "Clasificar información",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de memorización",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Resolución de problemas prácticos",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Demostraciones prácticas",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Lluvia de ideas",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de simulación",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Proponer nuevos enfoques a un problema",
+      "tipoAprendizaje": [
+        "Divergente",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Predecir resultados",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Emplear analogías",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Realizar experimentos",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Construir mapas conceptuales",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Resolver puzzles",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "LectoEscritura",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Ensamblar rompecabezas",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Visual",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Adivinar acertijos",
+      "tipoAprendizaje": [
+        "Divergente",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Utilizar informes escritos",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Investigaciones sobre la materia",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Hacerlo tomar apuntes",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Participar en debates",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Asistir a conferencias",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Encomendarle lectura de textos",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Ordenar datos de una investigación",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Trabajos grupales",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Ejercicios de imaginería",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Trabajo de expresión artística",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Lectura de trozos cortos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Discusión socializada",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Composiciones sobre temas puntuales",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Gráficos ilustrativos sobre los contenidos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Actividades de periodismo, entrevistas",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Elaborar metáforas sobre contenidos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual",
+        "Aural",
+        "LectoEscritura"
+      ]
+    },
+    {
+      "descripcion": "Hacerle utilizar el ensayo y error.",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Kinestesico"
+      ]
+    },
+    {
+      "descripcion": "Usar distintos colores para subrayar",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Cuadros sinopticos",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Instrucciones escritas",
+      "tipoAprendizaje": [
+        "Acomodador",
+        "Visual"
+      ]
+    },
+    {
+      "descripcion": "Instrucciones verbales",
+      "tipoAprendizaje": [
+        "Asimilador",
+        "Aural"
+      ]
+    },
+    {
+      "descripcion": "Aprender de forma ordenada y en secuencia",
+      "tipoAprendizaje": [
+        "Convergente",
+        "Aural"
+      ]
+    }
+  ],
+  "grupos": [
+    {
+      "nombre" : "Academos",
+      "descripcion" : "Favorecemos espacios de pensamiento colectivo en miras de una construcción conjunta, contextualizada y pertinente de conocimiento.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "investigación",
+        "reflexión"
+      ]
+    },
+    {
+      "nombre" : "ACI",
+      "descripcion" : "Promovemos la ingeniería, la educación técnica, la investigación científica, la búsqueda, y el desarrollo de estándares para el diseño de construcciones que incorporen al concreto y materiales relacionados",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "investigación",
+        "búsqueda",
+        "desarrollo"
+      ]
+    },
+    {
+      "nombre" : "ACM",
+      "descripcion" : "Promovemos una comunidad en la que sus integrantes ofrezcan y se beneficien de servicios con fines educativos y científicos en el área de la computación moderna",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "investigación",
+        "educativo"
+      ]
+    },
+    {
+      "nombre" : "Benkos",
+      "descripcion" : "Buscamos consolidar y proponer espacios de diálogo que entiendan el papel de las Universidades como instituciones que deben estar al servicio de las problemáticas que más afectan al país.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "dialogo"
+      ]
+    },
+    {
+      "nombre" : "Derecho Crítico",
+      "descripcion" : "Construimos a partir de la praxis, es decir, a partir de la relación dialéctica y sustancial entre la teoría y la práctica a partir de tres enfoques: académico y teórico, de incidencia universitaria y práctico.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "discusión",
+        "política"
+      ]
+    },
+    {
+      "nombre" : "IEEE",
+      "descripcion" : "Fomentar la innovación tecnológica y la excelencia para el beneficio de la humanidad. La rama se encuentra dividida en capítulos de sociedades técnicas(subgrupos), los cuales trabajan en proyectos en un área determinada, ofrecen conferencias relacionadas con temas de actualidad tecnológica y desarrolla trabajos sociales en colegios y comunidades con el apoyo de algunos programas de IEEE, para generar un mayor impacto.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "innovación",
+        "tecnología",
+        "desarrollo"
+      ]
+    },
+    {
+      "nombre" : "IISE",
+      "descripcion" : "Fortalecer las competencias de los Futuros Ingenieros Industriales Javerianos a través de proyectos e iniciativas desarrolladas dentro del grupo.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "innovación",
+        "desarrollo"
+      ]
+    },
+    {
+      "nombre" : "IMIG",
+      "descripcion" : "Cultivar el interés por la Medicina Interna en sus miembros participantes mediante la realización de actividades académicas que fomenten el aprendizaje y la discusión de temas relevantes a la especialidad.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "medicina"
+      ]
+    },
+    {
+      "nombre" : "Ingeniería sin Fronteras",
+      "descripcion" : "Proveer en los estudiantes de ingeniería un aprendizaje adicional al obtenido en clase a través de un contacto directo con casos reales relacionados con las diferentes áreas de ingeniería civil.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "educativo"
+      ]
+    },
+    {
+      "nombre" : "JADE",
+      "descripcion" : "Realizar la practica del debate competitivo, el desarrollo de habilidades de argumentación y expresión oral y la difusión del pensamiento critico.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "debate",
+        "dialogo"
+      ]
+    },
+    {
+      "nombre" : "MAJIIS",
+      "descripcion" : "Fortalecer la investigación en la Facultad de Medicina generando espacios para el entrenamiento y la producción investigativa; promover las oportunidades de internacionalización de los estudiantes de Medicina de la PUJ, a través de ASCEMCOL-IFMSA; incrementar el impacto social y académico de la Facultad de Medicina.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "investigación",
+        "medicina"
+      ]
+    },
+    {
+      "nombre" : "MENTE",
+      "descripcion" : "Promover la responsabilidad social sobre la salud mental, por medio de información básica sobre estas enfermedades y asi empoderar a la población estudiantil de la Universidad Javeriana",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "salud mental"
+      ]
+    },
+    {
+      "nombre" : "NOVAINGENIO",
+      "descripcion" : "",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+      ]
+    },
+    {
+      "nombre" : "ONUJ",
+      "descripcion" : "El grupo tiene como objetivo la preparación, union y capacitación de estudiantes de la Pontificia Universidad Javeriana para representar a la universidad en los modelos de naciones unidas (MUN) a nivel nacional e internacional.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "capacitación",
+        "MUN"
+      ]
+    },
+    {
+      "nombre" : "SUMAK",
+      "descripcion" : "Somos una comunidad de pensamiento interdiciplinario, holístico y critico en diversas carreras, enfocados en la resolución de problemas de forma sostenible y perspectiva humana.",
+      "tematicas" : [
+        "Actualidad y academia"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "interdiciplinario",
+        "solución de problemas"
+      ]
+    },
+    {
+      "nombre" : "AES",
+      "descripcion" : "Promovemos espacios que enriquezcan los conocimientos y talentos de los estudiantes de la carrera de estudios musicales,especialmente aquellos en elénfasis de ingeniería",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Estudios musicales",
+        "Facultad de artes",
+        "Talento"
+      ]
+    },
+    {
+      "nombre" : "AIESEC",
+      "descripcion" : "AIESEC es la organización de jóvenes más grande del mundo, que busca desarrollar la próxima generación de líderes y conectarlos con aliados corporativos y ONG",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Lideres"
+      ]
+    },
+    {
+      "nombre" : "Angie Baquiro",
+      "descripcion" : "Lideramos iniciativas que conduzcan al desarrollo del bienestar de la población Colombiana, enfocados en la realización de actividades de acompañamiento al paciente pediátrico que impulsan el educar, prevenir, promover y sanar",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Facultad de Médicina",
+        "Acompañamiento",
+        "Paciente pediátrico"
+      ]
+    },
+    {
+      "nombre" : "Constructores de sonrisas",
+      "descripcion" : "Promocionamos estrategias de educación y prevención de las enfermedades orales de mayor prevalencia en nuestro país enfocándose en las poblaciones más vulnerables",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Facultad de Odontología",
+        "Prevenir enfermedades"
+      ]
+    },
+    {
+      "nombre" : "Creemos",
+      "descripcion" : "Estimular el desarrollo integral de la comunidad universitaria, promoviendo tanto la excelencia académica como las capacidades e intereses únicos de cada estudiante mediante los diversos equipos de trabajo enfocados en el desarrollo y posicionamiento de las ideas y proyectos de toda la comunidad",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Facultad de Médicina",
+        "excelencia académica"
+      ]
+    },
+    {
+      "nombre" : "El propio",
+      "descripcion" : "Buscamos la integridad física, intelectual y emocional de todo estudiante de ingeniería electrónica",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Facultad de ingeniería",
+        "Ingeniería electrónica"
+      ]
+    },
+    {
+      "nombre" : "Entretejiendo",
+      "descripcion" : "Realizamos tejidos colectivos tanto artísticos como afectivos",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Tejidos"
+      ]
+    },
+    {
+      "nombre" : "Javeriano apoya javeriano",
+      "descripcion" : "Realizamos actividades con el fin de recaudar fondos y así becar a estudiantes de diferentes carreras y semestres",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "interfacultades",
+        "recaudar fondos"
+      ]
+    },
+    {
+      "nombre" : "Lenguaje coeur",
+      "descripcion" : "Proporcionar apoyo académico complementario a los estudiantes de la Licenciatura en Lenguas Modernas en el aprendizaje del inglés y el francés como lenguas extranjeras y en el desarrollo de habilidades pedagógicas para su enseñanza",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Facultad de comunicación",
+        "Licenciatura en Lenguas Modernas",
+        "Inglés",
+        "Francés",
+        "Habilidades pedagógicas"
+      ]
+    },
+    {
+      "nombre" : "Out of town",
+      "descripcion" : "Darle la bienvenida y apoyo a los estudiantes de intercambio que vienen a la Pontificia Universidad Javeriana",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "interfacultades",
+        "bienvenida",
+        "estudiantes de intercambio"
+      ]
+    },
+    {
+      "nombre" : "Somos Colombia",
+      "descripcion" : "Apoyamos a estudiantes provenientes de las diferentes regiones de Colombia durante su permanencia en la Pontificia Universidad Javeriana-Bogotá",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "interfacultades",
+        "regiones de Colombia"
+      ]
+    },
+    {
+      "nombre" : "Vitae",
+      "descripcion" : "Busca favorecer espacios de acompañamiento al proceso de hospitalización de los pacientes adultos del Hospital Universitario San Ignacio buscando su bienestar durante el tiempo de permanencia en la institución",
+      "tematicas" : [
+        "Social y comunidad Javeriana"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Médicina",
+        "Bienestar pacientes"
+      ]
+    },
+    {
+      "nombre" : "CEAE-Comité estudiantil de administración de empresas",
+      "descripcion" : "Realizamos actividades y proyectos dirigidos a los estudiantes de la carrera de administración de empresas y carreras afines con el fin de contribuir en su formación",
+      "tematicas" : [
+        "Conexión y afinidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Ciencias económicas y administrativas",
+        "Administración de empresas"
+      ]
+    },
+    {
+      "nombre" : "CEE-Comité de estudiantes de economía",
+      "descripcion" : "Facilitamos espacios de integración académica de los estudiantes de economía brindándoles valores y compromisos que los encaminan hacia la excelencia",
+      "tematicas" : [
+        "Conexión y afinidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Ciencias económicas y administrativas",
+        "Economía"
+      ]
+    },
+    {
+      "nombre" : "DEJ-Desarrollo empresarial universitario",
+      "descripcion" : "Favorecemos espacios de formación, investigación y servicio para que los estudiantes crezcan en habilidades de emprendimiento con la generación de encuentros de intercambio interdisciplinar",
+      "tematicas" : [
+        "Conexión y afinidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Ciencias económicas y administrativas",
+        "Formación",
+        "Investigación",
+        "Emprendimiento",
+        "Interdisciplinar"
+      ]
+    },
+    {
+      "nombre" : "Serendipia",
+      "descripcion" : "Ofrecer actividades y espacios extracurriculares para los estudiantes de arquitectura y diseño entre tercer y octavo semester que buscan actividades de interés adicionales a las ofrecidas por la facultad. Se pretende lograr un alcance que permita la relación más directa entre estudiantes y facultad",
+      "tematicas" : [
+        "Conexión y afinidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Ciencias económicas y administrativas",
+        "Arquitectura",
+        "Diseño",
+        "Ultimos semestres",
+        "Extracurriculares"
+      ]
+    },
+    {
+      "nombre" : "Faro",
+      "descripcion" : "Propiciar un encuentro con Dios en el ambiente universitario, a partir de actividades de formación y relacionamiento",
+      "tematicas" : [
+        "Cuerpo y espiritualidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Dios",
+        "Espiritual",
+        "Formación",
+        "Relacionamiento"
+      ]
+    },
+    {
+      "nombre" : "Kung-fu",
+      "descripcion" : "Escuela de Kung Fu que busca a través de la práctica física, disciplinar el cuerpo y la mente, para lograr una transformación interna",
+      "tematicas" : [
+        "Cuerpo y espiritualidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Kung Fu",
+        "Práctica física",
+        "Disciplinar",
+        "Cuerpo",
+        "Mente"
+      ]
+    },
+    {
+      "nombre" : "Uranio",
+      "descripcion" : "Hacer del mensaje de Jesús, una experiencia de vida, con la que se logre potenciar el crecimiento en la formación espiritual y personal",
+      "tematicas" : [
+        "Cuerpo y espiritualidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Jesus",
+        "Vida",
+        "Espiritual",
+        "Personal"
+      ]
+    },
+    {
+      "nombre" : "CRU-Vida para la universidad",
+      "descripcion" : "Servir a la comunidad Javeriana por medio de proyectos de alcance académico o social para mostrar el amor de Jesús como factor importante",
+      "tematicas" : [
+        "Cuerpo y espiritualidad"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Espiritual",
+        "Jesus",
+        "Proyectos",
+        "Servir"
+      ]
+    },
+    {
+      "nombre" : "EcoArte",
+      "descripcion" : "Promovemos conciencia e interés ambiental y social a través del arte y el diseño como un mecanismo universal placentero para la trasmisión de conceptos y valores ecológicos",
+      "tematicas" : [
+        "Medio ambiente"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Estudios ambientales y rurales",
+        "Ambiental",
+        "Social",
+        "Ecológico"
+      ]
+    },
+    {
+      "nombre" : "Grupo javeriano de herpetologia",
+      "descripcion" : "Nos enfocamos en la generación y divulgación del conocimiento científico de la herpetofauna, a través de discusiones abiertas de la promoción de la educación Ambiental y la conservación de la biodiversidad colombiana mediante exposiciones, publicaciones y trabajos de campo",
+      "tematicas" : [
+        "Medio ambiente"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Estudios ambientales",
+        "Ambiental",
+        "Herpetofauna",
+        "Reptiles",
+        "Anfibios",
+        "Cientifico",
+        "Biodiversidad"
+      ]
+    },
+    {
+      "nombre" : "Grupo javeriano de ornitologia",
+      "descripcion" : "Busca generar espacios para adquirir y comunicar el conocimiento, estudio y cuidado de las aves dentro de la universidad. Además de brindar apoyo a proyectos a nivel local, regional y nacional",
+      "tematicas" : [
+        "Medio ambiente"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Estudios ambientales",
+        "Aves",
+        "Proyectos",
+        "Cientifico"
+      ]
+    },
+    {
+      "nombre" : "Primatologia javeriana",
+      "descripcion" : "Contribuir a la conservación de los primates colombianos promoviendo la divulgación de información que lleve hacia una sensibilización y conocimiento de las especies existentes en el país, sus amenazas y su importancia para el funcionamiento de los ecosistemas",
+      "tematicas" : [
+        "Medio ambiente"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Estudios ambientales",
+        "Primates",
+        "Cientifico",
+        "Divulgación"
+      ]
+    },
+    {
+      "nombre" : "Protección animal javeriana",
+      "descripcion" : "Promovemos la construcción de un pensamiento crítico y reflexivo a traves de la realización de diversas actividades que fomenten la sensibilización respecto al trato hacia los animales no humanos a partir de acciones cotidianas",
+      "tematicas" : [
+        "Medio ambiente"
+      ],
+      "calificacion" : 0,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Interfacultades",
+        "Animales",
+        "Adopción",
+        "Domesticos"
+      ]
+    },
+    {
+      "nombre" : "Degénero",
+      "descripcion" : "Debatimos y visibilizamos temas en relación al género y los feminismos, teniendo en cuenta las diversas vertientes teóricas y los contextos sociales en los cuales se hace importante y necesario problematizarlos",
+      "tematicas" : [
+        "Diversidad"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "diversidad",
+        "discusión",
+        "inclusión"
+      ]
+    },
+    {
+      "nombre" : "Polifonía",
+      "descripcion" : "Generar un espacio crítico de sensibilización, visibilización, prevención, atención y acción respecto a las violencias basadas en género en el contexto universitario, pormedio de espacios formativos y pedagógicos en el campus y fuera de él",
+      "tematicas" : [
+        "Diversidad"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "diversidad",
+        "discusión"
+      ]
+    },
+    {
+      "nombre" : "Best Buddies",
+      "descripcion" : "Buscamos generar procesos de inclusión con personas con discapacidad a partir de lazos de amistad",
+      "tematicas" : [
+        "Diversidad"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "diversidad",
+        "acompañamiento"
+      ]
+    },
+    {
+      "nombre" : "Stonewall Javeriano",
+      "descripcion" : "Fomentar un espacio para la construcción de la vida en común, formando un grupo diverso que transforma identidades desde los factores que nos causan intersecciones como seres sintientes, diversos e iguales dentro de las diferencias",
+      "tematicas" : [
+        "Diversidad"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "diversidad",
+        "acompañamiento"
+      ]
+    },
+    {
+      "nombre" : "Perioódico Ágora",
+      "descripcion" : "Buscamos un constante debate a nivel coyuntural o en cuestiones académicas para la construcción de conocimiento desde distintas disciplinas",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Debate"
+      ]
+    },
+    {
+      "nombre" : "Revista código javeriana",
+      "descripcion" : "Publicar semestralmente diferentes artículos de arte: cuentos, poemas, reseñas, crónicas, fotografías y otros temas de interés",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Publicación"
+      ]
+    },
+    {
+      "nombre" : "Revista Cuadrante Phi",
+      "descripcion" : "Publicar artículos filosóficos e interdisciplinares para fomentar el trabajo de los estudiantes de filosofía alrededor de Colombia y otros países hispanos, a la vez hacer entrevistas y organizar eventos académicos gracias a la red de revistas de filosofía en toda Colombia",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Publicación"
+      ]
+    },
+    {
+      "nombre" : "Foro javeriano",
+      "descripcion" : "Somos un grupo que fue creado como alternativa de expresión, para facilitar la posibilidad de hacer pública la opinión de las personas, abrir un espacio de debate, discusión, sana crítica, información y sobre todo periodismo serio para la facultad de Ciencia Jurídicas",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Publicación"
+      ]
+    },
+    {
+      "nombre" : "Periódico obelisco",
+      "descripcion" : "Generar u espacio de participación estudiantil dentro de la Facultad de Ciencias Políticas y Relaciones Internacionales para que los estudiantes puedan expresar sus ideas a través de un periódico impreso",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Publicación"
+      ]
+    },
+    {
+      "nombre" : "Radiando variando",
+      "descripcion" : "Producir contenidos informativos en temáticas como cultura, política y deporte mediante un programa/plataforma multimedial con el fin de conectarse con los diferentes gustos e intereses del público",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Difusión"
+      ]
+    },
+    {
+      "nombre" : "Revista 20/20",
+      "descripcion" : "Crear un espacio para la publicación de textos creativos surgidos en la Universidad, ya sea entre los estudiantes del énfasis de Escrituras Creativas de la carrera de Estudios Literarios o de todos aquellos estudiantes interesados",
+      "tematicas" : [
+        "Medios Comunicación"
+      ],
+      "calificacion" : 5,
+      "requisitos" : [],
+      "facultades" : [],
+      "caracteristicas" : [
+        "Medios Comunicación",
+        "Publicación"
+      ]
+    }
+  ],
+  "restaurantes" : [
+    {
+      "nombre" : "il Posto",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cocina italiana",
+        "pasta",
+        "lasaña",
+        "sopa",
+        "sandwiches",
+        "panaderia",
+        "pasterelira",
+        "postres"
+      ],
+      "descripcion" : "Disfruta en el posto de exquisitas recetas artesanales italianas, que incluyen una rica variedad de sándwiches, pastas, pizzas, sopas, pastelería y postres. Productos frescos, saludables y recién horneados",
+      "localizacion" : {
+        "id": 1,
+        "descripcion": "piso 5"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro"
+      ],
+      "precioMin":6000,
+      "precioMax":30000
+    },
+    {
+      "nombre" : "La Central",
+      "tipoRestaurante": [
+        "to go",
+        "buffet",
+        "comida rápida",
+        "comida tipica"
+      ],
+      "tipoComida":[
+        "desayunos",
+        "cocina italiana",
+        "parilla",
+        "hamburgesa",
+        "comida tipica",
+        "pizza",
+        "perros",
+        "pasta",
+        "ensalada",
+        "lunch box",
+        "carne",
+        "pollo",
+        "pescado",
+        "cerdo"
+      ],
+      "descripcion" : " En el restaurante La Central brindamos gran variedad de productos; desayunos, almuerzos, comidas rapidas, pizzas, opciones para llevar y un espaccio comodo, un experiencia unica.",
+      "localizacion" : {
+        "id": 2,
+        "descripcion": "piso 1"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":7100,
+      "precioMax":19200
+    },
+    {
+      "nombre" : "El Italiano",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cocina italiana",
+        "pasta",
+        "lasaña",
+        "sopa",
+        "sandwiches",
+        "ensalada",
+        "carne",
+        "pescado",
+        "pollo",
+        "postres",
+        "rissotos",
+        "raviolis",
+        "canelones"
+      ],
+      "descripcion" : "En el restaurante EL italiano ofrecemos una amplia carta, de deliciosos platos italianos que van de la mano de un excelente servicio y un espacio confortable para disfrutar de una tarde en compañia de amigos. ",
+      "localizacion" : {
+        "id": 3,
+        "descripcion": "piso 1"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro"
+      ],
+      "precioMin":7700,
+      "precioMax":26300
+    },
+    {
+      "nombre" : "Mirador",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cocina internacional",
+        "desayunos",
+        "sopa",
+        "crema",
+        "pescado",
+        "entradas",
+        "ensalada",
+        "carne",
+        "pollo",
+        "cerdo",
+        "mariscos",
+        "comida tipica",
+        "postres"
+      ],
+      "descripcion" : "El restaurante Mirador cuenta con una variedad de comida internacional, tenemos la mejor selección de platos, garantizandote una excelente experiencia gastronomica.",
+      "localizacion" : {
+        "id": 4,
+        "descripcion": "piso 9"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro"
+      ],
+      "precioMin":11500,
+      "precioMax":33000
+    },
+    {
+      "nombre" : "La Creperia",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "creperia",
+        "desayunos",
+        "tostadas",
+        "wafles",
+        "sopa",
+        "crema",
+        "ensalada",
+        "creps"
+      ],
+      "descripcion" : "En La Creperia brindamos un menu balanceado, natural y rico en variedad de sabores, inspirado en los conceptos de armonía, salud y equilibrio.",
+      "localizacion" : {
+        "id": 5,
+        "descripcion": "Entrada peatonal, junto al edificio"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":6400,
+      "precioMax":17200
+    },
+    {
+      "nombre" : "Subway",
+      "tipoRestaurante": [
+        "comida rapida"
+      ],
+      "tipoComida":[
+        "sandwiches"
+      ],
+      "descripcion" : "Actualmente, la marca SUBWAY® es la mayor cadena de sándwiches tipoRestaurante submarino del mundo con más de 40,000 ubicaciones en todo el mundo. Nos hemos convertido en la opción líder para las personas que buscan comidas nutritivas y rápidas que pueda disfrutar toda la familia.",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "Subway",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro"
+      ],
+      "precioMin":7000,
+      "precioMax":30000
+    },
+    {
+      "nombre" : "Dominos",
+      "tipoRestaurante": [
+        "comida rápida"
+      ],
+      "tipoComida":[
+        "pizza"
+      ],
+      "descripcion" : "Somos la cadena de restaurantes de entrega rápida más grande, exitosa e innovadora de México y para alcanzar el estándar de servicio necesario para lograrlo, mantenemos una estricta política de eficiencia y trato ético y honesto hacia nuestros clientes, proveedores, colaboradores, asociados y a la comunidad en general.",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 30,
+      "franquicia" : "Dominos",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":10000,
+      "precioMax":35000
+    },
+    {
+      "nombre" : "El corral",
+      "tipoRestaurante": [
+        "comida rapida"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "malteadas",
+        "sandwiches",
+        "wraps",
+        "ensalada",
+        "perros"
+      ],
+      "descripcion" : "Hamburguesas El Corral, es un restaurante de comidas rápidas que inició en Bogotá (Colombia) en 1983. Desde entonces se ha caracterizado por su decoración que mezcla el arte pop con el retro de una manera exitosa, llamativa y original",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "El corral",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":13000,
+      "precioMax":33900
+    },
+    {
+      "nombre" : "Crepes & Waffles",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "creperia",
+        "brunch",
+        "ensalada",
+        "sopa",
+        "creps",
+        "postres",
+        "pitas",
+        "pancook"
+      ],
+      "descripcion" : "Un arte que transforma el alimento en amor y alegría, nutre el alma y el cuerpo, cautiva paladares, conquista corazones. Queremos despertar admiración en cada cliente por servir Arte-Sano con amor y alegría a precios razonables.",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "Crepes & Waffles",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":9200,
+      "precioMax":31900
+    }
+  ],
+  "ubicaciones": [
+    {
+      "id": 1,
+      "nombre": "Ed. Jorge Hoyos S.J",
+      "descripcion": "edificio en la cra x con y y es cafe con ventanas grandes"
+    },
+    {
+      "id": 2,
+      "nombre": "Ed. 23",
+      "descripcion": "edificio en la cra x con y y es cafe con ventanas grandes"
+    },
+    {
+      "id": 3,
+      "nombre": "Ed. Angel Valtierra S.J",
+      "descripcion": "edificio en la cra x con y y es cafe con ventanas grandes"
+    },
+    {
+      "id": 4,
+      "nombre": "Ed. Gabriel Giraldo S.J",
+      "descripcion": "edificio en la cra x con y y es de ladrillo"
+    },
+    {
+      "id": 5,
+      "nombre": "Centro Javeriano de Formacion deportiva",
+      "descripcion": "edificio en la cra x con y y es cafe con ventanas grandes"
+    },
+    {
+      "id": 6,
+      "nombre": "Fuera del campus",
+      "descripcion": "Fuera del campus"
+    }
+  ],
+  "RegimenAlimenticio":[
+    {
+      "tipo": "vegetariano"
+    },
+    {
+      "tipo": "carnivoro"
+    },
+    {
+      "tipo": "saludable"
+    }
+  ],
+  "TipoRestaurante":[
+    {
+      "tipo":"De especialidad"
+    },
+    {
+      "tipo":"to go"
+    },
+    {
+      "tipo":"buffet"
+    },
+    {
+      "tipo":"comida rápida"
+    },
+    {
+      "tipo":"comida tipica"
+    },
+    {
+      "tipo":"comida rapida"
+    }
+  ],
+  "TipoCocina":[
+    {
+      "tipo": "cocina italiana"
+    },
+    {
+      "tipo":"pasta"
+    },
+    {
+      "tipo":"lasaña"
+    },
+    {
+      "tipo":"sopa"
+    },
+    {
+      "tipo":"sandwiches"
+    },
+    {
+      "tipo":"panaderia"
+    },
+    {
+      "tipo":"pasterelira"
+    },
+    {
+      "tipo":"postres"
+    },
+    {
+      "tipo":"desayunos"
+    },
+    {
+      "tipo":"parilla"
+    },
+    {
+      "tipo":"hamburgesa"
+    },
+    {
+      "tipo":"cerdo"
+    },
+    {
+      "tipo":"pescado"
+    },
+    {
+      "tipo":"pollo"
+    },
+    {
+      "tipo":"carne"
+    },
+    {
+      "tipo":"lunch box"
+    },
+    {
+      "tipo":"ensalada"
+    },
+    {
+      "tipo":"perros"
+    },
+    {
+      "tipo":"pizza"
+    },
+    {
+      "tipo":"comida tipica"
+    },
+    {
+      "tipo":"rissotos"
+    },
+    {
+      "tipo":"raviolis"
+    },
+    {
+      "tipo":"canelones"
+    },
+    {
+      "tipo": "cocina internacional"
+    },
+    {
+      "tipo":"crema"
+    },
+    {
+      "tipo":"entradas"
+    },
+    {
+      "tipo":"mariscos"
+    },
+    {
+      "tipo":"creperia"
+    },
+    {
+      "tipo":"tostadas"
+    },
+    {
+      "tipo":"wafles"
+    },
+    {
+      "tipo":"creps"
+    },
+    {
+      "tipo":"malteadas"
+    },
+    {
+      "tipo":"wraps"
+    },
+    {
+      "tipo":"pitas"
+    },
+    {
+      "tipo":"pancook"
+    },
+    {
+      "tipo":"brunch"
+    }
+  ]
+}

@@ -1,7 +1,5 @@
 package CampusConnect.CCBack.Service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,35 +8,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import CampusConnect.CCBack.Model.Facultad;
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
-import CampusConnect.CCBack.Repository.FacultadRepository;
+import CampusConnect.CCBack.Model.Lugar;
+import CampusConnect.CCBack.Repository.LugarRepository;
 
 @RestController
-@RequestMapping("/facultad")
-class FacultadesService {
+@RequestMapping("/lugar")
+class LugarService {
     @Autowired
-    private FacultadRepository repository;
+    private LugarRepository repository;
 
     @GetMapping("all")
-    public Iterable<Facultad> findAll() {
+    public Iterable<Lugar> findAll() {
         return repository.findAll();
     }
 
     @GetMapping("{id}")
-    public Facultad findById(@PathVariable("id") final Long id) {
+    public Lugar findById(@PathVariable("id") final Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("{id}/grupos_estudiantiles")
-    public List<GrupoEstudiantil> getUsuarios(@PathVariable("id") final Long id) {
-        return repository.findById(id).get().getGruposEstudiantiles();
-    }
-
     @PostMapping
-    public Facultad create(@RequestBody final Facultad dato) {
-        Facultad c = new Facultad();
+    public Lugar create(@RequestBody final Lugar dato) {
+        Lugar c = new Lugar();
         c.setNombre(dato.getNombre());
+        c.setUbicacion(dato.getUbicacion());
         return repository.save(c);
     }
 

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/foro")
 class ForoService {
     @Autowired
     private ForoRepository repository;
@@ -23,22 +25,22 @@ class ForoService {
     @Autowired
     private UsuarioGeneralRepository usuarioRepo;
 
-    @GetMapping("/foros")
+    @GetMapping("all")
     public Iterable<Foro> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("/foro/{id}")
+    @GetMapping("{id}")
     public Foro findById(@PathVariable("id") final Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("/foro/{id}/respuestas")
+    @GetMapping("{id}/respuestas")
     public List<RespuestaForo> findRespuestasById(@PathVariable("id") final Long id) {
         return repository.findById(id).get().getRespuestas();
     }
 
-    @PostMapping("/foro/{id}")
+    @PostMapping("{id}")
     public Foro crearForo(
         @RequestBody final Foro foroData,
         @PathVariable("id") final Long idUsuario

@@ -1,7 +1,6 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,8 +20,11 @@ public class InformacionUsuario {
     private Long id;
 
     private String identidadGenero;
+
     private String raza;
+
     private String lugarOrigen;
+
     private LocalDate fechaNacimiento;
 
     private String actividadInteres;
@@ -49,29 +51,36 @@ public class InformacionUsuario {
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public String getRaza() {
+
+    public String getRaza() {
 		return raza;
 	}
-	public void setRaza(String raza) {
+
+    public void setRaza(String raza) {
 		this.raza = raza;
 	}
 
     public String getLugarOrigen() {
 		return lugarOrigen;
 	}
-	public void setLugarOrigen(String lugarOrigen) {
+
+    public void setLugarOrigen(String lugarOrigen) {
 		this.lugarOrigen = lugarOrigen;
 	}
-	public void setIdentidadGenero(String identidadGenero) {
+
+    public void setIdentidadGenero(String identidadGenero) {
 		this.identidadGenero = identidadGenero;
 	}
-	public UsuarioGeneral getUsuario() {
+
+    public UsuarioGeneral getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(UsuarioGeneral usuario) {
+
+    public void setUsuario(UsuarioGeneral usuario) {
 		this.usuario = usuario;
 	}
 

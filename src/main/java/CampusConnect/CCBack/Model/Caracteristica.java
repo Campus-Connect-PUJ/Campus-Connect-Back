@@ -99,4 +99,9 @@ public class Caracteristica {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+    public void agregarGrupoEstudiantil(GrupoEstudiantil ge) {
+        this.gruposEstudiantiles.add(ge);
+    }
+
 }

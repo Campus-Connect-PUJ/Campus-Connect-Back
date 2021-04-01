@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,6 +23,10 @@ public class TipoComida {
     @ManyToMany(mappedBy = "tiposComida")
     private List<Restaurante> restaurantes;
 
+    public TipoComida() {
+        this.restaurantes = new ArrayList<>();
+    }
+
 	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}
@@ -36,6 +41,18 @@ public class TipoComida {
 
 	public void setRestaurantes(List<Restaurante> restaurantes) {
 		this.restaurantes = restaurantes;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void agregarRestaurante(Restaurante res) {
+        this.restaurantes.add(res);
 	}
 
 }

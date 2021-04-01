@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -73,6 +74,14 @@ public class Restaurante {
     @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
     private List<ResenhaRestaurante> resenhas;
+
+	public Restaurante() {
+        this.calificacion = 0;
+        this.resenhas = new ArrayList<>();
+        this.regimenesAlimenticios = new ArrayList<>();
+        this.tiposComida = new ArrayList<>();
+        this.tiposRestaurante = new ArrayList<>();
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -189,4 +198,21 @@ public class Restaurante {
 	public void setResenhas(List<ResenhaRestaurante> resenhas) {
 		this.resenhas = resenhas;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void agregarTipoRestaurante(TipoRestaurante c) {
+        this.tiposRestaurante.add(c);
+	}
+
+	public void agregarTipoComida(TipoComida c) {
+        this.tiposComida.add(c);
+	}
+
+	public void agregarRegimenAlimenticio(RegimenAlimenticio c) {
+        this.regimenesAlimenticios.add(c);
+	}
+
 }

@@ -7,8 +7,8 @@ maven:
 docker:
 	cd config && docker-compose up
 
-load-sql-dump:
-	./load_sql_dump.sh
+load-data:
+	python3 ./scripts/cargarJson.py ./scripts/informacion.json
 
 inst:
 	mvn install

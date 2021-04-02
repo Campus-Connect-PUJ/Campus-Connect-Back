@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Service;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.TipRepository;
 import CampusConnect.CCBack.Wrappers.WrapperTip;
 
@@ -23,6 +24,9 @@ class TipsService {
 
     @Autowired
     private UsuarioGeneralService ugService;
+
+    @Autowired
+    private UsuarioGeneralRepository usuarioRepo;
 
     @Autowired
     private TipoAprendizajeService taService;
@@ -47,22 +51,30 @@ class TipsService {
         return repository.findById(id).get().getUsuariosGustaron();
     }
 
-    @PostMapping
-    public Tip crear(@RequestBody final WrapperTip data) {
+    @PostMapping("{id}")
+    public Tip crear(
+        @RequestBody final WrapperTip data,
+        @PathVariable("id") final Long idUsuario
+    ) {
         Tip tip = new Tip();
-        UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
+        UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
 
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
 
-        repository.save(tip);
+        for(int i = 0; i<data.getTiposAprendizaje().size(); i++){
+            long id = data.getTiposAprendizaje().get(i);
+            TipoAprendizaje c = taService.findById(id);
+            tip.agregaTipoAprendizaje(c);
+        }
 
+/*  
         for (Long l: data.getTiposAprendizaje()) {
             TipoAprendizaje c = taService.findById(l);
             tip.agregaTipoAprendizaje(c);
             // c.agregarTip(ug);
         }
-
+*/
         return repository.save(tip);
     }
 }

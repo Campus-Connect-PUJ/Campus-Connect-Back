@@ -55,7 +55,7 @@ public class Restaurante {
         inverseJoinColumns = @JoinColumn(name = "idTipoRestaurante"))
     private List<TipoRestaurante> tiposRestaurante;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TiposComidaRestaurante",

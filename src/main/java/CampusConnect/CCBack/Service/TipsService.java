@@ -51,13 +51,12 @@ class TipsService {
         return repository.findById(id).get().getUsuariosGustaron();
     }
 
-    @PostMapping("{id}")
+    @PostMapping
     public Tip crear(
-        @RequestBody final WrapperTip data,
-        @PathVariable("id") final Long idUsuario
+        @RequestBody final WrapperTip data
     ) {
         Tip tip = new Tip();
-        UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
+        UsuarioGeneral ug = usuarioRepo.findById(data.getIdUsuario()).get();
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
 

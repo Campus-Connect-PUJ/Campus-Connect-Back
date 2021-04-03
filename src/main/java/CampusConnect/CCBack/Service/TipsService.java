@@ -58,12 +58,13 @@ class TipsService {
     ) {
         Tip tip = new Tip();
         UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
-
+        System.out.println("------------------------------"+data);
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
 
         for(int i = 0; i<data.getTiposAprendizaje().size(); i++){
             long id = data.getTiposAprendizaje().get(i);
+            
             TipoAprendizaje c = taService.findById(id);
             tip.agregaTipoAprendizaje(c);
         }

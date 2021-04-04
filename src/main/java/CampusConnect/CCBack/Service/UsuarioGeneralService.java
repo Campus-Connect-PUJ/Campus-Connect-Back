@@ -35,14 +35,25 @@ class UsuarioGeneralService {
     private CarreraRepository carrera_repository;
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
-    @GetMapping("/usuarios")
+    @GetMapping("/usuario/all")
     public Iterable<UsuarioGeneral> findAllForos() {
         return repository.findAll();
     }
 
-    @GetMapping("/usuarios/{id}")
-    public UsuarioGeneral findForoById(@PathVariable("id") Long id) {
+    @GetMapping("/usuario/id/{id}")
+    public UsuarioGeneral findUsuarioById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
+    }
+
+    @GetMapping("/usuario/email/{email}")
+    public UsuarioGeneral findUsuarioByEmail(@PathVariable("email") String email) {
+        Iterable<UsuarioGeneral> usuarios = repository.findAll();
+        for (UsuarioGeneral usuarioGeneral : usuarios) {
+            if (usuarioGeneral.getCorreo().equals(email)) {
+                return usuarioGeneral;
+            }
+        }
+        return null;
     }
 
     @GetMapping("/pruebaUsuario")

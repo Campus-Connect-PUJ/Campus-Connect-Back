@@ -47,7 +47,7 @@ public class Restaurante {
     @JoinColumn(name="idLugar")
     private Lugar lugar;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TiposRestaurante",

@@ -26,7 +26,7 @@ public class GrupoEstudiantil {
 
     private float calificacion;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Caracteristica> caracteristicas;
 
@@ -34,7 +34,7 @@ public class GrupoEstudiantil {
     @OneToMany(mappedBy = "grupoEstudiantil")
     private List<ResenhaGrupoEstudiantil> resenhas;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Facultad> facultades;
 
@@ -42,7 +42,7 @@ public class GrupoEstudiantil {
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Requisito> requisitos;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Tematica> tematicas;
 

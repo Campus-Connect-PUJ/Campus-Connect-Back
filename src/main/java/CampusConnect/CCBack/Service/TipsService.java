@@ -26,9 +26,6 @@ class TipsService {
     private UsuarioGeneralService ugService;
 
     @Autowired
-    private UsuarioGeneralRepository usuarioRepo;
-
-    @Autowired
     private TipoAprendizajeService taService;
 
     @GetMapping("all")
@@ -56,12 +53,11 @@ class TipsService {
         @RequestBody final WrapperTip data
     ) {
         Tip tip = new Tip();
-        UsuarioGeneral ug = usuarioRepo.findById(data.getIdUsuario()).get();
+        UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
 
-        for(int i = 0; i<data.getTiposAprendizaje().size(); i++){
-            long id = data.getTiposAprendizaje().get(i);
+        for(Long id: data.getTiposAprendizaje()) {
             TipoAprendizaje c = taService.findById(id);
             tip.agregaTipoAprendizaje(c);
         }

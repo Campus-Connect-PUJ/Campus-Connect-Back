@@ -65,7 +65,7 @@ class ForoService {
         return repository.save(foro);
     }
 
-    @PostMapping("{id}/respuestas")
+    @PostMapping("{id}/respuesta")
     public void AgregarRespuestaForo(
         @RequestBody final WrapperRespuestaForo respuesta,
         @PathVariable("id") final Long idForo

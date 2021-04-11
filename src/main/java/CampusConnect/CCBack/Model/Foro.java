@@ -116,4 +116,8 @@ public class Foro {
 		this.id = id;
 	}
 
+	public void agregarRespuesta(RespuestaForo r) {
+        this.respuestas.add(r);
+    }
+
 }

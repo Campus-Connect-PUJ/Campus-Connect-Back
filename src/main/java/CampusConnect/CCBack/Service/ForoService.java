@@ -5,13 +5,16 @@ import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ForoRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,4 +60,24 @@ class ForoService {
 
         return repository.save(foro);
     }
+
+    @PostMapping("{id}/respuestas")
+    public void actualizarForo(
+        @RequestBody final WrapperRespuestaForo respuesta,
+        @PathVariable("id") final Long idForo
+    ){
+        RespuestaForo nuevaRespuesta = new RespuestaForo();
+        Foro foro = repository.findById(idForo).get();
+        UsuarioGeneral usuarioRespuesta = usuarioRepo.findById(respuesta.getIdUsuario()).get();
+
+        nuevaRespuesta.setTexto(respuesta.getTexto());
+        nuevaRespuesta.setForo(foro);
+        nuevaRespuesta.setUsuario(usuarioRespuesta);
+        foro.agregarRespuesta(nuevaRespuesta);
+
+        System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
+        repository.save(foro);
+    }
+
+
 }

@@ -31,9 +31,10 @@ public class RespuestaForo {
 
     private int puntaje;
 
-    RespuestaForo () {
+    public RespuestaForo () {
         this.reportado = false;
         this.puntaje = 0;
+		this.fecha = LocalTime.now();
     }
 
     public void like() {

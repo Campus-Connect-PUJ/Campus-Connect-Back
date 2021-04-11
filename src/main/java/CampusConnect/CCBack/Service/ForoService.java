@@ -4,6 +4,7 @@ import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ForoRepository;
+import CampusConnect.CCBack.Repository.RespuestaForoRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
@@ -26,7 +27,10 @@ class ForoService {
     private ForoRepository repository;
 
     @Autowired
-    private UsuarioGeneralRepository usuarioRepo;
+    private RespuestaForoRepository respuestaRepository;
+
+    @Autowired
+    private UsuarioGeneralService uService;
 
     @GetMapping("all")
     public Iterable<Foro> findAll() {
@@ -49,7 +53,7 @@ class ForoService {
         @PathVariable("id") final Long idUsuario
         ) {
         Foro foro = new Foro();
-        UsuarioGeneral ug = usuarioRepo.findById(idUsuario).get();
+        UsuarioGeneral ug = uService.findById(idUsuario);
         // no es necesario poner las demas variables, ya que el
         // constructor se encarga, ademas un post al ser creado
         // siempre tendra una lista vacia de respuestas, la fecha
@@ -62,21 +66,23 @@ class ForoService {
     }
 
     @PostMapping("{id}/respuestas")
-    public void actualizarForo(
+    public void AgregarRespuestaForo(
         @RequestBody final WrapperRespuestaForo respuesta,
         @PathVariable("id") final Long idForo
     ){
         RespuestaForo nuevaRespuesta = new RespuestaForo();
-        Foro foro = repository.findById(idForo).get();
-        UsuarioGeneral usuarioRespuesta = usuarioRepo.findById(respuesta.getIdUsuario()).get();
+        Foro foro = this.findById(idForo);
+        UsuarioGeneral usuarioRespuesta = uService.findById(respuesta.getIdUsuario());
 
         nuevaRespuesta.setTexto(respuesta.getTexto());
         nuevaRespuesta.setForo(foro);
         nuevaRespuesta.setUsuario(usuarioRespuesta);
         foro.agregarRespuesta(nuevaRespuesta);
 
-        System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
         repository.save(foro);
+        respuestaRepository.save(nuevaRespuesta);
+
+        System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
     }
 
 

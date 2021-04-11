@@ -34,7 +34,6 @@ public class Foro {
 
     private int puntaje;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "foro")
     private List<RespuestaForo> respuestas;
 

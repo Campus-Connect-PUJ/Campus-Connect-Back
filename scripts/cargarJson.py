@@ -35,7 +35,7 @@ def agrupar(dic, valores, tipo, locurl):
 
 def main(archivo):
     # read file
-    with open(archivo, 'r') as myfile:
+    with open(archivo, errors="ignore") as myfile:
         data=myfile.read()
 
     # parse file

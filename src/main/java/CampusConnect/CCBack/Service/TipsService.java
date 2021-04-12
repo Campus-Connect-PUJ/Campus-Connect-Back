@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Service;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.TipRepository;
 import CampusConnect.CCBack.Wrappers.WrapperTip;
 
@@ -48,19 +49,17 @@ class TipsService {
     }
 
     @PostMapping
-    public Tip crear(@RequestBody final WrapperTip data) {
+    public Tip crear(
+        @RequestBody final WrapperTip data
+    ) {
         Tip tip = new Tip();
         UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
-
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
 
-        repository.save(tip);
-
-        for (Long l: data.getTiposAprendizaje()) {
-            TipoAprendizaje c = taService.findById(l);
+        for(Long id: data.getTiposAprendizaje()) {
+            TipoAprendizaje c = taService.findById(id);
             tip.agregaTipoAprendizaje(c);
-            // c.agregarTip(ug);
         }
 
         return repository.save(tip);

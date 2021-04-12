@@ -45,7 +45,7 @@ public class RespuestaForo {
     }
 
     public void dislike() {
-        this.puntaje++;
+        this.puntaje--;
     }
 
 	public int getPuntaje() {
@@ -94,6 +94,14 @@ public class RespuestaForo {
 
 	public void setForo(Foro foro) {
 		this.foro = foro;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

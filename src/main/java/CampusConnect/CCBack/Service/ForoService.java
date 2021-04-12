@@ -85,5 +85,23 @@ class ForoService {
         System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
     }
 
+    @PutMapping("sumar/{id}")
+    public Foro sumarVotoAForo(
+        @PathVariable("id") final Long idForo
+    ){
+        Foro foro = this.findById(idForo);
+        foro.like();
+        return repository.save(foro);
+    }
+
+    @PutMapping("restar/{id}")
+    public Foro restarVotoAForo(
+        @PathVariable("id") final Long idForo
+    ){
+        Foro foro = this.findById(idForo);
+        foro.dislike();
+        return repository.save(foro);
+    }
+
 
 }

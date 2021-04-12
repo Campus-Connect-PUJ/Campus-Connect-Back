@@ -49,7 +49,7 @@ public class Foro {
     }
 
     public void dislike() {
-        this.puntaje++;
+        this.puntaje--;
     }
 
 	public int getPuntaje() {

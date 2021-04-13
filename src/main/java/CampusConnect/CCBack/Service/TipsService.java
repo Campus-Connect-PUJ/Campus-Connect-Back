@@ -74,12 +74,33 @@ class TipsService {
         @PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("idTip") final Long idTip
     ){
+        System.out.println("Entra a gustar");
         Tip tip = this.findTipById(idTip);
+        tip.like();
         UsuarioGeneral ug = ugService.findById(idUsuario);
 
         tip.agregarUsuarioGustaron(ug);
         ug.agregarTipGustaron(tip);
 
+        repository.save(tip);
+        System.out.println("Sale a gustar");
+        return ugRepository.save(ug);
+    }
+
+    @PutMapping("tipsNoGustados/{idUsuario}/{idTip}")
+    public UsuarioGeneral agregarTipNoGustado(
+        @PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("idTip") final Long idTip
+    ){
+        System.out.println("entra");
+        Tip tip = this.findTipById(idTip);
+        tip.dislike();
+        UsuarioGeneral ug = ugService.findById(idUsuario);
+
+        tip.agregarUsuarioNoGustaron(ug);
+        ug.agregarTipNoGustaron(tip);
+
+        
         repository.save(tip);
         return ugRepository.save(ug);
     }

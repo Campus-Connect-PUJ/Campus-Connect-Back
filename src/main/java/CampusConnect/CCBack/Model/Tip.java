@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Tip {
+public class Tip implements Comparable<Tip>{
 
     @Id
     @GeneratedValue
@@ -42,6 +42,15 @@ public class Tip {
         joinColumns = @JoinColumn(name = "idTipGusto"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuariosGustaron;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable (
+        name = "UsuariosNoGustaronTip",
+        joinColumns = @JoinColumn(name = "idTipNoGusto"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
+    private List<UsuarioGeneral> usuariosNoGustaron;
+
 
     private int puntaje;
 
@@ -103,11 +112,34 @@ public class Tip {
 		this.usuariosGustaron = usuariosGustaron;
 	}
 
+    public List<UsuarioGeneral> getUsuariosNoGustaron() {
+		return usuariosNoGustaron;
+	}
+
+	public void setUsuariosNoGustaron(List<UsuarioGeneral> usuariosNoGustaron) {
+		this.usuariosNoGustaron = usuariosNoGustaron;
+	}
+
     public void agregaTipoAprendizaje(TipoAprendizaje ta) {
         this.tiposAprendizaje.add(ta);
     }
 
     public void agregarUsuarioGustaron(UsuarioGeneral ug){
         this.usuariosGustaron.add(ug);
+    }
+
+    public void agregarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.add(ug);
+    }
+
+    @Override
+    public int compareTo(Tip o) {
+        if (this.puntaje > o.puntaje) {
+            return -1;
+        }
+        if (this.puntaje < o.puntaje) {
+            return 1;
+        }
+        return 0;
     }
 }

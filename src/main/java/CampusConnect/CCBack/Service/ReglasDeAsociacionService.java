@@ -7,6 +7,9 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ReglasDeAsociacionRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -62,58 +65,63 @@ class ReglasDeAsociacionService {
     @GetMapping("usuario/{id}")
     public Tip obtenerRecomendacionTip(@PathVariable("id") final Long id){
         
-        long n = 1;
-        UsuarioGeneral ug = servicioUsuarios.findById(n);
+        long idTip = 11;
+        UsuarioGeneral ug = servicioUsuarios.findById(id);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
-        
         List<TipoAprendizaje> estilosAprendizaje = new ArrayList<TipoAprendizaje>();
+        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
+        Tip tipRecomendado = new Tip();
+
         long a = 4;
         estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
         a = 3;
         estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
         ug.setEstilosAprendizaje(estilosAprendizaje);
 
-
-        Tip tipRecomendado = new Tip();
-        tipRecomendado = this.servicioTips.findTipById(id);
-        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
-        
         if(reglas.size()>0){
             //Cuando haya reglas
             System.out.println("a");
+                    //crearListaTipsGustados(tipsGustadosUsuario);
+            List<String> tipsUsuario = new ArrayList<String>();
+            tipsUsuario.add("2");
+            tipsUsuario.add("4");
+            tipsUsuario.add("6");
+            tipsUsuario.add("8");
+
+            List<String> tipsRegla = new ArrayList<String>();
+            tipsRegla.add("1");
+            tipsRegla.add("2");
+            tipsRegla.add("3");
+            tipsRegla.add("4");
+            tipsRegla.add("5");
+
+            int iguales = obtenerReglas(tipsUsuario, tipsRegla, tipsUsuario.size());
+            if(iguales > 0){
+                System.out.println("iguales" + iguales);
+                tipRecomendado = servicioTips.findTipById(idTip);
+            }
+            tipRecomendado = servicioTips.findTipById(idTip);
+            return tipRecomendado;
+
+
         }
         else{
+            //Cuando no
             System.out.println("b");
             tipsGustadosUsuario = obtenerTipsPorTipo(ug);
-
-            for(int i=0; i<tipsGustadosUsuario.size(); i++){
-                System.out.println(tipsGustadosUsuario.get(i).getDescripcion() + " " + tipsGustadosUsuario.get(i).getId());
+            try {
+                for(int i=0; i<tipsGustadosUsuario.size(); i++){
+                    System.out.println(tipsGustadosUsuario.get(i).getDescripcion()+" "+tipsGustadosUsuario.get(i).getPuntaje());
+                }
+                tipRecomendado = tipsGustadosUsuario.get(0);
+            } catch (Exception e) {
+                //TODO: handle exception
+                tipRecomendado = servicioTips.findTipById(idTip);
             }
-
-
+            return tipRecomendado;
         }
 
-        //crearListaTipsGustados(tipsGustadosUsuario);
-        List<String> tipsUsuario = new ArrayList<String>();
-        tipsUsuario.add("2");
-        tipsUsuario.add("4");
-        tipsUsuario.add("6");
-        tipsUsuario.add("8");
 
-        List<String> tipsRegla = new ArrayList<String>();
-        tipsRegla.add("1");
-        tipsRegla.add("2");
-        tipsRegla.add("3");
-        tipsRegla.add("4");
-        tipsRegla.add("5");
-
-        int iguales = obtenerReglas(tipsUsuario, tipsRegla, tipsUsuario.size());
-        if(iguales > 0){
-            System.out.println("iguales" + iguales);
-            tipRecomendado = servicioTips.findTipById(id);
-        }
-        tipRecomendado = servicioTips.findTipById(id);
-        return tipRecomendado;
     }
 
 
@@ -159,6 +167,15 @@ class ReglasDeAsociacionService {
         return tipsString;
     }
 
+    public List<Tip> ordenarLista(List<Tip> tips){
+        List<Tip> tipsOrdenados = new ArrayList<Tip>();
+        Tip[] miarray = new Tip[tips.size()];
+        miarray = tips.toArray(miarray);
+        Arrays.sort(miarray);
+        tipsOrdenados = Arrays.asList(miarray);
+
+        return tipsOrdenados;
+    }
 
 //Cuando no haya reglas 
 
@@ -169,17 +186,14 @@ class ReglasDeAsociacionService {
         for(int i=0; i<ug.getEstilosAprendizaje().size(); i++){
             for(int j=0; j<tipsSistema.size(); j++){
                 for(int k=0; k<tipsSistema.get(j).getTiposAprendizaje().size(); k++){
-                    if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j))){
+                    if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j)) && !ug.getTipsGustados().contains(tipsSistema.get(j)) && !ug.getTipsNoGustados().contains(tipsSistema.get(j))){
                         tipsRecomendar.add(tipsSistema.get(j));
                     }
                 }
             }
-
         }
 
-
-
-
+        tipsRecomendar = ordenarLista(tipsRecomendar);
         
         return tipsRecomendar;
     }

@@ -91,9 +91,11 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
-	
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
+
+	@ManyToMany(mappedBy = "usuariosNoGustaron")
+    private List<Tip> tipsNoGustados;
 
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
@@ -150,7 +152,6 @@ public class UsuarioGeneral {
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
-
 
 	public List<Asignatura> getMonitorDe() {
 		return monitorDe;
@@ -232,6 +233,14 @@ public class UsuarioGeneral {
 		this.tipsGustados = tipsGustados;
 	}
 
+	public List<Tip> getTipsNoGustados() {
+		return tipsNoGustados;
+	}
+
+	public void setTipsNoGustados(List<Tip> tipsNoGustados) {
+		this.tipsNoGustados = tipsNoGustados;
+	}
+
 	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
         this.resenhaRestaurantes.add(rr);
 	}
@@ -274,6 +283,10 @@ public class UsuarioGeneral {
 
 	public void agregarTipGustaron(Tip tip){
 		this.tipsGustados.add(tip);
+	}
+
+	public void agregarTipNoGustaron(Tip tip){
+		this.tipsNoGustados.add(tip);
 	}
 
 }

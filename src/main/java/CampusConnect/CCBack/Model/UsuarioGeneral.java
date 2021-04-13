@@ -150,12 +150,7 @@ public class UsuarioGeneral {
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
-	public List<TipoAprendizaje> getEstiloAprendizaje() {
-		return estilosAprendizaje;
-	}
-	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
-		this.estilosAprendizaje = estiloAprendizaje;
-	}
+
 
 	public List<Asignatura> getMonitorDe() {
 		return monitorDe;

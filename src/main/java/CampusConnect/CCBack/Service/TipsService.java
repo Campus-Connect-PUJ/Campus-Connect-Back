@@ -33,7 +33,7 @@ class TipsService {
     private TipoAprendizajeService taService;
 
     @GetMapping("all")
-    public Iterable<Tip> findAllForos() {
+    public Iterable<Tip> findAllTips() {
         return repository.findAll();
     }
 

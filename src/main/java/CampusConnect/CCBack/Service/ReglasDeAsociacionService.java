@@ -2,6 +2,7 @@ package CampusConnect.CCBack.Service;
 
 import CampusConnect.CCBack.Model.ReglasDeAsociacion;
 import CampusConnect.CCBack.Model.Tip;
+import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ReglasDeAsociacionRepository;
 
@@ -24,7 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reglas")
 class ReglasDeAsociacionService {
     @Autowired
-    private ReglasDeAsociacionRepository repository ;
+    private ReglasDeAsociacionRepository repository;
+
+    @Autowired
+    private TipoAprendizajeService servicioTipoAprendizaje;
 
     @Autowired
     private UsuarioGeneralService servicioUsuarios;
@@ -61,11 +65,34 @@ class ReglasDeAsociacionService {
         long n = 1;
         UsuarioGeneral ug = servicioUsuarios.findById(n);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
+        
+        List<TipoAprendizaje> estilosAprendizaje = new ArrayList<TipoAprendizaje>();
+        long a = 4;
+        estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
+        a = 3;
+        estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
+        ug.setEstilosAprendizaje(estilosAprendizaje);
+
 
         Tip tipRecomendado = new Tip();
         tipRecomendado = this.servicioTips.findTipById(id);
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         
+        if(reglas.size()>0){
+            //Cuando haya reglas
+            System.out.println("a");
+        }
+        else{
+            System.out.println("b");
+            tipsGustadosUsuario = obtenerTipsPorTipo(ug);
+
+            for(int i=0; i<tipsGustadosUsuario.size(); i++){
+                System.out.println(tipsGustadosUsuario.get(i).getDescripcion() + " " + tipsGustadosUsuario.get(i).getId());
+            }
+
+
+        }
+
         //crearListaTipsGustados(tipsGustadosUsuario);
         List<String> tipsUsuario = new ArrayList<String>();
         tipsUsuario.add("2");
@@ -85,7 +112,7 @@ class ReglasDeAsociacionService {
             System.out.println("iguales" + iguales);
             tipRecomendado = servicioTips.findTipById(id);
         }
-
+        tipRecomendado = servicioTips.findTipById(id);
         return tipRecomendado;
     }
 
@@ -132,5 +159,29 @@ class ReglasDeAsociacionService {
         return tipsString;
     }
 
+
+//Cuando no haya reglas 
+
+    public List<Tip> obtenerTipsPorTipo(UsuarioGeneral ug){
+        List<Tip> tipsRecomendar = new ArrayList<Tip>();
+        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAllTips();
+
+        for(int i=0; i<ug.getEstilosAprendizaje().size(); i++){
+            for(int j=0; j<tipsSistema.size(); j++){
+                for(int k=0; k<tipsSistema.get(j).getTiposAprendizaje().size(); k++){
+                    if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j))){
+                        tipsRecomendar.add(tipsSistema.get(j));
+                    }
+                }
+            }
+
+        }
+
+
+
+
+        
+        return tipsRecomendar;
+    }
 
 }

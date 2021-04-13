@@ -26,9 +26,10 @@ public class RESTAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandle
      * https://www.baeldung.com/securing-a-restful-web-service-with-spring-security
      */
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        Authentication authentication)
+    public void onAuthenticationSuccess(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        Authentication authentication)
         throws ServletException, IOException {
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);

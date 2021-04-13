@@ -43,10 +43,29 @@ public class Tip {
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuariosGustaron;
 
+    private int puntaje;
+
     public Tip() {
         this.tiposAprendizaje = new ArrayList<>();
         this.usuariosGustaron = new ArrayList<>();
+        this.puntaje = 0;
     }
+
+    public void like() {
+        this.puntaje++;
+    }
+
+    public void dislike() {
+        this.puntaje--;
+    }
+
+    public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
 
 	public String getDescripcion() {
 		return descripcion;

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,10 +69,10 @@ class TipsService {
         return repository.save(tip);
     }
 
-    @PostMapping("tipsGustados/{idUsuario}/{idTip}")
-    public void agregarTipGustado(
-        @PathVariable("idTip") final Long idTip,
-        @PathVariable("idUsuario") final Long idUsuario
+    @PutMapping("tipsGustados/{idUsuario}/{idTip}")
+    public UsuarioGeneral agregarTipGustado(
+        @PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("idTip") final Long idTip
     ){
         Tip tip = this.findTipById(idTip);
         UsuarioGeneral ug = ugService.findById(idUsuario);
@@ -80,7 +81,26 @@ class TipsService {
         ug.agregarTipGustaron(tip);
 
         repository.save(tip);
-        ugRepository.save(ug);
+        return ugRepository.save(ug);
     }
+
+    @PutMapping("sumar/{id}")
+    public Tip sumarVotoAForo(
+        @PathVariable("id") final Long idTip
+    ){
+        Tip tip = this.findTipById(idTip);
+        tip.like();
+        return repository.save(tip);
+    }
+
+    @PutMapping("restar/{id}")
+    public Tip restarVotoAForo(
+        @PathVariable("id") final Long idForo
+    ){
+        Tip tip = this.findTipById(idForo);
+        tip.dislike();
+        return repository.save(tip);
+    }
+
 
 }

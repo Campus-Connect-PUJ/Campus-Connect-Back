@@ -91,7 +91,7 @@ class ReglasDeAsociacionService {
 
 
 
-    
+
 //Adicionales----------------------------------------------------------------
 
     public int obtenerReglas(List<String> tipsUsuario, List<String> tipsRegla, int iguales){

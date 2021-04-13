@@ -22,6 +22,7 @@ public class Tip {
 
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
@@ -85,5 +86,9 @@ public class Tip {
 
     public void agregaTipoAprendizaje(TipoAprendizaje ta) {
         this.tiposAprendizaje.add(ta);
+    }
+
+    public void agregarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.add(ug);
     }
 }

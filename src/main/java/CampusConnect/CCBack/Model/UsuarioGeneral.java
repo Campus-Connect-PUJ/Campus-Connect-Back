@@ -91,6 +91,7 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
+	
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
@@ -274,6 +275,10 @@ public class UsuarioGeneral {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public void agregarTipGustaron(Tip tip){
+		this.tipsGustados.add(tip);
 	}
 
 }

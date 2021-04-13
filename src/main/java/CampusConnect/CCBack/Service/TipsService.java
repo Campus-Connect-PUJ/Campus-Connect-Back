@@ -23,6 +23,9 @@ class TipsService {
     private TipRepository repository;
 
     @Autowired
+    private UsuarioGeneralRepository ugRepository;
+
+    @Autowired
     private UsuarioGeneralService ugService;
 
     @Autowired
@@ -64,4 +67,20 @@ class TipsService {
 
         return repository.save(tip);
     }
+
+    @PostMapping("tipsGustados/{idUsuario}/{idTip}")
+    public void agregarTipGustado(
+        @PathVariable("idTip") final Long idTip,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        Tip tip = this.findTipById(idTip);
+        UsuarioGeneral ug = ugService.findById(idUsuario);
+
+        tip.agregarUsuarioGustaron(ug);
+        ug.agregarTipGustaron(tip);
+
+        repository.save(tip);
+        ugRepository.save(ug);
+    }
+
 }

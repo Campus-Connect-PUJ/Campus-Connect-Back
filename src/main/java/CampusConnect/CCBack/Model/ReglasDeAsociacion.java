@@ -32,7 +32,6 @@ public class ReglasDeAsociacion {
 
     private long lift;
 
-
     public ReglasDeAsociacion () {
         this.antecedentes = new ArrayList<Tip>();
         this.consecuencias = new ArrayList<Tip>();

@@ -110,6 +110,7 @@ public class UsuarioGeneral {
         this.resenhaGruposEstudiatiles = new ArrayList<>();
         this.respuestasForo = new ArrayList<>();
         this.tipsGustados = new ArrayList<>();
+		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
 
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();

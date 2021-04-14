@@ -13,11 +13,11 @@ public class WrapperPrueba {
 
 	public List<Long> consecuencias;
 
-	public long soporte;
+	public float soporte;
 
-	public long confianza;
+	public float confianza;
 
-	public long lift;
+	public float lift;
 
 	public WrapperPrueba () {
 		this.antecedentes = new ArrayList<Long>();
@@ -40,27 +40,27 @@ public class WrapperPrueba {
 		this.consecuencias = consequents;
 	}
 
-	public long getSoporte() {
+	public float getSoporte() {
 		return soporte;
 	}
 
-	public void setSoporte(long soporte) {
+	public void setSoporte(float soporte) {
 		this.soporte = soporte;
 	}
 
-	public long getConfianza() {
+	public float getConfianza() {
 		return confianza;
 	}
 
-	public void setConfianza(long confianza) {
+	public void setConfianza(float confianza) {
 		this.confianza = confianza;
 	}
 
-	public long getLift() {
+	public float getLift() {
 		return lift;
 	}
 
-	public void setLift(long lift) {
+	public void setLift(float lift) {
 		this.lift = lift;
 	}
 

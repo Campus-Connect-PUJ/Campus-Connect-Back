@@ -26,11 +26,11 @@ public class ReglasDeAsociacion {
     @ManyToMany
     private List<Tip> consecuencias;
 
-    private long soporte;
+    private float soporte;
 
-    private long confianza;
+    private float confianza;
 
-    private long lift;
+    private float lift;
 
     public ReglasDeAsociacion () {
         this.antecedentes = new ArrayList<Tip>();
@@ -46,34 +46,33 @@ public class ReglasDeAsociacion {
         this.id = id;
     }
 
-
-
-    public long getSoporte() {
+    public float getSoporte() {
         return soporte;
     }
 
 
-    public void setSoporte(long soporte) {
+    public void setSoporte(float soporte) {
+        System.out.println("S"+soporte);
         this.soporte = soporte;
     }
 
 
-    public long getConfianza() {
+    public float getConfianza() {
         return confianza;
     }
 
 
-    public void setConfianza(long confianza) {
+    public void setConfianza(float confianza) {
         this.confianza = confianza;
     }
 
 
-    public long getLift() {
+    public float getLift() {
         return lift;
     }
 
 
-    public void setLift(long lift) {
+    public void setLift(float lift) {
         this.lift = lift;
     }
 

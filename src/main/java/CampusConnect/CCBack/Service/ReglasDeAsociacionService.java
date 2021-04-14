@@ -97,7 +97,6 @@ class ReglasDeAsociacionService {
             List<Tip> tipsUsuario = ug.getTipsGustados();
             List<Tip> tipsRegla = new ArrayList<Tip>();
             
-
             List<APrueba> reglasConPuntaje = new ArrayList<APrueba>();
             ReglasDeAsociacion regla = new ReglasDeAsociacion();
 

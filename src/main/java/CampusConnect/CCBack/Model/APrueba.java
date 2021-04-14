@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class APrueba implements Comparable<APrueba>{
 
-	private long puntaje;
+	private float puntaje;
 
 	private ReglasDeAsociacion regla;
 
@@ -24,11 +24,11 @@ public class APrueba implements Comparable<APrueba>{
 
 	}
 
-	public long getPuntaje() {
+	public float getPuntaje() {
 		return puntaje;
 	}
 
-	public void setPuntaje(long puntaje) {
+	public void setPuntaje(float puntaje) {
 		this.puntaje = puntaje;
 	}
 

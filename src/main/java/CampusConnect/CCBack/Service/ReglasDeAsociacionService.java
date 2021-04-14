@@ -74,14 +74,14 @@ class ReglasDeAsociacionService {
 
     @GetMapping("usuario/{id}")
     public Tip obtenerRecomendacionTip(@PathVariable("id") final Long id){
-        
         long idTip = 15;
-        long algo = 1;
-        UsuarioGeneral ug = servicioUsuarios.findById(algo);
+        UsuarioGeneral ug = servicioUsuarios.findById(id);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<TipoAprendizaje> estilosAprendizaje = new ArrayList<TipoAprendizaje>();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Tip tipRecomendado = new Tip();
+
+
 
         long a = 5;
         estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
@@ -89,87 +89,67 @@ class ReglasDeAsociacionService {
         estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
         ug.setEstilosAprendizaje(estilosAprendizaje);
 
+
+
         if(reglas.size()>0){
             //Cuando haya reglas
             System.out.println("a");
             List<Tip> tipsUsuario = ug.getTipsGustados();
-
             List<Tip> tipsRegla = new ArrayList<Tip>();
-            List<ReglasDeAsociacion> reglasUtiles = new ArrayList<ReglasDeAsociacion>();
-            ReglasDeAsociacion regla = new ReglasDeAsociacion();
+            
 
             List<APrueba> reglasConPuntaje = new ArrayList<APrueba>();
+            ReglasDeAsociacion regla = new ReglasDeAsociacion();
+
             for(int i=0; i<reglas.size(); i++){
                 regla = reglas.get(i);
-                if( this.contieneTodos(tipsUsuario, regla.getAntecedentes()) > 0){
+                int cantidadIguales = this.contieneTodos(tipsUsuario, regla.getAntecedentes());
+                if(cantidadIguales > 0){
                     APrueba nuevo = new APrueba();
-                    nuevo.setPuntaje(this.contieneTodos(tipsUsuario, regla.getAntecedentes()));
+                    nuevo.setPuntaje(cantidadIguales * regla.getLift()); //Se tiene encuenta no solo la cantidad de 
                     nuevo.setRegla(regla);
                     reglasConPuntaje.add(nuevo);
                     
                 }
             }
             reglasConPuntaje = ordenarReglasPorPuntaje(reglasConPuntaje);
-            System.out.println("Cantidad de reglas "+reglasConPuntaje.size());
-
 
             for(int i=0; i<reglasConPuntaje.size(); i++){
                 for(int j=0; j<reglasConPuntaje.get(i).getRegla().getConsecuencias().size(); j++){
-                    //if(
-                        //!ug.getTipsNoGustados().contains(reglasConPuntaje.get(0).getRegla().getConsecuencias().get(j)) && 
-                        //!ug.getTipsGustados().contains(reglasConPuntaje.get(0).getRegla().getConsecuencias().get(j)) && 
-                        //!tipsGustadosUsuario.contains(reglasConPuntaje.get(0).getRegla().getConsecuencias().get(j))
-                    //){
-                        //tipsGustadosUsuario.add(reglasConPuntaje.get(0).getRegla().getConsecuencias().get(j));
-                    //}
-                }
-
-                
-
-
-                
-                System.out.print("-> "+i+" ->");
-                for(int j=0; j<reglasConPuntaje.get(i).getRegla().getAntecedentes().size(); j++){
-                    System.out.print(" "+reglasConPuntaje.get(i).getRegla().getAntecedentes().get(j).getId()+",");
-                }
-                System.out.print("(");
-                for(int j=0; j<reglasConPuntaje.get(i).getRegla().getConsecuencias().size(); j++){
-                    System.out.print(" "+reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j).getId()+",");
-                    if(!tipsRegla.contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j)) && !ug.getTipsGustados().contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j)) && !ug.getTipsNoGustados().contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j))){
-                        tipsRegla.add(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j));
+                    Tip agregar = reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j);
+                    if(!tipsRegla.contains(agregar) && !ug.getTipsGustados().contains(agregar) && !ug.getTipsNoGustados().contains(agregar)){
+                        tipsRegla.add(agregar);
                     }
                 }
-                System.out.print(")");
-                System.out.println(" ");
-                
             }
             
-            
-            
-            /*
-            int iguales = obtenerReglas(tipsUsuario, tipsRegla, tipsUsuario.size());
-            if(iguales > 0){
-                System.out.println("iguales" + iguales);
-                tipRecomendado = servicioTips.findTipById(idTip);
+            try {
+                //Intento #1: Por las reglas
+                tipRecomendado = tipsRegla.get(0);
+
+            } catch (Exception e) {
+                try{
+                    //Intento #2: Por los estilos de aprendizaje
+                    tipsGustadosUsuario = obtenerTipsPorTipo(ug);
+                    tipRecomendado = tipsGustadosUsuario.get(0);
+                }
+                catch (Exception e2){
+                    //Intento #3: El siguiente tip al ultimo
+                    tipRecomendado = ultimoRecurso(ug);
+                }
             }
-            */
-            tipRecomendado = tipsRegla.get(0);
+
+            
             return tipRecomendado;
-
-
         }
         else{
             //Cuando no
-            System.out.println("b");
             tipsGustadosUsuario = obtenerTipsPorTipo(ug);
             try {
-                for(int i=0; i<tipsGustadosUsuario.size(); i++){
-                    System.out.println(tipsGustadosUsuario.get(i).getDescripcion()+" "+tipsGustadosUsuario.get(i).getPuntaje());
-                }
                 tipRecomendado = tipsGustadosUsuario.get(0);
             } catch (Exception e) {
                 //TODO: handle exception
-                tipRecomendado = servicioTips.findTipById(idTip);
+                tipRecomendado = ultimoRecurso(ug);
             }
             return tipRecomendado;
         }
@@ -180,44 +160,37 @@ class ReglasDeAsociacionService {
 
 //Adicionales----------------------------------------------------------------
 
-/*
-    public int obtenerReglas(List<Tip> tipsUsuario, List<Tip> tipsRegla, int iguales){
-        
-        if(contieneTodos(tipsUsuario, tipsRegla) && iguales>=0){
-            return iguales;
-        }
-        else{
-            List<String> nuevosTips = new ArrayList<String>();
-            for(int i=0; i<tipsUsuario.size()-1; i++){
-                nuevosTips.add(tipsUsuario.get(i));
+    public Tip ultimoRecurso(UsuarioGeneral ug){
+        long idTipParaRecomendar = 0;
+        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAllTips();
+        boolean sale = false;
+        Tip buscarSiExiste = new Tip();
+        for(Long i= tipsSistema.get(0).getId(); i < tipsSistema.size() && !sale ; i++){
+            idTipParaRecomendar = i;
+            buscarSiExiste = servicioTips.findTipById(idTipParaRecomendar);
+            if(!ug.getTipsNoGustados().contains(buscarSiExiste) && !ug.getTipsGustados().contains(buscarSiExiste)){
+                sale = true;
             }
-            iguales = obtenerReglas(nuevosTips, tipsRegla, iguales-1);
         }
-        return iguales;
+        return buscarSiExiste;
     }
-*/
+
     public int contieneTodos(List<Tip> tipsUsuario, List<Tip> tipsRegla){
         int iguales = 0;
         
         System.out.println("Usuarios "+tipsUsuario.size() + " Regla "+tipsRegla.size());
         for(int i=0; i<tipsUsuario.size(); i++){
-            if(tipsRegla.contains(tipsUsuario.get(i)) && tipsUsuario.size() == tipsRegla.size() ){
+            if(tipsRegla.contains(tipsUsuario.get(i))){
                 iguales++;
             }
         }
 
+        if(tipsUsuario.size() == tipsRegla.size()){
+            iguales++;
+        }
+
         return iguales;
     }
-
-    /*
-    public List<String> crearListaTipsGustados(List<Tip> tips){  
-        List<String> tipsString = new ArrayList<String>();
-        for(int i=0; i<tips.size(); i++){
-            tipsString.add(String.valueOf(tips.get(i).getId()));
-        }
-        return tipsString;
-    }
-    */
 
     public List<Tip> ordenarLista(List<Tip> tips){
         List<Tip> tipsOrdenados = new ArrayList<Tip>();

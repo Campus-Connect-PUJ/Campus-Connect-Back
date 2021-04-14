@@ -135,7 +135,7 @@ class ReglasDeAsociacionService {
                 System.out.print("(");
                 for(int j=0; j<reglasConPuntaje.get(i).getRegla().getConsecuencias().size(); j++){
                     System.out.print(" "+reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j).getId()+",");
-                    if(!tipsRegla.contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j))){
+                    if(!tipsRegla.contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j)) && !ug.getTipsGustados().contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j)) && !ug.getTipsNoGustados().contains(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j))){
                         tipsRegla.add(reglasConPuntaje.get(i).getRegla().getConsecuencias().get(j));
                     }
                 }

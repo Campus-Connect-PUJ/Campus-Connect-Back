@@ -5,6 +5,7 @@ import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ReglasDeAsociacionRepository;
+import CampusConnect.CCBack.Wrappers.WrapperPrueba;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,15 +51,23 @@ class ReglasDeAsociacionService {
     }
 
     @PostMapping
-    public ReglasDeAsociacion crearReglaDeAsociacion(@RequestBody final ReglasDeAsociacion reglaData) {
+    public ReglasDeAsociacion crearReglaDeAsociacion(@RequestBody final WrapperPrueba reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
         
-        regla.setAntecedentes(reglaData.getAntecedentes());
-        regla.setConsecuencias(reglaData.getConsecuencias());
         regla.setSoporte(reglaData.getSoporte());
         regla.setConfianza(reglaData.getConfianza());
         regla.setLift(reglaData.getLift());
-  
+        
+        for(int i=0; i<reglaData.getAntecedentes().size(); i++){
+            Tip a = this.servicioTips.findTipById(reglaData.getAntecedentes().get(i));
+            regla.agregarAntecedentes(a);
+        }
+
+        for(int i=0; i<reglaData.getConsequents().size(); i++){
+            Tip b = this.servicioTips.findTipById(reglaData.getConsequents().get(i));
+            regla.agregarConsecuentes(b);
+        }
+
         return repository.save(regla);
     }
 
@@ -66,7 +75,8 @@ class ReglasDeAsociacionService {
     public Tip obtenerRecomendacionTip(@PathVariable("id") final Long id){
         
         long idTip = 11;
-        UsuarioGeneral ug = servicioUsuarios.findById(id);
+        long algo = 1;
+        UsuarioGeneral ug = servicioUsuarios.findById(algo);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<TipoAprendizaje> estilosAprendizaje = new ArrayList<TipoAprendizaje>();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();

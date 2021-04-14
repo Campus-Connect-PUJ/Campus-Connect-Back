@@ -20,9 +20,11 @@ public class ReglasDeAsociacion {
     @GeneratedValue
     private Long id;
 
-    private String antecedentes;
+    @ManyToMany
+    private List<Tip> antecedentes;
 
-    private String consecuencias;
+    @ManyToMany
+    private List<Tip> consecuencias;
 
     private long soporte;
 
@@ -32,7 +34,8 @@ public class ReglasDeAsociacion {
 
 
     public ReglasDeAsociacion () {
-
+        this.antecedentes = new ArrayList<Tip>();
+        this.consecuencias = new ArrayList<Tip>();
     }
 
     public Long getId() {
@@ -44,25 +47,6 @@ public class ReglasDeAsociacion {
         this.id = id;
     }
 
-
-    public String getAntecedentes() {
-        return antecedentes;
-    }
-
-
-    public void setAntecedentes(String antecedentes) {
-        this.antecedentes = antecedentes;
-    }
-
-
-    public String getConsecuencias() {
-        return consecuencias;
-    }
-
-
-    public void setConsecuencias(String consecuencias) {
-        this.consecuencias = consecuencias;
-    }
 
 
     public long getSoporte() {
@@ -94,6 +78,31 @@ public class ReglasDeAsociacion {
         this.lift = lift;
     }
 
+    public List<Tip> getAntecedentes() {
+        return antecedentes;
+    }
+
+    public void setAntecedentes(List<Tip> antecedentes) {
+        this.antecedentes = antecedentes;
+    }
+
+    public List<Tip> getConsecuencias() {
+        return consecuencias;
+    }
+
+    public void setConsecuencias(List<Tip> consecuencias) {
+        this.consecuencias = consecuencias;
+    }
+
+
+    public void agregarAntecedentes(Tip tip) {
+        this.antecedentes.add(tip);
+    }
+
+    public void agregarConsecuentes(Tip tip) {
+        System.out.println("........................");
+        this.consecuencias.add(tip);
+    }
     
 
 }

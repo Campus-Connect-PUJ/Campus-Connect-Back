@@ -91,7 +91,7 @@ class ReglasDeAsociacionService {
 
 
 
-        if(reglas.size()>0){
+        if(ug.getTipsGustados().size()>0){
             //Cuando haya reglas
             List<Tip> tipsUsuario = ug.getTipsGustados();
             List<Tip> tipsRegla = new ArrayList<Tip>();

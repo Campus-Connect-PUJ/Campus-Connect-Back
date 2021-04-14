@@ -42,10 +42,10 @@ public class APrueba implements Comparable<APrueba>{
 
 	@Override
     public int compareTo(APrueba o) {
-        if (this.getRegla().getLift() > o.getRegla().getLift()) {
+        if (this.getPuntaje() > o.getPuntaje()) {
             return -1;
         }
-        if (this.getRegla().getLift() < o.getRegla().getLift()) {
+        if (this.getPuntaje() < o.getPuntaje()) {
             return 1;
         }
         return 0;

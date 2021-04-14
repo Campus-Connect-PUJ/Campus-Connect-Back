@@ -93,7 +93,6 @@ class ReglasDeAsociacionService {
 
         if(reglas.size()>0){
             //Cuando haya reglas
-            System.out.println("a");
             List<Tip> tipsUsuario = ug.getTipsGustados();
             List<Tip> tipsRegla = new ArrayList<Tip>();
             
@@ -176,8 +175,7 @@ class ReglasDeAsociacionService {
 
     public int contieneTodos(List<Tip> tipsUsuario, List<Tip> tipsRegla){
         int iguales = 0;
-        
-        System.out.println("Usuarios "+tipsUsuario.size() + " Regla "+tipsRegla.size());
+
         for(int i=0; i<tipsUsuario.size(); i++){
             if(tipsRegla.contains(tipsUsuario.get(i))){
                 iguales++;

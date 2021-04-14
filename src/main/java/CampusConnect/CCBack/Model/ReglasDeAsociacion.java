@@ -41,7 +41,6 @@ public class ReglasDeAsociacion {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,27 +49,22 @@ public class ReglasDeAsociacion {
         return soporte;
     }
 
-
     public void setSoporte(float soporte) {
         System.out.println("S"+soporte);
         this.soporte = soporte;
     }
 
-
     public float getConfianza() {
         return confianza;
     }
-
 
     public void setConfianza(float confianza) {
         this.confianza = confianza;
     }
 
-
     public float getLift() {
         return lift;
     }
-
 
     public void setLift(float lift) {
         this.lift = lift;
@@ -98,7 +92,6 @@ public class ReglasDeAsociacion {
     }
 
     public void agregarConsecuentes(Tip tip) {
-        System.out.println("........................");
         this.consecuencias.add(tip);
     }
     

@@ -20,10 +20,10 @@ public class ReglasDeAsociacion {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "reglasDeAsociacion")
     private List<Tip> antecedentes;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "reglasDeAsociacion")
     private List<Tip> consecuencias;
 
     private float soporte;

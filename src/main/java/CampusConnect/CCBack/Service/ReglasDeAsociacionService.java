@@ -1,6 +1,6 @@
 package CampusConnect.CCBack.Service;
 
-import CampusConnect.CCBack.Model.APrueba;
+import CampusConnect.CCBack.Model.ReglaAsociacionConPuntaje;
 import CampusConnect.CCBack.Model.ReglasDeAsociacion;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
@@ -96,14 +96,14 @@ class ReglasDeAsociacionService {
             List<Tip> tipsUsuario = ug.getTipsGustados();
             List<Tip> tipsRegla = new ArrayList<Tip>();
             
-            List<APrueba> reglasConPuntaje = new ArrayList<APrueba>();
+            List<ReglaAsociacionConPuntaje> reglasConPuntaje = new ArrayList<ReglaAsociacionConPuntaje>();
             ReglasDeAsociacion regla = new ReglasDeAsociacion();
 
             for(int i=0; i<reglas.size(); i++){
                 regla = reglas.get(i);
                 int cantidadIguales = this.contieneTodos(tipsUsuario, regla.getAntecedentes());
                 if(cantidadIguales > 0){
-                    APrueba nuevo = new APrueba();
+                    ReglaAsociacionConPuntaje nuevo = new ReglaAsociacionConPuntaje();
                     nuevo.setPuntaje(cantidadIguales * regla.getLift()); //Se tiene encuenta no solo la cantidad de 
                     nuevo.setRegla(regla);
                     reglasConPuntaje.add(nuevo);
@@ -199,9 +199,9 @@ class ReglasDeAsociacionService {
         return tipsOrdenados;
     }
 
-    public List<APrueba> ordenarReglasPorPuntaje(List<APrueba> reglas){
-        List<APrueba> reglasOrdenadas = new ArrayList<APrueba>();
-        APrueba[] miarray = new APrueba[reglas.size()];
+    public List<ReglaAsociacionConPuntaje> ordenarReglasPorPuntaje(List<ReglaAsociacionConPuntaje> reglas){
+        List<ReglaAsociacionConPuntaje> reglasOrdenadas = new ArrayList<ReglaAsociacionConPuntaje>();
+        ReglaAsociacionConPuntaje[] miarray = new ReglaAsociacionConPuntaje[reglas.size()];
         miarray = reglas.toArray(miarray);
         Arrays.sort(miarray);
         reglasOrdenadas = Arrays.asList(miarray);

@@ -25,7 +25,7 @@ public class UsuarioGeneral {
     private Long id;
 
     private String nombre;
-
+    private String apellido;
     private Integer semestre;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,15 +34,13 @@ public class UsuarioGeneral {
 
     private String email;
 	private String password;
-    private boolean enabled;
 
+    private boolean enabled;
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 
-    @ManyToOne
-    @JoinColumn(name="idRol")
-	private Rol rol;
+	private short rol; // para no tener que guardarlo en una tabla aparte
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                final login                                //
@@ -116,18 +114,27 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
-    public UsuarioGeneral(String username, String password, Rol rol) {
-		this.email = username;
+    public UsuarioGeneral(
+        String email,
+        String password,
+        String nombre,
+        String apellido
+        ) {
+		this.email = email;
 		this.password = password;
-        this.rol = rol;
-        iniciarListas();
+        this.rol = Rol.USER; // tener el rol de usuario por default
+
+        this.nombre = nombre;
+        this.apellido = apellido;
+
+        inicializar();
     }
 
     public UsuarioGeneral() {
-        iniciarListas();
+        inicializar();
     }
 
-    private  void iniciarListas() {
+    private void inicializar() {
         this.caracteristicas = new ArrayList<>();
         this.carrerasUsuario = new ArrayList<>();
         this.estilosAprendizaje = new ArrayList<>();
@@ -139,6 +146,10 @@ public class UsuarioGeneral {
         this.tipsGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
 
+        this.enabled = true;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
     }
 
@@ -317,10 +328,10 @@ public class UsuarioGeneral {
 	}
 
 	public String getRol() {
-		return rol.getAuthority();
+		return Rol.string(this.rol);
 	}
 
-	public void setRol(Rol rol) {
+	public void setRol(short rol) {
 		this.rol = rol;
 	}
 
@@ -346,6 +357,14 @@ public class UsuarioGeneral {
 
 	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+    public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 }

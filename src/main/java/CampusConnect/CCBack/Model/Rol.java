@@ -1,50 +1,17 @@
 package CampusConnect.CCBack.Model;
 
+final public class Rol {
 
-import java.util.List;
+    static public final short ADMIN = 0;
+    static public final short USER  = 1;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+    static private final String[] roles = {
+        "ADMIN",
+        "USER"
+    };
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-public class Rol {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "rol")
-    private List<UsuarioGeneral> usuarioGeneral;
-
-    private String authority;
-
-	public String getAuthority() {
-		return authority;
-	}
-
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<UsuarioGeneral> getUsuarioLogin() {
-		return usuarioGeneral;
-	}
-
-	public void setUsuarioLogin(List<UsuarioGeneral> usuarioLogin) {
-		this.usuarioGeneral = usuarioLogin;
-	}
+    public static String string(int rol) {
+        return roles[rol];
+    }
 
 }

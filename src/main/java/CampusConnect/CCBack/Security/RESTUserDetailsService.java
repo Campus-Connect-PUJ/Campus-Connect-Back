@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
@@ -31,7 +32,7 @@ public class RESTUserDetailsService implements UserDetailsService {
 
         adminUser = "admin";
         adminPass = passwordEncoder.encode("admin"); // TODO: poner una mejor clave aca
-        adminRole = "ADMIN";
+        adminRole = Rol.string(Rol.ADMIN);
 
 	}
 

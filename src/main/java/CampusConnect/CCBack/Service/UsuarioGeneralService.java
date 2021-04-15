@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,9 @@ class UsuarioGeneralService {
 
     @Autowired
     private GrupoEstudiantilRepository grupoEstudiantilRepo;
+
+	@Autowired
+	public PasswordEncoder passwordEncoder;
 
     public UsuarioGeneral getUserByEmail(String email) {
         return repository.findByEmail(email);
@@ -146,11 +150,28 @@ class UsuarioGeneralService {
 
     @PostMapping
     public UsuarioGeneral create(@RequestBody final UsuarioGeneral data) {
-        UsuarioGeneral ug = new UsuarioGeneral();
-        ug.setEmail(data.getEmail());
-        ug.setNombre(data.getNombre());
+        System.out.println("creando usuario");
+
+        UsuarioGeneral ug = new UsuarioGeneral(
+            data.getEmail(),
+            passwordEncoder.encode(data.getPassword()),
+            data.getNombre(),
+            data.getApellido()
+            );
         ug.setSemestre(data.getSemestre());
         return repository.save(ug);
     }
+
+    // @PostMapping
+    // public UsuarioGeneral formulario1(@RequestBody final UsuarioGeneral data) {
+    //     UsuarioGeneral ug = new UsuarioGeneral(
+    //         data.getEmail(),
+    //         passwordEncoder.encode(data.getPassword()),
+    //         data.getNombre(),
+    //         data.getApellido()
+    //         );
+    //     ug.setSemestre(data.getSemestre());
+    //     return repository.save(ug);
+    // }
 
 }

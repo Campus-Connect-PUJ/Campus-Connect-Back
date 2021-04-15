@@ -13,14 +13,14 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class APrueba implements Comparable<APrueba>{
+public class ReglaAsociacionConPuntaje implements Comparable<ReglaAsociacionConPuntaje>{
 
 	private float puntaje;
 
 	private ReglasDeAsociacion regla;
 
 
-	public APrueba(){
+	public ReglaAsociacionConPuntaje(){
 
 	}
 
@@ -41,7 +41,7 @@ public class APrueba implements Comparable<APrueba>{
 	}
 
 	@Override
-    public int compareTo(APrueba o) {
+    public int compareTo(ReglaAsociacionConPuntaje o) {
         if (this.getPuntaje() > o.getPuntaje()) {
             return -1;
         }

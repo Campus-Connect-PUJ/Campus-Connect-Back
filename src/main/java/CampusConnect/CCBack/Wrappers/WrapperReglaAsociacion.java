@@ -5,7 +5,7 @@ import java.util.List;
 
 import CampusConnect.CCBack.Model.Tip;
 
-public class WrapperPrueba {
+public class WrapperReglaAsociacion {
 
 
 
@@ -19,7 +19,7 @@ public class WrapperPrueba {
 
 	public float lift;
 
-	public WrapperPrueba () {
+	public WrapperReglaAsociacion () {
 		this.antecedentes = new ArrayList<Long>();
 		this.consecuencias = new ArrayList<Long>();
     }

@@ -6,7 +6,7 @@ import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ReglasDeAsociacionRepository;
-import CampusConnect.CCBack.Wrappers.WrapperPrueba;
+import CampusConnect.CCBack.Wrappers.WrapperReglaAsociacion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +52,7 @@ class ReglasDeAsociacionService {
     }
 
     @PostMapping
-    public ReglasDeAsociacion crearReglaDeAsociacion(@RequestBody final WrapperPrueba reglaData) {
+    public ReglasDeAsociacion crearReglaDeAsociacion(@RequestBody final WrapperReglaAsociacion reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
         
         regla.setSoporte(reglaData.getSoporte());

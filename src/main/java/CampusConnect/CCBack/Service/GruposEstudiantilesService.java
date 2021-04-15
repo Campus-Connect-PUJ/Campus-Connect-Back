@@ -69,21 +69,21 @@ class GruposEstudiantilesService {
 
         // TODO: poner esto en funciones distintas
         for (Long a : dato.getCaracteristicas()) {
-            System.out.println(a);
+            // System.out.println(a);
             Caracteristica c = cService.findById(a);
             ug.agregarCaracteristica(c);
             c.agregarGrupoEstudiantil(ug);
         }
 
         for (Long a : dato.getTematicas()) {
-            System.out.println(a);
+            // System.out.println(a);
             Tematica c = tService.findById(a);
             ug.agregarTematica(c);
             c.agregarGrupoEstudiantil(ug);
         }
 
         for (Long a : dato.getFacultades()) {
-            System.out.println(a);
+            // System.out.println(a);
             Facultad c = fService.findById(a);
             ug.agregarFacultad(c);
             c.agregarGrupoEstudiantil(ug);

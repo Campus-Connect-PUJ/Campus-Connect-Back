@@ -42,6 +42,10 @@ class UsuarioGeneralService {
     @Autowired
     private GrupoEstudiantilRepository grupoEstudiantilRepo;
 
+    public UsuarioGeneral getUserByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAllForos() {
@@ -143,7 +147,7 @@ class UsuarioGeneralService {
     @PostMapping
     public UsuarioGeneral create(@RequestBody final UsuarioGeneral data) {
         UsuarioGeneral ug = new UsuarioGeneral();
-        ug.setCorreo(data.getCorreo());
+        ug.setEmail(data.getEmail());
         ug.setNombre(data.getNombre());
         ug.setSemestre(data.getSemestre());
         return repository.save(ug);

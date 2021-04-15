@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -25,9 +26,27 @@ public class UsuarioGeneral {
 
     private String nombre;
 
-    private String correo;
-
     private Integer semestre;
+
+///////////////////////////////////////////////////////////////////////////////
+//                                inicio login                               //
+///////////////////////////////////////////////////////////////////////////////
+
+    private String email;
+	private String password;
+    private boolean enabled;
+
+	private boolean accountNonExpired;
+	private boolean accountNonLocked;
+	private boolean credentialsNonExpired;
+
+    @ManyToOne
+    @JoinColumn(name="idRol")
+	private Rol rol;
+
+///////////////////////////////////////////////////////////////////////////////
+//                                final login                                //
+///////////////////////////////////////////////////////////////////////////////
 
     @JsonIgnore
     @OneToOne(mappedBy = "usuario",
@@ -97,7 +116,18 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
+    public UsuarioGeneral(String username, String password, Rol rol) {
+		this.email = username;
+		this.password = password;
+        this.rol = rol;
+        iniciarListas();
+    }
+
     public UsuarioGeneral() {
+        iniciarListas();
+    }
+
+    private  void iniciarListas() {
         this.caracteristicas = new ArrayList<>();
         this.carrerasUsuario = new ArrayList<>();
         this.estilosAprendizaje = new ArrayList<>();
@@ -120,28 +150,14 @@ public class UsuarioGeneral {
 		this.rolesCAE = rolesCAE;
 	}
 
-	public UsuarioGeneral(String nombre, String correo,
-                          Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          InformacionUsuario informacionUsuario) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.semestre = semestre;
-        this.estilosAprendizaje = estiloAprendizaje;
-        this.informacionUsuario = informacionUsuario;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-	public void setCorreo(final String correo) {
-		this.correo = correo;
-	}
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
+
     public Integer getSemestre(){
         return this.semestre;
     }
@@ -274,6 +290,62 @@ public class UsuarioGeneral {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String username) {
+		this.email = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getRol() {
+		return rol.getAuthority();
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
 }

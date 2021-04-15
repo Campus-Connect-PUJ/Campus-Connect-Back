@@ -7,9 +7,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import CampusConnect.CCBack.Model.UsuarioLogin;
 
 @Component
 public class RESTAuthenticationProvider implements AuthenticationProvider {
@@ -18,19 +18,23 @@ public class RESTAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private RESTUserDetailsService userDetailsService;
 
+	@Autowired
+	public PasswordEncoder passwordEncoder;
+
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
 		final String name = authentication.getName();
-		final String password = authentication.getCredentials().toString();
+        final String password = authentication.getCredentials().toString();
 
-		logger.info(
+        logger.info(
             "\n---------------------------------------------------\n" +
             " Name = " + name + " ,Password = " + password +
             "\n---------------------------------------------------\n"
             );
 
-		final UsuarioLogin user = userDetailsService.loadUserByUsername(name);
-		if (user != null && password.equals(user.getPassword())) {
+		final UserDetails user = userDetailsService.loadUserByUsername(name);
+
+		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
 			logger.info("Succesful authentication!");
 			return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
 		} else {

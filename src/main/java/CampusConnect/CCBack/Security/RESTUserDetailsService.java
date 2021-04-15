@@ -1,43 +1,65 @@
 package CampusConnect.CCBack.Security;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import CampusConnect.CCBack.Model.UsuarioLogin;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 
 @Service
 public class RESTUserDetailsService implements UserDetailsService {
-	Map<String, UsuarioLogin> users = new HashMap<>();
+
+    @Autowired
+    private UsuarioGeneralRepository repository;
+
+    private String adminUser;
+    private String adminPass;
+    private String adminRole;
+
+	public PasswordEncoder passwordEncoder;
 
 	public RESTUserDetailsService() {
 		super();
-		addUser("user", "user", "ROLE_USER");
-		addUser("mod", "mod", "ROLE_MOD");
-		addUser("admin", "admin", "ROLE_ADMIN");
-	}
 
-    public void addUser(final String user, final String password, final String auth) {
-        users.put(user, new User(Long.valueOf(this.users.size()), user, password, auth));
-    }
+        this.passwordEncoder = new BCryptPasswordEncoder();
+
+        adminUser = "admin";
+        adminPass = passwordEncoder.encode("admin"); // TODO: poner una mejor clave aca
+        adminRole = "ADMIN";
+
+	}
 
     @Override
-    public UsuarioLogin loadUserByUsername(final String username) throws UsernameNotFoundException {
-		// TODO En este método debería recuperarlse la info del usuario desde la base de datos
+    public UserDetails loadUserByUsername(final String username)
+        throws UsernameNotFoundException {
 
-		System.out.println("*** Retrieving user");
-		return users.get(username);
-	}
+        // admin nunca queda guardado en bd
+        System.out.println("------------------------------");
+        System.out.println(username);
 
-	public Map<String, User> getUsers() {
-		return users;
-	}
+        if (username.equals(adminUser)) {
+            System.out.println("es admin");
 
-	public void setUsers(final Map<String, User> users) {
-		this.users = users;
+            return User
+                .withUsername(adminUser)
+                .password(adminPass)
+                .roles(adminRole)
+                .build();
+        }
+
+        System.out.println("*** Retrieving user");
+        UsuarioGeneral ul = repository.findByEmail(username);
+		return User
+            .withUsername(ul.getEmail())
+            .password(ul.getPassword())
+            .roles(ul.getRol())
+            .build();
 	}
 
 }

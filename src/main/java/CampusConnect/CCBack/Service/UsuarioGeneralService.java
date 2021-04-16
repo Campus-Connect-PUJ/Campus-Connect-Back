@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,8 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
 import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
 @RequestMapping("/usuario")
@@ -37,10 +40,20 @@ class UsuarioGeneralService {
     private UsuarioGeneralRepository repository;
 
     @Autowired
-    private RestauranteRepository restauranteRepo;
+    private RestaurantesService rService;
 
     @Autowired
-    private GrupoEstudiantilRepository grupoEstudiantilRepo;
+    private GruposEstudiantilesService geService;
+
+    @Autowired
+    private CarreraService cService;
+
+	@Autowired
+	public PasswordEncoder passwordEncoder;
+
+    public UsuarioGeneral getUserByEmail(String email) {
+        return repository.findByEmail(email);
+    }
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("all")
@@ -61,7 +74,7 @@ class UsuarioGeneralService {
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
-        GrupoEstudiantil restaurante = grupoEstudiantilRepo.findById(idRestaurante).get();
+        GrupoEstudiantil restaurante = geService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setGrupoEstudiantil(restaurante);
         rr.setUsuario(ug);
@@ -77,7 +90,7 @@ class UsuarioGeneralService {
         ) {
         ResenhaRestaurante rr = new ResenhaRestaurante();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
-        Restaurante restaurante = restauranteRepo.findById(idRestaurante).get();
+        Restaurante restaurante = rService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
@@ -141,12 +154,29 @@ class UsuarioGeneralService {
     }
 
     @PostMapping
-    public UsuarioGeneral create(@RequestBody final UsuarioGeneral data) {
-        UsuarioGeneral ug = new UsuarioGeneral();
-        ug.setCorreo(data.getCorreo());
-        ug.setNombre(data.getNombre());
+    public UsuarioGeneral create(@RequestBody final WrapperUsuarioGeneral data) {
+        System.out.println("creando usuario");
+
+        UsuarioGeneral ug = new UsuarioGeneral(
+            data.getEmail(),
+            passwordEncoder.encode(data.getPassword()),
+            data.getNombre(),
+            data.getApellido()
+            );
         ug.setSemestre(data.getSemestre());
         return repository.save(ug);
     }
+
+    // @PostMapping
+    // public UsuarioGeneral formulario1(@RequestBody final UsuarioGeneral data) {
+    //     UsuarioGeneral ug = new UsuarioGeneral(
+    //         data.getEmail(),
+    //         passwordEncoder.encode(data.getPassword()),
+    //         data.getNombre(),
+    //         data.getApellido()
+    //         );
+    //     ug.setSemestre(data.getSemestre());
+    //     return repository.save(ug);
+    // }
 
 }

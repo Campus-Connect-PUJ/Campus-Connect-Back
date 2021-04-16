@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -32,6 +33,11 @@ public class Facultad {
     @JsonIgnore
     @OneToMany(mappedBy = "facultad")
     private List<Carrera> carreras;
+
+    public Facultad() {
+        this.gruposEstudiantiles = new ArrayList<>();
+        this.carreras = new ArrayList<>();
+    }
 
 	public String getNombre() {
 		return nombre;

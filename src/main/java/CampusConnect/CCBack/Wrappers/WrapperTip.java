@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import CampusConnect.CCBack.Model.Tip;
@@ -11,6 +12,10 @@ public class WrapperTip {
     public Long idUsuario;
 
     public List<Long> tiposAprendizaje;
+
+    public WrapperTip() {
+        this.tiposAprendizaje = new ArrayList<>();
+    }
 
 	public List<Long> getTiposAprendizaje() {
 		return tiposAprendizaje;

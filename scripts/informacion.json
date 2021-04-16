@@ -2,7 +2,9 @@
   "usuarios": [
     {
       "nombre": "admin",
+      "apellido": "admin",
       "correo": "campusconnect2021@gmail.com",
+      "password": "admin",
       "semestre": 0,
       "caracteristicas": {
         "identidadGenero": "",
@@ -13,8 +15,10 @@
     },
     {
       "nombre": "admin2",
+      "apellido": "admin",
       "correo": "campusconnect20212@gmail.com",
       "semestre": 0,
+      "password": "admin",
       "caracteristicas": {
         "identidadGenero": "",
         "raza": "",
@@ -1503,6 +1507,30 @@
     },
     {
       "tipo":"brunch"
+    }
+  ],
+  "facultades" : [
+    {
+      "id": 1,
+      "nombre" : "ingenieria"
+    }
+  ],
+  "carreras": [
+    {
+      "idFac": 1,
+      "nombre" : "sistemas"
+    },
+    {
+      "idFac": 1,
+      "nombre" : "electronica"
+    },
+    {
+      "idFac": 1,
+      "nombre" : "industrial"
+    },
+    {
+      "idFac": 1,
+      "nombre" : "civil"
     }
   ]
 }

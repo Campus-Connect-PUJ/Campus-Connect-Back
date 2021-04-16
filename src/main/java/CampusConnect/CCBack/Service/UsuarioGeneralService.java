@@ -29,6 +29,8 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
 import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
 @RequestMapping("/usuario")
@@ -38,10 +40,13 @@ class UsuarioGeneralService {
     private UsuarioGeneralRepository repository;
 
     @Autowired
-    private RestauranteRepository restauranteRepo;
+    private RestaurantesService rService;
 
     @Autowired
-    private GrupoEstudiantilRepository grupoEstudiantilRepo;
+    private GruposEstudiantilesService geService;
+
+    @Autowired
+    private CarreraService cService;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -69,7 +74,7 @@ class UsuarioGeneralService {
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
-        GrupoEstudiantil restaurante = grupoEstudiantilRepo.findById(idRestaurante).get();
+        GrupoEstudiantil restaurante = geService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setGrupoEstudiantil(restaurante);
         rr.setUsuario(ug);
@@ -85,7 +90,7 @@ class UsuarioGeneralService {
         ) {
         ResenhaRestaurante rr = new ResenhaRestaurante();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
-        Restaurante restaurante = restauranteRepo.findById(idRestaurante).get();
+        Restaurante restaurante = rService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
@@ -149,7 +154,7 @@ class UsuarioGeneralService {
     }
 
     @PostMapping
-    public UsuarioGeneral create(@RequestBody final UsuarioGeneral data) {
+    public UsuarioGeneral create(@RequestBody final WrapperUsuarioGeneral data) {
         System.out.println("creando usuario");
 
         UsuarioGeneral ug = new UsuarioGeneral(

@@ -21,9 +21,15 @@ public class InformacionUsuario {
 
     private String identidadGenero;
 
+    private String identidadSexo;
+
+    private String identidadEtnica;
+
+    private String identidadReligiosa;
+
     private String raza;
 
-    private String lugarOrigen;
+    private Boolean lugarOrigen;
 
     private LocalDate fechaNacimiento;
 
@@ -40,7 +46,39 @@ public class InformacionUsuario {
 		return identidadGenero;
     }
 
-    public String getHobbies() {
+    public String getIdentidadSexo() {
+		return identidadSexo;
+	}
+
+	public void setIdentidadSexo(String identidadSexo) {
+		this.identidadSexo = identidadSexo;
+	}
+
+	public String getIdentidadReligiosa() {
+		return identidadReligiosa;
+	}
+
+	public void setIdentidadReligiosa(String identidadReligiosa) {
+		this.identidadReligiosa = identidadReligiosa;
+	}
+
+	public Boolean getLugarOrigen() {
+		return lugarOrigen;
+	}
+
+	public void setLugarOrigen(Boolean lugarOrigen) {
+		this.lugarOrigen = lugarOrigen;
+	}
+
+	public String getIdentidadEtnica() {
+		return identidadEtnica;
+	}
+
+	public void setIdentidadEtnica(String identidadEtnica) {
+		this.identidadEtnica = identidadEtnica;
+	}
+
+	public String getHobbies() {
 		return hobbies;
 	}
 
@@ -62,14 +100,6 @@ public class InformacionUsuario {
 
     public void setRaza(String raza) {
 		this.raza = raza;
-	}
-
-    public String getLugarOrigen() {
-		return lugarOrigen;
-	}
-
-    public void setLugarOrigen(String lugarOrigen) {
-		this.lugarOrigen = lugarOrigen;
 	}
 
     public void setIdentidadGenero(String identidadGenero) {

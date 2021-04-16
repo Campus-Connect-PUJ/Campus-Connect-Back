@@ -43,7 +43,7 @@ class RestaurantesService {
     }
 
     @GetMapping("{id}")
-    public Restaurante findForoById(@PathVariable("id") Long id) {
+    public Restaurante findById(@PathVariable("id") Long id) {
         return repository.findById(id).get();
     }
 
@@ -91,21 +91,18 @@ class RestaurantesService {
 
         // TODO: poner esto en funciones distintas
         for (Long a : dato.getRegimenesAlimenticios()) {
-            System.out.println(a);
             RegimenAlimenticio c = raService.findById(a);
             res.agregarRegimenAlimenticio(c);
             c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposComida()) {
-            System.out.println(a);
             TipoComida c = tcService.findById(a);
             res.agregarTipoComida(c);
             c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposRestaurante()) {
-            System.out.println(a);
             TipoRestaurante c = trService.findById(a);
             res.agregarTipoRestaurante(c);
             c.agregarRestaurante(res);

@@ -367,4 +367,8 @@ public class UsuarioGeneral {
 		this.apellido = apellido;
 	}
 
+    public void agregarCarrera(Carrera c) {
+        this.carrerasUsuario.add(c);
+    }
+
 }

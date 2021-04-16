@@ -56,6 +56,11 @@ public class RESTUserDetailsService implements UserDetailsService {
 
         System.out.println("*** Retrieving user");
         UsuarioGeneral ul = repository.findByEmail(username);
+        if (ul == null) {
+            throw new UsernameNotFoundException(
+                "User Not Found with -> username or email: " + username
+            );
+        }
 		return User
             .withUsername(ul.getEmail())
             .password(ul.getPassword())

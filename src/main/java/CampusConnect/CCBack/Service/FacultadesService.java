@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.Facultad;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Repository.FacultadRepository;
@@ -37,9 +38,9 @@ class FacultadesService {
 
     @PostMapping
     public Facultad create(@RequestBody final Facultad dato) {
-        Facultad c = new Facultad();
-        c.setNombre(dato.getNombre());
-        return repository.save(c);
+        Facultad f = new Facultad();
+        f.setNombre(dato.getNombre());
+        return repository.save(f);
     }
 
 }

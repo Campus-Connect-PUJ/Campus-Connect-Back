@@ -111,6 +111,9 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+	@ManyToMany(mappedBy = "usuariosNoGustaron")
+    private List<Tip> tipsNoGustados;
+
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
@@ -144,6 +147,7 @@ public class UsuarioGeneral {
         this.resenhaGruposEstudiatiles = new ArrayList<>();
         this.respuestasForo = new ArrayList<>();
         this.tipsGustados = new ArrayList<>();
+		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
 
         this.enabled = true;
@@ -176,12 +180,6 @@ public class UsuarioGeneral {
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
-	public List<TipoAprendizaje> getEstiloAprendizaje() {
-		return estilosAprendizaje;
-	}
-	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
-		this.estilosAprendizaje = estiloAprendizaje;
-	}
 
 	public List<Asignatura> getMonitorDe() {
 		return monitorDe;
@@ -261,6 +259,14 @@ public class UsuarioGeneral {
 
 	public void setTipsGustados(List<Tip> tipsGustados) {
 		this.tipsGustados = tipsGustados;
+	}
+
+	public List<Tip> getTipsNoGustados() {
+		return tipsNoGustados;
+	}
+
+	public void setTipsNoGustados(List<Tip> tipsNoGustados) {
+		this.tipsNoGustados = tipsNoGustados;
 	}
 
 	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
@@ -370,5 +376,13 @@ public class UsuarioGeneral {
     public void agregarCarrera(Carrera c) {
         this.carrerasUsuario.add(c);
     }
+
+	public void agregarTipGustaron(Tip tip){
+		this.tipsGustados.add(tip);
+	}
+
+	public void agregarTipNoGustaron(Tip tip){
+		this.tipsNoGustados.add(tip);
+	}
 
 }

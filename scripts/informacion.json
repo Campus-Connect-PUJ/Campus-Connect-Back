@@ -12,6 +12,17 @@
         "lugarOrigen": "",
         "fechaNacimiento": "1623-01-01"
       }
+    },
+    {
+      "nombre": "admin2",
+      "correo": "campusconnect20212@gmail.com",
+      "semestre": 0,
+      "caracteristicas": {
+        "identidadGenero": "",
+        "raza": "",
+        "lugarOrigen": "",
+        "fechaNacimiento": "1623-01-01"
+      }
     }
   ],
   "tips": [

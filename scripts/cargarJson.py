@@ -14,7 +14,13 @@ def post(url, msg):
         },
         data=json.dumps(msg)
     )
-    return json.loads(response.content)
+
+    data = json.loads(response.content)
+    if 'error' in data:
+        print("error")
+        print(data['error'])
+        quit()
+    return data
 
 def agrupar(dic, valores, tipo, locurl):
     """Guarda valores los valores despues de crearlos, evita que aparezcan repetidos"""

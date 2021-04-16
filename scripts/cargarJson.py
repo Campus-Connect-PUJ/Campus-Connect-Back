@@ -64,7 +64,8 @@ def cargar_usuarios(usuarios):
         msg = {
             "nombre": usuario['nombre'],
             "correo": usuario['correo'],
-            "semestre": usuario['semestre']
+            "semestre": usuario['semestre'],
+            "password": usuario['password']
         }
 
         ret = post(urlug, msg)

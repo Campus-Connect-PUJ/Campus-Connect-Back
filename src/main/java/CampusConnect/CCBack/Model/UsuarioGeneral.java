@@ -33,6 +33,7 @@ public class UsuarioGeneral {
 ///////////////////////////////////////////////////////////////////////////////
 
     private String email;
+    // @JsonIgnore
 	private String password;
 
     private boolean enabled;

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.InformacionUsuarioRepository;

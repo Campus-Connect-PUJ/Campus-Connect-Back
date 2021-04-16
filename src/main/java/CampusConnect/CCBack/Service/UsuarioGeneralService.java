@@ -97,7 +97,7 @@ class UsuarioGeneralService {
 
     @GetMapping("{id}/estilos_aprendizaje")
     public List<TipoAprendizaje> estilosAprendizajeUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getEstiloAprendizaje();
+        return repository.findById(id).get().getEstilosAprendizaje();
     }
 
     @GetMapping("{id}/roles_cae")

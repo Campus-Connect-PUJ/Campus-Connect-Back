@@ -102,7 +102,7 @@ def cargar_facultades_y_carreras(facultades, carreras):
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         tmp = post(url, msggrp)
         print(tmp)
-        facultades_json[facultad['idFac']] = tmp['id']
+        facultades_json[facultad['id']] = tmp['id']
         print(facultades_json[facultad['id']])
 
     print("facultades", facultades_json)

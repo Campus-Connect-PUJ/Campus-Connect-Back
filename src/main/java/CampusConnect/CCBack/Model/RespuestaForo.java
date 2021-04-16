@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class RespuestaForo {
 
@@ -19,6 +21,7 @@ public class RespuestaForo {
 
     @ManyToOne
     @JoinColumn(name="idForo")
+	@JsonIgnore
     private Foro foro;
 
     @ManyToOne
@@ -31,9 +34,10 @@ public class RespuestaForo {
 
     private int puntaje;
 
-    RespuestaForo () {
+    public RespuestaForo () {
         this.reportado = false;
         this.puntaje = 0;
+		this.fecha = LocalTime.now();
     }
 
     public void like() {
@@ -41,7 +45,7 @@ public class RespuestaForo {
     }
 
     public void dislike() {
-        this.puntaje++;
+        this.puntaje--;
     }
 
 	public int getPuntaje() {
@@ -90,6 +94,14 @@ public class RespuestaForo {
 
 	public void setForo(Foro foro) {
 		this.foro = foro;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

@@ -7,7 +7,7 @@ maven:
 docker:
 	cd config && docker-compose up
 
-load-data:
+load:
 	python3 ./scripts/cargarJson.py ./scripts/informacion.json
 
 inst:

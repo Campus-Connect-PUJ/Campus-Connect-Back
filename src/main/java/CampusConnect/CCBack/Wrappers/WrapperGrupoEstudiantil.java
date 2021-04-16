@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
@@ -15,6 +16,13 @@ public class WrapperGrupoEstudiantil {
     public List<Long> facultades;
 
     public List<Long> requisitos;
+
+    public WrapperGrupoEstudiantil() {
+        this.caracteristicas = new ArrayList<>();
+        this.tematicas = new ArrayList<>();
+        this.facultades = new ArrayList<>();
+        this.requisitos = new ArrayList<>();
+    }
 
     public List<Long> getFacultades() {
 		return facultades;

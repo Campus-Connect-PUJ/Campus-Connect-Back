@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Wrappers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WrapperInformacionUsuario {
@@ -12,6 +13,11 @@ public class WrapperInformacionUsuario {
     private String grupoEtnico;
     private String sexo;
     private String genero;
+
+    public WrapperInformacionUsuario() {
+        this.carreras = new ArrayList<>();
+    }
+
 	public String getSexo() {
 		return sexo;
 	}

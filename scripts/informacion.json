@@ -15,8 +15,10 @@
     },
     {
       "nombre": "admin2",
+      "apellido": "admin",
       "correo": "campusconnect20212@gmail.com",
       "semestre": 0,
+      "password": "admin",
       "caracteristicas": {
         "identidadGenero": "",
         "raza": "",

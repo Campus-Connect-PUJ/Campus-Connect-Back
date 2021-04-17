@@ -42,4 +42,28 @@ public class Carrera {
 		this.nombre = nombre;
 	}
 
+	public Facultad getFacultad() {
+		return facultad;
+	}
+
+	public void setFacultad(Facultad facultad) {
+		this.facultad = facultad;
+	}
+
+	public List<UsuarioGeneral> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<UsuarioGeneral> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

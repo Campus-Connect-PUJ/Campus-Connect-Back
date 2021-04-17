@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import CampusConnect.CCBack.Model.Restaurante;
@@ -15,6 +16,13 @@ public class WrapperRestaurante {
     public List<Long> regimenesAlimenticios;
 
     public List<Long> tiposComida;
+
+    public WrapperRestaurante () {
+        this.tiposRestaurante = new ArrayList<>();
+        this.regimenesAlimenticios = new ArrayList<>();
+        this.tiposComida = new ArrayList<>();
+
+    }
 
 	public Restaurante getRestaurante() {
 		return restaurante;

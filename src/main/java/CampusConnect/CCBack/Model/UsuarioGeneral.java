@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,10 +25,27 @@ public class UsuarioGeneral {
     private Long id;
 
     private String nombre;
-
-    private String correo;
-
+    private String apellido;
     private Integer semestre;
+
+///////////////////////////////////////////////////////////////////////////////
+//                                inicio login                               //
+///////////////////////////////////////////////////////////////////////////////
+
+    private String email;
+    // @JsonIgnore
+	private String password;
+
+    private boolean enabled;
+	private boolean accountNonExpired;
+	private boolean accountNonLocked;
+	private boolean credentialsNonExpired;
+
+	private short rol; // para no tener que guardarlo en una tabla aparte
+
+///////////////////////////////////////////////////////////////////////////////
+//                                final login                                //
+///////////////////////////////////////////////////////////////////////////////
 
     @JsonIgnore
     @OneToOne(mappedBy = "usuario",
@@ -94,10 +112,33 @@ public class UsuarioGeneral {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+	@ManyToMany(mappedBy = "usuariosNoGustaron")
+    private List<Tip> tipsNoGustados;
+
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
+    public UsuarioGeneral(
+        String email,
+        String password,
+        String nombre,
+        String apellido
+        ) {
+		this.email = email;
+		this.password = password;
+        this.rol = Rol.USER; // tener el rol de usuario por default
+
+        this.nombre = nombre;
+        this.apellido = apellido;
+
+        inicializar();
+    }
+
     public UsuarioGeneral() {
+        inicializar();
+    }
+
+    private void inicializar() {
         this.caracteristicas = new ArrayList<>();
         this.carrerasUsuario = new ArrayList<>();
         this.estilosAprendizaje = new ArrayList<>();
@@ -107,8 +148,13 @@ public class UsuarioGeneral {
         this.resenhaGruposEstudiatiles = new ArrayList<>();
         this.respuestasForo = new ArrayList<>();
         this.tipsGustados = new ArrayList<>();
+		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
 
+        this.enabled = true;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
     }
 
@@ -120,28 +166,14 @@ public class UsuarioGeneral {
 		this.rolesCAE = rolesCAE;
 	}
 
-	public UsuarioGeneral(String nombre, String correo,
-                          Integer semestre, List<TipoAprendizaje> estiloAprendizaje,
-                          InformacionUsuario informacionUsuario) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.semestre = semestre;
-        this.estilosAprendizaje = estiloAprendizaje;
-        this.informacionUsuario = informacionUsuario;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-	public void setCorreo(final String correo) {
-		this.correo = correo;
-	}
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
+
     public Integer getSemestre(){
         return this.semestre;
     }
@@ -149,12 +181,6 @@ public class UsuarioGeneral {
     public void setSemestre(final Integer semestre) {
         this.semestre = semestre;
     }
-	public List<TipoAprendizaje> getEstiloAprendizaje() {
-		return estilosAprendizaje;
-	}
-	public void setEstiloAprendizaje(List<TipoAprendizaje> estiloAprendizaje) {
-		this.estilosAprendizaje = estiloAprendizaje;
-	}
 
 	public List<Asignatura> getMonitorDe() {
 		return monitorDe;
@@ -236,6 +262,14 @@ public class UsuarioGeneral {
 		this.tipsGustados = tipsGustados;
 	}
 
+	public List<Tip> getTipsNoGustados() {
+		return tipsNoGustados;
+	}
+
+	public void setTipsNoGustados(List<Tip> tipsNoGustados) {
+		this.tipsNoGustados = tipsNoGustados;
+	}
+
 	public void agregarResenhaRestaurante(ResenhaRestaurante rr) {
         this.resenhaRestaurantes.add(rr);
 	}
@@ -274,6 +308,82 @@ public class UsuarioGeneral {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String username) {
+		this.email = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getRol() {
+		return Rol.string(this.rol);
+	}
+
+	public void setRol(short rol) {
+		this.rol = rol;
+	}
+
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+    public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+    public void agregarCarrera(Carrera c) {
+        this.carrerasUsuario.add(c);
+    }
+
+	public void agregarTipGustaron(Tip tip){
+		this.tipsGustados.add(tip);
+	}
+
+	public void agregarTipNoGustaron(Tip tip){
+		this.tipsNoGustados.add(tip);
 	}
 
 }

@@ -61,11 +61,12 @@ public class RESTUserDetailsService implements UserDetailsService {
                 "User Not Found with -> username or email: " + username
             );
         }
-		return User
-            .withUsername(ul.getEmail())
-            .password(ul.getPassword())
-            .roles(ul.getRol())
-            .build();
+        return ul;
+            // User
+            // .withUsername(ul.getEmail())
+            // .password(ul.getPassword())
+            // .roles(ul.getRol())
+            // .build();
 	}
 
 }

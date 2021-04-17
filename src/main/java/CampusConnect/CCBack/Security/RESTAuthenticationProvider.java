@@ -22,21 +22,27 @@ public class RESTAuthenticationProvider implements AuthenticationProvider {
 	public PasswordEncoder passwordEncoder;
 
 	@Override
-	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
+	public Authentication authenticate(final Authentication authentication)
+        throws AuthenticationException {
+
 		final String name = authentication.getName();
         final String password = authentication.getCredentials().toString();
 
-        logger.info(
-            "\n---------------------------------------------------\n" +
-            " Name = " + name + " ,Password = " + password +
-            "\n---------------------------------------------------\n"
-            );
+        // logger.info(
+        //     "\n---------------------------------------------------\n" +
+        //     " Name = " + name + " ,Password = " + password +
+        //     "\n---------------------------------------------------\n"
+        //     );
 
 		final UserDetails user = userDetailsService.loadUserByUsername(name);
 
 		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
 			logger.info("Succesful authentication!");
-			return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+			return new UsernamePasswordAuthenticationToken(
+                user,
+                user.getPassword(),
+                user.getAuthorities()
+                );
 		} else {
 			logger.info("Login fail!");
 			return null;

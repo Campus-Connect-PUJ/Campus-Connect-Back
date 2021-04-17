@@ -49,14 +49,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
                 .antMatchers(
-                    "/**" // los paths que empiezen desde / son disponibles para el publico
+                    // "/**" // los paths que empiezen desde / son disponibles para el publico
                     // aqui es necesario poner las urls las cuales son
                     // disponibles de manera publica, de momento puse
                     // * para hacer pruebas
+                    "/login",
+                    "/carrera/all"
                     )
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .successHandler(authenticationSuccessHandler)

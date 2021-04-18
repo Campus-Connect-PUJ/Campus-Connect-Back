@@ -180,8 +180,11 @@ class UsuarioGeneralService {
         UsuarioGeneral ug = repository.findById(idUsuario).get();
         List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
         tiposAprendizaje = ug.getEstilosAprendizaje();
-        tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
-        ug.setEstilosAprendizaje(tiposAprendizaje);
+        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
+            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+            ug.setEstilosAprendizaje(tiposAprendizaje);
+        }
+        
 
         return repository.save(ug);
     }

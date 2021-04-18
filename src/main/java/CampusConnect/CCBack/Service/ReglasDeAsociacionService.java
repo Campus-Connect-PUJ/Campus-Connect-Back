@@ -77,17 +77,8 @@ class ReglasDeAsociacionService {
         long idTip = 15;
         UsuarioGeneral ug = servicioUsuarios.findById(id);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
-        List<TipoAprendizaje> estilosAprendizaje = new ArrayList<TipoAprendizaje>();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Tip tipRecomendado = new Tip();
-
-
-
-        long a = 5;
-        estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
-        a = 6;
-        estilosAprendizaje.add(servicioTipoAprendizaje.findById(a));
-        ug.setEstilosAprendizaje(estilosAprendizaje);
 
 
 
@@ -104,7 +95,7 @@ class ReglasDeAsociacionService {
                 int cantidadIguales = this.contieneTodos(tipsUsuario, regla.getAntecedentes());
                 if(cantidadIguales > 0){
                     ReglaAsociacionConPuntaje nuevo = new ReglaAsociacionConPuntaje();
-                    nuevo.setPuntaje(cantidadIguales * regla.getLift()); //Se tiene encuenta no solo la cantidad de 
+                    nuevo.setPuntaje(cantidadIguales * regla.getConfianza()); //Se tiene encuenta no solo la cantidad de 
                     nuevo.setRegla(regla);
                     reglasConPuntaje.add(nuevo);
                     
@@ -129,10 +120,12 @@ class ReglasDeAsociacionService {
                 try{
                     //Intento #2: Por los estilos de aprendizaje
                     tipsGustadosUsuario = obtenerTipsPorTipo(ug);
+                    System.out.println("2entra a lo del tipo");
                     tipRecomendado = tipsGustadosUsuario.get(0);
                 }
                 catch (Exception e2){
                     //Intento #3: El siguiente tip al ultimo
+                    System.out.println("3entra a lo del tipo");
                     tipRecomendado = ultimoRecurso(ug);
                 }
             }
@@ -206,6 +199,10 @@ class ReglasDeAsociacionService {
         Arrays.sort(miarray);
         reglasOrdenadas = Arrays.asList(miarray);
 
+        for(int i=0; i<reglasOrdenadas.size(); i++){
+            System.out.println("----------------------------- " + reglasOrdenadas.get(i).getRegla().getId());
+        }
+
         return reglasOrdenadas;
     }
 
@@ -220,6 +217,7 @@ class ReglasDeAsociacionService {
                 for(int k=0; k<tipsSistema.get(j).getTiposAprendizaje().size(); k++){
                     if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j)) && !ug.getTipsGustados().contains(tipsSistema.get(j)) && !ug.getTipsNoGustados().contains(tipsSistema.get(j))){
                         tipsRecomendar.add(tipsSistema.get(j));
+                        System.out.println(tipsSistema.get(j));
                     }
                 }
             }

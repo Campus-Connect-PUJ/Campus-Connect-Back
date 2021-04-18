@@ -19,9 +19,7 @@ public class RESTUserDetailsService implements UserDetailsService {
     @Autowired
     private UsuarioGeneralRepository repository;
 
-    private String adminUser;
-    private String adminPass;
-    private String adminRole;
+    private UsuarioGeneral admin;
 
 	public PasswordEncoder passwordEncoder;
 
@@ -30,28 +28,26 @@ public class RESTUserDetailsService implements UserDetailsService {
 
         this.passwordEncoder = new BCryptPasswordEncoder();
 
-        adminUser = "admin";
-        adminPass = passwordEncoder.encode("admin"); // TODO: poner una mejor clave aca
-        adminRole = Rol.string(Rol.ADMIN);
-
+        this.admin = new UsuarioGeneral(
+            "campusconnect2021@gmail.com",
+            passwordEncoder.encode("admin"),
+            "admin",
+            "admin"
+            );
+            admin.setRol(Rol.ADMIN);
 	}
 
     @Override
-    public UserDetails loadUserByUsername(final String username)
+    public UsuarioGeneral loadUserByUsername(final String username)
         throws UsernameNotFoundException {
 
         // admin nunca queda guardado en bd
         System.out.println("------------------------------");
-        System.out.println(username);
+        System.out.println(username + " == " + this.admin.getUsername());
 
-        if (username.equals(adminUser)) {
+        if (username.equals(this.admin.getUsername())) {
             System.out.println("es admin");
-
-            return User
-                .withUsername(adminUser)
-                .password(adminPass)
-                .roles(adminRole)
-                .build();
+            return this.admin;
         }
 
         System.out.println("*** Retrieving user");

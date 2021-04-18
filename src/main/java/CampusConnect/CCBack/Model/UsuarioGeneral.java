@@ -81,7 +81,6 @@ public class UsuarioGeneral {
 
     // relaciones muchos a muchos  ---------------------
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeUsuario",

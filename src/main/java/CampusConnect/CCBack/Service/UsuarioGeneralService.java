@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +46,9 @@ class UsuarioGeneralService {
 
     @Autowired
     private GruposEstudiantilesService geService;
+
+    @Autowired
+    private TipoAprendizajeService taService;
 
     @Autowired
     private CarreraService cService;
@@ -164,6 +169,20 @@ class UsuarioGeneralService {
             data.getApellido()
             );
         ug.setSemestre(data.getSemestre());
+        return repository.save(ug);
+    }
+
+    @PostMapping("{id}/agregarTipoAprendizaje/{id_tip}")
+    public UsuarioGeneral agregarTipAprendizaje(
+        @PathVariable("id") final Long idUsuario,
+        @PathVariable("id_tip") final Long idTipoAprendizaje
+    ){
+        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
+        tiposAprendizaje = ug.getEstilosAprendizaje();
+        tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+        ug.setEstilosAprendizaje(tiposAprendizaje);
+
         return repository.save(ug);
     }
 

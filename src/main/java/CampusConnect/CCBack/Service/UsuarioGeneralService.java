@@ -255,7 +255,7 @@ class UsuarioGeneralService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
-        for (Long id: wp g.getCaracteristicas()) {
+        for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
             ug.agregarCaracteristica(c);
         }

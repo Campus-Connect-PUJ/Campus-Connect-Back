@@ -46,6 +46,9 @@ public class GrupoEstudiantil {
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Tematica> tematicas;
 
+    @ManyToMany(mappedBy = "gruposEstudiantiles")
+    private List<Actividad> actividades;
+
     public GrupoEstudiantil() {
         this.facultades      = new ArrayList<>();
         this.requisitos      = new ArrayList<>();
@@ -70,7 +73,15 @@ public class GrupoEstudiantil {
 		return descripcion;
 	}
 
-    public void setDescripcion(String descripcion) {
+    public List<Actividad> getActividades() {
+		return actividades;
+	}
+
+	public void setActividades(List<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 

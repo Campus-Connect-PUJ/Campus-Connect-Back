@@ -35,8 +35,6 @@ public class InformacionUsuario {
 
     private LocalDate fechaNacimiento;
 
-    private String actividadInteres;
-
     @ManyToMany
     @JoinTable (
         name = "HobbiesUsuario",
@@ -117,14 +115,6 @@ public class InformacionUsuario {
 		this.usuario = usuario;
 	}
 
-	public String getActividadInteres() {
-		return actividadInteres;
-	}
-
-	public void setActividadInteres(String actividadInteres) {
-		this.actividadInteres = actividadInteres;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -132,5 +122,9 @@ public class InformacionUsuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+    public void agregarHobby(Hobby h) {
+        this.hobbies.add(h);
+    }
 
 }

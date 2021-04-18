@@ -121,7 +121,10 @@ public class UsuarioGeneral implements UserDetails {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
-    public UsuarioGeneral(
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Actividad> actividadInteres;
+
+	public UsuarioGeneral(
         String email,
         String password,
         String nombre,
@@ -153,12 +156,25 @@ public class UsuarioGeneral implements UserDetails {
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
+        this.actividadInteres = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
+    }
+
+    public List<Actividad> getActividadInteres() {
+		return actividadInteres;
+	}
+
+	public void setActividadInteres(List<Actividad> actividadInteres) {
+		this.actividadInteres = actividadInteres;
+	}
+
+    public void agregarActividadInteres(Actividad a) {
+        this.actividadInteres.add(a);
     }
 
     public List<UsuarioCAE> getRolesCAE() {

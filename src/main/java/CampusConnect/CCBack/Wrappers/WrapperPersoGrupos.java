@@ -8,7 +8,6 @@ public class WrapperPersoGrupos {
     // hobbies u el bool de si cree el Dios
 
     private List<Long> caracteristicas;
-    private List<Long> tematicas;
 
     private List<String> hobbies;
     private List<String> actividades;
@@ -27,14 +26,6 @@ public class WrapperPersoGrupos {
 
 	public void setHobbies(List<String> hobbies) {
 		this.hobbies = hobbies;
-	}
-
-	public List<Long> getTematicas() {
-		return tematicas;
-	}
-
-	public void setTematicas(List<Long> tematicas) {
-		this.tematicas = tematicas;
 	}
 
 	public List<Long> getCaracteristicas() {

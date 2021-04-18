@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
@@ -66,6 +68,11 @@ class UsuarioGeneralService {
     @Autowired
     private GruposEstudiantilesService geService;
 
+    @Autowired
+    private ActividadService aService;
+
+    @Autowired
+    private HobbyService hService;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -246,19 +253,24 @@ class UsuarioGeneralService {
         @AuthenticationPrincipal UsuarioGeneral ug
         ) {
 
-            InformacionUsuario iu = ug.getInformacionUsuario();
+        InformacionUsuario iu = ug.getInformacionUsuario();
 
-            for (Long id: wpg.getCaracteristicas()) {
-                Caracteristica c = cService.findById(id);
-                ug.agregarCaracteristica(c);
-            }
+        for (Long id: wp g.getCaracteristicas()) {
+            Caracteristica c = cService.findById(id);
+            ug.agregarCaracteristica(c);
+        }
 
-            for (Long id: wpg.getTematicas()) {
-                Caracteristica c = cService.findById(id);
-                ug.agregarCaracteristica(c);
-            }
+        for (String nombre : wpg.getActividades()) {
+            Actividad a = aService.findByName(nombre);
+            ug.agregarActividadInteres(a);
+        }
 
-            return ug;
+        for (String nombre : wpg.getHobbies()) {
+            Hobby h = hService.findByName(nombre);
+            iu.agregarHobby(h);
+        }
+
+        return ug;
     }
 
 }

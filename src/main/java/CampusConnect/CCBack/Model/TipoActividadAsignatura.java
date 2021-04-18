@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class TipoActividad {
+public class TipoActividadAsignatura {
 
     @Id
     @GeneratedValue
@@ -21,17 +21,17 @@ public class TipoActividad {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "tiposActividad")
-    private List<Actividad> actividades;
+    private List<ActividadAsignatura> actividades;
 
 	public String getTipo() {
 		return tipo;
 	}
 
-	public List<Actividad> getActividades() {
+	public List<ActividadAsignatura> getActividadesAsignatura() {
 		return actividades;
 	}
 
-	public void setActividades(List<Actividad> actividades) {
+	public void setActividadesAsignatura(List<ActividadAsignatura> actividades) {
 		this.actividades = actividades;
 	}
 

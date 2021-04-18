@@ -6,13 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +25,7 @@ import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Restaurante;
+import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.RolAdministrador;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
@@ -236,4 +235,28 @@ class UsuarioGeneralService {
         return ug;
     }
 
+    // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
+    @GetMapping("rolAdmin/{id}")
+    public UsuarioGeneral removeRolAdmin(@PathVariable("id") Long id) {
+        UsuarioGeneral ug = this.findById(id);
+        if (ug.getRol().contains(Rol.string(Rol.ADMIN))) {
+            ug.setRol(Rol.ADMIN);
+        } else {
+            ug.removeRol(Rol.ADMIN);
+        }
+        return repository.save(ug);
+    }
+
+    @GetMapping("rolMonitor")
+    public UsuarioGeneral toggleRolMonitor(
+        @AuthenticationPrincipal UsuarioGeneral ug
+        ) {
+        // UsuarioGeneral ug = this.findById(id);
+        if (ug.getRol().contains(Rol.string(Rol.MONITOR))) {
+            ug.setRol(Rol.MONITOR);
+        } else {
+            ug.removeRol(Rol.MONITOR);
+        }
+        return repository.save(ug);
+    }
 }

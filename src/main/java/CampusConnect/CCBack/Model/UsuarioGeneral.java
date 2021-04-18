@@ -3,8 +3,10 @@ package CampusConnect.CCBack.Model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -45,7 +47,8 @@ public class UsuarioGeneral implements UserDetails {
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 
-	private short rol; // para no tener que guardarlo en una tabla aparte
+    @ElementCollection
+	private List<Short> rol;
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                final login                                //
@@ -129,7 +132,8 @@ public class UsuarioGeneral implements UserDetails {
         ) {
 		this.email = email;
 		this.password = password;
-        this.rol = Rol.USER; // tener el rol de usuario por default
+        this.rol = new ArrayList<>();
+        this.rol.add(Rol.USER); // tener el rol de usuario por default
 
         this.nombre = nombre;
         this.apellido = apellido;
@@ -337,13 +341,22 @@ public class UsuarioGeneral implements UserDetails {
 		this.enabled = enabled;
 	}
 
-	public String getRol() {
-		return Rol.string(this.rol);
+	public List<String> getRol() {
+        return this.rol.stream().map( v -> Rol.string(v)).collect(Collectors.toList());
+		// return Rol.string(this.rol);
 	}
 
-	public void setRol(short rol) {
+	public void setRol(List<Short> rol) {
 		this.rol = rol;
 	}
+
+    public void setRol(Short rol) {
+        this.rol.add(rol);
+    }
+
+    public void removeRol(Short rol) {
+        this.rol.remove(rol);
+    }
 
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;

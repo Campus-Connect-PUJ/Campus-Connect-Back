@@ -7,46 +7,47 @@ BASEURL = 'http://localhost:8080/'
 
 LOGINDATA = {}
 
-def post(url, msg):
-    # print(url)
-    # print(json.dumps(msg, indent=4, sort_keys=True))
-    #  ploads = {'username':'admin','password':'admin'}
+def post(url, msg, auth = ""):
+    print(url)
+    headers = {
+        'Content-Type': 'application/json',
+    }
+    if auth != "" :
+        headers['AUTH'] = auth
 
-    print(LOGINDATA)
+    # print(headers)
     response = requests.post(
         url,
-        headers={
-            'Content-Type': 'application/json'
-        },
+        headers=headers,
         data=json.dumps(msg),
-        cookies = LOGINDATA
     )
 
     data = json.loads(response.content)
 
+    auth = ""
+
+    if 'AUTH' in response.headers:
+        auth = response.headers['AUTH']
+        print("auth", auth)
+
     if 'error' in data:
         print("error:")
         print('\t', data['error'])
+
+        print(data)
         quit()
-    return data
+    return data, auth
 
 def login ():
-    global LOGINDATA
-    url = BASEURL + 'login'
+    url = BASEURL + 'usuario/login'
+    print("login")
     print(url)
-    ploads = {'username':'admin','password':'admin'}
-    response = requests.post(
-        url,
-        params = ploads
-    )
+    login = {
+        "username": "campusconnect2021@gmail.com",
+        "password": "admin"
+    }
 
-    print(response)
-    print(response.headers)
-    LOGINDATA = response.cookies
-    # LOGINDATA = response.json()
-
-    # print(json.loads(response.content))
-    return response
+    return post(url, login)
 
 def agrupar(dic, valores, tipo, locurl):
     """Guarda valores los valores despues de crearlos, evita que aparezcan repetidos"""
@@ -57,7 +58,7 @@ def agrupar(dic, valores, tipo, locurl):
             msg = {
                 tipo: valor
             }
-            ret = post(url, msg)
+            ret, auth = post(url, msg, auth = LOGINDATA)
 
             print(ret)
 
@@ -67,7 +68,11 @@ def agrupar(dic, valores, tipo, locurl):
 
 def main(archivo):
     # read file
-    # login()
+    global LOGINDATA
+    ret, LOGINDATA = login()
+    print(ret)
+    print(LOGINDATA)
+    print("--------------------")
     with open(archivo, 'r') as myfile:
         data=myfile.read()
 
@@ -100,7 +105,7 @@ def cargar_facultades_y_carreras(facultades, carreras):
             "nombre": facultad['nombre']
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
-        tmp = post(url, msggrp)
+        tmp, auth = post(url, msggrp, auth = LOGINDATA)
         print(tmp)
         facultades_json[facultad['id']] = tmp['id']
         print(facultades_json[facultad['id']])
@@ -117,13 +122,13 @@ def cargar_facultades_y_carreras(facultades, carreras):
             "nombre": carrera['nombre']
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
-        print(post(url + '/{}'.format(id_fac) , msggrp))
+        print(post(url + '/{}'.format(id_fac) , msggrp, auth = LOGINDATA))
 
 
 
 def cargar_usuarios(usuarios):
 
-    urlug = BASEURL + 'usuario'
+    urlug = BASEURL + 'usuario/login/registro'
     urliu = BASEURL + 'informacion_usuario/'
 
     print("cargando usuarios")
@@ -139,17 +144,18 @@ def cargar_usuarios(usuarios):
             "password": usuario['password']
         }
 
-        ret = post(urlug, msg)
+        ret, auth = post(urlug, msg)
 
         print(ret)
 
-        if 'error' not in ret:
-            rr = post(
-                urliu + "{}".format(ret['id']),
-                usuario['caracteristicas']
-            )
-            id_admin = ret['id']
-            print(rr)
+        # if 'error' not in ret:
+        #     rr = post(
+        #         urliu + "{}".format(ret['id']),
+        #         usuario['caracteristicas'],
+        #         auth = auth
+        #     )
+        #     print(rr)
+        id_admin = ret['id']
     return(id_admin)
 
 def cargar_tips(tips, id_admin):
@@ -179,7 +185,7 @@ def cargar_tips(tips, id_admin):
             "tiposAprendizaje": grcar
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
-        print(post(url, msggrp))
+        print(post(url, msggrp, auth = LOGINDATA))
 
 def cargar_grupos_estudiantiles(grupos):
 
@@ -229,7 +235,7 @@ def cargar_grupos_estudiantiles(grupos):
             "facultades": grfac,
 	        "requisitos": grreq
         }
-        print(post(url, msggrp))
+        print(post(url, msggrp, auth = LOGINDATA))
 
 def cargar_restaurantes(
         restaurantes,
@@ -255,7 +261,7 @@ def cargar_restaurantes(
             "nombre": ubicacion['nombre'],
             "descripcion": ubicacion['descripcion']
         }
-        ret = post(url, msg)
+        ret, auth = post(url, msg, auth = LOGINDATA)
         print(ret)
         if 'error' not in ret:
             # guarda el id del objeto relacionado al id local
@@ -267,7 +273,7 @@ def cargar_restaurantes(
         msg = {
             "tipo": regimen_alimenticio['tipo'],
         }
-        ret = post(url, msg)
+        ret, auth = post(url, msg, auth = LOGINDATA)
         print(ret)
         if 'error' not in ret:
             # guarda el id del objeto relacionado al id local
@@ -279,7 +285,7 @@ def cargar_restaurantes(
         msg = {
             "tipo": tipo_cocina['tipo'],
         }
-        ret = post(url, msg)
+        ret, auth = post(url, msg, auth = LOGINDATA)
         print(ret)
         if 'error' not in ret:
             # guarda el id del objeto relacionado al id local
@@ -291,7 +297,7 @@ def cargar_restaurantes(
         msg = {
             "tipo": tipo_cocina['tipo'],
         }
-        ret = post(url, msg)
+        ret, auth = post(url, msg, auth = LOGINDATA)
         print(ret)
         if 'error' not in ret:
             # guarda el id del objeto relacionado al id local
@@ -335,7 +341,7 @@ def cargar_restaurantes(
         }
 
         # print(msg)
-        print(post(url, msg))
+        print(post(url, msg, auth = LOGINDATA))
 
 if len(sys.argv) == 1:
     print("se debe especificar el archivo para leer")

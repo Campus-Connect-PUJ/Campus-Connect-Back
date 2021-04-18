@@ -67,12 +67,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
                 .antMatchers(
-                    // "/**" // los paths que empiezen desde / son disponibles para el publico
-                    // aqui es necesario poner las urls las cuales son
-                    // disponibles de manera publica, de momento puse
-                    // * para hacer pruebas
                     "/usuario/login",
+                    "/usuario/login/registro",
                     "/carrera/all"
+
+
+                    , "/facultad/all"
                     )
                 .permitAll()
                 .anyRequest().authenticated()
@@ -84,9 +84,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(logoutSuccessHandler).and()
                 .headers().frameOptions().disable();
 
-        http.addFilterAfter(
-            new AuthorizationFilter(authenticationManager()),
-            UsernamePasswordAuthenticationFilter.class
+        http
+            .addFilter(
+                new AuthorizationFilter(authenticationManager())
+            //     )
+            // .addFilterAfter(
+            // new AuthorizationFilter(authenticationManager())
+            // , UsernamePasswordAuthenticationFilter.class
             );
 
     }

@@ -41,6 +41,10 @@ public class RESTUserDetailsService implements UserDetailsService {
     public UsuarioGeneral loadUserByUsername(final String username)
         throws UsernameNotFoundException {
 
+        if (username.length() == 0) {
+            throw new UsernameNotFoundException("usuario vacio");
+        }
+
         // admin nunca queda guardado en bd
         System.out.println("------------------------------");
         System.out.println(username + " == " + this.admin.getUsername());

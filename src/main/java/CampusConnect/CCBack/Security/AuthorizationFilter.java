@@ -22,10 +22,12 @@ class AuthorizationFilter extends BasicAuthenticationFilter {
 	}
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
-        try {
+    protected void doFilterInternal(
+        HttpServletRequest req, HttpServletResponse res, FilterChain chain)
+        throws IOException, ServletException {
+        // System.out.println("filtro");
 
+        try {
             String header = req.getHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY);
             if (header == null || !header.startsWith(SecurityConstants.TOKEN_BEARER_PREFIX)) {
                 chain.doFilter(req, res);
@@ -35,12 +37,14 @@ class AuthorizationFilter extends BasicAuthenticationFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(req, res);
         }catch (Exception e){
+            System.out.println("error" + e);
             // throw new GeneralException(ExceptionCodesEnum.ADDRESS_NAME_IN_USE,"Error de autenticacion");
         }
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY);
+        // System.out.println("llega: " + token);
         if (token != null) {
             String user = Jwts.parser()
                     .setSigningKey(SecurityConstants.SECRET_KEY)

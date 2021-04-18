@@ -43,6 +43,9 @@ import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 class UsuarioGeneralService {
 
     @Autowired
+    private RESTUserDetailsService uService;
+
+    @Autowired
     private UsuarioGeneralRepository repository;
 
     @Autowired
@@ -191,7 +194,6 @@ class UsuarioGeneralService {
             ug.setEstilosAprendizaje(tiposAprendizaje);
         }
         
-
         return repository.save(ug);
     }
 
@@ -247,11 +249,14 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @GetMapping("rolMonitor")
+    @GetMapping("rolMonitor/{id}")
     public UsuarioGeneral toggleRolMonitor(
-        @AuthenticationPrincipal UsuarioGeneral ug
+        // @AuthenticationPrincipal UsuarioGeneral ug
+        @PathVariable("id") Long id
         ) {
-        // UsuarioGeneral ug = this.findById(id);
+        UsuarioGeneral ug = this.findById(id);
+        System.out.println(ug.getEmail());
+
         if (ug.getRol().contains(Rol.string(Rol.MONITOR))) {
             ug.setRol(Rol.MONITOR);
         } else {

@@ -132,13 +132,13 @@ public class UsuarioGeneral implements UserDetails {
         ) {
 		this.email = email;
 		this.password = password;
-        this.rol = new ArrayList<>();
-        this.rol.add(Rol.USER); // tener el rol de usuario por default
 
         this.nombre = nombre;
         this.apellido = apellido;
 
         inicializar();
+
+        this.rol.add(Rol.USER); // tener el rol de usuario por default
     }
 
     public UsuarioGeneral() {
@@ -157,6 +157,7 @@ public class UsuarioGeneral implements UserDetails {
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
+        this.rol = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;

@@ -40,6 +40,35 @@ def post(url, msg, auth = ""):
         quit()
     return data, auth
 
+def get(url, auth = ""):
+    print(url)
+    headers = {
+        'Content-Type': 'application/json',
+    }
+    if auth != "" :
+        headers[AUTH] = auth
+
+    # print(headers)
+    response = requests.get(
+        url,
+        headers=headers,
+    )
+
+    if response.content:
+        data = json.loads(response.content)
+    else:
+        data = {}
+
+    # auth = ""
+
+    # if 'error' in data:
+    #     print("error:")
+    #     print('\t', data['error'])
+
+    #     print(data)
+    #     quit()
+    return data
+
 def login ():
     url = BASEURL + 'usuario/login'
     print("login")
@@ -67,6 +96,12 @@ def agrupar(dic, valores, tipo, locurl):
             if 'error' not in ret:
                 dic[valor] = int(ret['id'])
     return dic
+
+def rolMonitor(aauth, usr):
+    url = BASEURL + 'usuario/rolMonitor/{}'.format(usr)
+    print(url)
+    ret = get(url, auth = aauth)
+    print(ret)
 
 def main(archivo):
     # read file
@@ -126,8 +161,6 @@ def cargar_facultades_y_carreras(facultades, carreras):
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url + '/{}'.format(id_fac) , msggrp, auth = LOGINDATA))
 
-
-
 def cargar_usuarios(usuarios):
 
     urlug = BASEURL + 'usuario/login/registro'
@@ -141,14 +174,26 @@ def cargar_usuarios(usuarios):
             "nombre": usuario['nombre'],
             "password": usuario['password'],
             "apellido": usuario['apellido'],
-            "correo": usuario['correo'],
+            "email": usuario['correo'],
             "semestre": usuario['semestre'],
             "password": usuario['password']
         }
 
+        print("creacion usuario")
         ret, auth = post(urlug, msg)
 
-        print(ret)
+        print("bla:", ret)
+
+        i_usr = ret['id']
+
+        print ("id usuario: ", i_usr)
+
+        print("rol monitor")
+        rolMonitor(auth, i_usr)
+        # ret, auth = post(BASEURL + "carrera/all", {}, auth = auth)
+
+
+        # print(ret)
 
         # if 'error' not in ret:
         #     rr = post(

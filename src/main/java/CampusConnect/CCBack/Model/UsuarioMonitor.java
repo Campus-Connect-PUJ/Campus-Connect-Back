@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,12 +27,20 @@ public class UsuarioMonitor {
     @JoinColumn(name="idAsignatura")
     private Asignatura asignatura;
 
+	@JsonIgnore
+    @OneToMany(mappedBy = "monitor")
+    private List<Horario> horarios;
+
+    public UsuarioMonitor() {
+        this.horarios = new ArrayList<>();
+    }
+
     public List<Horario> getHorario() {
-		return horario;
+		return horarios;
 	}
 
 	public void setHorario(List<Horario> horario) {
-		this.horario = horario;
+		this.horarios = horario;
 	}
 
 	public Asignatura getAsignatura() {
@@ -57,9 +66,5 @@ public class UsuarioMonitor {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@JsonIgnore
-    @OneToMany(mappedBy = "usuario")
-    private List<Horario> horario;
 
 }

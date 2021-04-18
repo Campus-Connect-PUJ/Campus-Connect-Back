@@ -32,6 +32,7 @@ import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.RESTUserDetailsService;
@@ -133,7 +134,7 @@ class UsuarioGeneralService {
     }
 
     @GetMapping("{id}/monitorias")
-    public List<Asignatura> monitoriasUsuario(@PathVariable("id") Long id) {
+    public List<UsuarioMonitor> monitoriasUsuario(@PathVariable("id") Long id) {
         return repository.findById(id).get().getMonitorDe();
     }
 

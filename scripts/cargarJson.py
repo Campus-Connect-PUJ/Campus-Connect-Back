@@ -7,13 +7,15 @@ BASEURL = 'http://localhost:8080/'
 
 LOGINDATA = {}
 
+AUTH = "Authorization"
+
 def post(url, msg, auth = ""):
     print(url)
     headers = {
         'Content-Type': 'application/json',
     }
     if auth != "" :
-        headers['AUTH'] = auth
+        headers[AUTH] = auth
 
     # print(headers)
     response = requests.post(
@@ -26,8 +28,8 @@ def post(url, msg, auth = ""):
 
     auth = ""
 
-    if 'AUTH' in response.headers:
-        auth = response.headers['AUTH']
+    if AUTH in response.headers:
+        auth = response.headers[AUTH]
         print("auth", auth)
 
     if 'error' in data:

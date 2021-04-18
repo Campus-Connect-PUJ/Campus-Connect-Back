@@ -236,4 +236,27 @@ class UsuarioGeneralService {
         return ug;
     }
 
+    @PostMapping("/rol/{idUsuario}/{rol}")
+    private UsuarioGeneral cambiarRol(
+        @PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("rol") final Long idRol
+    ){
+        UsuarioGeneral ug = this.findById(idUsuario);
+        short rol = 1;
+        if(idRol == 1){
+            //User
+            rol = 1;
+            ug.setRol(rol);
+        }
+        else if(idRol == 2){
+            //Monitor
+            rol = 2;
+            ug.setRol(rol);
+        }
+
+        repository.save(ug);
+
+        return ug;
+    }
+
 }

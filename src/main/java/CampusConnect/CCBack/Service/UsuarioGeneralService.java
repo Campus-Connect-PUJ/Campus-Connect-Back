@@ -1,12 +1,18 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +32,11 @@ import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
-import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
+import CampusConnect.CCBack.Security.RESTUserDetailsService;
+import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -43,17 +50,25 @@ class UsuarioGeneralService {
     private RestaurantesService rService;
 
     @Autowired
-    private GruposEstudiantilesService geService;
+    private RESTAuthenticationProvider restap;
+
+    @Autowired
+    private TipoAprendizajeService taService;
 
     @Autowired
     private CarreraService cService;
 
+    @Autowired
+    private RESTUserDetailsService rudService;
+
+    @Autowired
+    private GruposEstudiantilesService geService;
+
+
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
-    public UsuarioGeneral getUserByEmail(String email) {
-        return repository.findByEmail(email);
-    }
+	public UsuarioGeneralService() {}
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("all")
@@ -153,10 +168,7 @@ class UsuarioGeneralService {
         return repository.findById(id).get().getCarrerasUsuario();
     }
 
-    @PostMapping
-    public UsuarioGeneral create(@RequestBody final WrapperUsuarioGeneral data) {
-        System.out.println("creando usuario");
-
+    public UsuarioGeneral create(final WrapperUsuarioGeneral data) {
         UsuarioGeneral ug = new UsuarioGeneral(
             data.getEmail(),
             passwordEncoder.encode(data.getPassword()),
@@ -167,16 +179,61 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    // @PostMapping
-    // public UsuarioGeneral formulario1(@RequestBody final UsuarioGeneral data) {
-    //     UsuarioGeneral ug = new UsuarioGeneral(
-    //         data.getEmail(),
-    //         passwordEncoder.encode(data.getPassword()),
-    //         data.getNombre(),
-    //         data.getApellido()
-    //         );
-    //     ug.setSemestre(data.getSemestre());
-    //     return repository.save(ug);
-    // }
+    @PostMapping("{id}/agregarTipoAprendizaje/{id_tip}")
+    public UsuarioGeneral agregarTipAprendizaje(
+        @PathVariable("id") final Long idUsuario,
+        @PathVariable("id_tip") final Long idTipoAprendizaje
+    ){
+        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
+        tiposAprendizaje = ug.getEstilosAprendizaje();
+        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
+            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+            ug.setEstilosAprendizaje(tiposAprendizaje);
+        }
+        
+
+        return repository.save(ug);
+    }
+
+    @PostMapping("login/registro")
+    public UsuarioGeneral registro(
+        @RequestBody final WrapperUsuarioGeneral data,
+        HttpServletResponse response
+        ) {
+        System.out.println("creando usuario");
+        UsuarioGeneral ug = this.create(data);
+        WrapperLogin wl = new WrapperLogin();
+        wl.setUsername(data.getEmail());
+        wl.setPassword(data.getPassword());
+        return resp(wl, ug, response);
+    }
+
+    @PostMapping("login")
+    public UsuarioGeneral login(
+        @RequestBody final WrapperLogin login,
+        HttpServletResponse response
+        ) {
+        System.out.println("login");
+        System.out.println(login.getUsername());
+        System.out.println(login.getPassword());
+		final UsuarioGeneral user = rudService.loadUserByUsername(login.getUsername());
+        return resp(login, user, response);
+    }
+
+    private UsuarioGeneral resp(
+        @RequestBody final WrapperLogin login,
+        UsuarioGeneral ug,
+        HttpServletResponse response
+        ) {
+        String token = restap.authenticateToken(ug, login);
+
+        response.addHeader(
+            SecurityConstants.HEADER_AUTHORIZACION_KEY,
+            SecurityConstants.TOKEN_BEARER_PREFIX + " " + token);
+        response.addHeader("Access-Control-Expose-Headers", "Authorization");
+
+        return ug;
+    }
 
 }

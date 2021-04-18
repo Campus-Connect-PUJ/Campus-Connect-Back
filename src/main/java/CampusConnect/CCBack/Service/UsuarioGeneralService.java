@@ -66,32 +66,32 @@ class UsuarioGeneralService {
         return repository.findById(id).get();
     }
 
-    @PostMapping("{id}/resenha_grupo_estudiantil/{id_res}")
+    @PostMapping("{id}/resenha_grupo_estudiantil/{id_res}/{calificacion}")
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
-        @RequestBody final ResenhaGrupoEstudiantil foroData,
         @PathVariable("id") final Long idUsuario,
-        @PathVariable("id_res") final Long idRestaurante
+        @PathVariable("id_res") final Long idRestaurante,
+        @PathVariable("calificacion") final Long calificacion
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
         GrupoEstudiantil restaurante = geService.findById(idRestaurante);
-        rr.setEstrellas(foroData.getEstrellas());
+        rr.setEstrellas(calificacion);
         rr.setGrupoEstudiantil(restaurante);
         rr.setUsuario(ug);
         ug.agregarResenhaGrupoEstudiantil(rr);
         return repository.save(ug);
     }
 
-    @PostMapping("{id}/resenha_restaurante/{id_res}")
+    @PostMapping("{id}/resenha_restaurante/{id_res}/{calificacion}")
     public UsuarioGeneral crearResentaRestaurante(
-        @RequestBody final ResenhaRestaurante foroData,
         @PathVariable("id") final Long idUsuario,
-        @PathVariable("id_res") final Long idRestaurante
+        @PathVariable("id_res") final Long idRestaurante,
+        @PathVariable("calificacion") final Long calificacion
         ) {
         ResenhaRestaurante rr = new ResenhaRestaurante();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
         Restaurante restaurante = rService.findById(idRestaurante);
-        rr.setEstrellas(foroData.getEstrellas());
+        rr.setEstrellas(calificacion);
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
         ug.agregarResenhaRestaurante(rr);

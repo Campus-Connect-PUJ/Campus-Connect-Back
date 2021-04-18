@@ -41,7 +41,7 @@ import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
 @RequestMapping("/usuario")
-class UsuarioGeneralService {
+class UsuarioMonitorService {
 
     @Autowired
     private UsuarioGeneralRepository repository;
@@ -64,11 +64,10 @@ class UsuarioGeneralService {
     @Autowired
     private GruposEstudiantilesService geService;
 
-
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
-	public UsuarioGeneralService() {}
+	public UsuarioMonitorService() {}
 
     // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("all")

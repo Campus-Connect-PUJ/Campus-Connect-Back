@@ -24,12 +24,8 @@ public class Asignatura {
     private String descripcion;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable (
-        name = "UsuarioMonitor",
-        joinColumns = @JoinColumn(name = "idAsignatura"),
-        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
-    private List<UsuarioGeneral> monitores;
+    @OneToMany(mappedBy = "asignatura")
+    private List<UsuarioMonitor> monitores;
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
@@ -55,16 +51,24 @@ public class Asignatura {
 		this.descripcion = descripcion;
 	}
 
-	public List<UsuarioGeneral> getMonitores() {
+	public List<Actividad> getActividades() {
+		return actividades;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<UsuarioMonitor> getMonitores() {
 		return monitores;
 	}
 
-	public void setMonitores(List<UsuarioGeneral> monitores) {
+	public void setMonitores(List<UsuarioMonitor> monitores) {
 		this.monitores = monitores;
-	}
-
-	public List<Actividad> getActividades() {
-		return actividades;
 	}
 
 	public void setActividades(List<Actividad> actividades) {

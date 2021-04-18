@@ -70,12 +70,10 @@ class UsuarioGeneralService {
 
 	public UsuarioGeneralService() {}
 
-    // esto probablemente sea mejor quitarlo, pero puede ser util para pruebas
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAllForos() {
         return repository.findAll();
     }
-
 
     @GetMapping("{id}")
     public UsuarioGeneral findById(@PathVariable("id") Long id) {

@@ -83,6 +83,11 @@ public class UsuarioGeneral implements UserDetails {
               cascade = CascadeType.ALL)
     private RegimenAlimenticioUsuario regimenAlimenticio;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioMonitor> monitorDe;
+
+
     // relaciones muchos a muchos  ---------------------
 
     @ManyToMany
@@ -95,10 +100,6 @@ public class UsuarioGeneral implements UserDetails {
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<UsuarioCAE> rolesCAE;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "monitores")
-    private List<Asignatura> monitorDe;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
@@ -185,11 +186,11 @@ public class UsuarioGeneral implements UserDetails {
         this.semestre = semestre;
     }
 
-	public List<Asignatura> getMonitorDe() {
+	public List<UsuarioMonitor> getMonitorDe() {
 		return monitorDe;
 	}
 
-	public void setMonitorDe(List<Asignatura> monitorDe) {
+	public void setMonitorDe(List<UsuarioMonitor> monitorDe) {
 		this.monitorDe = monitorDe;
 	}
 

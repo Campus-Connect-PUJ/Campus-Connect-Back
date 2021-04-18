@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,8 +18,11 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
-public class UsuarioGeneral {
+public class UsuarioGeneral implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -383,6 +387,25 @@ public class UsuarioGeneral {
 
 	public void agregarTipNoGustaron(Tip tip){
 		this.tipsNoGustados.add(tip);
+	}
+
+	public List<Tematica> getTematicasGustan() {
+		return tematicasGustan;
+	}
+
+	public void setTematicasGustan(List<Tematica> tematicasGustan) {
+		this.tematicasGustan = tematicasGustan;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.email;
 	}
 
 }

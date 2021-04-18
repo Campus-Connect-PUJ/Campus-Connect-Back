@@ -27,6 +27,8 @@ import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.GrupoEstudiantilRepository;
+import CampusConnect.CCBack.Repository.ResenhaGrupoRepository;
+import CampusConnect.CCBack.Repository.ResenhaRestauranteRepository;
 import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
@@ -47,6 +49,18 @@ class UsuarioGeneralService {
 
     @Autowired
     private CarreraService cService;
+
+    @Autowired
+    private GrupoEstudiantilRepository regrupoEstudiantil;
+
+    @Autowired
+    private ResenhaGrupoRepository reregrupo;
+
+    @Autowired
+    private RestauranteRepository reRestaurante;
+
+    @Autowired
+    private ResenhaRestauranteRepository rereRestaurante;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -74,12 +88,28 @@ class UsuarioGeneralService {
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         UsuarioGeneral ug = repository.findById(idUsuario).get();
-        GrupoEstudiantil restaurante = geService.findById(idRestaurante);
+        GrupoEstudiantil grupoEstudiantil = geService.findById(idRestaurante);
+
+        System.out.println("algo");
+
         rr.setEstrellas(calificacion);
-        rr.setGrupoEstudiantil(restaurante);
+        rr.setGrupoEstudiantil(grupoEstudiantil);
         rr.setUsuario(ug);
         ug.agregarResenhaGrupoEstudiantil(rr);
-        return repository.save(ug);
+        grupoEstudiantil.agregarResenha(rr);
+
+        System.out.println("Usuario "+ ug.getNombre() + " "+ ug.getResenhaGruposEstudiatiles().size());
+        System.out.println("Grupo "+ grupoEstudiantil.getDescripcion() + " "+ grupoEstudiantil.getResenhas().size());
+
+
+        //Reseña
+        reregrupo.save(rr);
+        //Grupo
+        regrupoEstudiantil.save(grupoEstudiantil);
+        //Usuario
+        repository.save(ug);
+
+        return ug;
     }
 
     @PostMapping("{id}/resenha_restaurante/{id_res}/{calificacion}")
@@ -94,8 +124,20 @@ class UsuarioGeneralService {
         rr.setEstrellas(calificacion);
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
+
         ug.agregarResenhaRestaurante(rr);
-        return repository.save(ug);
+        restaurante.agregarResenha(rr);
+
+
+        //Reseña
+        rereRestaurante.save(rr);
+        //Restaurante
+        reRestaurante.save(restaurante);
+        //Usuario
+        repository.save(ug);
+        
+
+        return ug;
     }
 
     @GetMapping("{id}/respuestas_foros")

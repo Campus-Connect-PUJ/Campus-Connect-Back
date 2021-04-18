@@ -215,4 +215,8 @@ public class Restaurante {
         this.regimenesAlimenticios.add(c);
 	}
 
+	public void agregarResenha(ResenhaRestaurante r) {
+        this.resenhas.add(r);
+    }
+
 }

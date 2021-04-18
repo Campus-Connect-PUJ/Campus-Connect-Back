@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ResenhaGrupoEstudiantil {
 
@@ -19,9 +21,15 @@ public class ResenhaGrupoEstudiantil {
     @JoinColumn(name="idGrupoEstudiantil")
     private GrupoEstudiantil grupoEstudiantil;
 
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
+
+	public ResenhaGrupoEstudiantil(){
+		this.grupoEstudiantil = new GrupoEstudiantil();
+		this.usuario = new UsuarioGeneral();
+	}
 
 	public float getEstrellas() {
 		return estrellas;

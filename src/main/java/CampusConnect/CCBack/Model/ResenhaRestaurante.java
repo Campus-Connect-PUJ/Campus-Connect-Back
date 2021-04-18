@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ResenhaRestaurante {
 
@@ -19,6 +21,7 @@ public class ResenhaRestaurante {
     @JoinColumn(name="idRestaurante")
     private Restaurante restaurante;
 
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;

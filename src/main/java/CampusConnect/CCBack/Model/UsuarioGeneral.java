@@ -65,11 +65,11 @@ public class UsuarioGeneral {
     @OneToMany(mappedBy = "usuario")
     private List<RespuestaForo> respuestasForo;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaGrupoEstudiantil> resenhaGruposEstudiatiles;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaRestaurante> resenhaRestaurantes;
 

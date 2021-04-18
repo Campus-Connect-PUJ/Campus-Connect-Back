@@ -389,6 +389,10 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.add(tip);
 	}
 
+    public void agregarCaracteristica(Caracteristica c) {
+        this.caracteristicas.add(c);
+    }
+
 	public List<Tematica> getTematicasGustan() {
 		return tematicasGustan;
 	}

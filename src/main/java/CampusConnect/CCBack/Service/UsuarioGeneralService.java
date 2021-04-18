@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,6 +38,7 @@ import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.RESTUserDetailsService;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -56,7 +58,7 @@ class UsuarioGeneralService {
     private TipoAprendizajeService taService;
 
     @Autowired
-    private CarreraService cService;
+    private CaracteristicasService cService;
 
     @Autowired
     private RESTUserDetailsService rudService;
@@ -234,6 +236,29 @@ class UsuarioGeneralService {
         response.addHeader("Access-Control-Expose-Headers", "Authorization");
 
         return ug;
+    }
+
+    // Una lista de características temáticas, string actividades
+    // hobbies u el bool de si cree el Dios
+    @PutMapping("persoGrupos")
+    public UsuarioGeneral persoGrupos(
+        @RequestBody final WrapperPersoGrupos wpg,
+        @AuthenticationPrincipal UsuarioGeneral ug
+        ) {
+
+            InformacionUsuario iu = ug.getInformacionUsuario();
+
+            for (Long id: wpg.getCaracteristicas()) {
+                Caracteristica c = cService.findById(id);
+                ug.agregarCaracteristica(c);
+            }
+
+            for (Long id: wpg.getTematicas()) {
+                Caracteristica c = cService.findById(id);
+                ug.agregarCaracteristica(c);
+            }
+
+            return ug;
     }
 
 }

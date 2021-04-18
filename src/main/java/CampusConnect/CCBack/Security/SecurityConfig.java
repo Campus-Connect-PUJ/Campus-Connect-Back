@@ -68,11 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().authorizeRequests()
                 .antMatchers(
                     "/usuario/login",
-                    "/usuario/login/registro",
-                    "/carrera/all"
-
-
-                    , "/facultad/all"
+                    "/usuario/login/registro"
                     )
                 .permitAll()
                 .anyRequest().authenticated()

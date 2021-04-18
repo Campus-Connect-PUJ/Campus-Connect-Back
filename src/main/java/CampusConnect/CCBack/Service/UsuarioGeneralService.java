@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,10 +53,17 @@ class UsuarioGeneralService {
     private RESTAuthenticationProvider restap;
 
     @Autowired
+    private TipoAprendizajeService taService;
+
+    @Autowired
+    private CarreraService cService;
+
+    @Autowired
     private RESTUserDetailsService rudService;
 
     @Autowired
     private GruposEstudiantilesService geService;
+
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -170,17 +179,22 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    // @PostMapping
-    // public UsuarioGeneral formulario1(@RequestBody final UsuarioGeneral data) {
-    //     UsuarioGeneral ug = new UsuarioGeneral(
-    //         data.getEmail(),
-    //         passwordEncoder.encode(data.getPassword()),
-    //         data.getNombre(),
-    //         data.getApellido()
-    //         );
-    //     ug.setSemestre(data.getSemestre());
-    //     return repository.save(ug);
-    // }
+    @PostMapping("{id}/agregarTipoAprendizaje/{id_tip}")
+    public UsuarioGeneral agregarTipAprendizaje(
+        @PathVariable("id") final Long idUsuario,
+        @PathVariable("id_tip") final Long idTipoAprendizaje
+    ){
+        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
+        tiposAprendizaje = ug.getEstilosAprendizaje();
+        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
+            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+            ug.setEstilosAprendizaje(tiposAprendizaje);
+        }
+        
+
+        return repository.save(ug);
+    }
 
     @PostMapping("login/registro")
     public UsuarioGeneral registro(

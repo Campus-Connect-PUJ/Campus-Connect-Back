@@ -85,7 +85,6 @@ public class UsuarioGeneral implements UserDetails {
 
     // relaciones muchos a muchos  ---------------------
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeUsuario",

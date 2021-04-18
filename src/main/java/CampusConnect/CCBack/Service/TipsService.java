@@ -79,10 +79,14 @@ class TipsService {
         tip.like();
         UsuarioGeneral ug = ugService.findById(idUsuario);
 
-        tip.agregarUsuarioGustaron(ug);
-        ug.agregarTipGustaron(tip);
+        if(!ug.getTipsGustados().contains(tip)){
+            tip.agregarUsuarioGustaron(ug);
+            ug.agregarTipGustaron(tip);
+            repository.save(tip);
+        }
 
-        repository.save(tip);
+
+
         System.out.println("Sale a gustar");
         return ugRepository.save(ug);
     }
@@ -96,12 +100,12 @@ class TipsService {
         Tip tip = this.findTipById(idTip);
         tip.dislike();
         UsuarioGeneral ug = ugService.findById(idUsuario);
-
-        tip.agregarUsuarioNoGustaron(ug);
-        ug.agregarTipNoGustaron(tip);
-
-        
-        repository.save(tip);
+        if(!ug.getTipsNoGustados().contains(tip)){
+            tip.agregarUsuarioNoGustaron(ug);
+            ug.agregarTipNoGustaron(tip);
+            repository.save(tip);
+        }
+         
         return ugRepository.save(ug);
     }
 

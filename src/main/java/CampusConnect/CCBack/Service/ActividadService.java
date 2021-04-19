@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import CampusConnect.CCBack.Model.Actividad;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ActividadRepository;
 
 @Service
@@ -30,6 +31,15 @@ class ActividadService {
         actividad.setNombre(name);
 
         return repository.save(actividad);
+    }
+
+    public Actividad agregarUsuario(Long aid, UsuarioGeneral ug) {
+
+        Actividad a = this.findById(aid);
+
+        a.agregarUsuario(ug);
+        return repository.save(a);
+
     }
 
 }

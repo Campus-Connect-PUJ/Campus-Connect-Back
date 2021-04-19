@@ -202,7 +202,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
-
         for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
             ug.agregarCaracteristica(c);
@@ -216,8 +215,8 @@ public class UsuarioGeneralService implements UserDetailsService {
                 aService.crear(nombre);
                 a = aService.findByName(nombre); 
                 ug.agregarActividadInteres(a);
+                aService.agregarUsuario(a.getId(), ug);
             }
-            
         }
 
         for (String nombre : wpg.getHobbies()) {
@@ -231,7 +230,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             }
         }
 
-        return ug;
+        return repository.save(ug);
     }
 
     //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación

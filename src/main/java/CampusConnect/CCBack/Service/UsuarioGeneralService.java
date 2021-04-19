@@ -167,9 +167,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         return ul;
 	}
 
-    // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
-    @GetMapping("rolAdmin/{id}")
-    public UsuarioGeneral removeRolAdmin(@PathVariable("id") Long id) {
+    public UsuarioGeneral toggleRolAdmin(Long id) {
         UsuarioGeneral ug = this.findById(id);
         if (ug.getRoles().contains(Rol.string(Rol.ADMIN))) {
             ug.setRol(Rol.ADMIN);
@@ -179,10 +177,9 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.save(ug);
     }
 
-    @GetMapping("rolMonitor/{id}")
     public UsuarioGeneral toggleRolMonitor(
         // @AuthenticationPrincipal UsuarioGeneral ug
-        @PathVariable("id") Long id
+        Long id
         ) {
         UsuarioGeneral ug = this.findById(id);
         System.out.println(ug.getEmail());

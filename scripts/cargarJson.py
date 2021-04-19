@@ -24,7 +24,10 @@ def post(url, msg, auth = ""):
         data=json.dumps(msg),
     )
 
-    data = json.loads(response.content)
+    if response.content:
+        data = json.loads(response.content)
+    else:
+        data = {}
 
     auth = ""
 
@@ -187,8 +190,7 @@ def cargar_usuarios(usuarios):
         rolMonitor(auth, i_usr)
         # ret, auth = post(BASEURL + "carrera/all", {}, auth = auth)
 
-
-        # print(ret)
+        print(ret)
 
         # if 'error' not in ret:
         #     rr = post(

@@ -195,6 +195,7 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
+
         for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
             ug.agregarCaracteristica(c);
@@ -217,8 +218,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             if (h!=null){
                iu.agregarHobby(h); 
             }else{
-                h = new Hobby();
-                h.setNombre(nombre);
+                hService.crear(nombre);
                 iu.agregarHobby(h); 
             }
         }
@@ -241,7 +241,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         RegimenAlimenticio regimen = regService.findById(idReg);
         RegimenAlimenticioUsuario regimenUsuario = new RegimenAlimenticioUsuario();
 
-        regimenUsuario.setExigencia(nivelExigencia);
+        regimenUsuario.setExigencia(nivelExigencia.intValue());
         regimenUsuario.setRegimenAlimenticio(regimen);
 
         ug.setRegimenAlimenticio(regimenUsuario);

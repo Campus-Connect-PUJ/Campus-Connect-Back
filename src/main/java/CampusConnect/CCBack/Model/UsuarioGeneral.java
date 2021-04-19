@@ -37,9 +37,11 @@ public class UsuarioGeneral implements UserDetails {
 //                                inicio login                               //
 ///////////////////////////////////////////////////////////////////////////////
 
-    // @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
+
     // @JsonIgnore
+    @Column(nullable = false)
 	private String password;
 
     private boolean enabled;

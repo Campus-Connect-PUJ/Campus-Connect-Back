@@ -171,7 +171,7 @@ public class UsuarioGeneralService implements UserDetailsService {
     @GetMapping("rolAdmin/{id}")
     public UsuarioGeneral removeRolAdmin(@PathVariable("id") Long id) {
         UsuarioGeneral ug = this.findById(id);
-        if (ug.getRol().contains(Rol.string(Rol.ADMIN))) {
+        if (ug.getRoles().contains(Rol.string(Rol.ADMIN))) {
             ug.setRol(Rol.ADMIN);
         } else {
             ug.removeRol(Rol.ADMIN);
@@ -187,7 +187,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         UsuarioGeneral ug = this.findById(id);
         System.out.println(ug.getEmail());
 
-        if (ug.getRol().contains(Rol.string(Rol.MONITOR))) {
+        if (ug.getRoles().contains(Rol.string(Rol.MONITOR))) {
             ug.setRol(Rol.MONITOR);
         } else {
             ug.removeRol(Rol.MONITOR);

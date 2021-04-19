@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +35,12 @@ public class Asignatura {
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
     private List<MaterialEstudio> materialEstudio;
+
+	public Asignatura(){
+		this.monitores = new ArrayList<>();
+		this.actividades = new ArrayList<>();
+		this.materialEstudio = new ArrayList<>();
+	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -81,5 +88,9 @@ public class Asignatura {
 
 	public void setMaterialEstudio(List<MaterialEstudio> materialEstudio) {
 		this.materialEstudio = materialEstudio;
+	}
+
+	public void addMonitor(UsuarioMonitor monitor) {
+		this.monitores.add(monitor);
 	}
 }

@@ -1532,5 +1532,24 @@
       "idFac": 1,
       "nombre" : "civil"
     }
+  ],
+  "asignaturas": [
+    {
+      "nombre": "sistemas-1",
+      "descripcion" : "sistemas-1"
+    },
+    {
+      "nombre": "sistemas-2",
+      "descripcion" : "sistemas-2"
+    },
+    {
+      "nombre": "sistemas-3",
+      "descripcion" : "sistemas-3"
+    },
+    {
+      "nombre": "sistemas-4",
+      "descripcion" : "sistemas-4"
+    }
   ]
+
 }

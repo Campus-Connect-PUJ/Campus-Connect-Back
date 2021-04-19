@@ -12,7 +12,7 @@ import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
-import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
+import CampusConnect.CCBack.Wrappers.*;
 
 @RestController
 @RequestMapping("/monitor")
@@ -46,6 +46,8 @@ class UsuarioMonitorService {
         um.setUsuario(ug);
         return repository.save(um);
     }
+
+
 
     // TODO
     // public UsuarioMonitor agregarHorario() {

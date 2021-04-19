@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
@@ -33,11 +35,15 @@ import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
+import CampusConnect.CCBack.Repository.AsignaturaRepository;
+import CampusConnect.CCBack.Repository.HorarioRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.RESTUserDetailsService;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -64,6 +70,20 @@ class UsuarioGeneralService {
 
     @Autowired
     private GruposEstudiantilesService geService;
+    
+    @Autowired
+    private AsignaturaService asService;
+
+
+    @Autowired
+    private AsignaturaRepository asignaturaRepository;
+
+    @Autowired
+    private HorarioRepository horarioRepository;
+
+    @Autowired
+    private UsuarioMonitorRepository monitorRepository;
+
 
 
 	@Autowired
@@ -257,6 +277,69 @@ class UsuarioGeneralService {
         repository.save(ug);
 
         return ug;
+    }
+
+
+    @PostMapping("agregarMonitoria/{idUsuario}")
+    public void agregarMonitoria(
+        @RequestBody final WrapperMonitoria infoMonitoria,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        UsuarioGeneral ug = this.findById(idUsuario);
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        Asignatura asignatura = new Asignatura();
+        Horario horario = new Horario();
+
+        List<UsuarioMonitor> monitorDe = ug.getMonitorDe();
+        if(monitorDe.size() > 0 && existeMonitoria(ug, infoMonitoria)){
+            //Agregar horarios a monitoria
+
+        }
+        else{
+            //Crear desde 0 monitoria
+            System.out.println("*********************************************");
+            crearMonitoria(ug, infoMonitoria);
+        }
+
+
+
+
+
+        repository.save(ug);
+
+    }
+
+    public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
+        Long idAsignatura = (long) 203;
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        Asignatura asignatura = asService.findById(idAsignatura);
+        Horario horario = new Horario();
+
+        horario.setFechaInicial(infoMonitoria.getFechaInicial());
+        horario.setFechaFinal(infoMonitoria.getFechaFinal());
+        
+        System.out.println("Asginatura "+asignatura.getNombre());
+        monitoria.setAsignatura(asignatura);
+        monitoria.addHorario(horario);
+        monitoria.setUsuario(ug);
+
+
+        horario.setMonitor(monitoria);
+        asignatura.addMonitor(monitoria);
+        ug.addMonitorDe(monitoria);
+
+        monitorRepository.save(monitoria);
+        asignaturaRepository.save(asignatura);
+        horarioRepository.save(horario);
+        
+        repository.save(ug);
+
+        return monitoria;
+    }
+
+    public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
+
+        return false;
     }
 
 }

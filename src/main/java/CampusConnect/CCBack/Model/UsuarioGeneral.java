@@ -409,4 +409,8 @@ public class UsuarioGeneral implements UserDetails {
 		return this.email;
 	}
 
+	public void addMonitorDe(UsuarioMonitor monitoria){
+		this.monitorDe.add(monitoria);
+	}
+
 }

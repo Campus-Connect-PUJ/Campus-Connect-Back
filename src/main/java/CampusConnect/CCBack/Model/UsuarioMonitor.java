@@ -67,4 +67,8 @@ public class UsuarioMonitor {
 		this.id = id;
 	}
 
+	public void addHorario(Horario horario){
+		this.horarios.add(horario);
+	}
+
 }

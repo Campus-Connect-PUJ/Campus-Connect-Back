@@ -1,12 +1,15 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Horario {
@@ -15,24 +18,21 @@ public class Horario {
     @GeneratedValue
     private Long id;
 
+	@JsonIgnore
     @ManyToOne
-    @JoinColumn(name="idAsignatura")
+    @JoinColumn(name="idMonitor")
     private UsuarioMonitor monitor;
 
-    private LocalDate fecha;
+    private LocalDateTime fechaInicial;
 
-	private Long duracion;
+	private LocalDateTime fechaFinal;
+
+	public Horario(){
+
+	}
 
     public Long getId() {
 		return id;
-	}
-
-    public Long getDuracion() {
-		return duracion;
-	}
-
-    public void setDuracion(Long duracion) {
-		this.duracion = duracion;
 	}
 
     public UsuarioMonitor getMonitor() {
@@ -47,12 +47,23 @@ public class Horario {
 		this.id = id;
 	}
 
-    public LocalDate getFecha() {
-		return fecha;
+	public LocalDateTime getFechaInicial() {
+		return fechaInicial;
 	}
 
-    public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
+	public void setFechaInicial(LocalDateTime fechaInicial) {
+		System.out.println("-z " + fechaInicial);
+		this.fechaInicial = fechaInicial;
 	}
+
+	public LocalDateTime getFechaFinal() {
+		return fechaFinal;
+	}
+
+	public void setFechaFinal(LocalDateTime fechaFinal) {
+		this.fechaFinal = fechaFinal;
+	}
+
+	
 
 }

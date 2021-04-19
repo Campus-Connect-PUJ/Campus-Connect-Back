@@ -206,8 +206,8 @@ public class UsuarioGeneralService implements UserDetailsService {
             if(a!=null){
                 ug.agregarActividadInteres(a);
             }else{
-                a = new Actividad();
-                a.setNombre(nombre);
+                aService.crear(nombre);
+                a = aService.findByName(nombre); 
                 ug.agregarActividadInteres(a);
             }
             
@@ -219,6 +219,7 @@ public class UsuarioGeneralService implements UserDetailsService {
                iu.agregarHobby(h); 
             }else{
                 hService.crear(nombre);
+                h = hService.findByName(nombre);
                 iu.agregarHobby(h); 
             }
         }

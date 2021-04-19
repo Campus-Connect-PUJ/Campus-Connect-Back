@@ -26,6 +26,8 @@ import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.RegimenAlimenticio;
+import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.RespuestaForo;
@@ -41,6 +43,7 @@ import CampusConnect.CCBack.Security.RESTUserDetailsService;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -76,6 +79,9 @@ class UsuarioGeneralService {
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RegimenAlimenticioService regService;
 
 	public UsuarioGeneralService() {}
 
@@ -262,15 +268,55 @@ class UsuarioGeneralService {
 
         for (String nombre : wpg.getActividades()) {
             Actividad a = aService.findByName(nombre);
-            ug.agregarActividadInteres(a);
+            if(a!=null){
+                ug.agregarActividadInteres(a);
+            }else{
+                a = new Actividad();
+                a.setNombre(nombre);
+                ug.agregarActividadInteres(a);
+            }
+            
         }
 
         for (String nombre : wpg.getHobbies()) {
             Hobby h = hService.findByName(nombre);
-            iu.agregarHobby(h);
+            if (h!=null){
+               iu.agregarHobby(h); 
+            }else{
+                h = new Hobby();
+                h.setNombre(nombre);
+                iu.agregarHobby(h); 
+            }
         }
 
         return ug;
     }
 
+    //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
+    @PutMapping("persoRestaurantes")
+    public UsuarioGeneral persoRestaurantes(
+        @RequestBody final WrapperPersoRestaurantes wpr,
+        @AuthenticationPrincipal UsuarioGeneral ug
+        ) {
+
+        InformacionUsuario iu = ug.getInformacionUsuario();
+
+        Long idReg = wpr.getRegimenAlimenticio();
+        Long nivelExigencia = wpr.getNivelExigencia();
+        RegimenAlimenticio regimen = regService.findById(idReg);
+        RegimenAlimenticioUsuario regimenUsuario = new RegimenAlimenticioUsuario();
+
+        regimenUsuario.setExigencia(nivelExigencia);
+        regimenUsuario.setRegimenAlimenticio(regimen);
+
+        ug.setRegimenAlimenticio(regimenUsuario);
+
+        String ambientacion = wpr.getAmbientacion();
+        for(Long id: wpr.getComidas()){
+            
+        }
+
+        
+        return ug;
+    }
 }

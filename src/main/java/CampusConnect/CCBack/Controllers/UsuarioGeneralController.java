@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,88 +52,90 @@ class UsuarioGeneralController {
         return repository.findById(id);
     }
 
-    @PostMapping("{id}/resenha_grupo_estudiantil/{id_res}")
+    @PostMapping("resenha_grupo_estudiantil/{id_res}")
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
+        @AuthenticationPrincipal String email,
         @RequestBody final ResenhaGrupoEstudiantil foroData,
-        @PathVariable("id") final Long idUsuario,
         @PathVariable("id_res") final Long idRestaurante
         ) {
-
             return repository.crearResenhaGrupoEstudiantil(
-                foroData, idUsuario, idRestaurante);
+                email, foroData, idRestaurante);
     }
 
-    @PostMapping("{id}/resenha_restaurante/{id_res}")
+    @PostMapping("resenha_restaurante/{id_res}")
     public UsuarioGeneral crearResentaRestaurante(
+        @AuthenticationPrincipal String email,
         @RequestBody final ResenhaRestaurante foroData,
-        @PathVariable("id") final Long idUsuario,
         @PathVariable("id_res") final Long idRestaurante
         ) {
             return repository.crearResentaRestaurante(
-                foroData, idUsuario, idRestaurante);
+                email, foroData, idRestaurante);
     }
 
-    @GetMapping("{id}/respuestas_foros")
-    public List<RespuestaForo> respuestasForosUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getRespuestasForo();
+    @GetMapping("respuestas_foros")
+    public List<RespuestaForo> respuestasForosUsuario(
+        @AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getRespuestasForo();
     }
 
-    @GetMapping("{id}/foros")
-    public List<Foro> postsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getForos();
+    @GetMapping("foros")
+    public List<Foro> postsUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getForos();
     }
 
-    @GetMapping("{id}/estilos_aprendizaje")
-    public List<TipoAprendizaje> estilosAprendizajeUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getEstilosAprendizaje();
+    @GetMapping("estilos_aprendizaje")
+    public List<TipoAprendizaje> estilosAprendizajeUsuario(
+        @AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getEstilosAprendizaje();
     }
 
-    @GetMapping("{id}/roles_cae")
-    public List<UsuarioCAE> rolesCAEUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getRolesCAE();
+    @GetMapping("roles_cae")
+    public List<UsuarioCAE> rolesCAEUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getRolesCAE();
     }
 
-    @GetMapping("{id}/monitorias")
-    public List<Asignatura> monitoriasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getMonitorDe();
+    @GetMapping("monitorias")
+    public List<Asignatura> monitoriasUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getMonitorDe();
     }
 
-    @GetMapping("{id}/caracteristicas")
-    public List<Caracteristica> caracteristicasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getCaracteristicas();
+    @GetMapping("caracteristicas")
+    public List<Caracteristica> caracteristicasUsuario(
+        @AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getCaracteristicas();
     }
 
-    @GetMapping("{id}/informacion")
-    public InformacionUsuario informacionUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getInformacionUsuario();
+    @GetMapping("informacion")
+    public InformacionUsuario informacionUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getInformacionUsuario();
     }
 
-    @GetMapping("{id}/tips")
-    public List<Tip> tipsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getTips();
+    @GetMapping("tips")
+    public List<Tip> tipsUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getTips();
     }
 
-    @GetMapping("{id}/tips_gustados")
-    public List<Tip> tipsGustadosUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getTipsGustados();
+    @GetMapping("tips_gustados")
+    public List<Tip> tipsGustadosUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getTipsGustados();
     }
 
-    @GetMapping("{id}/roles_admin")
-    public List<RolAdministrador> rolesAdministradorUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getRolesAdministrador();
+    @GetMapping("roles_admin")
+    public List<RolAdministrador> rolesAdministradorUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getRolesAdministrador();
     }
 
-    @GetMapping("{id}/carreras")
-    public List<Carrera> carrerasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).getCarrerasUsuario();
+    @GetMapping("carreras")
+    public List<Carrera> carrerasUsuario(@AuthenticationPrincipal String email) {
+        return repository.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("{id}/agregarTipoAprendizaje/{id_tip}")
+    @PostMapping("agregarTipoAprendizaje/{id_tip}")
     public UsuarioGeneral agregarTipAprendizaje(
-        @PathVariable("id") final Long idUsuario,
+        @AuthenticationPrincipal String username,
         @PathVariable("id_tip") final Long idTipoAprendizaje
     ){
-        return repository.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
+        return repository.agregarTipAprendizaje(username, idTipoAprendizaje);
     }
 
     @PostMapping("login/registro")
@@ -175,5 +178,10 @@ class UsuarioGeneralController {
 
         return ug;
     }
+
+    // @PostMapping("printUser")
+    // public void printUserInfo(@AuthenticationPrincipal String username) {
+    //     System.out.println("usuario: " + username);
+    // }
 
 }

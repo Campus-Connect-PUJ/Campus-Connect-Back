@@ -69,12 +69,12 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
+        final String email,
         final ResenhaGrupoEstudiantil foroData,
-        final Long idUsuario,
         final Long idRestaurante
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = this.findByEmail(email);
         GrupoEstudiantil restaurante = geService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setGrupoEstudiantil(restaurante);
@@ -84,12 +84,12 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral crearResentaRestaurante(
+        final String email,
         final ResenhaRestaurante foroData,
-        final Long idUsuario,
         final Long idRestaurante
         ) {
         ResenhaRestaurante rr = new ResenhaRestaurante();
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         Restaurante restaurante = rService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setRestaurante(restaurante);
@@ -114,10 +114,10 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral agregarTipAprendizaje(
-        final Long idUsuario,
+        final String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
         tiposAprendizaje = ug.getEstilosAprendizaje();
         if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){

@@ -146,6 +146,8 @@ def cargar_usuarios(usuarios):
 
         ret, auth = post(urlug, msg)
 
+        ret, _ = post(BASEURL + "usuario/printUser", {}, auth)
+
         print(ret)
 
         # if 'error' not in ret:

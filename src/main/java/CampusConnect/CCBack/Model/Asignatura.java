@@ -33,7 +33,7 @@ public class Asignatura {
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
-    private List<Actividad> actividades;
+    private List<ActividadAsignatura> actividades;
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
@@ -63,11 +63,11 @@ public class Asignatura {
 		this.monitores = monitores;
 	}
 
-	public List<Actividad> getActividades() {
+	public List<ActividadAsignatura> getActividades() {
 		return actividades;
 	}
 
-	public void setActividades(List<Actividad> actividades) {
+	public void setActividades(List<ActividadAsignatura> actividades) {
 		this.actividades = actividades;
 	}
 

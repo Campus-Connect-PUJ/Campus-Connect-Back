@@ -10,16 +10,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 
+import CampusConnect.CCBack.Model.Actividad;
+import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.RegimenAlimenticio;
+import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -35,7 +43,25 @@ public class UsuarioGeneralService implements UserDetailsService {
     private TipoAprendizajeService taService;
 
     @Autowired
+    private CaracteristicasService cService;
+
+    @Autowired
     private GruposEstudiantilesService geService;
+
+    @Autowired
+    private TipoComidaService tcService;
+
+    @Autowired
+    private ActividadService aService;
+
+    @Autowired
+    private HobbyService hService;
+
+    @Autowired
+    private RegimenAlimenticioService regService;
+
+    @Autowired
+    private RegimenAlimenticioUsuarioService rauService;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -165,4 +191,75 @@ public class UsuarioGeneralService implements UserDetailsService {
         return ul;
 	}
 
+    // Una lista de características temáticas, string actividades
+    // hobbies u el bool de si cree el Dios
+    public UsuarioGeneral persoGrupos(
+        final WrapperPersoGrupos wpg,
+        String email
+        ) {
+
+        UsuarioGeneral ug = this.findByEmail(email);
+
+        InformacionUsuario iu = ug.getInformacionUsuario();
+
+        for (Long id: wpg.getCaracteristicas()) {
+            Caracteristica c = cService.findById(id);
+            ug.agregarCaracteristica(c);
+        }
+
+        for (String nombre : wpg.getActividades()) {
+            Actividad a = aService.findByName(nombre);
+            if(a!=null){
+                ug.agregarActividadInteres(a);
+            }else{
+                aService.crear(nombre);
+                a = aService.findByName(nombre); 
+                ug.agregarActividadInteres(a);
+                aService.agregarUsuario(a.getId(), ug);
+            }
+        }
+
+        for (String nombre : wpg.getHobbies()) {
+            Hobby h = hService.findByName(nombre);
+            if (h!=null){
+               iu.agregarHobby(h); 
+            }else{
+                hService.crear(nombre);
+                h = hService.findByName(nombre);
+                iu.agregarHobby(h); 
+            }
+        }
+
+        return repository.save(ug);
+    }
+
+    //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
+    public UsuarioGeneral persoRestaurantes(
+        final WrapperPersoRestaurantes wpr,
+        String email
+        ) {
+
+        UsuarioGeneral ug = this.findByEmail(email);
+
+        InformacionUsuario iu = ug.getInformacionUsuario();
+
+        Long idReg = wpr.getRegimenAlimenticio();
+        Long nivelExigencia = wpr.getNivelExigencia();
+        RegimenAlimenticio regimen = regService.findById(idReg);
+
+        RegimenAlimenticioUsuario regimenUsuario = rauService.create(
+            regimen, nivelExigencia.intValue(), ug
+        );
+
+        ug.setRegimenAlimenticio(regimenUsuario);
+
+        String ambientacion = wpr.getAmbientacion();
+        ug.setAmbientacion(ambientacion);
+        for(Long id: wpr.getComidas()){
+            TipoComida comida =tcService.findById(id);
+            ug.agregarComida(comida);
+        }
+
+        return repository.save(ug);
+    }
 }

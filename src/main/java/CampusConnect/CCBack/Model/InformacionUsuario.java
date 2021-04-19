@@ -1,6 +1,8 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class InformacionUsuario {
@@ -27,20 +31,25 @@ public class InformacionUsuario {
 
     private String identidadReligiosa;
 
-    private String raza;
-
     private Boolean lugarOrigen;
 
     private LocalDate fechaNacimiento;
 
-    private String actividadInteres;
-
-    private String hobbies;
+    @ManyToMany
+    @JoinTable (
+        name = "HobbiesUsuario",
+        joinColumns = @JoinColumn(name = "idInfoUsuario"),
+        inverseJoinColumns = @JoinColumn(name = "idHobby"))
+    private List<Hobby> hobbies;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioGeneral usuario;
+
+	public InformacionUsuario() {
+		this.hobbies = new ArrayList<>();
+	}
 
 	public String getIdentidadGenero() {
 		return identidadGenero;
@@ -78,14 +87,6 @@ public class InformacionUsuario {
 		this.identidadEtnica = identidadEtnica;
 	}
 
-	public String getHobbies() {
-		return hobbies;
-	}
-
-	public void setHobbies(String hobbies) {
-		this.hobbies = hobbies;
-	}
-
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -94,32 +95,24 @@ public class InformacionUsuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-    public String getRaza() {
-		return raza;
-	}
-
-    public void setRaza(String raza) {
-		this.raza = raza;
-	}
-
     public void setIdentidadGenero(String identidadGenero) {
 		this.identidadGenero = identidadGenero;
 	}
 
-    public UsuarioGeneral getUsuario() {
+    public List<Hobby> getHobbies() {
+		return hobbies;
+	}
+
+	public void setHobbies(List<Hobby> hobbies) {
+		this.hobbies = hobbies;
+	}
+
+	public UsuarioGeneral getUsuario() {
 		return usuario;
 	}
 
     public void setUsuario(UsuarioGeneral usuario) {
 		this.usuario = usuario;
-	}
-
-	public String getActividadInteres() {
-		return actividadInteres;
-	}
-
-	public void setActividadInteres(String actividadInteres) {
-		this.actividadInteres = actividadInteres;
 	}
 
 	public Long getId() {
@@ -129,5 +122,9 @@ public class InformacionUsuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+    public void agregarHobby(Hobby h) {
+        this.hobbies.add(h);
+    }
 
 }

@@ -2,7 +2,6 @@ package CampusConnect.CCBack.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Repository.RegimenAlimenticioRepository;
@@ -21,7 +20,6 @@ public class RegimenAlimenticioService {
         return repository.findById(id).get();
     }
 
-    @PostMapping
     public RegimenAlimenticio create(final RegimenAlimenticio dato) {
         RegimenAlimenticio c = new RegimenAlimenticio();
         c.setTipo(dato.getTipo());

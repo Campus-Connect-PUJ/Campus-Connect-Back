@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,8 @@ import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -183,5 +186,22 @@ class UsuarioGeneralController {
     // public void printUserInfo(@AuthenticationPrincipal String username) {
     //     System.out.println("usuario: " + username);
     // }
+
+    @PutMapping("persoGrupos")
+    public UsuarioGeneral persoGrupos(
+        @RequestBody final WrapperPersoGrupos wpg,
+        @AuthenticationPrincipal String email) {
+
+        return repository.persoGrupos(wpg, email);
+    }
+
+
+    @PutMapping("persoRestaurantes")
+    public UsuarioGeneral persoRestaurantes(
+        @RequestBody final WrapperPersoRestaurantes wpr,
+        @AuthenticationPrincipal String email) {
+
+        return repository.persoRestaurantes(wpr, email);
+    }
 
 }

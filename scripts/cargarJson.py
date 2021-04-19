@@ -30,7 +30,7 @@ def post(url, msg, auth = ""):
 
     if AUTH in response.headers:
         auth = response.headers[AUTH]
-        print("auth", auth)
+        print("auth:", auth)
 
     if 'error' in data:
         print("error:")
@@ -126,8 +126,6 @@ def cargar_facultades_y_carreras(facultades, carreras):
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url + '/{}'.format(id_fac) , msggrp, auth = LOGINDATA))
 
-
-
 def cargar_usuarios(usuarios):
 
     urlug = BASEURL + 'usuario/login/registro'
@@ -141,7 +139,7 @@ def cargar_usuarios(usuarios):
             "nombre": usuario['nombre'],
             "password": usuario['password'],
             "apellido": usuario['apellido'],
-            "correo": usuario['correo'],
+            "email": usuario['correo'],
             "semestre": usuario['semestre'],
             "password": usuario['password']
         }

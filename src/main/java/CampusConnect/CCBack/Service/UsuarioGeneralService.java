@@ -64,6 +64,10 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.findById(id).get();
     }
 
+    public UsuarioGeneral findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
         final ResenhaGrupoEstudiantil foroData,
         final Long idUsuario,

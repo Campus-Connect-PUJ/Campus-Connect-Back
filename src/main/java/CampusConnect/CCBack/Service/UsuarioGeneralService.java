@@ -22,6 +22,7 @@ import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
@@ -46,6 +47,9 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private GruposEstudiantilesService geService;
+
+    @Autowired
+    private TipoComidaService tcService;
 
     @Autowired
     private ActividadService aService;
@@ -248,8 +252,10 @@ public class UsuarioGeneralService implements UserDetailsService {
         ug.setRegimenAlimenticio(regimenUsuario);
 
         String ambientacion = wpr.getAmbientacion();
+        ug.setAmbientacion(ambientacion);
         for(Long id: wpr.getComidas()){
-            
+            TipoComida comida =tcService.findById(id);
+            ug.agregarComida(comida);
         }
 
         

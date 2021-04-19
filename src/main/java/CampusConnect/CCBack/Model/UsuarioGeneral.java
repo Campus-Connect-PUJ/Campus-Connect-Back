@@ -182,14 +182,6 @@ public class UsuarioGeneral implements UserDetails {
         this.actividadInteres.add(a);
     }
 
-    public List<UsuarioCAE> getRolesCAE() {
-		return rolesCAE;
-	}
-
-	public void setRolesCAE(List<UsuarioCAE> rolesCAE) {
-		this.rolesCAE = rolesCAE;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

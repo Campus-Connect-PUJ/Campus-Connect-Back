@@ -191,6 +191,31 @@ public class UsuarioGeneralService implements UserDetailsService {
         return ul;
 	}
 
+    public UsuarioGeneral toggleRolAdmin(Long id) {
+        UsuarioGeneral ug = this.findById(id);
+        if (ug.getRoles().contains(Rol.string(Rol.ADMIN))) {
+            ug.setRol(Rol.ADMIN);
+        } else {
+            ug.removeRol(Rol.ADMIN);
+        }
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral toggleRolMonitor(
+        // @AuthenticationPrincipal UsuarioGeneral ug
+        Long id
+        ) {
+        UsuarioGeneral ug = this.findById(id);
+        System.out.println(ug.getEmail());
+
+        if (ug.getRoles().contains(Rol.string(Rol.MONITOR))) {
+            ug.setRol(Rol.MONITOR);
+        } else {
+            ug.removeRol(Rol.MONITOR);
+        }
+        return repository.save(ug);
+    }
+  
     // Una lista de características temáticas, string actividades
     // hobbies u el bool de si cree el Dios
     public UsuarioGeneral persoGrupos(

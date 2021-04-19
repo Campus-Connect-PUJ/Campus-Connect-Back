@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,7 +52,8 @@ public class UsuarioGeneral implements UserDetails {
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 
-	private short rol; // para no tener que guardarlo en una tabla aparte
+    @ElementCollection
+	private List<Short> roles;
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                final login                                //
@@ -99,20 +101,12 @@ public class UsuarioGeneral implements UserDetails {
     private List<TipoAprendizaje> estilosAprendizaje;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
-    private List<UsuarioCAE> rolesCAE;
-
-    @JsonIgnore
     @ManyToMany(mappedBy = "monitores")
     private List<Asignatura> monitorDe;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Caracteristica> caracteristicas;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
-    private List<RolAdministrador> rolesAdministrador;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
@@ -141,12 +135,13 @@ public class UsuarioGeneral implements UserDetails {
         ) {
 		this.email = email;
 		this.password = password;
-        this.rol = Rol.USER; // tener el rol de usuario por default
 
         this.nombre = nombre;
         this.apellido = apellido;
 
         inicializar();
+
+        this.roles.add(Rol.USER); // tener el rol de usuario por default
     }
 
     public UsuarioGeneral() {
@@ -165,6 +160,7 @@ public class UsuarioGeneral implements UserDetails {
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
+        this.roles = new ArrayList<>();
         this.actividadInteres = new ArrayList<>();
 
         this.enabled = true;
@@ -185,14 +181,6 @@ public class UsuarioGeneral implements UserDetails {
     public void agregarActividadInteres(Actividad a) {
         this.actividadInteres.add(a);
     }
-
-    public List<UsuarioCAE> getRolesCAE() {
-		return rolesCAE;
-	}
-
-	public void setRolesCAE(List<UsuarioCAE> rolesCAE) {
-		this.rolesCAE = rolesCAE;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -220,14 +208,6 @@ public class UsuarioGeneral implements UserDetails {
 
 	public void setCaracteristicas(List<Caracteristica> caracteristicas) {
 		this.caracteristicas = caracteristicas;
-	}
-
-	public List<RolAdministrador> getRolesAdministrador() {
-		return rolesAdministrador;
-	}
-
-	public void setRolesAdministrador(List<RolAdministrador> rolesAdministrador) {
-		this.rolesAdministrador = rolesAdministrador;
 	}
 
 	public InformacionUsuario getInformacionUsuario() {
@@ -362,13 +342,22 @@ public class UsuarioGeneral implements UserDetails {
 		this.enabled = enabled;
 	}
 
-	public String getRol() {
-		return Rol.string(this.rol);
+	public List<String> getRoles() {
+        return this.roles.stream().map( v -> Rol.string(v)).collect(Collectors.toList());
+		// return Rol.string(this.rol);
 	}
 
-	public void setRol(short rol) {
-		this.rol = rol;
+	public void setRoles(List<Short> rol) {
+		this.roles = rol;
 	}
+
+    public void setRol(Short rol) {
+        this.roles.add(rol);
+    }
+
+    public void removeRol(Short rol) {
+        this.roles.remove(rol);
+    }
 
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;

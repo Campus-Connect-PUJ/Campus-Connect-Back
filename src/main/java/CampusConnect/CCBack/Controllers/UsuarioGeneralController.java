@@ -22,10 +22,8 @@ import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.RespuestaForo;
-import CampusConnect.CCBack.Model.RolAdministrador;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
-import CampusConnect.CCBack.Model.UsuarioCAE;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
@@ -92,11 +90,6 @@ class UsuarioGeneralController {
         return repository.findByEmail(email).getEstilosAprendizaje();
     }
 
-    @GetMapping("roles_cae")
-    public List<UsuarioCAE> rolesCAEUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getRolesCAE();
-    }
-
     @GetMapping("monitorias")
     public List<Asignatura> monitoriasUsuario(@AuthenticationPrincipal String email) {
         return repository.findByEmail(email).getMonitorDe();
@@ -121,11 +114,6 @@ class UsuarioGeneralController {
     @GetMapping("tips_gustados")
     public List<Tip> tipsGustadosUsuario(@AuthenticationPrincipal String email) {
         return repository.findByEmail(email).getTipsGustados();
-    }
-
-    @GetMapping("roles_admin")
-    public List<RolAdministrador> rolesAdministradorUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getRolesAdministrador();
     }
 
     @GetMapping("carreras")
@@ -187,6 +175,20 @@ class UsuarioGeneralController {
     //     System.out.println("usuario: " + username);
     // }
 
+    // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
+    @GetMapping("rolAdmin/{id}")
+    public UsuarioGeneral toggleRolAdmin(@PathVariable("id") Long id) {
+        return repository.toggleRolAdmin(id);
+    }
+
+    @GetMapping("rolMonitor/{id}")
+    public UsuarioGeneral toggleRolMonitor(
+        // @AuthenticationPrincipal UsuarioGeneral ug
+        @PathVariable("id") Long id
+        ) {
+        return repository.toggleRolMonitor(id);
+    }
+  
     @PutMapping("persoGrupos")
     public UsuarioGeneral persoGrupos(
         @RequestBody final WrapperPersoGrupos wpg,

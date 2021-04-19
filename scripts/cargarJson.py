@@ -30,7 +30,7 @@ def post(url, msg, auth = ""):
 
     if AUTH in response.headers:
         auth = response.headers[AUTH]
-        print("auth", auth)
+        print("auth:", auth)
 
     if 'error' in data:
         print("error:")
@@ -181,14 +181,9 @@ def cargar_usuarios(usuarios):
 
         print("creacion usuario")
         ret, auth = post(urlug, msg)
-
-        print("bla:", ret)
-
+        print("retorno:", ret)
         i_usr = ret['id']
-
-        print ("id usuario: ", i_usr)
-
-        print("rol monitor")
+        print("poner rol monitor a usuario ", usuario['nombre'],"con id:", i_usr)
         rolMonitor(auth, i_usr)
         # ret, auth = post(BASEURL + "carrera/all", {}, auth = auth)
 
@@ -202,7 +197,7 @@ def cargar_usuarios(usuarios):
         #         auth = auth
         #     )
         #     print(rr)
-        id_admin = ret['id']
+        id_admin = i_usr
     return(id_admin)
 
 def cargar_tips(tips, id_admin):

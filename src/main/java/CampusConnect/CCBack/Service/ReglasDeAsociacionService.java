@@ -1,39 +1,24 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import CampusConnect.CCBack.Model.ReglaAsociacionConPuntaje;
 import CampusConnect.CCBack.Model.ReglasDeAsociacion;
 import CampusConnect.CCBack.Model.Tip;
-import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ReglasDeAsociacionRepository;
 import CampusConnect.CCBack.Wrappers.WrapperReglaAsociacion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+@Service
+public class ReglasDeAsociacionService {
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/reglas")
-class ReglasDeAsociacionService {
     @Autowired
     private ReglasDeAsociacionRepository repository;
-
-    @Autowired
-    private TipoAprendizajeService servicioTipoAprendizaje;
 
     @Autowired
     private UsuarioGeneralService servicioUsuarios;
@@ -41,18 +26,16 @@ class ReglasDeAsociacionService {
     @Autowired
     private TipsService servicioTips;
 
-    @GetMapping("all")
     public Iterable<ReglasDeAsociacion> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("{id}")
-    public ReglasDeAsociacion findById(@PathVariable("id") final Long id) {
+    public ReglasDeAsociacion findById(final Long id) {
         return repository.findById(id).get();
     }
 
-    @PostMapping
-    public ReglasDeAsociacion crearReglaDeAsociacion(@RequestBody final WrapperReglaAsociacion reglaData) {
+    public ReglasDeAsociacion crearReglaDeAsociacion(
+        final WrapperReglaAsociacion reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
         
         regla.setSoporte(reglaData.getSoporte());
@@ -60,21 +43,20 @@ class ReglasDeAsociacionService {
         regla.setLift(reglaData.getLift());
         
         for(int i=0; i<reglaData.getAntecedentes().size(); i++){
-            Tip a = this.servicioTips.findTipById(reglaData.getAntecedentes().get(i));
+            Tip a = this.servicioTips.findById(reglaData.getAntecedentes().get(i));
             regla.agregarAntecedentes(a);
         }
 
         for(int i=0; i<reglaData.getConsequents().size(); i++){
-            Tip b = this.servicioTips.findTipById(reglaData.getConsequents().get(i));
+            Tip b = this.servicioTips.findById(reglaData.getConsequents().get(i));
             regla.agregarConsecuentes(b);
         }
 
         return repository.save(regla);
     }
 
-    @GetMapping("usuario/{id}")
-    public Tip obtenerRecomendacionTip(@PathVariable("id") final Long id){
-        long idTip = 15;
+    public Tip obtenerRecomendacionTip(final Long id){
+        // long idTip = 15;
         UsuarioGeneral ug = servicioUsuarios.findById(id);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
@@ -153,12 +135,12 @@ class ReglasDeAsociacionService {
 
     public Tip ultimoRecurso(UsuarioGeneral ug){
         long idTipParaRecomendar = 0;
-        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAllTips();
+        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
         boolean sale = false;
         Tip buscarSiExiste = new Tip();
         for(Long i= tipsSistema.get(0).getId(); i < tipsSistema.size() && !sale ; i++){
             idTipParaRecomendar = i;
-            buscarSiExiste = servicioTips.findTipById(idTipParaRecomendar);
+            buscarSiExiste = servicioTips.findById(idTipParaRecomendar);
             if(!ug.getTipsNoGustados().contains(buscarSiExiste) && !ug.getTipsGustados().contains(buscarSiExiste)){
                 sale = true;
             }
@@ -206,11 +188,11 @@ class ReglasDeAsociacionService {
         return reglasOrdenadas;
     }
 
-//Cuando no haya reglas 
+//Cuando no haya reglas
 
     public List<Tip> obtenerTipsPorTipo(UsuarioGeneral ug){
         List<Tip> tipsRecomendar = new ArrayList<Tip>();
-        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAllTips();
+        List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
 
         for(int i=0; i<ug.getEstilosAprendizaje().size(); i++){
             for(int j=0; j<tipsSistema.size(); j++){

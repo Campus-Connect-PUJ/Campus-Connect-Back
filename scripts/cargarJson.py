@@ -24,7 +24,10 @@ def post(url, msg, auth = ""):
         data=json.dumps(msg),
     )
 
-    data = json.loads(response.content)
+    if response.content:
+        data = json.loads(response.content)
+    else:
+        data = {}
 
     auth = ""
 
@@ -145,8 +148,6 @@ def cargar_usuarios(usuarios):
         }
 
         ret, auth = post(urlug, msg)
-
-        ret, _ = post(BASEURL + "usuario/printUser", {}, auth)
 
         print(ret)
 

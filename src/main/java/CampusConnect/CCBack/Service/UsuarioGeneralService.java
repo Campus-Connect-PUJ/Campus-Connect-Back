@@ -22,6 +22,7 @@ import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
+import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
@@ -46,6 +47,9 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private GruposEstudiantilesService geService;
+
+    @Autowired
+    private TipoComidaService tcService;
 
     @Autowired
     private ActividadService aService;
@@ -195,6 +199,7 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
+
         for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
             ug.agregarCaracteristica(c);
@@ -205,8 +210,8 @@ public class UsuarioGeneralService implements UserDetailsService {
             if(a!=null){
                 ug.agregarActividadInteres(a);
             }else{
-                a = new Actividad();
-                a.setNombre(nombre);
+                aService.crear(nombre);
+                a = aService.findByName(nombre); 
                 ug.agregarActividadInteres(a);
             }
             
@@ -217,8 +222,8 @@ public class UsuarioGeneralService implements UserDetailsService {
             if (h!=null){
                iu.agregarHobby(h); 
             }else{
-                h = new Hobby();
-                h.setNombre(nombre);
+                hService.crear(nombre);
+                h = hService.findByName(nombre);
                 iu.agregarHobby(h); 
             }
         }
@@ -241,14 +246,16 @@ public class UsuarioGeneralService implements UserDetailsService {
         RegimenAlimenticio regimen = regService.findById(idReg);
         RegimenAlimenticioUsuario regimenUsuario = new RegimenAlimenticioUsuario();
 
-        regimenUsuario.setExigencia(nivelExigencia);
+        regimenUsuario.setExigencia(nivelExigencia.intValue());
         regimenUsuario.setRegimenAlimenticio(regimen);
 
         ug.setRegimenAlimenticio(regimenUsuario);
 
         String ambientacion = wpr.getAmbientacion();
+        ug.setAmbientacion(ambientacion);
         for(Long id: wpr.getComidas()){
-            
+            TipoComida comida =tcService.findById(id);
+            ug.agregarComida(comida);
         }
 
         

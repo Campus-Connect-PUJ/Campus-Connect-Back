@@ -25,4 +25,11 @@ class ActividadService {
         return repository.findByNombre(name);
     }
 
+    public Actividad crear(String name){
+        Actividad actividad = new Actividad();
+        actividad.setNombre(name);
+
+        return repository.save(actividad);
+    }
+
 }

@@ -33,6 +33,8 @@ public class UsuarioGeneral implements UserDetails {
     private String apellido;
     private Integer semestre;
 
+	private String ambientacion;
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                inicio login                               //
 ///////////////////////////////////////////////////////////////////////////////
@@ -127,6 +129,9 @@ public class UsuarioGeneral implements UserDetails {
 
     @ManyToMany(mappedBy = "usuarios")
     private List<Actividad> actividadInteres;
+
+	@ManyToMany
+	private List<TipoComida> comidaFavorita;
 
 	public UsuarioGeneral(
         String email,
@@ -432,4 +437,23 @@ public class UsuarioGeneral implements UserDetails {
 		return this.email;
 	}
 
+	public String getAmbientacion(){
+		return this.ambientacion;
+	}
+
+	public void setAmbientacion(String ambientacion){
+		this.ambientacion = ambientacion;
+	}
+
+	public List<TipoComida> getComidaFav(){
+		return this.comidaFavorita;
+	}
+
+	public void setComidaFav(List<TipoComida> fav){
+		this.comidaFavorita=fav;
+	}
+
+	public void agregarComida(TipoComida comida){
+		this.comidaFavorita.add(comida);
+	}
 }

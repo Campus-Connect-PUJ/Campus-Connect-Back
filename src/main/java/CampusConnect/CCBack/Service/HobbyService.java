@@ -28,4 +28,11 @@ class HobbyService {
         return repository.findByNombre(name);
     }
 
+    public Hobby crear(String name){
+        Hobby hobby = new Hobby();
+        hobby.setNombre(name);
+
+        return repository.save(hobby);
+    }
+
 }

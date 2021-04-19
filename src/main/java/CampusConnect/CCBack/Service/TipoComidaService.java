@@ -2,7 +2,6 @@ package CampusConnect.CCBack.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Repository.TipoComidaRepository;

@@ -2,7 +2,6 @@ package CampusConnect.CCBack.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Repository.TipoAprendizajeRepository;
@@ -21,7 +20,7 @@ public class TipoAprendizajeService {
         return repository.findById(id).get();
     }
 
-    public TipoAprendizaje create(@RequestBody final TipoAprendizaje dato) {
+    public TipoAprendizaje create(final TipoAprendizaje dato) {
         TipoAprendizaje c = new TipoAprendizaje();
         c.setDescripcion(dato.getDescripcion());
         return repository.save(c);

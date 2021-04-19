@@ -3,15 +3,14 @@ package CampusConnect.CCBack.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Repository.LugarRepository;
 
 @Service
 public class LugarService {
+
     @Autowired
     private LugarRepository repository;
 
@@ -21,12 +20,12 @@ public class LugarService {
     }
 
     @GetMapping("{id}")
-    public Lugar findById(@PathVariable("id") final Long id) {
+    public Lugar findById(final Long id) {
         return repository.findById(id).get();
     }
 
     @PostMapping
-    public Lugar create(@RequestBody final Lugar dato) {
+    public Lugar create(final Lugar dato) {
         Lugar c = new Lugar();
         c.setNombre(dato.getNombre());
         c.setUbicacion(dato.getUbicacion());

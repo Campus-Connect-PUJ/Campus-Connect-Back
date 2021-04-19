@@ -13,28 +13,21 @@ public class RespuestaForoService {
     @Autowired
     private RespuestaForoRepository repository;
 
-    @Autowired
-    private UsuarioGeneralService uService;
-
     public Iterable<RespuestaForo> findAll() {
         return repository.findAll();
     }
 
-    public RespuestaForo findById(@PathVariable("id") final Long id) {
+    public RespuestaForo findById(final Long id) {
         return repository.findById(id).get();
     }
 
-    public RespuestaForo sumarVotoAForo(
-        @PathVariable("id") final Long idRespuesta
-    ){
+    public RespuestaForo sumarVotoAForo(final Long idRespuesta){
         RespuestaForo respuesta = this.findById(idRespuesta);
         respuesta.like();
         return repository.save(respuesta);
     }
 
-    public RespuestaForo restarVotoAForo(
-        @PathVariable("id") final Long idRespuesta
-    ){
+    public RespuestaForo restarVotoAForo(final Long idRespuesta){
         RespuestaForo respuesta = this.findById(idRespuesta);
         respuesta.dislike();
         return repository.save(respuesta);

@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import CampusConnect.CCBack.Model.ReglaAsociacionConPuntaje;
 import CampusConnect.CCBack.Model.ReglasDeAsociacion;
@@ -46,12 +43,12 @@ public class ReglasDeAsociacionService {
         regla.setLift(reglaData.getLift());
         
         for(int i=0; i<reglaData.getAntecedentes().size(); i++){
-            Tip a = this.servicioTips.findTipById(reglaData.getAntecedentes().get(i));
+            Tip a = this.servicioTips.findById(reglaData.getAntecedentes().get(i));
             regla.agregarAntecedentes(a);
         }
 
         for(int i=0; i<reglaData.getConsequents().size(); i++){
-            Tip b = this.servicioTips.findTipById(reglaData.getConsequents().get(i));
+            Tip b = this.servicioTips.findById(reglaData.getConsequents().get(i));
             regla.agregarConsecuentes(b);
         }
 
@@ -59,7 +56,7 @@ public class ReglasDeAsociacionService {
     }
 
     public Tip obtenerRecomendacionTip(final Long id){
-        long idTip = 15;
+        // long idTip = 15;
         UsuarioGeneral ug = servicioUsuarios.findById(id);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
@@ -143,7 +140,7 @@ public class ReglasDeAsociacionService {
         Tip buscarSiExiste = new Tip();
         for(Long i= tipsSistema.get(0).getId(); i < tipsSistema.size() && !sale ; i++){
             idTipParaRecomendar = i;
-            buscarSiExiste = servicioTips.findTipById(idTipParaRecomendar);
+            buscarSiExiste = servicioTips.findById(idTipParaRecomendar);
             if(!ug.getTipsNoGustados().contains(buscarSiExiste) && !ug.getTipsGustados().contains(buscarSiExiste)){
                 sale = true;
             }

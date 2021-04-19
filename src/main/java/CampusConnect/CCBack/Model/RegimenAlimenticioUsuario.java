@@ -25,7 +25,7 @@ public class RegimenAlimenticioUsuario {
     private UsuarioGeneral usuario;
 
     @ManyToOne
-    @JoinColumn(name="idAsignatura")
+    @JoinColumn(name="idRegimenAlimenticio")
     private RegimenAlimenticio regimenAlimenticio;
 
 	public int getExigencia() {

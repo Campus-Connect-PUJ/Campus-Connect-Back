@@ -60,6 +60,9 @@ public class UsuarioGeneralService implements UserDetailsService {
     @Autowired
     private RegimenAlimenticioService regService;
 
+    @Autowired
+    private RegimenAlimenticioUsuarioService rauService;
+
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
@@ -244,10 +247,10 @@ public class UsuarioGeneralService implements UserDetailsService {
         Long idReg = wpr.getRegimenAlimenticio();
         Long nivelExigencia = wpr.getNivelExigencia();
         RegimenAlimenticio regimen = regService.findById(idReg);
-        RegimenAlimenticioUsuario regimenUsuario = new RegimenAlimenticioUsuario();
 
-        regimenUsuario.setExigencia(nivelExigencia.intValue());
-        regimenUsuario.setRegimenAlimenticio(regimen);
+        RegimenAlimenticioUsuario regimenUsuario = rauService.create(
+            regimen, nivelExigencia.intValue(), ug
+        );
 
         ug.setRegimenAlimenticio(regimenUsuario);
 
@@ -258,7 +261,6 @@ public class UsuarioGeneralService implements UserDetailsService {
             ug.agregarComida(comida);
         }
 
-        
-        return ug;
+        return repository.save(ug);
     }
 }

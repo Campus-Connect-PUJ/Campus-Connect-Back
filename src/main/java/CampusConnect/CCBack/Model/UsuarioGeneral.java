@@ -34,6 +34,8 @@ public class UsuarioGeneral implements UserDetails {
     private String apellido;
     private Integer semestre;
 
+	private String ambientacion;
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                inicio login                               //
 ///////////////////////////////////////////////////////////////////////////////
@@ -119,7 +121,13 @@ public class UsuarioGeneral implements UserDetails {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
-    public UsuarioGeneral(
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Actividad> actividadInteres;
+
+	@ManyToMany
+	private List<TipoComida> comidaFavorita;
+
+	public UsuarioGeneral(
         String email,
         String password,
         String nombre,
@@ -153,6 +161,7 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
         this.roles = new ArrayList<>();
+        this.actividadInteres = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;
@@ -160,6 +169,26 @@ public class UsuarioGeneral implements UserDetails {
         this.credentialsNonExpired = true;
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
     }
+
+    public List<Actividad> getActividadInteres() {
+		return actividadInteres;
+	}
+
+	public void setActividadInteres(List<Actividad> actividadInteres) {
+		this.actividadInteres = actividadInteres;
+	}
+
+    public void agregarActividadInteres(Actividad a) {
+        this.actividadInteres.add(a);
+    }
+
+    public List<UsuarioCAE> getRolesCAE() {
+		return rolesCAE;
+	}
+
+	public void setRolesCAE(List<UsuarioCAE> rolesCAE) {
+		this.rolesCAE = rolesCAE;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -382,6 +411,10 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.add(tip);
 	}
 
+    public void agregarCaracteristica(Caracteristica c) {
+        this.caracteristicas.add(c);
+    }
+
 	public List<Tematica> getTematicasGustan() {
 		return tematicasGustan;
 	}
@@ -401,4 +434,23 @@ public class UsuarioGeneral implements UserDetails {
 		return this.email;
 	}
 
+	public String getAmbientacion(){
+		return this.ambientacion;
+	}
+
+	public void setAmbientacion(String ambientacion){
+		this.ambientacion = ambientacion;
+	}
+
+	public List<TipoComida> getComidaFav(){
+		return this.comidaFavorita;
+	}
+
+	public void setComidaFav(List<TipoComida> fav){
+		this.comidaFavorita=fav;
+	}
+
+	public void agregarComida(TipoComida comida){
+		this.comidaFavorita.add(comida);
+	}
 }

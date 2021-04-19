@@ -286,9 +286,7 @@ class UsuarioGeneralService {
         @PathVariable("idUsuario") final Long idUsuario
     ){
         UsuarioGeneral ug = this.findById(idUsuario);
-        UsuarioMonitor monitoria = new UsuarioMonitor();
-        Asignatura asignatura = new Asignatura();
-        Horario horario = new Horario();
+
 
         List<UsuarioMonitor> monitorDe = ug.getMonitorDe();
         if(monitorDe.size() > 0 && existeMonitoria(ug, infoMonitoria)){
@@ -301,18 +299,34 @@ class UsuarioGeneralService {
             crearMonitoria(ug, infoMonitoria);
         }
 
-
-
-
-
         repository.save(ug);
 
     }
 
+    @GetMapping("monitores/all")
+    public Iterable<UsuarioGeneral> findMonitores(
+    ) {
+        ArrayList<UsuarioGeneral> monitores = new ArrayList<>();
+        ArrayList<UsuarioGeneral> todos = new ArrayList<>();
+
+        todos = (ArrayList<UsuarioGeneral>) repository.findAll();
+
+        for(int i=0; i<todos.size(); i++){
+            if(todos.get(i).getMonitorDe().size()>0){
+                monitores.add(todos.get(i));
+            }
+        }
+        
+
+        return monitores;
+    }
+
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
-        Long idAsignatura = (long) 203;
+
+
         UsuarioMonitor monitoria = new UsuarioMonitor();
-        Asignatura asignatura = asService.findById(idAsignatura);
+        
+        Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
         Horario horario = new Horario();
 
         horario.setFechaInicial(infoMonitoria.getFechaInicial());

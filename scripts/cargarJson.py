@@ -75,7 +75,7 @@ def main(archivo):
     print(ret)
     print(LOGINDATA)
     print("--------------------")
-    with open(archivo, errors="ignore") as myfile:
+    with open(archivo, 'r') as myfile:
         data=myfile.read()
 
         # parse file

@@ -1,4 +1,4 @@
-package CampusConnect.CCBack.Service;
+package CampusConnect.CCBack.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,30 +8,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import CampusConnect.CCBack.Model.Requisito;
-import CampusConnect.CCBack.Repository.RequisitoRepository;
+import CampusConnect.CCBack.Model.TipoComida;
+import CampusConnect.CCBack.Service.TipoComidaService;
 
 @RestController
-@RequestMapping("/requisito")
-class RequisitoService {
+@RequestMapping("/tipo_comida")
+class TipoComidaController {
+
     @Autowired
-    private RequisitoRepository repository;
+    private TipoComidaService repository;
 
     @GetMapping("all")
-    public Iterable<Requisito> findAll() {
+    public Iterable<TipoComida> findAll() {
         return repository.findAll();
     }
 
     @GetMapping("{id}")
-    public Requisito findById(@PathVariable("id") final Long id) {
-        return repository.findById(id).get();
+    public TipoComida findById(@PathVariable("id") final Long id) {
+        return repository.findById(id);
     }
 
     @PostMapping
-    public Requisito create(@RequestBody final Requisito dato) {
-        Requisito c = new Requisito();
-        c.setNombre(dato.getNombre());
-        return repository.save(c);
+    public TipoComida create(@RequestBody final TipoComida dato) {
+        return repository.create(dato);
     }
 
 }

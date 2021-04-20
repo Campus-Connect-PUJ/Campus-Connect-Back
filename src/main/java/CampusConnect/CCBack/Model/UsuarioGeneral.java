@@ -3,8 +3,11 @@ package CampusConnect.CCBack.Model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -32,12 +34,17 @@ public class UsuarioGeneral implements UserDetails {
     private String apellido;
     private Integer semestre;
 
+	private String ambientacion;
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                inicio login                               //
 ///////////////////////////////////////////////////////////////////////////////
 
+    @Column(unique = true, nullable = false)
     private String email;
+
     // @JsonIgnore
+    @Column(nullable = false)
 	private String password;
 
     private boolean enabled;
@@ -45,7 +52,8 @@ public class UsuarioGeneral implements UserDetails {
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 
-	private short rol; // para no tener que guardarlo en una tabla aparte
+    @ElementCollection
+	private List<Short> roles;
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                final login                                //
@@ -99,15 +107,7 @@ public class UsuarioGeneral implements UserDetails {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
-    private List<UsuarioCAE> rolesCAE;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
     private List<Caracteristica> caracteristicas;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
-    private List<RolAdministrador> rolesAdministrador;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
@@ -122,7 +122,13 @@ public class UsuarioGeneral implements UserDetails {
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tematica> tematicasGustan;
 
-    public UsuarioGeneral(
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Actividad> actividadInteres;
+
+	@ManyToMany
+	private List<TipoComida> comidaFavorita;
+
+	public UsuarioGeneral(
         String email,
         String password,
         String nombre,
@@ -130,12 +136,13 @@ public class UsuarioGeneral implements UserDetails {
         ) {
 		this.email = email;
 		this.password = password;
-        this.rol = Rol.USER; // tener el rol de usuario por default
 
         this.nombre = nombre;
         this.apellido = apellido;
 
         inicializar();
+
+        this.roles.add(Rol.USER); // tener el rol de usuario por default
     }
 
     public UsuarioGeneral() {
@@ -154,6 +161,8 @@ public class UsuarioGeneral implements UserDetails {
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
         this.tips = new ArrayList<>();
+        this.roles = new ArrayList<>();
+        this.actividadInteres = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;
@@ -162,13 +171,17 @@ public class UsuarioGeneral implements UserDetails {
         // this.regimenAlimenticio = new RegimenAlimenticioUsuario();
     }
 
-    public List<UsuarioCAE> getRolesCAE() {
-		return rolesCAE;
+    public List<Actividad> getActividadInteres() {
+		return actividadInteres;
 	}
 
-	public void setRolesCAE(List<UsuarioCAE> rolesCAE) {
-		this.rolesCAE = rolesCAE;
+	public void setActividadInteres(List<Actividad> actividadInteres) {
+		this.actividadInteres = actividadInteres;
 	}
+
+    public void agregarActividadInteres(Actividad a) {
+        this.actividadInteres.add(a);
+    }
 
 	public String getNombre() {
 		return nombre;
@@ -196,14 +209,6 @@ public class UsuarioGeneral implements UserDetails {
 
 	public void setCaracteristicas(List<Caracteristica> caracteristicas) {
 		this.caracteristicas = caracteristicas;
-	}
-
-	public List<RolAdministrador> getRolesAdministrador() {
-		return rolesAdministrador;
-	}
-
-	public void setRolesAdministrador(List<RolAdministrador> rolesAdministrador) {
-		this.rolesAdministrador = rolesAdministrador;
 	}
 
 	public InformacionUsuario getInformacionUsuario() {
@@ -338,13 +343,22 @@ public class UsuarioGeneral implements UserDetails {
 		this.enabled = enabled;
 	}
 
-	public String getRol() {
-		return Rol.string(this.rol);
+	public List<String> getRoles() {
+        return this.roles.stream().map( v -> Rol.string(v)).collect(Collectors.toList());
+		// return Rol.string(this.rol);
 	}
 
-	public void setRol(short rol) {
-		this.rol = rol;
+	public void setRoles(List<Short> rol) {
+		this.roles = rol;
 	}
+
+    public void setRol(Short rol) {
+        this.roles.add(rol);
+    }
+
+    public void removeRol(Short rol) {
+        this.roles.remove(rol);
+    }
 
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;
@@ -390,6 +404,10 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.add(tip);
 	}
 
+    public void agregarCaracteristica(Caracteristica c) {
+        this.caracteristicas.add(c);
+    }
+
 	public List<Tematica> getTematicasGustan() {
 		return tematicasGustan;
 	}
@@ -411,6 +429,26 @@ public class UsuarioGeneral implements UserDetails {
 
 	public void addMonitorDe(UsuarioMonitor monitoria){
 		this.monitorDe.add(monitoria);
+	}
+
+	public String getAmbientacion(){
+		return this.ambientacion;
+	}
+
+	public void setAmbientacion(String ambientacion){
+		this.ambientacion = ambientacion;
+	}
+
+	public List<TipoComida> getComidaFav(){
+		return this.comidaFavorita;
+	}
+
+	public void setComidaFav(List<TipoComida> fav){
+		this.comidaFavorita=fav;
+	}
+
+	public void agregarComida(TipoComida comida){
+		this.comidaFavorita.add(comida);
 	}
 
 }

@@ -16,7 +16,8 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import CampusConnect.CCBack.Service.UsuarioGeneralService;
 
 /**
  * 
@@ -42,8 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    protected void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new RESTUserDetailsService()).passwordEncoder(encoder());
+    protected void configureGlobal(final AuthenticationManagerBuilder auth)
+        throws Exception {
+        auth.userDetailsService(new UsuarioGeneralService()).passwordEncoder(encoder());
     }
 
     @Bean

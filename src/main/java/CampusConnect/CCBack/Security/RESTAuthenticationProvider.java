@@ -1,32 +1,23 @@
 package CampusConnect.CCBack.Security;
 
-import java.io.IOException;
 import java.util.Date;
-
-import javax.servlet.ServletException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class RESTAuthenticationProvider {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private RESTUserDetailsService userDetailsService;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;

@@ -24,13 +24,16 @@ def post(url, msg, auth = ""):
         data=json.dumps(msg),
     )
 
-    data = json.loads(response.content)
+    if response.content:
+        data = json.loads(response.content)
+    else:
+        data = {}
 
     auth = ""
 
     if AUTH in response.headers:
         auth = response.headers[AUTH]
-        print("auth", auth)
+        print("auth:", auth)
 
     if 'error' in data:
         print("error:")
@@ -39,6 +42,35 @@ def post(url, msg, auth = ""):
         print(data)
         quit()
     return data, auth
+
+def get(url, auth = ""):
+    print(url)
+    headers = {
+        'Content-Type': 'application/json',
+    }
+    if auth != "" :
+        headers[AUTH] = auth
+
+    # print(headers)
+    response = requests.get(
+        url,
+        headers=headers,
+    )
+
+    if response.content:
+        data = json.loads(response.content)
+    else:
+        data = {}
+
+    # auth = ""
+
+    # if 'error' in data:
+    #     print("error:")
+    #     print('\t', data['error'])
+
+    #     print(data)
+    #     quit()
+    return data
 
 def login ():
     url = BASEURL + 'usuario/login'
@@ -67,6 +99,12 @@ def agrupar(dic, valores, tipo, locurl):
             if 'error' not in ret:
                 dic[valor] = int(ret['id'])
     return dic
+
+def rolMonitor(aauth, usr):
+    url = BASEURL + 'usuario/rolMonitor/{}'.format(usr)
+    print(url)
+    ret = get(url, auth = aauth)
+    print(ret)
 
 def main(archivo):
     # read file
@@ -156,12 +194,18 @@ def cargar_usuarios(usuarios):
             "nombre": usuario['nombre'],
             "password": usuario['password'],
             "apellido": usuario['apellido'],
-            "correo": usuario['correo'],
+            "email": usuario['correo'],
             "semestre": usuario['semestre'],
             "password": usuario['password']
         }
 
+        print("creacion usuario")
         ret, auth = post(urlug, msg)
+        print("retorno:", ret)
+        i_usr = ret['id']
+        print("poner rol monitor a usuario ", usuario['nombre'],"con id:", i_usr)
+        rolMonitor(auth, i_usr)
+        # ret, auth = post(BASEURL + "carrera/all", {}, auth = auth)
 
         print(ret)
 
@@ -172,7 +216,7 @@ def cargar_usuarios(usuarios):
         #         auth = auth
         #     )
         #     print(rr)
-        id_admin = ret['id']
+        id_admin = i_usr
     return(id_admin)
 
 def cargar_tips(tips, id_admin):

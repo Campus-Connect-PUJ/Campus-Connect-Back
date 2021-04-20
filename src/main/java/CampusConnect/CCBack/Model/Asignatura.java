@@ -30,7 +30,7 @@ public class Asignatura {
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
-    private List<Actividad> actividades;
+    private List<ActividadAsignatura> actividades;
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
@@ -58,10 +58,6 @@ public class Asignatura {
 		this.descripcion = descripcion;
 	}
 
-	public List<Actividad> getActividades() {
-		return actividades;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -74,11 +70,15 @@ public class Asignatura {
 		return monitores;
 	}
 
-	public void setMonitores(List<UsuarioMonitor> monitores) {
-		this.monitores = monitores;
+    public void setMonitores(List<UsuarioMonitor> monitores) {
+        this.monitores = monitores;
+    }
+
+	public List<ActividadAsignatura> getActividades() {
+		return actividades;
 	}
 
-	public void setActividades(List<Actividad> actividades) {
+	public void setActividades(List<ActividadAsignatura> actividades) {
 		this.actividades = actividades;
 	}
 

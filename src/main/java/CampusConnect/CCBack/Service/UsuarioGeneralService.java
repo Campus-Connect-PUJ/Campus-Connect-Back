@@ -4,35 +4,28 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.Carrera;
-import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Horario;
+import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.RegimenAlimenticio;
+import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Restaurante;
-import CampusConnect.CCBack.Model.RolAdministrador;
-import CampusConnect.CCBack.Model.Tip;
+import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
-import CampusConnect.CCBack.Model.UsuarioCAE;
+import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Repository.AsignaturaRepository;
@@ -40,15 +33,16 @@ import CampusConnect.CCBack.Repository.HorarioRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
-import CampusConnect.CCBack.Security.RESTUserDetailsService;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
+import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
-@RequestMapping("/usuario")
-class UsuarioGeneralService {
+public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private UsuarioGeneralRepository repository;
@@ -57,23 +51,19 @@ class UsuarioGeneralService {
     private RestaurantesService rService;
 
     @Autowired
-    private RESTAuthenticationProvider restap;
-
-    @Autowired
     private TipoAprendizajeService taService;
 
     @Autowired
-    private CarreraService cService;
-
-    @Autowired
-    private RESTUserDetailsService rudService;
+    private CaracteristicasService cService;
 
     @Autowired
     private GruposEstudiantilesService geService;
-    
+
+    @Autowired
+    private TipoComidaService tcService;
+
     @Autowired
     private AsignaturaService asService;
-
 
     @Autowired
     private AsignaturaRepository asignaturaRepository;
@@ -84,31 +74,56 @@ class UsuarioGeneralService {
     @Autowired
     private UsuarioMonitorRepository monitorRepository;
 
+    @Autowired
+    private ActividadService aService;
 
+    @Autowired
+    private HobbyService hService;
+
+    @Autowired
+    private RegimenAlimenticioService regService;
+
+    @Autowired
+    private RegimenAlimenticioUsuarioService rauService;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
-	public UsuarioGeneralService() {}
+    private UsuarioGeneral admin;
 
-    @GetMapping("all")
-    public Iterable<UsuarioGeneral> findAllForos() {
+	public UsuarioGeneralService() {
+		super();
+
+        this.passwordEncoder = new BCryptPasswordEncoder();
+
+        this.admin = new UsuarioGeneral(
+            "campusconnect2021@gmail.com",
+            passwordEncoder.encode("admin"),
+            "admin",
+            "admin"
+            );
+            admin.setRol(Rol.ADMIN);
+    }
+
+    public Iterable<UsuarioGeneral> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("{id}")
-    public UsuarioGeneral findById(@PathVariable("id") Long id) {
+    public UsuarioGeneral findById(Long id) {
         return repository.findById(id).get();
     }
 
-    @PostMapping("{id}/resenha_grupo_estudiantil/{id_res}")
+    public UsuarioGeneral findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
-        @RequestBody final ResenhaGrupoEstudiantil foroData,
-        @PathVariable("id") final Long idUsuario,
-        @PathVariable("id_res") final Long idRestaurante
+        final String email,
+        final ResenhaGrupoEstudiantil foroData,
+        final Long idRestaurante
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = this.findByEmail(email);
         GrupoEstudiantil restaurante = geService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setGrupoEstudiantil(restaurante);
@@ -117,75 +132,19 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @PostMapping("{id}/resenha_restaurante/{id_res}")
     public UsuarioGeneral crearResentaRestaurante(
-        @RequestBody final ResenhaRestaurante foroData,
-        @PathVariable("id") final Long idUsuario,
-        @PathVariable("id_res") final Long idRestaurante
+        final String email,
+        final ResenhaRestaurante foroData,
+        final Long idRestaurante
         ) {
         ResenhaRestaurante rr = new ResenhaRestaurante();
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         Restaurante restaurante = rService.findById(idRestaurante);
         rr.setEstrellas(foroData.getEstrellas());
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
         ug.agregarResenhaRestaurante(rr);
         return repository.save(ug);
-    }
-
-    @GetMapping("{id}/respuestas_foros")
-    public List<RespuestaForo> respuestasForosUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getRespuestasForo();
-    }
-
-    @GetMapping("{id}/foros")
-    public List<Foro> postsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getForos();
-    }
-
-    @GetMapping("{id}/estilos_aprendizaje")
-    public List<TipoAprendizaje> estilosAprendizajeUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getEstilosAprendizaje();
-    }
-
-    @GetMapping("{id}/roles_cae")
-    public List<UsuarioCAE> rolesCAEUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getRolesCAE();
-    }
-
-    @GetMapping("{id}/monitorias")
-    public List<UsuarioMonitor> monitoriasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getMonitorDe();
-    }
-
-    @GetMapping("{id}/caracteristicas")
-    public List<Caracteristica> caracteristicasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getCaracteristicas();
-    }
-
-    @GetMapping("{id}/informacion")
-    public InformacionUsuario informacionUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getInformacionUsuario();
-    }
-
-    @GetMapping("{id}/tips")
-    public List<Tip> tipsUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getTips();
-    }
-
-    @GetMapping("{id}/tips_gustados")
-    public List<Tip> tipsGustadosUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getTipsGustados();
-    }
-
-    @GetMapping("{id}/roles_admin")
-    public List<RolAdministrador> rolesAdministradorUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getRolesAdministrador();
-    }
-
-    @GetMapping("{id}/carreras")
-    public List<Carrera> carrerasUsuario(@PathVariable("id") Long id) {
-        return repository.findById(id).get().getCarrerasUsuario();
     }
 
     public UsuarioGeneral create(final WrapperUsuarioGeneral data) {
@@ -199,99 +158,150 @@ class UsuarioGeneralService {
         return repository.save(ug);
     }
 
-    @PostMapping("{id}/agregarTipoAprendizaje/{id_tip}")
     public UsuarioGeneral agregarTipAprendizaje(
-        @PathVariable("id") final Long idUsuario,
-        @PathVariable("id_tip") final Long idTipoAprendizaje
+        final String email,
+        final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findById(idUsuario).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
         tiposAprendizaje = ug.getEstilosAprendizaje();
         if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
             tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
             ug.setEstilosAprendizaje(tiposAprendizaje);
         }
-        
 
         return repository.save(ug);
     }
 
-    @PostMapping("login/registro")
-    public UsuarioGeneral registro(
-        @RequestBody final WrapperUsuarioGeneral data,
-        HttpServletResponse response
-        ) {
-        System.out.println("creando usuario");
-        UsuarioGeneral ug = this.create(data);
-        WrapperLogin wl = new WrapperLogin();
-        wl.setUsername(data.getEmail());
-        wl.setPassword(data.getPassword());
-        return resp(wl, ug, response);
-    }
-
-    @PostMapping("login")
-    public UsuarioGeneral login(
-        @RequestBody final WrapperLogin login,
-        HttpServletResponse response
-        ) {
-        System.out.println("login");
-        System.out.println(login.getUsername());
-        System.out.println(login.getPassword());
-		final UsuarioGeneral user = rudService.loadUserByUsername(login.getUsername());
-        return resp(login, user, response);
-    }
-
-    private UsuarioGeneral resp(
-        @RequestBody final WrapperLogin login,
-        UsuarioGeneral ug,
-        HttpServletResponse response
-        ) {
-        String token = restap.authenticateToken(ug, login);
-
-        response.addHeader(
-            SecurityConstants.HEADER_AUTHORIZACION_KEY,
-            SecurityConstants.TOKEN_BEARER_PREFIX + " " + token);
-        response.addHeader("Access-Control-Expose-Headers", "Authorization");
-
+    public UsuarioGeneral registro(final WrapperUsuarioGeneral data) {
+        final UsuarioGeneral ug = this.create(data);
         return ug;
     }
 
-    @PostMapping("/rol/{idUsuario}/{rol}")
-    private UsuarioGeneral cambiarRol(
-        @PathVariable("idUsuario") final Long idUsuario,
-        @PathVariable("rol") final Long idRol
+    public UsuarioGeneral login(final WrapperLogin login) {
+		final UsuarioGeneral user = this.loadUserByUsername(login.getUsername());
+        return user;
+    }
+
+    @Override
+    public UsuarioGeneral loadUserByUsername(final String username)
+        throws UsernameNotFoundException {
+
+        if (username.length() == 0) {
+            throw new UsernameNotFoundException("usuario vacio");
+        }
+
+        // admin nunca queda guardado en bd
+        System.out.println("------------------------------");
+        System.out.println(username + " == " + this.admin.getUsername());
+
+        if (username.equals(this.admin.getUsername())) {
+            System.out.println("es admin");
+            return this.admin;
+        }
+
+        System.out.println("*** Retrieving user");
+        UsuarioGeneral ul = repository.findByEmail(username);
+        if (ul == null) {
+            throw new UsernameNotFoundException(
+                "User Not Found with -> username or email: " + username
+            );
+        }
+        return ul;
+	}
+
+    public UsuarioGeneral toggleRolAdmin(Long id) {
+        UsuarioGeneral ug = this.findById(id);
+        if (ug.getRoles().contains(Rol.string(Rol.ADMIN))) {
+            ug.setRol(Rol.ADMIN);
+        } else {
+            ug.removeRol(Rol.ADMIN);
+        }
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral toggleRolMonitor(
+        // @AuthenticationPrincipal UsuarioGeneral ug
+        Long id
+        ) {
+        UsuarioGeneral ug = this.findById(id);
+        System.out.println(ug.getEmail());
+
+        if (ug.getRoles().contains(Rol.string(Rol.MONITOR))) {
+            ug.setRol(Rol.MONITOR);
+        } else {
+            ug.removeRol(Rol.MONITOR);
+        }
+        return repository.save(ug);
+    }
+  
+    // Una lista de características temáticas, string actividades
+    // hobbies u el bool de si cree el Dios
+    public UsuarioGeneral persoGrupos(
+        final WrapperPersoGrupos wpg,
+        String email
+        ) {
+
+        UsuarioGeneral ug = this.findByEmail(email);
+
+        InformacionUsuario iu = ug.getInformacionUsuario();
+
+        for (Long id: wpg.getCaracteristicas()) {
+            Caracteristica c = cService.findById(id);
+            ug.agregarCaracteristica(c);
+        }
+
+        for (String nombre : wpg.getActividades()) {
+            Actividad a = aService.findByName(nombre);
+            if(a!=null){
+                ug.agregarActividadInteres(a);
+            }else{
+                aService.crear(nombre);
+                a = aService.findByName(nombre); 
+                ug.agregarActividadInteres(a);
+                aService.agregarUsuario(a.getId(), ug);
+            }
+        }
+
+        for (String nombre : wpg.getHobbies()) {
+            Hobby h = hService.findByName(nombre);
+            if (h!=null){
+               iu.agregarHobby(h); 
+            }else{
+                hService.crear(nombre);
+                h = hService.findByName(nombre);
+                iu.agregarHobby(h); 
+            }
+        }
+
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral cambiarRol(
+        final Long idUsuario,
+        final Short idRol
     ){
         UsuarioGeneral ug = this.findById(idUsuario);
-        short rol = 1;
-        if(idRol == 1){
-            //User
-            rol = 1;
-            ug.setRol(rol);
+        if (!Rol.contain(idRol)) {
+            return null;
         }
-        else if(idRol == 2){
-            //Monitor
-            rol = 2;
-            ug.setRol(rol);
+        if (ug.getRoles().contains(Rol.string(idRol))) {
+            ug.setRol(idRol);
+        } else {
+            ug.removeRol(idRol);
         }
-
-        repository.save(ug);
-
-        return ug;
+        return repository.save(ug);
     }
 
-
-    @PostMapping("agregarMonitoria/{idUsuario}")
     public void agregarMonitoria(
-        @RequestBody final WrapperMonitoria infoMonitoria,
-        @PathVariable("idUsuario") final Long idUsuario
+        final WrapperMonitoria infoMonitoria,
+        final String email
     ){
-        UsuarioGeneral ug = this.findById(idUsuario);
-
+        UsuarioGeneral ug = this.findByEmail(email);
 
         List<UsuarioMonitor> monitorDe = ug.getMonitorDe();
         if(monitorDe.size() > 0 && existeMonitoria(ug, infoMonitoria)){
-            //Agregar horarios a monitoria
-
+            //TODO: Agregar horarios a monitoria
         }
         else{
             //Crear desde 0 monitoria
@@ -303,9 +313,7 @@ class UsuarioGeneralService {
 
     }
 
-    @GetMapping("monitores/all")
-    public Iterable<UsuarioGeneral> findMonitores(
-    ) {
+    public Iterable<UsuarioGeneral> findMonitores() {
         ArrayList<UsuarioGeneral> monitores = new ArrayList<>();
         ArrayList<UsuarioGeneral> todos = new ArrayList<>();
 
@@ -322,7 +330,6 @@ class UsuarioGeneralService {
     }
 
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
-
 
         UsuarioMonitor monitoria = new UsuarioMonitor();
         
@@ -356,4 +363,33 @@ class UsuarioGeneralService {
         return false;
     }
 
+    //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
+    public UsuarioGeneral persoRestaurantes(
+        final WrapperPersoRestaurantes wpr,
+        String email
+        ) {
+
+        UsuarioGeneral ug = this.findByEmail(email);
+
+        InformacionUsuario iu = ug.getInformacionUsuario();
+
+        Long idReg = wpr.getRegimenAlimenticio();
+        Long nivelExigencia = wpr.getNivelExigencia();
+        RegimenAlimenticio regimen = regService.findById(idReg);
+
+        RegimenAlimenticioUsuario regimenUsuario = rauService.create(
+            regimen, nivelExigencia.intValue(), ug
+        );
+
+        ug.setRegimenAlimenticio(regimenUsuario);
+
+        String ambientacion = wpr.getAmbientacion();
+        ug.setAmbientacion(ambientacion);
+        for(Long id: wpr.getComidas()){
+            TipoComida comida =tcService.findById(id);
+            ug.agregarComida(comida);
+        }
+
+        return repository.save(ug);
+    }
 }

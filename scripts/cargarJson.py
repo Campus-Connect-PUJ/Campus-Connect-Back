@@ -113,7 +113,7 @@ def main(archivo):
     print(ret)
     print(LOGINDATA)
     print("--------------------")
-    with open(archivo, 'r') as myfile:
+    with open(archivo, errors="ignore") as myfile:
         data=myfile.read()
 
         # parse file

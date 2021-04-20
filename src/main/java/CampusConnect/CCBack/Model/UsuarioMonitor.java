@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -19,6 +20,7 @@ public class UsuarioMonitor {
     @GeneratedValue
     private Long id;
 
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
@@ -27,21 +29,45 @@ public class UsuarioMonitor {
     @JoinColumn(name="idAsignatura")
     private Asignatura asignatura;
 
-	@JsonIgnore
     @OneToMany(mappedBy = "monitor")
     private List<Horario> horarios;
 
-    public UsuarioMonitor() {
-        this.horarios = new ArrayList<>();
-    }
+	private Long calificacion;
 
-    public List<Horario> getHorario() {
+	private Long cantidadVotos;
+
+
+	
+
+	public Long getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Long calificaciones) {
+		this.calificacion = calificaciones;
+	}
+
+	public Long getCantidadVotos() {
+		return cantidadVotos;
+	}
+
+	public void setCantidadVotos(Long cantidadVotos) {
+		this.cantidadVotos = cantidadVotos;
+	}
+
+	public List<Horario> getHorarios() {
 		return horarios;
 	}
 
-	public void setHorario(List<Horario> horario) {
-		this.horarios = horario;
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
 	}
+
+
+	public UsuarioMonitor() {
+        this.horarios = new ArrayList<>();
+    }
+
 
 	public Asignatura getAsignatura() {
 		return asignatura;

@@ -1,8 +1,11 @@
 package CampusConnect.CCBack.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -343,7 +346,8 @@ public class UsuarioGeneralService implements UserDetailsService {
         monitoria.setAsignatura(asignatura);
         monitoria.addHorario(horario);
         monitoria.setUsuario(ug);
-
+        monitoria.setCalificacion(Long.valueOf(5));
+        monitoria.setCantidadVotos(Long.valueOf(1));
 
         horario.setMonitor(monitoria);
         asignatura.addMonitor(monitoria);
@@ -391,5 +395,43 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
         return repository.save(ug);
+    }
+
+
+    public UsuarioMonitor votarMonitor(long idMonitor, long calificacion){
+        UsuarioMonitor um = monitorRepository.findById(idMonitor).get();
+        System.out.println("Calificiacion " + um.getCalificacion() + " " + calificacion + " " + um.getCantidadVotos());
+        
+        um.setCalificacion(um.getCalificacion() + calificacion);
+        um.setCantidadVotos(um.getCantidadVotos()+1);
+        
+        return monitorRepository.save(um);
+    }
+
+    public List<UsuarioMonitor> obtenerHorarios(long idMonitor){
+        List<UsuarioMonitor> monitores = new ArrayList<>();
+
+        UsuarioGeneral ug = repository.findById(idMonitor).get();
+        System.out.println("Cantidad de monitorias "+ ug.getMonitorDe().size());
+        List<UsuarioMonitor> todasLasMonitorias = ug.getMonitorDe();
+        //monitores = todasLasMonitorias;
+
+        LocalDate hoy = LocalDate.now();
+        LocalDate despues = hoy.plusDays(14);
+        //hoy = hoy.plusDays(15);
+
+        
+        for(int i=0; i<todasLasMonitorias.size(); i++){
+            for(int j=0; j<todasLasMonitorias.get(i).getHorarios().size(); j++){
+                LocalDate localDate = todasLasMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                System.out.println(localDate + " "+ hoy + " = " + localDate.isBefore(hoy));
+                if( (localDate.isAfter(hoy) || localDate.equals(hoy)) && localDate.isBefore(despues)){
+                    System.out.println("entra");
+                    monitores.add(todasLasMonitorias.get(i));
+                }
+            }  
+        }
+
+        return monitores;
     }
 }

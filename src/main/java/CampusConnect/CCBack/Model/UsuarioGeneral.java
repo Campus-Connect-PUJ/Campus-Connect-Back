@@ -91,7 +91,7 @@ public class UsuarioGeneral implements UserDetails {
               cascade = CascadeType.ALL)
     private RegimenAlimenticioUsuario regimenAlimenticio;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioMonitor> monitorDe;
 

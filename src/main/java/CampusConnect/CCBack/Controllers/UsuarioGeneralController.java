@@ -216,6 +216,37 @@ class UsuarioGeneralController {
         return repository.cambiarRol(idUsuario, idRol);
     }
 
+
+    @PostMapping("agregarMonitoria/{idUsuario}")
+    public void agregarMonitoria(
+        @RequestBody final WrapperMonitoria infoMonitoria,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        UsuarioGeneral ug = this.findById(idUsuario);
+
+        repository.crearMonitoria(ug, infoMonitoria);
+
+    }
+
+    @PutMapping("/monitor/{idMonitor}/{calificacion}")
+    public UsuarioMonitor votarMonitor(
+        //@PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("idMonitor") final Long idMonitor,
+        @PathVariable("calificacion") final Long calificacion
+    ){
+        return repository.votarMonitor(idMonitor, calificacion);
+
+    }
+
+    @GetMapping("/monitor/{idMonitor}")
+    public List<UsuarioMonitor> obtenerHorarios(
+        @PathVariable("idMonitor") final Long idMonitor
+    ){
+        System.out.println("El id del monitor " + idMonitor);
+        return repository.obtenerHorarios(idMonitor);
+    }
+
+    /*
     @PostMapping("agregarMonitoria")
     public void agregarMonitoria(
         @AuthenticationPrincipal String email,
@@ -223,11 +254,12 @@ class UsuarioGeneralController {
     ){
         repository.agregarMonitoria(infoMonitoria, email);
     }
-
+*/
     @GetMapping("monitores/all")
     public Iterable<UsuarioGeneral> findMonitores(
     ) {
         return repository.findMonitores();
     }
+
 
 }

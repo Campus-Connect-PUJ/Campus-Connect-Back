@@ -123,12 +123,13 @@ class UsuarioGeneralController {
         return repository.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("agregarTipoAprendizaje/{id_tip}")
+    @PostMapping("{idUsuario}/agregarTipoAprendizaje/{id_tip}")
     public UsuarioGeneral agregarTipAprendizaje(
-        @AuthenticationPrincipal String username,
-        @PathVariable("id_tip") final Long idTipoAprendizaje
+        //@AuthenticationPrincipal String username,
+        @PathVariable("id_tip") final Long idTipoAprendizaje,
+        @PathVariable("idUsuario") final Long idUsuario
     ){
-        return repository.agregarTipAprendizaje(username, idTipoAprendizaje);
+        return repository.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
     }
 
     @PostMapping("login/registro")

@@ -243,7 +243,16 @@ class UsuarioGeneralController {
         @PathVariable("idMonitor") final Long idMonitor
     ){
         System.out.println("El id del monitor " + idMonitor);
-        return repository.obtenerHorarios(idMonitor);
+        return repository.obtenerHorarios(idMonitor, 750);
+    }
+
+    @GetMapping("/monitor/{dias}/{idMonitor}")
+    public List<UsuarioMonitor> obtenerHorarios(
+        @PathVariable("idMonitor") final Long idMonitor,
+        @PathVariable("dias") final Long dias
+    ){
+        System.out.println("El id del monitor " + idMonitor);
+        return repository.obtenerHorarios(idMonitor, dias);
     }
 
     /*

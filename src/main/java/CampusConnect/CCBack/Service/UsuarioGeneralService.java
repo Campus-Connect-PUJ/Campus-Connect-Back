@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.convert.Jsr310Converters.LocalTimeToDateConverter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -335,29 +338,75 @@ public class UsuarioGeneralService implements UserDetailsService {
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
         UsuarioMonitor monitoria = new UsuarioMonitor();
-        
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
         Horario horario = new Horario();
+
 
         horario.setFechaInicial(infoMonitoria.getFechaInicial());
         horario.setFechaFinal(infoMonitoria.getFechaFinal());
         
+
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+           
+        }
+
+
+
         System.out.println("Asginatura "+asignatura.getNombre());
         monitoria.setAsignatura(asignatura);
         monitoria.addHorario(horario);
         monitoria.setUsuario(ug);
         monitoria.setCalificacion(Long.valueOf(5));
         monitoria.setCantidadVotos(Long.valueOf(1));
+        boolean yaexiste = false;
+        boolean agregarHorario = false;
+        int indice = 0;
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+            LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalDate();
+            LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalTime();
+            
+            LocalDate localDate = horario.getFechaInicial().toLocalDate();
+            LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+            System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + tiempoGuardado);
+            System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
 
-        horario.setMonitor(monitoria);
-        asignatura.addMonitor(monitoria);
-        ug.addMonitorDe(monitoria);
+            if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                yaexiste = true;
+            }
+            else if(anterioresMonitorias.get(i).getAsignatura().getId() == asignatura.getId()){
+                agregarHorario = true;
+            }
 
-        monitorRepository.save(monitoria);
-        asignaturaRepository.save(asignatura);
-        horarioRepository.save(horario);
-        
-        repository.save(ug);
+            
+        }
+
+        if(!agregarHorario && !yaexiste){
+            horario.setMonitor(monitoria);
+            asignatura.addMonitor(monitoria);
+            ug.addMonitorDe(monitoria);
+    
+            monitorRepository.save(monitoria);
+            asignaturaRepository.save(asignatura);
+            horarioRepository.save(horario);
+            
+            repository.save(ug);
+        }
+
+        if(agregarHorario && !yaexiste){
+            monitoria = anterioresMonitorias.get(indice);
+
+            monitoria.addHorario(horario);
+            horario.setMonitor(monitoria);
+    
+            monitorRepository.save(monitoria);
+            asignaturaRepository.save(asignatura);
+            horarioRepository.save(horario);
+            
+            repository.save(ug);
+        }
+
+
 
         return monitoria;
     }
@@ -408,7 +457,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitorRepository.save(um);
     }
 
-    public List<UsuarioMonitor> obtenerHorarios(long idMonitor){
+    public List<UsuarioMonitor> obtenerHorarios(long idMonitor, long dias){
         List<UsuarioMonitor> monitores = new ArrayList<>();
 
         UsuarioGeneral ug = repository.findById(idMonitor).get();
@@ -417,16 +466,15 @@ public class UsuarioGeneralService implements UserDetailsService {
         //monitores = todasLasMonitorias;
 
         LocalDate hoy = LocalDate.now();
-        LocalDate despues = hoy.plusDays(14);
+        LocalDate despues = hoy.plusDays(dias);
         //hoy = hoy.plusDays(15);
 
         
         for(int i=0; i<todasLasMonitorias.size(); i++){
             for(int j=0; j<todasLasMonitorias.get(i).getHorarios().size(); j++){
                 LocalDate localDate = todasLasMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
-                System.out.println(localDate + " "+ hoy + " = " + localDate.isBefore(hoy));
-                if( (localDate.isAfter(hoy) || localDate.equals(hoy)) && localDate.isBefore(despues)){
-                    System.out.println("entra");
+                System.out.println(localDate + " "+ hoy + " = " + localDate.isBefore(despues) + " " + despues);
+                if( (localDate.isAfter(hoy) || localDate.equals(hoy)) && localDate.isBefore(despues) && !monitores.contains(todasLasMonitorias.get(i)) ){
                     monitores.add(todasLasMonitorias.get(i));
                 }
             }  

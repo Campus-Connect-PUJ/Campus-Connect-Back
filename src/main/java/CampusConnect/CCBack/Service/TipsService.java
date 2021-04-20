@@ -61,8 +61,6 @@ public class TipsService {
             repository.save(tip);
         }
 
-
-
         System.out.println("Sale a gustar");
         return ugRepository.save(ug);
     }

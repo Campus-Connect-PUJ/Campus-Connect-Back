@@ -55,9 +55,9 @@ public class ReglasDeAsociacionService {
         return repository.save(regla);
     }
 
-    public Tip obtenerRecomendacionTip(final Long id){
+    public Tip obtenerRecomendacionTip(final String email){
         // long idTip = 15;
-        UsuarioGeneral ug = servicioUsuarios.findById(id);
+        UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Tip tipRecomendado = new Tip();

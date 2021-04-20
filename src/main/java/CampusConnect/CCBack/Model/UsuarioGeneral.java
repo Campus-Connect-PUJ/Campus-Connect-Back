@@ -91,6 +91,11 @@ public class UsuarioGeneral implements UserDetails {
               cascade = CascadeType.ALL)
     private RegimenAlimenticioUsuario regimenAlimenticio;
 
+    //@JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioMonitor> monitorDe;
+
+
     // relaciones muchos a muchos  ---------------------
 
     @ManyToMany
@@ -99,10 +104,6 @@ public class UsuarioGeneral implements UserDetails {
         joinColumns = @JoinColumn(name = "idUsuario"),
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "monitores")
-    private List<Asignatura> monitorDe;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
@@ -198,11 +199,11 @@ public class UsuarioGeneral implements UserDetails {
         this.semestre = semestre;
     }
 
-	public List<Asignatura> getMonitorDe() {
+	public List<UsuarioMonitor> getMonitorDe() {
 		return monitorDe;
 	}
 
-	public void setMonitorDe(List<Asignatura> monitorDe) {
+	public void setMonitorDe(List<UsuarioMonitor> monitorDe) {
 		this.monitorDe = monitorDe;
 	}
 
@@ -426,6 +427,10 @@ public class UsuarioGeneral implements UserDetails {
 		return this.email;
 	}
 
+	public void addMonitorDe(UsuarioMonitor monitoria){
+		this.monitorDe.add(monitoria);
+	}
+
 	public String getAmbientacion(){
 		return this.ambientacion;
 	}
@@ -445,4 +450,5 @@ public class UsuarioGeneral implements UserDetails {
 	public void agregarComida(TipoComida comida){
 		this.comidaFavorita.add(comida);
 	}
+
 }

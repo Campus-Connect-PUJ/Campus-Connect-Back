@@ -123,6 +123,7 @@ def main(archivo):
         cargar_facultades_y_carreras(datos['facultades'], datos['carreras'])
         cargar_tips(datos['tips'], id_admin)
         cargar_grupos_estudiantiles(datos['grupos'])
+        cargar_Asignaturas(datos['asignaturas'])
         cargar_restaurantes(
             datos['restaurantes'],
             datos['ubicaciones'],
@@ -163,6 +164,22 @@ def cargar_facultades_y_carreras(facultades, carreras):
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url + '/{}'.format(id_fac) , msggrp, auth = LOGINDATA))
+
+def cargar_Asignaturas(asignaturas):
+    url = BASEURL + 'asignatura'
+
+    print("cargando asignaturas")
+
+    for asignatura in asignaturas:
+        msggrp = {
+            "nombre": asignatura['nombre'],
+            "descripcion": asignatura['nombre']
+
+        }
+        print(json.dumps(msggrp, indent=4, sort_keys=True))
+        print(post(url, msggrp, auth = LOGINDATA))
+    post(url, msggrp, auth = LOGINDATA)
+    
 
 def cargar_usuarios(usuarios):
 

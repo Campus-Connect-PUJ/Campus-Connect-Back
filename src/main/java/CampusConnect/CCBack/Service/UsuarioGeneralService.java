@@ -342,14 +342,9 @@ public class UsuarioGeneralService implements UserDetailsService {
         Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
         Horario horario = new Horario();
 
-
         horario.setFechaInicial(infoMonitoria.getFechaInicial());
         horario.setFechaFinal(infoMonitoria.getFechaFinal());
         
-
-
-
-
         System.out.println("Asginatura "+asignatura.getNombre());
         monitoria.setAsignatura(asignatura);
         monitoria.addHorario(horario);

@@ -347,9 +347,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         horario.setFechaFinal(infoMonitoria.getFechaFinal());
         
 
-        for(int i=0; i<anterioresMonitorias.size(); i++){
-           
-        }
 
 
 

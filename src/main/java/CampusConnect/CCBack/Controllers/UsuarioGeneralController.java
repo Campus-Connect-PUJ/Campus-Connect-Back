@@ -25,10 +25,12 @@ import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
+import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
@@ -91,7 +93,7 @@ class UsuarioGeneralController {
     }
 
     @GetMapping("monitorias")
-    public List<Asignatura> monitoriasUsuario(@AuthenticationPrincipal String email) {
+    public List<UsuarioMonitor> monitoriasUsuario(@AuthenticationPrincipal String email) {
         return repository.findByEmail(email).getMonitorDe();
     }
 
@@ -121,12 +123,13 @@ class UsuarioGeneralController {
         return repository.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("agregarTipoAprendizaje/{id_tip}")
+    @PostMapping("{idUsuario}/agregarTipoAprendizaje/{id_tip}")
     public UsuarioGeneral agregarTipAprendizaje(
-        @AuthenticationPrincipal String username,
-        @PathVariable("id_tip") final Long idTipoAprendizaje
+        //@AuthenticationPrincipal String username,
+        @PathVariable("id_tip") final Long idTipoAprendizaje,
+        @PathVariable("idUsuario") final Long idUsuario
     ){
-        return repository.agregarTipAprendizaje(username, idTipoAprendizaje);
+        return repository.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
     }
 
     @PostMapping("login/registro")
@@ -197,7 +200,6 @@ class UsuarioGeneralController {
         return repository.persoGrupos(wpg, email);
     }
 
-
     @PutMapping("persoRestaurantes")
     public UsuarioGeneral persoRestaurantes(
         @RequestBody final WrapperPersoRestaurantes wpr,
@@ -205,5 +207,69 @@ class UsuarioGeneralController {
 
         return repository.persoRestaurantes(wpr, email);
     }
+
+    // TODO: verificar admin
+    @PostMapping("/rol/{idUsuario}/{rol}")
+    private UsuarioGeneral cambiarRol(
+        @PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("rol") final Short idRol
+    ){
+        return repository.cambiarRol(idUsuario, idRol);
+    }
+
+
+    @PostMapping("agregarMonitoria/{idUsuario}")
+    public void agregarMonitoria(
+        @RequestBody final WrapperMonitoria infoMonitoria,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        UsuarioGeneral ug = this.findById(idUsuario);
+
+        repository.crearMonitoria(ug, infoMonitoria);
+
+    }
+
+    @PutMapping("/monitor/{idMonitor}/{calificacion}")
+    public UsuarioMonitor votarMonitor(
+        //@PathVariable("idUsuario") final Long idUsuario,
+        @PathVariable("idMonitor") final Long idMonitor,
+        @PathVariable("calificacion") final Long calificacion
+    ){
+        return repository.votarMonitor(idMonitor, calificacion);
+
+    }
+
+    @GetMapping("/monitor/{idMonitor}")
+    public List<UsuarioMonitor> obtenerHorarios(
+        @PathVariable("idMonitor") final Long idMonitor
+    ){
+        System.out.println("El id del monitor " + idMonitor);
+        return repository.obtenerHorarios(idMonitor, 750);
+    }
+
+    @GetMapping("/monitor/{dias}/{idMonitor}")
+    public List<UsuarioMonitor> obtenerHorarios(
+        @PathVariable("idMonitor") final Long idMonitor,
+        @PathVariable("dias") final Long dias
+    ){
+        System.out.println("El id del monitor " + idMonitor);
+        return repository.obtenerHorarios(idMonitor, dias);
+    }
+
+    /*
+    @PostMapping("agregarMonitoria")
+    public void agregarMonitoria(
+        @AuthenticationPrincipal String email,
+        @RequestBody final WrapperMonitoria infoMonitoria
+    ){
+        repository.agregarMonitoria(infoMonitoria, email);
+    }
+*/
+    @GetMapping("monitores/all")
+    public Iterable<UsuarioGeneral> findMonitores(
+    ) {
+        return repository.findMonitores();
+    }
+
 
 }

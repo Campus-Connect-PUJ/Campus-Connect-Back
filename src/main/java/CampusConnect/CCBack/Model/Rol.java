@@ -19,4 +19,8 @@ final public class Rol {
         return roles[rol];
     }
 
+    public static boolean contain(Short idRol) {
+        return 0 <= idRol && idRol < roles.length;
+    }
+
 }

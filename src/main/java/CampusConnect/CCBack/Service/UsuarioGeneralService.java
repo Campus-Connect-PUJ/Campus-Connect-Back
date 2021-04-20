@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
+
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.Hobby;
@@ -28,7 +29,6 @@ import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.TipoComida;
@@ -54,16 +54,10 @@ public class UsuarioGeneralService implements UserDetailsService {
     private UsuarioGeneralRepository repository;
 
     @Autowired
-    private RestaurantesService rService;
-
-    @Autowired
     private TipoAprendizajeService taService;
 
     @Autowired
     private CaracteristicasService cService;
-
-    @Autowired
-    private GruposEstudiantilesService geService;
 
     @Autowired
     private TipoComidaService tcService;
@@ -91,6 +85,12 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private RegimenAlimenticioUsuarioService rauService;
+
+    @Autowired
+    private ResenhaGrupoEstudiantilService rgeService;
+
+    @Autowired
+    private ResenhaRestauranteService rrService;
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -125,30 +125,22 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
         final String email,
-        final ResenhaGrupoEstudiantil foroData,
+        final ResenhaGrupoEstudiantil data,
         final Long idRestaurante
         ) {
-        ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         UsuarioGeneral ug = this.findByEmail(email);
-        GrupoEstudiantil restaurante = geService.findById(idRestaurante);
-        rr.setEstrellas(foroData.getEstrellas());
-        rr.setGrupoEstudiantil(restaurante);
-        rr.setUsuario(ug);
+        ResenhaGrupoEstudiantil rr = rgeService.create(ug, data, idRestaurante);
         ug.agregarResenhaGrupoEstudiantil(rr);
         return repository.save(ug);
     }
 
     public UsuarioGeneral crearResentaRestaurante(
         final String email,
-        final ResenhaRestaurante foroData,
+        final ResenhaRestaurante data,
         final Long idRestaurante
         ) {
-        ResenhaRestaurante rr = new ResenhaRestaurante();
         UsuarioGeneral ug = repository.findByEmail(email);
-        Restaurante restaurante = rService.findById(idRestaurante);
-        rr.setEstrellas(foroData.getEstrellas());
-        rr.setRestaurante(restaurante);
-        rr.setUsuario(ug);
+        ResenhaRestaurante rr = rrService.create(ug, data, idRestaurante);
         ug.agregarResenhaRestaurante(rr);
         return repository.save(ug);
     }

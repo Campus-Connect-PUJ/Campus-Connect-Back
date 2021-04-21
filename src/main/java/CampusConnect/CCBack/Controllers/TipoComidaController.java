@@ -16,21 +16,21 @@ import CampusConnect.CCBack.Service.TipoComidaService;
 class TipoComidaController {
 
     @Autowired
-    private TipoComidaService repository;
+    private TipoComidaService tcService;
 
     @GetMapping("all")
     public Iterable<TipoComida> findAll() {
-        return repository.findAll();
+        return tcService.findAll();
     }
 
     @GetMapping("{id}")
     public TipoComida findById(@PathVariable("id") final Long id) {
-        return repository.findById(id);
+        return tcService.findById(id);
     }
 
     @PostMapping
     public TipoComida create(@RequestBody final TipoComida dato) {
-        return repository.create(dato);
+        return tcService.create(dato);
     }
 
 }

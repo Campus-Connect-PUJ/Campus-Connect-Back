@@ -1,15 +1,5 @@
 package CampusConnect.CCBack.Controllers;
 
-import CampusConnect.CCBack.Model.Foro;
-import CampusConnect.CCBack.Model.RespuestaForo;
-import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.ForoRepository;
-import CampusConnect.CCBack.Repository.RespuestaForoRepository;
-import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-import CampusConnect.CCBack.Service.ForoService;
-import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Service.ForoService;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 @RestController
 @RequestMapping("/foro")

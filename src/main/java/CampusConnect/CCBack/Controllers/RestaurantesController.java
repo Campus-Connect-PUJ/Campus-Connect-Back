@@ -23,42 +23,42 @@ import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 class RestaurantesController {
 
     @Autowired
-    private RestaurantesService repository;
+    private RestaurantesService rService;
 
     @GetMapping("all")
     public Iterable<Restaurante> findAll() {
-        return repository.findAll();
+        return rService.findAll();
     }
 
     @GetMapping("{id}")
     public Restaurante findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return rService.findById(id);
     }
 
     @GetMapping("{id}/tipos")
     public List<TipoRestaurante> conseguirTiposRestaurante(@PathVariable("id") Long id) {
-        return repository.findById(id).getTiposRestaurante();
+        return rService.findById(id).getTiposRestaurante();
     }
 
     @GetMapping("{id}/tipos_comida")
     public List<TipoComida> conseguirTiposComidaRestaurante(@PathVariable("id") Long id) {
-        return repository.findById(id).getTiposComida();
+        return rService.findById(id).getTiposComida();
     }
 
     @GetMapping("{id}/regimenes_alimenticios")
     public List<RegimenAlimenticio> conseguirRegimenesAlimenticiosRestaurante(
         @PathVariable("id") Long id) {
-        return repository.findById(id).getRegimenesAlimenticios();
+        return rService.findById(id).getRegimenesAlimenticios();
     }
 
     @GetMapping("{id}/resenhas")
     public List<ResenhaRestaurante> conseguirResenhasRestaurante(@PathVariable("id") Long id) {
-        return repository.findById(id).getResenhas();
+        return rService.findById(id).getResenhas();
     }
 
     @PostMapping
     public Restaurante create(@RequestBody final WrapperRestaurante dato) {
-        return repository.create(dato);
+        return rService.create(dato);
     }
 
 }

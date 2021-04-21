@@ -16,21 +16,21 @@ import CampusConnect.CCBack.Service.RequisitoService;
 class RequisitoController {
 
     @Autowired
-    private RequisitoService repository;
+    private RequisitoService rService;
 
     @GetMapping("all")
     public Iterable<Requisito> findAll() {
-        return repository.findAll();
+        return rService.findAll();
     }
 
     @GetMapping("{id}")
     public Requisito findById(@PathVariable("id") final Long id) {
-        return repository.findById(id);
+        return rService.findById(id);
     }
 
     @PostMapping
     public Requisito create(@RequestBody final Requisito dato) {
-        return repository.create(dato);
+        return rService.create(dato);
     }
 
 }

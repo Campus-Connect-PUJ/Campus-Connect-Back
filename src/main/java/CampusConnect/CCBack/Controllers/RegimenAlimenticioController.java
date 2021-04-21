@@ -20,31 +20,31 @@ import CampusConnect.CCBack.Service.RegimenAlimenticioService;
 class RegimenAlimenticioController {
 
     @Autowired
-    private RegimenAlimenticioService repository;
+    private RegimenAlimenticioService raService;
 
     @GetMapping("all")
     public Iterable<RegimenAlimenticio> findAll() {
-        return repository.findAll();
+        return raService.findAll();
     }
 
     @GetMapping("{id}")
     public RegimenAlimenticio findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return raService.findById(id);
     }
 
     @GetMapping("{id}/restaurantes")
     public List<Restaurante> conseguirRestaurantesPorRegimen(@PathVariable("id") Long id) {
-        return repository.findById(id).getRestaurantes();
+        return raService.findById(id).getRestaurantes();
     }
 
     @GetMapping("{id}/usuarios")
     public List<RegimenAlimenticioUsuario> conseguirUsuariosPorRegimen(@PathVariable("id") Long id) {
-        return repository.findById(id).getUsuarios();
+        return raService.findById(id).getUsuarios();
     }
 
     @PostMapping
     public RegimenAlimenticio create(@RequestBody final RegimenAlimenticio dato) {
-        return repository.create(dato);
+        return raService.create(dato);
     }
 
 }

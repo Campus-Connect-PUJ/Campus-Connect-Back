@@ -19,22 +19,22 @@ import CampusConnect.CCBack.Wrappers.WrapperReglaAsociacion;
 class ReglasDeAsociacionController {
 
     @Autowired
-    private ReglasDeAsociacionService repository;
+    private ReglasDeAsociacionService rdaService;
 
     @GetMapping("all")
     public Iterable<ReglasDeAsociacion> findAll() {
-        return repository.findAll();
+        return rdaService.findAll();
     }
 
     @GetMapping("{id}")
     public ReglasDeAsociacion findById(@PathVariable("id") final Long id) {
-        return repository.findById(id);
+        return rdaService.findById(id);
     }
 
     @PostMapping
     public ReglasDeAsociacion crearReglaDeAsociacion(
         @RequestBody final WrapperReglaAsociacion reglaData) {
-        return repository.crearReglaDeAsociacion(reglaData);
+        return rdaService.crearReglaDeAsociacion(reglaData);
     }
 
     @GetMapping("usuario")
@@ -43,7 +43,7 @@ class ReglasDeAsociacionController {
         ){
         System.out.println(email);
 
-        return repository.obtenerRecomendacionTip(email);
+        return rdaService.obtenerRecomendacionTip(email);
     }
 
 }

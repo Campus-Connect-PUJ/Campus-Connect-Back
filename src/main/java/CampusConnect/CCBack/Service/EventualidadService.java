@@ -2,6 +2,7 @@ package CampusConnect.CCBack.Service;
 
 import static java.util.stream.Collectors.toCollection;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.StreamSupport;
 
@@ -33,6 +34,8 @@ public class EventualidadService {
         e.setLatitud(dato.getLatitud());
         e.setGravedad(dato.getGravedad());
         e.setDescripcion(dato.getDescripcion());
+
+        e.setFecha(LocalDate.now());
 
         return repository.save(e);
     }

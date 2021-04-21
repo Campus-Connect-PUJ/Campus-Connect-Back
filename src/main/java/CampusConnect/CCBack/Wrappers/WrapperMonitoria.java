@@ -1,10 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import CampusConnect.CCBack.Model.Tip;
 
 public class WrapperMonitoria {
 

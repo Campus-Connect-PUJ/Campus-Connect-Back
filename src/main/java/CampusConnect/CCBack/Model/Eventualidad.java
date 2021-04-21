@@ -1,17 +1,17 @@
 package CampusConnect.CCBack.Model;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Eventualidad {
 
-    // representacion de 1 metro de distancia para coordenadas
+	// representacion de 1 metro de distancia para coordenadas
     // TODO: encontrar este valor, de momento me lo estoy inventando
     private static final double COORDINATE_METER = 0.0001;
     private static final double DISTANCIA_MAX = 50 * COORDINATE_METER;
@@ -26,6 +26,9 @@ public class Eventualidad {
     private float gravedad;
 
     private String descripcionLugar;
+
+    @Column(nullable = false)
+    private LocalDate fecha;
 
     @Column(nullable = false)
     private Double longitud;
@@ -98,6 +101,14 @@ public class Eventualidad {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+    public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
 	}
 
 }

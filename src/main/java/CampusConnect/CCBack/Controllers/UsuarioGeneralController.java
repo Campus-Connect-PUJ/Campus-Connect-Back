@@ -33,6 +33,8 @@ import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -270,6 +272,18 @@ class UsuarioGeneralController {
     ) {
         return repository.findMonitores();
     }
+    
+    @PutMapping("sugeRestaurantes")
+    public UsuarioGeneral sugeRestaurantes(
+        @RequestBody final WrapperSugeRestaurantes wpr) {
 
+        return repository.RegistarRecomendacionRestaurantes(wpr);
+    }
 
+    @PutMapping("sugeGrupos")
+    public UsuarioGeneral sugeGurpos(
+        @RequestBody final WrapperSugeGrupos wpg){
+            
+        return repository.RegistarRecomendacionGrupos(wpg);
+    }
 }

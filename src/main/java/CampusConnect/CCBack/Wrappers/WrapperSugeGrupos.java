@@ -20,11 +20,11 @@ public class WrapperSugeGrupos {
         this.idUsuario = id;
     }
 
-    public List<Long> getIdsRestaurantes(){
+    public List<Long> getIdsGrupos(){
         return this.idsGrupos;
     }
 
-    public void setIdsRestaurantes(List<Long> ids){
+    public void setIdsGrupos(List<Long> ids){
         this.idsGrupos = ids;
     }
     

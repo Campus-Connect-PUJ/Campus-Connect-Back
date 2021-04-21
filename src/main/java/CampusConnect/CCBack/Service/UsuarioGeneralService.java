@@ -29,6 +29,7 @@ import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.TipoComida;
@@ -46,6 +47,8 @@ import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
 
 @RestController
 public class UsuarioGeneralService implements UserDetailsService {
@@ -94,6 +97,12 @@ public class UsuarioGeneralService implements UserDetailsService {
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private GruposEstudiantilesService geService;
+
+    @Autowired
+    private RestaurantesService rService;
 
     private UsuarioGeneral admin;
 
@@ -465,5 +474,27 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
         return monitores;
+    }
+
+    public UsuarioGeneral RegistarRecomendacionGrupos(final WrapperSugeGrupos wsg){
+        UsuarioGeneral ug = this.findById(wsg.getIdUsuario());
+
+        for (Long id: wsg.getIdsGrupos()){
+            GrupoEstudiantil g = geService.findById(id);
+            ug.agregarGRupoReco(g);
+        }
+
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral RegistarRecomendacionRestaurantes(final WrapperSugeRestaurantes wsr){
+        UsuarioGeneral ug = this.findById(wsr.getIdUsuario());
+
+        for (Long id: wsr.getIdsRestaurantes()){
+            Restaurante r = rService.findById(id);
+            ug.agregarRestauranteReco(r);
+        }
+
+        return repository.save(ug);
     }
 }

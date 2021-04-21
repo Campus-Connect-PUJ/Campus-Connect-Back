@@ -27,10 +27,6 @@ public class Eventualidad {
 
     private String descripcionLugar;
 
-    @ManyToOne
-    @JoinColumn(name="idLugar")
-    private Lugar lugar;
-
     @Column(nullable = false)
     private Double longitud;
 
@@ -38,14 +34,22 @@ public class Eventualidad {
 	private Double latitud;
 
     public Double distancia(Eventualidad e) {
-        Double distLong  = Math.pow((this.longitud - e.getLongitud()), 2);
-        Double distLat   = Math.pow((this.latitud - e.getLatitud()), 2);
+        return distancia(e.getLongitud(), e.getLatitud());
+    }
+
+    public Double distancia(Double lat, Double lon) {
+        Double distLong  = Math.pow((this.longitud - lon), 2);
+        Double distLat   = Math.pow((this.latitud - lat), 2);
         Double distancia = Math.sqrt(distLong + distLat);
         return distancia;
     }
 
     public Boolean cercano(Eventualidad e){
         return this.distancia(e) < DISTANCIA_MAX;
+    }
+
+    public Boolean cercano(Double lat, Double lon){
+        return this.distancia(lat, lon) < DISTANCIA_MAX;
     }
 
 	public float getGravedad() {
@@ -70,14 +74,6 @@ public class Eventualidad {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-    public Lugar getLugar() {
-		return lugar;
-	}
-
-	public void setLugar(Lugar lugar) {
-		this.lugar = lugar;
 	}
 
 	public Long getId() {

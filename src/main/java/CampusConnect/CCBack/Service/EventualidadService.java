@@ -1,5 +1,10 @@
 package CampusConnect.CCBack.Service;
 
+import static java.util.stream.Collectors.toCollection;
+
+import java.util.ArrayList;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +32,17 @@ public class EventualidadService {
         e.setLongitud(dato.getLongitud());
         e.setLatitud(dato.getLatitud());
         e.setGravedad(dato.getGravedad());
-
         e.setDescripcion(dato.getDescripcion());
 
         return repository.save(e);
+    }
+
+    public Iterable<Eventualidad> findCercano(Double lat, Double lon, int cantidad) {
+        return StreamSupport
+            .stream(this.findAll().spliterator(), false)
+			.filter(eventualidad -> eventualidad.cercano(lat, lon))
+			.limit(cantidad)
+            .collect(toCollection(ArrayList::new));
     }
 
 }

@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.Eventualidad;
 import CampusConnect.CCBack.Service.EventualidadService;
+import CampusConnect.CCBack.Wrappers.WrapperUbicacion;
 
 @RestController
 @RequestMapping("/eventualidad")
 class EventualidadController {
+
+    private static final int LIMITE_EVENTUALIDADES = 100;
+
     @Autowired
     private EventualidadService eService;
 
@@ -30,6 +34,15 @@ class EventualidadController {
     @PostMapping
     public Eventualidad create(@RequestBody final Eventualidad dato) {
         return eService.create(dato);
+    }
+
+    @PostMapping("cercanas")
+    public Iterable<Eventualidad> getCercano(@RequestBody final WrapperUbicacion ubicacion) {
+        return eService.findCercano(
+            ubicacion.getLatitud(),
+            ubicacion.getLongitud(),
+            LIMITE_EVENTUALIDADES
+            );
     }
 
 }

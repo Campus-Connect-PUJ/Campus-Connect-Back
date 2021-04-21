@@ -1,16 +1,11 @@
 package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.convert.Jsr310Converters.LocalTimeToDateConverter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
-
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
-import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.Hobby;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
@@ -38,11 +31,8 @@ import CampusConnect.CCBack.Repository.AsignaturaRepository;
 import CampusConnect.CCBack.Repository.HorarioRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
-import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
-import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
-import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;

@@ -17,43 +17,23 @@ import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 class InformacionUsuarioController {
 
     @Autowired
-    private InformacionUsuarioService repository;
+    private InformacionUsuarioService iuService;
 
     @GetMapping("all")
     public Iterable<InformacionUsuario> findAllForos() {
-        return repository.findAll();
+        return iuService.findAll();
     }
 
     @GetMapping("{id}")
     public InformacionUsuario findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return iuService.findById(id);
     }
-
-    // @PostMapping("{id}")
-    // public InformacionUsuario create(
-    //     @RequestBody final InformacionUsuario data,
-    //     @PathVariable("id") Long id
-    //     ) {
-    //     InformacionUsuario iu = new InformacionUsuario();
-    //     UsuarioGeneral ug = uService.findById(id);
-
-    //     iu.setFechaNacimiento(data.getFechaNacimiento());
-    //     iu.setIdentidadGenero(data.getIdentidadGenero());
-    //     iu.setLugarOrigen(data.getLugarOrigen());
-    //     iu.setRaza(data.getRaza());
-    //     iu.setUsuario(ug);
-
-    //     repository.save(iu);
-
-    //     ug.setInformacionUsuario(iu);
-    //     return repository.save(iu);
-    // }
 
     @PostMapping("{id}")
     public InformacionUsuario cargarInformacionUsuario(
         @RequestBody final WrapperInformacionUsuario data,
         @PathVariable("id") Long id
         ) {
-            return repository.cargarInformacionUsuario(data, id);
+            return iuService.cargarInformacionUsuario(data, id);
     }
 }

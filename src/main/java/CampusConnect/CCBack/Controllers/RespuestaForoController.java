@@ -15,30 +15,30 @@ import CampusConnect.CCBack.Service.RespuestaForoService;
 class RespuestaForoController {
 
     @Autowired
-    private RespuestaForoService repository;
+    private RespuestaForoService rfService;
 
     @GetMapping("all")
     public Iterable<RespuestaForo> findAll() {
-        return repository.findAll();
+        return rfService.findAll();
     }
 
     @GetMapping("{id}")
     public RespuestaForo findById(@PathVariable("id") final Long id) {
-        return repository.findById(id);
+        return rfService.findById(id);
     }
 
     @PutMapping("sumar/{id}")
     public RespuestaForo sumarVotoAForo(
         @PathVariable("id") final Long idRespuesta
     ){
-        return repository.sumarVotoAForo(idRespuesta);
+        return rfService.sumarVotoAForo(idRespuesta);
     }
 
     @PutMapping("restar/{id}")
     public RespuestaForo restarVotoAForo(
         @PathVariable("id") final Long idRespuesta
     ){
-        return repository.restarVotoAForo(idRespuesta);
+        return rfService.restarVotoAForo(idRespuesta);
     }
     
 }

@@ -3,9 +3,7 @@ package CampusConnect.CCBack.Controllers;
 import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Service.TipsService;
-import CampusConnect.CCBack.Repository.TipRepository;
 import CampusConnect.CCBack.Wrappers.WrapperTip;
 
 import java.util.List;
@@ -23,33 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 class TipsController {
 
     @Autowired
-    private TipsService repository;
+    private TipsService tService;
 
     @GetMapping("all")
     public Iterable<Tip> findAll() {
-        return repository.findAll();
+        return tService.findAll();
     }
 
     @GetMapping("{id}")
     public Tip findTipById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return tService.findById(id);
     }
 
     @GetMapping("{id}/tipos_aprendizaje")
     public List<TipoAprendizaje> conseguirTiposAprendizajeTip(@PathVariable("id") Long id) {
-        return repository.findById(id).getTiposAprendizaje();
+        return tService.findById(id).getTiposAprendizaje();
     }
 
     @GetMapping("{id}/usuarios_gustaron")
     public List<UsuarioGeneral> conseguirUsuariosGustaronTip(@PathVariable("id") Long id) {
-        return repository.findById(id).getUsuariosGustaron();
+        return tService.findById(id).getUsuariosGustaron();
     }
 
     @PostMapping
     public Tip crear(
         @RequestBody final WrapperTip data
     ) {
-        return repository.crear(data);
+        return tService.crear(data);
     }
 
     @PutMapping("tipsGustados/{idUsuario}/{idTip}")
@@ -57,7 +55,7 @@ class TipsController {
         @PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("idTip") final Long idTip
     ){
-        return repository.agregarTipGustado(idUsuario, idTip);
+        return tService.agregarTipGustado(idUsuario, idTip);
     }
 
     @PutMapping("tipsNoGustados/{idUsuario}/{idTip}")
@@ -65,21 +63,21 @@ class TipsController {
         @PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("idTip") final Long idTip
     ){
-        return repository.agregarTipNoGustado(idUsuario, idTip);
+        return tService.agregarTipNoGustado(idUsuario, idTip);
     }
 
     @PutMapping("sumar/{id}")
     public Tip sumarVotoAForo(
         @PathVariable("id") final Long idTip
     ){
-        return repository.sumarVotoAForo(idTip);
+        return tService.sumarVotoAForo(idTip);
     }
 
     @PutMapping("restar/{id}")
     public Tip restarVotoAForo(
         @PathVariable("id") final Long idForo
     ){
-        return repository.restarVotoAForo(idForo);
+        return tService.restarVotoAForo(idForo);
     }
 
 

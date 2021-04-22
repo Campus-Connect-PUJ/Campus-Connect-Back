@@ -1,9 +1,11 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Asignatura {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
@@ -24,20 +26,22 @@ public class Asignatura {
     private String descripcion;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable (
-        name = "UsuarioMonitor",
-        joinColumns = @JoinColumn(name = "idAsignatura"),
-        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
-    private List<UsuarioGeneral> monitores;
+    @OneToMany(mappedBy = "asignatura")
+    private List<UsuarioMonitor> monitores;
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
-    private List<Actividad> actividades;
+    private List<ActividadAsignatura> actividades;
 
     @JsonIgnore
     @OneToMany(mappedBy = "asignatura")
     private List<MaterialEstudio> materialEstudio;
+
+	public Asignatura(){
+		this.monitores = new ArrayList<>();
+		this.actividades = new ArrayList<>();
+		this.materialEstudio = new ArrayList<>();
+	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -55,19 +59,27 @@ public class Asignatura {
 		this.descripcion = descripcion;
 	}
 
-	public List<UsuarioGeneral> getMonitores() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<UsuarioMonitor> getMonitores() {
 		return monitores;
 	}
 
-	public void setMonitores(List<UsuarioGeneral> monitores) {
-		this.monitores = monitores;
-	}
+    public void setMonitores(List<UsuarioMonitor> monitores) {
+        this.monitores = monitores;
+    }
 
-	public List<Actividad> getActividades() {
+	public List<ActividadAsignatura> getActividades() {
 		return actividades;
 	}
 
-	public void setActividades(List<Actividad> actividades) {
+	public void setActividades(List<ActividadAsignatura> actividades) {
 		this.actividades = actividades;
 	}
 
@@ -77,5 +89,9 @@ public class Asignatura {
 
 	public void setMaterialEstudio(List<MaterialEstudio> materialEstudio) {
 		this.materialEstudio = materialEstudio;
+	}
+
+	public void addMonitor(UsuarioMonitor monitor) {
+		this.monitores.add(monitor);
 	}
 }

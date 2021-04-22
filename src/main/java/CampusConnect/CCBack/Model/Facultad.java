@@ -1,9 +1,11 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Facultad {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
@@ -32,6 +34,11 @@ public class Facultad {
     @JsonIgnore
     @OneToMany(mappedBy = "facultad")
     private List<Carrera> carreras;
+
+    public Facultad() {
+        this.gruposEstudiantiles = new ArrayList<>();
+        this.carreras = new ArrayList<>();
+    }
 
 	public String getNombre() {
 		return nombre;

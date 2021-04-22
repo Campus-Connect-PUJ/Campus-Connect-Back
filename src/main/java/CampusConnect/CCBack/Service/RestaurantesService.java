@@ -3,12 +3,7 @@ package CampusConnect.CCBack.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
@@ -19,9 +14,9 @@ import CampusConnect.CCBack.Model.TipoRestaurante;
 import CampusConnect.CCBack.Repository.RestauranteRepository;
 import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 
-@RestController
-@RequestMapping("/restaurante")
-class RestaurantesService {
+@Service
+public class RestaurantesService {
+
     @Autowired
     private RestauranteRepository repository;
 
@@ -37,39 +32,31 @@ class RestaurantesService {
     @Autowired
     private TipoRestauranteService trService;
 
-    @GetMapping("all")
-    public Iterable<Restaurante> findAllForos() {
+    public Iterable<Restaurante> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("{id}")
-    public Restaurante findForoById(@PathVariable("id") Long id) {
+    public Restaurante findById(Long id) {
         return repository.findById(id).get();
     }
 
-    @GetMapping("{id}/tipos")
-    public List<TipoRestaurante> conseguirTiposRestaurante(@PathVariable("id") Long id) {
+    public List<TipoRestaurante> conseguirTiposRestaurante(Long id) {
         return repository.findById(id).get().getTiposRestaurante();
     }
 
-    @GetMapping("{id}/tipos_comida")
-    public List<TipoComida> conseguirTiposComidaRestaurante(@PathVariable("id") Long id) {
+    public List<TipoComida> conseguirTiposComidaRestaurante(Long id) {
         return repository.findById(id).get().getTiposComida();
     }
 
-    @GetMapping("{id}/regimenes_alimenticios")
-    public List<RegimenAlimenticio> conseguirRegimenesAlimenticiosRestaurante(
-        @PathVariable("id") Long id) {
+    public List<RegimenAlimenticio> conseguirRegimenesAlimenticiosRestaurante(Long id) {
         return repository.findById(id).get().getRegimenesAlimenticios();
     }
 
-    @GetMapping("{id}/resenhas")
-    public List<ResenhaRestaurante> conseguirResenhasRestaurante(@PathVariable("id") Long id) {
+    public List<ResenhaRestaurante> conseguirResenhasRestaurante(Long id) {
         return repository.findById(id).get().getResenhas();
     }
 
-    @PostMapping
-    public Restaurante create(@RequestBody final WrapperRestaurante dato) {
+    public Restaurante create(final WrapperRestaurante dato) {
         Restaurante res = new Restaurante();
 
         Restaurante rd = dato.getRestaurante();
@@ -91,21 +78,18 @@ class RestaurantesService {
 
         // TODO: poner esto en funciones distintas
         for (Long a : dato.getRegimenesAlimenticios()) {
-            System.out.println(a);
             RegimenAlimenticio c = raService.findById(a);
             res.agregarRegimenAlimenticio(c);
             c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposComida()) {
-            System.out.println(a);
             TipoComida c = tcService.findById(a);
             res.agregarTipoComida(c);
             c.agregarRestaurante(res);
         }
 
         for (Long a : dato.getTiposRestaurante()) {
-            System.out.println(a);
             TipoRestaurante c = trService.findById(a);
             res.agregarTipoRestaurante(c);
             c.agregarRestaurante(res);

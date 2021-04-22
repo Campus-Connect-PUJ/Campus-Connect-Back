@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Foro {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalTime fecha;
@@ -34,7 +35,6 @@ public class Foro {
 
     private int puntaje;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "foro")
     private List<RespuestaForo> respuestas;
 
@@ -50,7 +50,7 @@ public class Foro {
     }
 
     public void dislike() {
-        this.puntaje++;
+        this.puntaje--;
     }
 
 	public int getPuntaje() {
@@ -116,5 +116,9 @@ public class Foro {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void agregarRespuesta(RespuestaForo r) {
+        this.respuestas.add(r);
+    }
 
 }

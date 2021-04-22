@@ -276,13 +276,13 @@ class UsuarioGeneralController {
     public UsuarioGeneral sugeRestaurantes(
         @RequestBody final WrapperSugeRestaurantes wpr) {
 
-        return repository.RegistarRecomendacionRestaurantes(wpr);
+        return ugService.RegistarRecomendacionRestaurantes(wpr);
     }
 
     @PutMapping("sugeGrupos")
     public UsuarioGeneral sugeGurpos(
         @RequestBody final WrapperSugeGrupos wpg){
-            
-        return repository.RegistarRecomendacionGrupos(wpg);
+
+        return ugService.RegistarRecomendacionGrupos(wpg);
     }
 }

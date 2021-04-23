@@ -5,6 +5,9 @@ import static java.util.stream.Collectors.toCollection;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +34,28 @@ public class EventualidadService {
         repository.delete(e);
     }
 
+    // borrar todas las eventualidades que sean mas viejas que (hoy - numeroDias)
     public void deleteEventualidadesViejas(int numeroDias) {
         LocalDate today = LocalDate.now();
         LocalDate daysAgo = today.minus(Period.ofDays(numeroDias));
         repository.deleteByFechaBefore(daysAgo);
+    }
+
+    // borrar todas las eventualidades que no tengan tipo incluido
+    // dentro de la lista except, que sean mas viejas que (hoy - numeroDias)
+    public void deleteEventualidadesViejas(int numeroDias, int... except) {
+        LocalDate today = LocalDate.now();
+        LocalDate daysAgo = today.minus(Period.ofDays(numeroDias));
+        List<Eventualidad> le = repository.getByFechaBefore(daysAgo);
+
+        IntStream intStream = Arrays.stream(except);
+
+        for (Eventualidad e : le) {
+            // no borrar la eventualidad en caso de no estar dentro de except
+            if (!intStream.anyMatch(i -> i == e.getTipo())) {
+                this.delete(e);
+            }
+        }
     }
 
     public Eventualidad create(Eventualidad dato){

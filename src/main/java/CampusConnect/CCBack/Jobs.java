@@ -24,6 +24,8 @@ public class Jobs {
     public void cleanEventualidadesTaskAsync() throws InterruptedException {
         System.out.println(
             "Task async: eliminando eventualidades viejas " + LocalDate.now());
+
+        // TODO: agregar lista de excepciones
         eService.deleteEventualidadesViejas(1);
     }
 

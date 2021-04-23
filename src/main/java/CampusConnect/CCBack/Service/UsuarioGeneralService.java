@@ -347,23 +347,26 @@ public class UsuarioGeneralService implements UserDetailsService {
         boolean agregarHorario = false;
         int indice = 0;
         for(int i=0; i<anterioresMonitorias.size(); i++){
-            LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalDate();
-            LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalTime();
-            
-            LocalDate localDate = horario.getFechaInicial().toLocalDate();
-            LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
-            System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + tiempoGuardado);
-            System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
-
-            if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
-                yaexiste = true;
-            }
-            else if(anterioresMonitorias.get(i).getAsignatura().getId() == asignatura.getId()){
-                agregarHorario = true;
-            }
-
-            
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+                System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + localDate);
+                System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
+    
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                }
+                if(anterioresMonitorias.get(i).getAsignatura().getId() == asignatura.getId()){
+                    agregarHorario = true;
+                    System.out.println("Agregar "+anterioresMonitorias.get(i).getAsignatura().getId() + asignatura.getId() );
+                }
+            }   
         }
+        System.out.println("final " + agregarHorario + " " + yaexiste);
 
         if(!agregarHorario && !yaexiste){
             horario.setMonitor(monitoria);

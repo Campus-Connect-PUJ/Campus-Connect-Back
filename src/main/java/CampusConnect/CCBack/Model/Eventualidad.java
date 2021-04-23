@@ -23,7 +23,7 @@ public class Eventualidad {
     @Column(nullable = false)
     private String descripcion;
 
-    private float gravedad;
+    private int tipo;
 
     @Column(nullable = false)
     private LocalDate fecha;
@@ -38,7 +38,7 @@ public class Eventualidad {
         return distancia(e.getLongitud(), e.getLatitud());
     }
 
-    public Double distancia(Double lat, Double lon) {
+	public Double distancia(Double lat, Double lon) {
         Double distLong  = Math.pow((this.longitud - lon), 2);
         Double distLat   = Math.pow((this.latitud - lat), 2);
         Double distancia = Math.sqrt(distLong + distLat);
@@ -53,12 +53,12 @@ public class Eventualidad {
         return this.distancia(lat, lon) < DISTANCIA_MAX;
     }
 
-	public float getGravedad() {
-		return gravedad;
+    public int getTipo() {
+		return tipo;
 	}
 
-	public void setGravedad(float gravedad) {
-		this.gravedad = gravedad;
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getDescripcion() {

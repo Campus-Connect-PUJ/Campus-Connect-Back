@@ -32,7 +32,7 @@ public class EventualidadService {
 
         e.setLongitud(dato.getLongitud());
         e.setLatitud(dato.getLatitud());
-        e.setGravedad(dato.getGravedad());
+        e.setTipo(dato.getTipo());
         e.setDescripcion(dato.getDescripcion());
 
         e.setFecha(LocalDate.now());

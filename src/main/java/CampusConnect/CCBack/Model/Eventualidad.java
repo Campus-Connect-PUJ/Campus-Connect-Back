@@ -25,8 +25,6 @@ public class Eventualidad {
 
     private float gravedad;
 
-    private String descripcionLugar;
-
     @Column(nullable = false)
     private LocalDate fecha;
 
@@ -61,14 +59,6 @@ public class Eventualidad {
 
 	public void setGravedad(float gravedad) {
 		this.gravedad = gravedad;
-	}
-
-	public String getDescripcionLugar() {
-		return descripcionLugar;
-	}
-
-	public void setDescripcionLugar(String descripcionLugar) {
-		this.descripcionLugar = descripcionLugar;
 	}
 
 	public String getDescripcion() {

@@ -145,14 +145,12 @@ public class ReglasDeAsociacionService {
         int i = 0;
         while(!sale){
             tipRecomendar = this.ordenarLista(tipsSistema).get(i);
-            if(!ug.getTipsGustados().contains(tipRecomendar) && !ug.getTipsNoGustados().contains(tipRecomendar)){
+            if(!ug.getTipsGustados().contains(tipRecomendar) && !ug.getTipsNoGustados().contains(tipRecomendar) || i == tipsSistema.size()){
                 sale = true;
             } 
             i++;
         }
         
-
-
         return tipRecomendar;
     }
 

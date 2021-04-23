@@ -3,12 +3,12 @@ package CampusConnect.CCBack.Service;
 import static java.util.stream.Collectors.toCollection;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import CampusConnect.CCBack.Model.Eventualidad;
 import CampusConnect.CCBack.Repository.EventualidadRepository;
@@ -23,8 +23,18 @@ public class EventualidadService {
         return repository.findAll();
     }
 
-    public Eventualidad findById(@PathVariable("id") Long id) {
+    public Eventualidad findById(Long id) {
         return repository.findById(id).get();
+    }
+
+    public void delete(Eventualidad e) {
+        repository.delete(e);
+    }
+
+    public void deleteEventualidadesViejas(int numeroDias) {
+        LocalDate today = LocalDate.now();
+        LocalDate daysAgo = today.minus(Period.ofDays(numeroDias));
+        repository.deleteByFechaBefore(daysAgo);
     }
 
     public Eventualidad create(Eventualidad dato){

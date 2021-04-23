@@ -168,6 +168,7 @@ public class UsuarioGeneral implements UserDetails {
         this.tips = new ArrayList<>();
         this.roles = new ArrayList<>();
         this.actividadInteres = new ArrayList<>();
+		this.comidaFavorita = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;

@@ -328,8 +328,9 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
-
+        
         UsuarioMonitor monitoria = new UsuarioMonitor();
+        /*
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
         Horario horario = new Horario();
@@ -346,9 +347,11 @@ public class UsuarioGeneralService implements UserDetailsService {
         boolean yaexiste = false;
         boolean agregarHorario = false;
         int indice = 0;
+        System.out.println("Monitorias anteriores "+ anterioresMonitorias.size());
         for(int i=0; i<anterioresMonitorias.size(); i++){
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("+++ " + i);
             for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                System.out.println("+++++++ " + j);
                 LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
                 LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
                 
@@ -377,6 +380,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             asignaturaRepository.save(asignatura);
             horarioRepository.save(horario);
             
+            System.out.println("se guardan estas " + ug.getMonitorDe().size());
             repository.save(ug);
         }
 
@@ -394,7 +398,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
 
-
+        */
         return monitoria;
     }
 

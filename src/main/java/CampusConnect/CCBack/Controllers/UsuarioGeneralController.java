@@ -220,13 +220,14 @@ class UsuarioGeneralController {
 
     @PostMapping("agregarMonitoria/{idUsuario}")
     public void agregarMonitoria(
-        @RequestBody final WrapperMonitoria infoMonitoria,
+        @RequestBody final List<WrapperMonitoria> infoMonitoria,
         @PathVariable("idUsuario") final Long idUsuario
     ){
         UsuarioGeneral ug = this.findById(idUsuario);
-
-        repository.crearMonitoria(ug, infoMonitoria);
-
+        System.out.println("Entra ----------------------------------------------------------");
+        //repository.crearMonitoria(ug, infoMonitoria);
+        System.out.println("-> " + infoMonitoria.size());
+        System.out.println("final ----------------------------------------------------------");
     }
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")

@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,12 @@ public class WrapperMonitoria {
 
 	public Long idUsuario;
 
-	public String asignatura;
+	public WrapperAsignatura asignatura;
 
-	public LocalDateTime fechaInicial;
-
-	public LocalDateTime fechaFinal;
+	public List<WrapperHorarios> horarios;
 
 	public WrapperMonitoria () {
-
+		this.horarios = new ArrayList<>();
     }
 
 	public Long getIdUsuario() {
@@ -28,29 +27,23 @@ public class WrapperMonitoria {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getAsignatura() {
+	public WrapperAsignatura getAsignatura() {
 		return asignatura;
 	}
 
-	public void setAsignatura(String asignatura) {
+	public void setAsignatura(WrapperAsignatura asignatura) {
 		this.asignatura = asignatura;
 	}
 
-	public LocalDateTime getFechaInicial() {
-		return fechaInicial;
+	public List<WrapperHorarios> getHorarios() {
+		return horarios;
 	}
 
-	public void setFechaIncial(LocalDateTime fechaIncial) {
-		this.fechaInicial = fechaIncial;
+	public void setHorarios(List<WrapperHorarios> horarios) {
+		this.horarios = horarios;
 	}
 
-	public LocalDateTime getFechaFinal() {
-		return fechaFinal;
-	}
-
-	public void setFechaFinal(LocalDateTime fechaFinal) {
-		this.fechaFinal = fechaFinal;
-	}
+	
 
 
 	

@@ -10,13 +10,11 @@ import CampusConnect.CCBack.Model.Tip;
 public class WrapperMonitoria {
 
 	public Long idUsuario;
-
-	public WrapperAsignatura asignatura;
-
-	public List<WrapperHorarios> horarios;
+	public Long idAsignatura;
 
 	public WrapperMonitoria () {
-		this.horarios = new ArrayList<>();
+
+		
     }
 
 	public Long getIdUsuario() {
@@ -27,25 +25,12 @@ public class WrapperMonitoria {
 		this.idUsuario = idUsuario;
 	}
 
-	public WrapperAsignatura getAsignatura() {
-		return asignatura;
+	public Long getIdAsignatura() {
+		return idAsignatura;
 	}
 
-	public void setAsignatura(WrapperAsignatura asignatura) {
-		this.asignatura = asignatura;
+	public void setIdAsignatura(Long idAsignatura) {
+		this.idAsignatura = idAsignatura;
 	}
-
-	public List<WrapperHorarios> getHorarios() {
-		return horarios;
-	}
-
-	public void setHorarios(List<WrapperHorarios> horarios) {
-		this.horarios = horarios;
-	}
-
 	
-
-
-	
-
 }

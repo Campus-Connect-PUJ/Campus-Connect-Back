@@ -29,6 +29,7 @@ import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -220,15 +221,28 @@ class UsuarioGeneralController {
 
     @PostMapping("agregarMonitoria/{idUsuario}")
     public void agregarMonitoria(
-        @RequestBody final List<WrapperMonitoria> infoMonitoria,
+        @RequestBody final WrapperMonitoria infoMonitoria,
         @PathVariable("idUsuario") final Long idUsuario
     ){
         UsuarioGeneral ug = this.findById(idUsuario);
-        System.out.println("Entra ----------------------------------------------------------");
-        //repository.crearMonitoria(ug, infoMonitoria);
-        System.out.println("-> " + infoMonitoria.size());
-        System.out.println("final ----------------------------------------------------------");
+        System.out.println("Entra monitoria----------------------------------------------------------");
+        repository.crearMonitoria(ug, infoMonitoria);
+        System.out.println("final monitoria----------------------------------------------------------");
     }
+
+    @PostMapping("agregarHorario/{idUsuario}")
+    public void agregarHorario(
+        @RequestBody final WrapperHorario infoMonitoria,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        UsuarioGeneral ug = this.findById(idUsuario);
+        System.out.println("Entra Agregar horario ----------------------------------------------------------");
+        repository.agregarHorariosMonitoria(ug, infoMonitoria);
+        System.out.println("final Agregar horario----------------------------------------------------------");
+    }
+
+
+
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")
     public UsuarioMonitor votarMonitor(

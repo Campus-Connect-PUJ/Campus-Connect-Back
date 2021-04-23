@@ -1,23 +1,22 @@
 package CampusConnect.CCBack.Wrappers;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import CampusConnect.CCBack.Model.Tip;
 
-public class WrapperHorarios {
+public class WrapperHorario {
 
 	public Long idUsuario;
-
-	public String asignatura;
-
+	public Long idAsignatura;
 	public LocalDateTime fechaInicial;
-
 	public LocalDateTime fechaFinal;
 
-	public WrapperHorarios () {
+	public WrapperHorario () {
 
+		
     }
 
 	public Long getIdUsuario() {
@@ -28,20 +27,20 @@ public class WrapperHorarios {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getAsignatura() {
-		return asignatura;
+	public Long getIdAsignatura() {
+		return idAsignatura;
 	}
 
-	public void setAsignatura(String asignatura) {
-		this.asignatura = asignatura;
+	public void setIdAsignatura(Long idAsignatura) {
+		this.idAsignatura = idAsignatura;
 	}
 
 	public LocalDateTime getFechaInicial() {
 		return fechaInicial;
 	}
 
-	public void setFechaIncial(LocalDateTime fechaIncial) {
-		this.fechaInicial = fechaIncial;
+	public void setFechaInicial(LocalDateTime fechaInicial) {
+		this.fechaInicial = fechaInicial;
 	}
 
 	public LocalDateTime getFechaFinal() {
@@ -51,7 +50,6 @@ public class WrapperHorarios {
 	public void setFechaFinal(LocalDateTime fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
-
 
 	
 

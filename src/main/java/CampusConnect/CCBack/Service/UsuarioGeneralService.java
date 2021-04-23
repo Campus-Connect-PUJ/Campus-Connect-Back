@@ -40,6 +40,7 @@ import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
@@ -291,25 +292,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.save(ug);
     }
 
-    public void agregarMonitoria(
-        final WrapperMonitoria infoMonitoria,
-        final String email
-    ){
-        UsuarioGeneral ug = this.findByEmail(email);
-
-        List<UsuarioMonitor> monitorDe = ug.getMonitorDe();
-        if(monitorDe.size() > 0 && existeMonitoria(ug, infoMonitoria)){
-            //TODO: Agregar horarios a monitoria
-        }
-        else{
-            //Crear desde 0 monitoria
-            System.out.println("*********************************************");
-            crearMonitoria(ug, infoMonitoria);
-        }
-
-        repository.save(ug);
-
-    }
 
     public Iterable<UsuarioGeneral> findMonitores() {
         ArrayList<UsuarioGeneral> monitores = new ArrayList<>();
@@ -327,9 +309,44 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitores;
     }
 
+
+    public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
+        boolean existe = false;
+
+        for(int i=0; i<ug.getMonitorDe().size(); i++){
+            if(ug.getMonitorDe().get(i).getAsignatura().getId() == infoMonitoria.idAsignatura){
+                existe = true;
+            }
+        }
+
+
+        return existe;
+    }
+
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
         
         UsuarioMonitor monitoria = new UsuarioMonitor();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        Asignatura asignatura = asService.findById(infoMonitoria.idAsignatura);
+
+        if(!existeMonitoria(ug, infoMonitoria)){
+            monitoria.setAsignatura(asignatura);
+            monitoria.setCalificacion(Long.valueOf(5));
+            monitoria.setCantidadVotos(Long.valueOf(1));
+            monitoria.setUsuario(ug);
+    
+            asignatura.addMonitor(monitoria);
+            ug.addMonitorDe(monitoria);
+    
+            repository.save(ug);
+            asignaturaRepository.save(asignatura);
+            monitorRepository.save(monitoria);
+        }
+
+
+
+
+
         /*
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
@@ -402,10 +419,53 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitoria;
     }
 
-    public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
-        return false;
+    public Horario agregarHorariosMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
+        Horario horario = new Horario();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        boolean yaexiste = false;
+        horario.setFechaInicial(wpH.getFechaInicial());
+        horario.setFechaFinal(wpH.getFechaFinal());
+        System.out.println("Catnidad de monitorias " + ug.getMonitorDe().size());
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+            System.out.println("+++ " + i);
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                System.out.println("+++++++ " + j);
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+                System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + localDate);
+                System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
+    
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                }
+            }   
+
+            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
+                monitoria = anterioresMonitorias.get(i);
+            }
+        }
+
+        if(!yaexiste){
+            monitoria.addHorario(horario);
+            ug.addMonitorDe(monitoria);
+            horario.setMonitor(monitoria);
+
+            repository.save(ug);
+            monitorRepository.save(monitoria);
+            horarioRepository.save(horario);
+        }
+
+
+        return horario; 
     }
+
+
+
 
     //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
     public UsuarioGeneral persoRestaurantes(

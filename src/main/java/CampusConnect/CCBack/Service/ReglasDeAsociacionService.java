@@ -55,9 +55,11 @@ public class ReglasDeAsociacionService {
         return repository.save(regla);
     }
 
-    public Tip obtenerRecomendacionTip(final String email){
+    public Tip obtenerRecomendacionTip(final long email){
         // long idTip = 15;
-        UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
+        //UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
+        System.out.println("usuario "+ email);
+        UsuarioGeneral ug = servicioUsuarios.findById(email);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Tip tipRecomendado = new Tip();
@@ -136,17 +138,25 @@ public class ReglasDeAsociacionService {
     public Tip ultimoRecurso(UsuarioGeneral ug){
         long idTipParaRecomendar = 0;
         List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
-        boolean sale = false;
+        List<Tip> tipsRecomendar = new ArrayList<Tip>();
         Tip buscarSiExiste = new Tip();
-        for(Long i= tipsSistema.get(0).getId(); i < tipsSistema.size() && !sale ; i++){
-            idTipParaRecomendar = i;
-            buscarSiExiste = servicioTips.findById(idTipParaRecomendar);
-            if(!ug.getTipsNoGustados().contains(buscarSiExiste) && !ug.getTipsGustados().contains(buscarSiExiste)){
+        Tip tipRecomendar = new Tip();
+        boolean sale = false;
+        int i = 0;
+        while(!sale){
+            tipRecomendar = this.ordenarLista(tipsSistema).get(i);
+            if(!ug.getTipsGustados().contains(tipRecomendar) && !ug.getTipsNoGustados().contains(tipRecomendar)){
                 sale = true;
-            }
+            } 
+            i++;
         }
-        return buscarSiExiste;
+        
+
+
+        return tipRecomendar;
     }
+
+
 
     public int contieneTodos(List<Tip> tipsUsuario, List<Tip> tipsRegla){
         int iguales = 0;
@@ -208,6 +218,13 @@ public class ReglasDeAsociacionService {
         tipsRecomendar = ordenarLista(tipsRecomendar);
         
         return tipsRecomendar;
+    }
+
+    public Long borrarReglas(){
+        repository.deleteAll();
+        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) repository.findAll();
+        Long cantidad = (long) reglas.size();
+        return cantidad;
     }
 
 }

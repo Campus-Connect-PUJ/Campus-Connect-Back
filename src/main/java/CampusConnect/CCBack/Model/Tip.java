@@ -23,7 +23,6 @@ public class Tip implements Comparable<Tip>{
 
     private String descripcion;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;

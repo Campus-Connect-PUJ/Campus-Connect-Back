@@ -86,7 +86,6 @@ public class UsuarioGeneral implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaRestaurante> resenhaRestaurantes;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
@@ -106,8 +105,7 @@ public class UsuarioGeneral implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     private List<Caracteristica> caracteristicas;
 
     @JsonIgnore

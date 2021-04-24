@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -425,15 +426,25 @@ public class UsuarioGeneralService implements UserDetailsService {
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();
         boolean yaexiste = false;
+        System.out.println("->"+wpH.fi + " - "+ wpH.ff);
         horario.setFechaInicial(wpH.getFechaInicial());
         horario.setFechaFinal(wpH.getFechaFinal());
+        horario.setFi(wpH.fi);
+        horario.setFf(wpH.ff);
         System.out.println("Catnidad de monitorias " + ug.getMonitorDe().size());
         for(int i=0; i<anterioresMonitorias.size(); i++){
             System.out.println("+++ " + i);
             for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
                 System.out.println("+++++++ " + j);
+
+                //String str = "2016-03-04 11:30"; 
+                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+                //LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
+
                 LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
                 LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                
                 
                 LocalDate localDate = horario.getFechaInicial().toLocalDate();
                 LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();

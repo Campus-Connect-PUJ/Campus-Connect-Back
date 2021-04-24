@@ -13,6 +13,8 @@ public class WrapperHorario {
 	public Long idAsignatura;
 	public LocalDateTime fechaInicial;
 	public LocalDateTime fechaFinal;
+	public String fi;
+	public String ff;
 
 	public WrapperHorario () {
 
@@ -49,6 +51,22 @@ public class WrapperHorario {
 
 	public void setFechaFinal(LocalDateTime fechaFinal) {
 		this.fechaFinal = fechaFinal;
+	}
+
+	public String getFi() {
+		return fi;
+	}
+
+	public void setFi(String fi) {
+		this.fi = fi;
+	}
+
+	public String getFf() {
+		return ff;
+	}
+
+	public void setFf(String ff) {
+		this.ff = ff;
 	}
 
 	

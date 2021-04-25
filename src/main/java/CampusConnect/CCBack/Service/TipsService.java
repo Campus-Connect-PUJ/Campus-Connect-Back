@@ -37,6 +37,8 @@ public class TipsService {
         UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
+        tip.setNivelExigencia(data.getExigencia());
+        tip.setIdUsuarioCreador(ug.getId());
 
         for(Long id: data.getTiposAprendizaje()) {
             TipoAprendizaje c = taService.findById(id);

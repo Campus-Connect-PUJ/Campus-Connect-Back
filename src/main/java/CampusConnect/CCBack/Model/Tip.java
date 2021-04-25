@@ -23,9 +23,12 @@ public class Tip implements Comparable<Tip>{
 
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
+
+    private Long idUsuarioCreador;
 
     // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     @ManyToMany
@@ -51,8 +54,9 @@ public class Tip implements Comparable<Tip>{
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuariosNoGustaron;
 
-
     private int puntaje;
+
+    private Long nivelExigencia;
 
     public Tip() {
         this.tiposAprendizaje = new ArrayList<>();
@@ -142,4 +146,26 @@ public class Tip implements Comparable<Tip>{
         }
         return 0;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getNivelExigencia() {
+        return nivelExigencia;
+    }
+
+    public void setNivelExigencia(Long nivelExigencia) {
+        this.nivelExigencia = nivelExigencia;
+    }
+
+    public Long getIdUsuarioCreador() {
+        return idUsuarioCreador;
+    }
+
+    public void setIdUsuarioCreador(Long idUsuario) {
+        this.idUsuarioCreador = idUsuario;
+    }
+
+    
 }

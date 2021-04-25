@@ -13,6 +13,8 @@ public class WrapperTip {
 
     public List<Long> tiposAprendizaje;
 
+	public Long nivelExigencia;
+
     public WrapperTip() {
         this.tiposAprendizaje = new ArrayList<>();
     }
@@ -40,5 +42,14 @@ public class WrapperTip {
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+
+	public Long getExigencia() {
+		return nivelExigencia;
+	}
+
+	public void setExigencia(Long exigencia) {
+		this.nivelExigencia = exigencia;
+	}
+
 
 }

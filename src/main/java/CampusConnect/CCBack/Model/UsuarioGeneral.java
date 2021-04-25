@@ -114,9 +114,11 @@ public class UsuarioGeneral implements UserDetails {
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
+	//@JsonIgnore
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+	//@JsonIgnore
 	@ManyToMany(mappedBy = "usuariosNoGustaron")
     private List<Tip> tipsNoGustados;
 

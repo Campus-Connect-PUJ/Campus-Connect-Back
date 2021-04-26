@@ -1235,7 +1235,7 @@
     {
       "nombre" : "Subway",
       "tipoRestaurante": [
-        "comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "sandwiches"
@@ -1280,7 +1280,7 @@
     {
       "nombre" : "El corral",
       "tipoRestaurante": [
-        "comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1384,12 +1384,13 @@
     {
       "nombre" : "Frisby",
       "tipoRestaurante": [
-        "Comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "pollo",
-        "sandwich",
-        "ensalada"
+        "sandwiches",
+        "ensalada",
+        "comida rápida"
       ],
       "descripcion" : "Actualmente Frisby cuenta con más de 200 puntos de venta en 50 cabeceras municipales, siendo así una de las cadenas con mayor cobertura en el territorio nacional. FRISBY cuenta con 3,500 colaboradores que se encargan de mantener en cada entrega las premisas de sabor, servicio y calidad. El sabor de Frisby ha posicionado a la compañía como la cadena número uno de pollo apanado del país porque todos sabemos que... Nadie lo hace como Frisby lo hace.",
       "localizacion" : {
@@ -1408,7 +1409,7 @@
     {
       "nombre" : "Presto",
       "tipoRestaurante": [
-        "comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1886,9 +1887,6 @@
       "tipo":"comida tipica"
     },
     {
-      "tipo":"comida rapida"
-    },
-    {
       "tipo":"Cafes y Kioscos"
     },
     {
@@ -2003,6 +2001,9 @@
     },
     {
       "tipo":"brunch"
+    },
+    {
+      "tipo":"cafe"
     }
   ],
   "facultades" : [

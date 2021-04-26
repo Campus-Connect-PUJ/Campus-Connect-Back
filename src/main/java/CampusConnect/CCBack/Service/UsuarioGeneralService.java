@@ -429,12 +429,13 @@ public class UsuarioGeneralService implements UserDetailsService {
         Long idReg = wpr.getRegimenAlimenticio();
         Long nivelExigencia = wpr.getNivelExigencia();
         RegimenAlimenticio regimen = regService.findById(idReg);
-
-        RegimenAlimenticioUsuario regimenUsuario = rauService.create(
+        
+        if(ug.getRegimenAlimenticio()==null){
+            RegimenAlimenticioUsuario regimenUsuario = rauService.create(
             regimen, nivelExigencia.intValue(), ug
-        );
-
-        ug.setRegimenAlimenticio(regimenUsuario);
+            );
+            ug.setRegimenAlimenticio(regimenUsuario);
+        }
 
         String ambientacion = wpr.getAmbientacion();
         ug.setAmbientacion(ambientacion);

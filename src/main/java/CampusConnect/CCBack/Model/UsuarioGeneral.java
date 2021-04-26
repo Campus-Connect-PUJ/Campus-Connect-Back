@@ -485,4 +485,9 @@ public class UsuarioGeneral implements UserDetails {
 		}
 	}
 
+	public void reinicioPersoGrupos(){
+		this.caracteristicas.clear();
+		this.actividadInteres.clear();
+	}
+
 }

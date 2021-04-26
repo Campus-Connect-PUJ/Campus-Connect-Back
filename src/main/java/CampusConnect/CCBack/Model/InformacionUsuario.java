@@ -128,4 +128,7 @@ public class InformacionUsuario {
         this.hobbies.add(h);
     }
 
+	public void reinicioPersoGrupos(){
+		this.hobbies.clear();
+	}
 }

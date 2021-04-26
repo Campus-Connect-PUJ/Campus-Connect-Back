@@ -253,9 +253,14 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
+        ug.reinicioPersoGrupos();
+        iu.reinicioPersoGrupos();
+
         for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
-            ug.agregarCaracteristica(c);
+            if(!ug.getCaracteristicas().contains(c)){
+                ug.agregarCaracteristica(c);
+            }   
         }
 
         for (String nombre : wpg.getActividades()) {

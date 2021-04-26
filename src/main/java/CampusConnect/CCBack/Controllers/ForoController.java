@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,15 @@ class ForoController {
 
             return fService.crearForo(foroData, idUsuario);
     }
+
+    @PutMapping("{idUsuario}/borrarForo/{id_foro}")
+    public void borrarForo(
+        @PathVariable("id_foro") final Long idForo,
+        @PathVariable("idUsuario") final Long idUsuario 
+    ){
+        fService.borrarForo(idUsuario, idForo);
+    }  
+
 
     @PostMapping("{id}/respuesta")
     public void AgregarRespuestaForo(

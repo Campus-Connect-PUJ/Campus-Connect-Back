@@ -113,6 +113,10 @@ public class UsuarioGeneralService implements UserDetailsService {
             admin.setRol(Rol.ADMIN);
     }
 
+    public void guardarUsuario(UsuarioGeneral ug){
+        repository.save(ug);
+    }
+
     public Iterable<UsuarioGeneral> findAll() {
         return repository.findAll();
     }

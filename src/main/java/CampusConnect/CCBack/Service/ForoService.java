@@ -46,6 +46,26 @@ public class ForoService {
         return repository.save(foro);
     }
 
+    public void borrarForo(Long idForo, Long idUsuario){
+        UsuarioGeneral ug = uService.findById(idUsuario);
+        List<Foro> forosUsuario = ug.getForos();
+        Foro foro = repository.findById(idForo).get();
+        
+        System.out.println(" " + ug.getId() + foro.getDescripcion());
+        if(forosUsuario.contains(foro)){
+            System.out.println("entra");
+            forosUsuario.remove(foro);
+            System.out.println("cantidad foros" + forosUsuario.size());
+            ug.setForos(forosUsuario);
+        }
+
+        repository.delete(foro);
+        uService.guardarUsuario(ug);
+
+
+    }
+
+
     public void AgregarRespuestaForo(
         final WrapperRespuestaForo respuesta,
         final Long idForo

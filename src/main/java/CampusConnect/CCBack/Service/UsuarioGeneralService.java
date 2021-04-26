@@ -164,9 +164,12 @@ public class UsuarioGeneralService implements UserDetailsService {
     ){
         UsuarioGeneral ug = repository.findById(email).get();
         List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
+        TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
+
         tiposAprendizaje = ug.getEstilosAprendizaje();
-        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
-            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+        System.out.println("-> "+ta.getDescripcion());
+        if( !tiposAprendizaje.contains(ta) ){
+            tiposAprendizaje.add(ta);
             ug.setEstilosAprendizaje(tiposAprendizaje);
         }
 

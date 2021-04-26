@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.yaml.snakeyaml.util.ArrayUtils;
+
 @Entity
 public class Tip implements Comparable<Tip>{
 
@@ -135,6 +137,15 @@ public class Tip implements Comparable<Tip>{
     public void agregarUsuarioNoGustaron(UsuarioGeneral ug){
         this.usuariosNoGustaron.add(ug);
     }
+
+  
+    public void quitarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.remove(ug);
+    }
+
+    public void quitarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.remove(ug);
+    }  
 
     @Override
     public int compareTo(Tip o) {

@@ -54,14 +54,21 @@ public class TipsService {
     ){
         System.out.println("Entra a gustar");
         Tip tip = this.findById(idTip);
-        tip.like();
+        
         UsuarioGeneral ug = ugService.findById(idUsuario);
 
+        if(ug.getTipsNoGustados().contains(tip)){
+            tip.quitarUsuarioNoGustaron(ug);
+            ug.quitarUsuarioNoGustaron(tip);
+        }
+
         if(!ug.getTipsGustados().contains(tip)){
+            tip.like();
             tip.agregarUsuarioGustaron(ug);
             ug.agregarTipGustaron(tip);
             repository.save(tip);
         }
+        
 
         System.out.println("Sale a gustar");
         return ugRepository.save(ug);
@@ -73,9 +80,16 @@ public class TipsService {
     ){
         System.out.println("entra");
         Tip tip = this.findById(idTip);
-        tip.dislike();
+        
         UsuarioGeneral ug = ugService.findById(idUsuario);
+
+        if(ug.getTipsGustados().contains(tip)){
+            tip.quitarUsuarioGustaron(ug);
+            ug.quitarUsuarioGustaron(tip);
+        }
+
         if(!ug.getTipsNoGustados().contains(tip)){
+            tip.dislike();
             tip.agregarUsuarioNoGustaron(ug);
             ug.agregarTipNoGustaron(tip);
             repository.save(tip);

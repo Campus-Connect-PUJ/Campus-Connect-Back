@@ -133,6 +133,15 @@ class UsuarioGeneralController {
         return repository.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
     }
 
+    @PutMapping("{idUsuario}/borrarTipoAprendizaje/{id_tip}")
+    public UsuarioGeneral borrarTipoAprendizaje(
+        @PathVariable("id_tip") final Long idTipoAprendizaje,
+        @PathVariable("idUsuario") final Long idUsuario
+    ){
+        System.out.println("1Borrar" + idTipoAprendizaje + " " +idTipoAprendizaje);
+        return repository.borrarTipoAprendizaje(idUsuario, idTipoAprendizaje);
+    }
+
     @PostMapping("login/registro")
     public UsuarioGeneral registro(
         @RequestBody final WrapperUsuarioGeneral data,

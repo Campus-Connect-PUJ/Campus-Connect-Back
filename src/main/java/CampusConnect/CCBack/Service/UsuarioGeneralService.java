@@ -176,6 +176,22 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.save(ug);
     }
 
+    public UsuarioGeneral borrarTipoAprendizaje(
+        final Long idusuario,
+        final Long idTipoAprendizaje
+    ){
+        UsuarioGeneral ug = repository.findById(idusuario).get();
+        List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
+        TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
+        
+        if(tiposAprendizaje.contains(ta)){
+            tiposAprendizaje.remove(ta);
+            ug.setEstilosAprendizaje(tiposAprendizaje);
+        }
+
+        return repository.save(ug);
+    }
+
     public UsuarioGeneral registro(final WrapperUsuarioGeneral data) {
         final UsuarioGeneral ug = this.create(data);
         return ug;

@@ -490,4 +490,8 @@ public class UsuarioGeneral implements UserDetails {
 		this.actividadInteres.clear();
 	}
 
+	public void reinicioPersoRestaurantes(){
+		this.comidaFavorita.clear();
+	}
+
 }

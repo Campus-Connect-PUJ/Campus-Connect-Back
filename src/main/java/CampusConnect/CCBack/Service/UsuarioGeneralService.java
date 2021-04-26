@@ -424,6 +424,8 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
+        ug.reinicioPersoRestaurantes();
+
         Long idReg = wpr.getRegimenAlimenticio();
         Long nivelExigencia = wpr.getNivelExigencia();
         RegimenAlimenticio regimen = regService.findById(idReg);

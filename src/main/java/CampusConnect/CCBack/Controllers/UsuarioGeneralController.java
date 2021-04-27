@@ -124,7 +124,6 @@ class UsuarioGeneralController {
         return repository.findByEmail(email).getCarrerasUsuario();
     }
 
-<<<<<<< Updated upstream
     @PostMapping("agregarTipoAprendizaje/{idTipo}")
     public UsuarioGeneral agregarTipAprendizaje(
         //@AuthenticationPrincipal String username,
@@ -140,15 +139,6 @@ class UsuarioGeneralController {
         @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
         return repository.borrarTipoAprendizaje(email, idTipoAprendizaje);
-=======
-    @PostMapping("agregarTipoAprendizaje/{id_tip}")
-    public UsuarioGeneral agregarTipAprendizaje(
-        //@AuthenticationPrincipal String username,
-        @PathVariable("id_tip") final Long idTipoAprendizaje,
-        @AuthenticationPrincipal String email
-    ){
-        return ugService.agregarTipAprendizaje(email, idTipoAprendizaje);
->>>>>>> Stashed changes
     }
 
     @PostMapping("login/registro")
@@ -242,15 +232,9 @@ class UsuarioGeneralController {
         @RequestBody final WrapperMonitoria infoMonitoria,
         @AuthenticationPrincipal String email
     ){
-<<<<<<< Updated upstream
         UsuarioGeneral ug = repository.findByEmail(email);
         repository.crearMonitoria(ug, infoMonitoria);
     }
-=======
-        UsuarioGeneral ug = ugService.findByEmail(email);
-
-        ugService.crearMonitoria(ug, infoMonitoria);
->>>>>>> Stashed changes
 
     @PostMapping("agregarHorario/{idUsuario}")
     public void agregarHorario(

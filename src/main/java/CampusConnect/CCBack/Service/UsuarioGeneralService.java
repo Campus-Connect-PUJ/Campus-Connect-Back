@@ -163,7 +163,6 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral agregarTipAprendizaje(
-<<<<<<< Updated upstream
         String email,
         final Long idTipoAprendizaje
     ){
@@ -190,16 +189,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         
         if(tiposAprendizaje.contains(ta)){
             tiposAprendizaje.remove(ta);
-=======
-        final String email,
-        final Long idTipoAprendizaje
-    ){
-        UsuarioGeneral ug = repository.findByEmail(email);
-        List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
-        tiposAprendizaje = ug.getEstilosAprendizaje();
-        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
-            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
->>>>>>> Stashed changes
             ug.setEstilosAprendizaje(tiposAprendizaje);
         }
 

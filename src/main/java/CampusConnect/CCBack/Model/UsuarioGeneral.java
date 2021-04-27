@@ -86,7 +86,6 @@ public class UsuarioGeneral implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaRestaurante> resenhaRestaurantes;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
@@ -106,8 +105,7 @@ public class UsuarioGeneral implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     private List<Caracteristica> caracteristicas;
 
     @JsonIgnore
@@ -130,6 +128,12 @@ public class UsuarioGeneral implements UserDetails {
 
 	@ManyToMany
 	private List<TipoComida> comidaFavorita;
+
+	@ManyToMany
+	private List<Restaurante> restaurantesReco;
+
+	@ManyToMany
+	private List<GrupoEstudiantil> grupoEstudiantilReco;
 
 	public UsuarioGeneral(
         String email,
@@ -166,6 +170,7 @@ public class UsuarioGeneral implements UserDetails {
         this.tips = new ArrayList<>();
         this.roles = new ArrayList<>();
         this.actividadInteres = new ArrayList<>();
+		this.comidaFavorita = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;
@@ -463,12 +468,49 @@ public class UsuarioGeneral implements UserDetails {
 		this.comidaFavorita.add(comida);
 	}
 
+
 	public void agregarForo(Foro foro){
 		this.foros.add(foro);
 	}
 
 	public void borrarRespuestaForo(RespuestaForo rf){
 		this.respuestasForo.remove(rf);
+  }
+	public void setRestaurantesReco(List<Restaurante> reco){
+		this.restaurantesReco = reco;
+	}
+
+	public List<Restaurante> getRestaurantesReco(){
+		return this.restaurantesReco;
+	}
+
+	public void agregarRestauranteReco(Restaurante restaurante){
+		if(!this.restaurantesReco.contains(restaurante)){
+			this.restaurantesReco.add(restaurante);
+		}
+	}
+
+	public void setGrupoReco(List<GrupoEstudiantil> reco){
+		this.grupoEstudiantilReco = reco;
+	}
+
+	public List<GrupoEstudiantil> getGrupoReco(){
+		return this.grupoEstudiantilReco;
+	}
+
+	public void agregarGRupoReco(GrupoEstudiantil reco){
+		if(!this.grupoEstudiantilReco.contains(reco)){
+			this.grupoEstudiantilReco.add(reco);
+		}
+	}
+
+	public void reinicioPersoGrupos(){
+		this.caracteristicas.clear();
+		this.actividadInteres.clear();
+	}
+
+	public void reinicioPersoRestaurantes(){
+		this.comidaFavorita.clear();
 	}
 
 }

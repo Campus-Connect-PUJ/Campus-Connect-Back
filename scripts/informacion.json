@@ -1274,7 +1274,7 @@
     {
       "nombre" : "Subway",
       "tipoRestaurante": [
-        "comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "sandwiches"
@@ -1319,7 +1319,7 @@
     {
       "nombre" : "El corral",
       "tipoRestaurante": [
-        "comida rapida"
+        "comida rápida"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1373,6 +1373,486 @@
       ],
       "precioMin":9200,
       "precioMax":31900
+    },
+    {
+      "nombre" : "Juan Valez",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cafe",
+        "desayunos"
+      ],
+      "descripcion" : "Generar valor compartido para caficultores, colaboradores, consumidores, accionistas y aliados comerciales.",
+      "localizacion" : {
+        "id": 1,
+        "descripcion": "Ed. Jorge Hoyos S.J"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "Juan Valdez",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":5000,
+      "precioMax":30000
+    },
+    {
+      "nombre" : "OMA",
+      "tipoRestaurante": [
+        "De especialidad"
+      ],
+      "tipoComida":[
+        "cafe",
+        "desayunos"
+      ],
+      "descripcion" : "En OMA buscamos “Alcanzar el 100% de satisfacción en nuestros clientes”, para ello existen cuatro principios básicos que a lo largo de la trayectoria y experiencia nos ha llevado a ser una de las principales cadenas de Cafés Restaurantes y Barras de Café.",
+      "localizacion" : {
+        "id": 7,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "OMA",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":5000,
+      "precioMax":30000
+    },
+    {
+      "nombre" : "Frisby",
+      "tipoRestaurante": [
+        "comida rápida"
+      ],
+      "tipoComida":[
+        "pollo",
+        "sandwiches",
+        "ensalada"
+      ],
+      "descripcion" : "Actualmente Frisby cuenta con más de 200 puntos de venta en 50 cabeceras municipales, siendo así una de las cadenas con mayor cobertura en el territorio nacional. FRISBY cuenta con 3,500 colaboradores que se encargan de mantener en cada entrega las premisas de sabor, servicio y calidad. El sabor de Frisby ha posicionado a la compañía como la cadena número uno de pollo apanado del país porque todos sabemos que... Nadie lo hace como Frisby lo hace.",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "Frisby",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":7100,
+      "precioMax":66700
+    },
+    {
+      "nombre" : "Presto",
+      "tipoRestaurante": [
+        "comida rápida"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "malteadas",
+        "sandwiches",
+        "wraps",
+        "ensalada",
+        "perros"
+      ],
+      "descripcion" : "Nunca rendirnos al momento de ofrecerle a Colombia el mejor sabor, manteniendo la esencia que nos caracteriza.",
+      "localizacion" : {
+        "id": 6,
+        "descripcion": "direccion"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 20,
+      "franquicia" : "Presto",
+      "regimenAlimenticio": [
+        "carnivoro"
+      ],
+      "precioMin":13000,
+      "precioMax":33900
+    },
+    {
+      "nombre" : "Kiosco Urapanes",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "La pecera",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Al lado de la central"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Ático",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "En el 5 piso del edicidio Ático"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Barón",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Biblioteca",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "En el quinto piso de la biblioteca"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Catañula",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Ingeniería",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "La arboleda",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Frente a la media torta"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "La Estación",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Urgencias",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": ""
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Sauce",
+      "tipoRestaurante": [
+        "Cafes y Kioscos"
+      ],
+      "tipoComida":[
+        "panaderia",
+        "desayunos"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Frente a la media torta"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 5,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":1500,
+      "precioMax":10900
+    },
+    {
+      "nombre" : "Básicas",
+      "tipoRestaurante": [
+        "Cafeteria"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "sandwiches",
+        "pizza",
+        "perros"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Básicas"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 15,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":9000,
+      "precioMax":19700
+    },
+    {
+      "nombre" : "Giraldo",
+      "tipoRestaurante": [
+        "Cafeteria"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "sandwiches",
+        "pizza",
+        "perros"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Segundo piso del giraldo"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 15,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":9000,
+      "precioMax":19700
+    },
+    {
+      "nombre" : "HUSI",
+      "tipoRestaurante": [
+        "Cafeteria"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "sandwiches",
+        "pizza",
+        "perros"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "HUSI"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 15,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":9000,
+      "precioMax":19700
+    },
+    {
+      "nombre" : "Bienestar",
+      "tipoRestaurante": [
+        "Cafeteria"
+      ],
+      "tipoComida":[
+        "hamburgesa",
+        "sandwiches",
+        "pizza",
+        "perros"
+      ],
+      "descripcion" : "",
+      "localizacion" : {
+        "id": 8,
+        "descripcion": "Bienestar"
+      },
+      "calificacion" : 0,
+      "tiempoEntrega" : 15,
+      "franquicia" : "",
+      "regimenAlimenticio": [
+        "vegetariano",
+        "carnivoro",
+        "saludable"
+      ],
+      "precioMin":9000,
+      "precioMax":19700
     }
   ],
   "ubicaciones": [
@@ -1405,6 +1885,16 @@
       "id": 6,
       "nombre": "Fuera del campus",
       "descripcion": "Fuera del campus"
+    },
+    {
+      "id": 7,
+      "nombre": "Centro Javeriano de Formación Deportiva",
+      "descripcion": "Centro Javeriano de Formación Deportiva"
+    },
+    {
+      "id": 8,
+      "nombre": "Dentro del campus",
+      "descripcion": "Dentro del campus"
     }
   ],
   "RegimenAlimenticio":[
@@ -1435,7 +1925,10 @@
       "tipo":"comida tipica"
     },
     {
-      "tipo":"comida rapida"
+      "tipo":"Cafes y Kioscos"
+    },
+    {
+      "tipo":"Cafeteria"
     }
   ],
   "TipoCocina":[
@@ -1546,6 +2039,9 @@
     },
     {
       "tipo":"brunch"
+    },
+    {
+      "tipo":"cafe"
     }
   ],
   "facultades" : [

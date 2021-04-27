@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.Foro;
@@ -34,6 +33,8 @@ import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -41,19 +42,24 @@ import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 class UsuarioGeneralController {
 
     @Autowired
-    private UsuarioGeneralService repository;
+    private UsuarioGeneralService ugService;
 
     @Autowired
     private RESTAuthenticationProvider restap;
 
+    @GetMapping("data")
+    public UsuarioGeneral getData(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
+
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAll() {
-        return repository.findAll();
+        return ugService.findAll();
     }
 
     @GetMapping("{id}")
     public UsuarioGeneral findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return ugService.findById(id);
     }
 
     @PostMapping("resenha_grupo_estudiantil/{id_res}")
@@ -62,7 +68,7 @@ class UsuarioGeneralController {
         @RequestBody final ResenhaGrupoEstudiantil foroData,
         @PathVariable("id_res") final Long idRestaurante
         ) {
-            return repository.crearResenhaGrupoEstudiantil(
+            return ugService.crearResenhaGrupoEstudiantil(
                 email, foroData, idRestaurante);
     }
 
@@ -72,56 +78,56 @@ class UsuarioGeneralController {
         @RequestBody final ResenhaRestaurante foroData,
         @PathVariable("id_res") final Long idRestaurante
         ) {
-            return repository.crearResentaRestaurante(
+            return ugService.crearResentaRestaurante(
                 email, foroData, idRestaurante);
     }
 
     @GetMapping("respuestas_foros")
     public List<RespuestaForo> respuestasForosUsuario(
         @AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getRespuestasForo();
+        return ugService.findByEmail(email).getRespuestasForo();
     }
 
     @GetMapping("foros")
     public List<Foro> postsUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getForos();
+        return ugService.findByEmail(email).getForos();
     }
 
     @GetMapping("estilos_aprendizaje")
     public List<TipoAprendizaje> estilosAprendizajeUsuario(
         @AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getEstilosAprendizaje();
+        return ugService.findByEmail(email).getEstilosAprendizaje();
     }
 
     @GetMapping("monitorias")
     public List<UsuarioMonitor> monitoriasUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getMonitorDe();
+        return ugService.findByEmail(email).getMonitorDe();
     }
 
     @GetMapping("caracteristicas")
     public List<Caracteristica> caracteristicasUsuario(
         @AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getCaracteristicas();
+        return ugService.findByEmail(email).getCaracteristicas();
     }
 
     @GetMapping("informacion")
     public InformacionUsuario informacionUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getInformacionUsuario();
+        return ugService.findByEmail(email).getInformacionUsuario();
     }
 
     @GetMapping("tips")
     public List<Tip> tipsUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getTips();
+        return ugService.findByEmail(email).getTips();
     }
 
     @GetMapping("tips_gustados")
     public List<Tip> tipsGustadosUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getTipsGustados();
+        return ugService.findByEmail(email).getTipsGustados();
     }
 
     @GetMapping("carreras")
     public List<Carrera> carrerasUsuario(@AuthenticationPrincipal String email) {
-        return repository.findByEmail(email).getCarrerasUsuario();
+        return ugService.findByEmail(email).getCarrerasUsuario();
     }
 
     @PostMapping("agregarTipoAprendizaje/{idTipo}")
@@ -138,7 +144,9 @@ class UsuarioGeneralController {
         @AuthenticationPrincipal String email,
         @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
+
         return repository.borrarTipoAprendizaje(email, idTipoAprendizaje);
+
     }
 
     @PostMapping("login/registro")
@@ -148,7 +156,7 @@ class UsuarioGeneralController {
         ) {
 
         System.out.println("creando usuario");
-        UsuarioGeneral ug = repository.registro(data);
+        UsuarioGeneral ug = ugService.registro(data);
         WrapperLogin wl = new WrapperLogin();
         wl.setUsername(data.getEmail());
         wl.setPassword(data.getPassword());
@@ -163,7 +171,7 @@ class UsuarioGeneralController {
         System.out.println("login");
         System.out.println(login.getUsername());
         System.out.println(login.getPassword());
-        final UsuarioGeneral user = repository.login(login);
+        final UsuarioGeneral user = ugService.login(login);
         return resp(login, user, response);
     }
 
@@ -190,7 +198,7 @@ class UsuarioGeneralController {
     // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
     @GetMapping("rolAdmin/{id}")
     public UsuarioGeneral toggleRolAdmin(@PathVariable("id") Long id) {
-        return repository.toggleRolAdmin(id);
+        return ugService.toggleRolAdmin(id);
     }
 
     @GetMapping("rolMonitor/{id}")
@@ -198,15 +206,15 @@ class UsuarioGeneralController {
         // @AuthenticationPrincipal UsuarioGeneral ug
         @PathVariable("id") Long id
         ) {
-        return repository.toggleRolMonitor(id);
+        return ugService.toggleRolMonitor(id);
     }
-  
+
     @PutMapping("persoGrupos")
     public UsuarioGeneral persoGrupos(
         @RequestBody final WrapperPersoGrupos wpg,
         @AuthenticationPrincipal String email) {
 
-        return repository.persoGrupos(wpg, email);
+        return ugService.persoGrupos(wpg, email);
     }
 
     @PutMapping("persoRestaurantes")
@@ -214,7 +222,7 @@ class UsuarioGeneralController {
         @RequestBody final WrapperPersoRestaurantes wpr,
         @AuthenticationPrincipal String email) {
 
-        return repository.persoRestaurantes(wpr, email);
+        return ugService.persoRestaurantes(wpr, email);
     }
 
     // TODO: verificar admin
@@ -223,7 +231,7 @@ class UsuarioGeneralController {
         @PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("rol") final Short idRol
     ){
-        return repository.cambiarRol(idUsuario, idRol);
+        return ugService.cambiarRol(idUsuario, idRol);
     }
 
 
@@ -235,6 +243,7 @@ class UsuarioGeneralController {
         UsuarioGeneral ug = repository.findByEmail(email);
         repository.crearMonitoria(ug, infoMonitoria);
     }
+
 
     @PostMapping("agregarHorario")
     public void agregarHorario(
@@ -252,7 +261,7 @@ class UsuarioGeneralController {
         @PathVariable("idMonitor") final Long idMonitor,
         @PathVariable("calificacion") final Long calificacion
     ){
-        return repository.votarMonitor(idMonitor, calificacion);
+        return ugService.votarMonitor(idMonitor, calificacion);
 
     }
 
@@ -261,7 +270,7 @@ class UsuarioGeneralController {
         @PathVariable("idMonitor") final Long idMonitor
     ){
         System.out.println("El id del monitor " + idMonitor);
-        return repository.obtenerHorarios(idMonitor, 750);
+        return ugService.obtenerHorarios(idMonitor, 750);
     }
 
     @GetMapping("/monitor/{dias}/{idMonitor}")
@@ -270,14 +279,26 @@ class UsuarioGeneralController {
         @PathVariable("dias") final Long dias
     ){
         System.out.println("El id del monitor " + idMonitor);
-        return repository.obtenerHorarios(idMonitor, dias);
+        return ugService.obtenerHorarios(idMonitor, dias);
     }
 
     @GetMapping("monitores/all")
     public Iterable<UsuarioGeneral> findMonitores(
     ) {
-        return repository.findMonitores();
+        return ugService.findMonitores();
+    }
+    
+    @PutMapping("sugeRestaurantes")
+    public UsuarioGeneral sugeRestaurantes(
+        @RequestBody final WrapperSugeRestaurantes wpr) {
+
+        return ugService.RegistarRecomendacionRestaurantes(wpr);
     }
 
+    @PutMapping("sugeGrupos")
+    public UsuarioGeneral sugeGurpos(
+        @RequestBody final WrapperSugeGrupos wpg){
 
+        return ugService.RegistarRecomendacionGrupos(wpg);
+    }
 }

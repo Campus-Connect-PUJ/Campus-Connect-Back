@@ -26,13 +26,8 @@ public class Lugar {
     @OneToMany(mappedBy = "lugar")
     private List<Restaurante> restaurantes;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "lugar")
-    private List<Eventualidad> eventualidades;
-
     public Lugar() {
         this.restaurantes = new ArrayList<>();
-        this.eventualidades = new ArrayList<>();
     }
 
 	public String getNombre() {
@@ -57,14 +52,6 @@ public class Lugar {
 
 	public void setRestaurantes(List<Restaurante> restaurantes) {
 		this.restaurantes = restaurantes;
-	}
-
-	public List<Eventualidad> getEventualidades() {
-		return eventualidades;
-	}
-
-	public void setEventualidades(List<Eventualidad> eventualidades) {
-		this.eventualidades = eventualidades;
 	}
 
 	public Long getId() {

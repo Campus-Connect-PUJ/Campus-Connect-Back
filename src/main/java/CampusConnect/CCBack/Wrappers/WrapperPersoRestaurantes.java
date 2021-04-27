@@ -6,7 +6,7 @@ public class WrapperPersoRestaurantes {
     //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
     
     private Long regimenAlimenticio;
-    private Long nivelExigencia;
+    private int nivelExigencia;
     private List<Long> comidas;
     private String ambientacion;
 
@@ -18,11 +18,11 @@ public class WrapperPersoRestaurantes {
         this.regimenAlimenticio=regimenAlimenticio;
     }
 
-    public Long getNivelExigencia(){
+    public int getNivelExigencia(){
         return this.nivelExigencia;
     }
 
-    public void setNivelExigencia(Long nivelExigencia){
+    public void setNivelExigencia(int nivelExigencia){
         this.nivelExigencia=nivelExigencia;
     }
 

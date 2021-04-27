@@ -3,7 +3,6 @@ package CampusConnect.CCBack.Controllers;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Tematica;
-import CampusConnect.CCBack.Repository.TematicaRepository;
 import CampusConnect.CCBack.Service.TematicasService;
 
 import java.util.List;
@@ -21,31 +20,31 @@ import org.springframework.web.bind.annotation.RestController;
 class TematicasController {
 
     @Autowired
-    private TematicasService repository;
+    private TematicasService tService;
 
     @GetMapping("all")
     public Iterable<Tematica> findAll() {
-        return repository.findAll();
+        return tService.findAll();
     }
 
     @GetMapping("{id}")
     public Tematica findById(@PathVariable("id") final Long id) {
-        return repository.findById(id);
+        return tService.findById(id);
     }
 
     @GetMapping("{id}/grupos_estudiantiles")
     public List<GrupoEstudiantil> gruposDeTematica(@PathVariable("id") final Long id) {
-        return repository.findById(id).getGruposEstudiantiles();
+        return tService.findById(id).getGruposEstudiantiles();
     }
 
     @GetMapping("{id}/caracteristicas")
     public List<Caracteristica> caracteristicasDeTematica(@PathVariable("id") final Long id) {
-        return repository.findById(id).getCaracteristicas();
+        return tService.findById(id).getCaracteristicas();
     }
 
     @PostMapping
     public Tematica create(@RequestBody final Tematica dato) {
-        return repository.create(dato);
+        return tService.create(dato);
     }
 
 }

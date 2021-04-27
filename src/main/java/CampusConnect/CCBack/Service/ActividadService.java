@@ -9,7 +9,7 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ActividadRepository;
 
 @Service
-class ActividadService {
+public class ActividadService {
 
     @Autowired
     private ActividadRepository repository;

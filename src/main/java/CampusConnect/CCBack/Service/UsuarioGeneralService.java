@@ -1,17 +1,12 @@
 package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.convert.Jsr310Converters.LocalTimeToDateConverter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,15 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
-
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
-import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.Hobby;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.TipoComida;
@@ -42,12 +36,14 @@ import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
+
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
-import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
 
 @RestController
 public class UsuarioGeneralService implements UserDetailsService {
@@ -96,6 +92,12 @@ public class UsuarioGeneralService implements UserDetailsService {
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private GruposEstudiantilesService geService;
+
+    @Autowired
+    private RestaurantesService rService;
 
     private UsuarioGeneral admin;
 
@@ -268,9 +270,14 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         InformacionUsuario iu = ug.getInformacionUsuario();
 
+        ug.reinicioPersoGrupos();
+        iu.reinicioPersoGrupos();
+
         for (Long id: wpg.getCaracteristicas()) {
             Caracteristica c = cService.findById(id);
-            ug.agregarCaracteristica(c);
+            if(!ug.getCaracteristicas().contains(c)){
+                ug.agregarCaracteristica(c);
+            }   
         }
 
         for (String nombre : wpg.getActividades()) {
@@ -433,22 +440,23 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         UsuarioGeneral ug = this.findByEmail(email);
 
-        InformacionUsuario iu = ug.getInformacionUsuario();
+        ug.reinicioPersoRestaurantes();
 
         Long idReg = wpr.getRegimenAlimenticio();
-        Long nivelExigencia = wpr.getNivelExigencia();
+        int nivelExigencia = wpr.getNivelExigencia();
         RegimenAlimenticio regimen = regService.findById(idReg);
-
-        RegimenAlimenticioUsuario regimenUsuario = rauService.create(
-            regimen, nivelExigencia.intValue(), ug
-        );
-
-        ug.setRegimenAlimenticio(regimenUsuario);
+        
+        if(ug.getRegimenAlimenticio()==null){
+            RegimenAlimenticioUsuario regimenUsuario = rauService.create(
+                regimen, nivelExigencia, ug
+            );
+            ug.setRegimenAlimenticio(regimenUsuario);
+        }
 
         String ambientacion = wpr.getAmbientacion();
         ug.setAmbientacion(ambientacion);
         for(Long id: wpr.getComidas()){
-            TipoComida comida =tcService.findById(id);
+            TipoComida comida = tcService.findById(id);
             ug.agregarComida(comida);
         }
 
@@ -488,5 +496,27 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
         return monitores;
+    }
+
+    public UsuarioGeneral RegistarRecomendacionGrupos(final WrapperSugeGrupos wsg){
+        UsuarioGeneral ug = this.findById(wsg.getIdUsuario());
+
+        for (Long id: wsg.getIdsGrupos()){
+            GrupoEstudiantil g = geService.findById(id);
+            ug.agregarGRupoReco(g);
+        }
+
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral RegistarRecomendacionRestaurantes(final WrapperSugeRestaurantes wsr){
+        UsuarioGeneral ug = this.findById(wsr.getIdUsuario());
+
+        for (Long id: wsr.getIdsRestaurantes()){
+            Restaurante r = rService.findById(id);
+            ug.agregarRestauranteReco(r);
+        }
+
+        return repository.save(ug);
     }
 }

@@ -42,7 +42,9 @@ public class ForoService {
         foro.setDescripcion(foroData.getDescripcion());
         foro.setTitulo(foroData.getTitulo());
         foro.setUsuario(ug);
+        ug.agregarForo(foro);
 
+        uService.guardarUsuario(ug);
         return repository.save(foro);
     }
 
@@ -53,10 +55,16 @@ public class ForoService {
         
         System.out.println(" " + ug.getId() + foro.getDescripcion());
         if(forosUsuario.contains(foro)){
-            System.out.println("entra");
             forosUsuario.remove(foro);
-            System.out.println("cantidad foros" + forosUsuario.size());
             ug.setForos(forosUsuario);
+            
+            for(int i=0; i<foro.getRespuestas().size(); i++){
+                UsuarioGeneral ugBorrar = foro.getRespuestas().get(i).getUsuario();
+                respuestaRepository.deleteById(foro.getRespuestas().get(i).getId());
+                ugBorrar.borrarRespuestaForo(foro.getRespuestas().get(i));
+                uService.guardarUsuario(ugBorrar);
+            }
+
         }
 
         repository.delete(foro);

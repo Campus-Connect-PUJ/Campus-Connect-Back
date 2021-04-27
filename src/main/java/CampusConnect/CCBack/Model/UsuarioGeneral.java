@@ -463,4 +463,12 @@ public class UsuarioGeneral implements UserDetails {
 		this.comidaFavorita.add(comida);
 	}
 
+	public void agregarForo(Foro foro){
+		this.foros.add(foro);
+	}
+
+	public void borrarRespuestaForo(RespuestaForo rf){
+		this.respuestasForo.remove(rf);
+	}
+
 }

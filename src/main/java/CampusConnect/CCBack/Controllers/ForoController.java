@@ -7,6 +7,7 @@ import CampusConnect.CCBack.Repository.ForoRepository;
 import CampusConnect.CCBack.Repository.RespuestaForoRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Service.ForoService;
+import CampusConnect.CCBack.Service.RespuestaForoService;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ class ForoController {
 
     @Autowired
     private ForoService fService;
+
+    @Autowired
+    private RespuestaForoService rfService;
 
     @GetMapping("all")
     public Iterable<Foro> findAll() {
@@ -58,9 +62,9 @@ class ForoController {
         @PathVariable("id_foro") final Long idForo,
         @PathVariable("idUsuario") final Long idUsuario 
     ){
-        fService.borrarForo(idUsuario, idForo);
+        System.out.println("Trabaja con " + idForo + " " + idUsuario);
+        fService.borrarForo(idForo, idUsuario);
     }  
-
 
     @PostMapping("{id}/respuesta")
     public void AgregarRespuestaForo(
@@ -68,6 +72,14 @@ class ForoController {
         @PathVariable("id") final Long idForo
     ){
         fService.AgregarRespuestaForo(respuesta, idForo);
+    }
+
+    @PutMapping("{idUsuario}/borrarRespuesta/{idRespuesta}")
+    public void borrarRespuestaForo(
+        @PathVariable("idRespuesta") final Long idRespuesta,
+        @PathVariable("idUsuario") final Long idUsuario 
+    ){
+        rfService.borrarRespuestaForo(idRespuesta, idUsuario);
     }
 
     @PutMapping("sumar/{id}")

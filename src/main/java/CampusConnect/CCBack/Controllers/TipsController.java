@@ -52,6 +52,15 @@ class TipsController {
         return repository.crear(data);
     }
 
+    @PutMapping("{idUsuario}/borrarTip/{idTip}")
+    public void borrarTip(
+        @PathVariable("idTip") final Long idTip,
+        @PathVariable("idUsuario") final Long idUsuario 
+    ){
+        repository.borrarTip(idTip, idUsuario);
+    }
+
+
     @PutMapping("tipsGustados/{idUsuario}/{idTip}")
     public UsuarioGeneral agregarTipGustado(
         @PathVariable("idUsuario") final Long idUsuario,

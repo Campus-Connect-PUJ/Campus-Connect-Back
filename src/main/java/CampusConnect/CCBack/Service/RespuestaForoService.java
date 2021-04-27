@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.RespuestaForoRepository;
 
 
@@ -16,6 +17,9 @@ public class RespuestaForoService {
 
     @Autowired
     private RespuestaForoRepository repository;
+
+    @Autowired
+    private UsuarioGeneralService uService;
 
     public Iterable<RespuestaForo> findAll() {
         return repository.findAll();
@@ -48,6 +52,21 @@ public class RespuestaForoService {
         RespuestaForo respuesta = this.findById(idRespuesta);
         respuesta.dislike();
         return repository.save(respuesta);
+    }
+
+    public void borrarRespuestaForo(Long idRespuesta, Long idUsuario){
+        UsuarioGeneral ug = uService.findById(idUsuario);
+        List<RespuestaForo> respuestasUsuario = ug.getRespuestasForo();
+        RespuestaForo respuesta = repository.findById(idRespuesta).get();
+        
+        if(respuestasUsuario.contains(respuesta)){
+            System.out.println("entra");
+            respuestasUsuario.remove(respuesta);
+            ug.setRespuestasForo(respuestasUsuario);
+        }
+
+        repository.delete(respuesta);
+        uService.guardarUsuario(ug);
     }
 
 

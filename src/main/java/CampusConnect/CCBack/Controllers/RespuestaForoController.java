@@ -47,5 +47,7 @@ class RespuestaForoController {
     ){
         return repository.restarVotoAForo(idRespuesta);
     }
+
+    
     
 }

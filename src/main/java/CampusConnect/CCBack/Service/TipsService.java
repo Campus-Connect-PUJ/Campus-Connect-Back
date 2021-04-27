@@ -1,5 +1,7 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,24 @@ public class TipsService {
 
         return repository.save(tip);
     }
+
+    public void borrarTip(Long idTip, Long idUsuario){
+        UsuarioGeneral ug = ugService.findById(idUsuario);
+        List<Tip> tipsUsuario = ug.getTips();
+        Tip tip = repository.findById(idTip).get();
+        
+        if(tipsUsuario.contains(tip)){
+            System.out.println("entra");
+            tipsUsuario.remove(tip);
+            ug.setTips(tipsUsuario);
+        }
+
+        repository.delete(tip);
+        ugService.guardarUsuario(ug);
+
+
+    }
+
 
     public UsuarioGeneral agregarTipGustado(
         final Long idUsuario,

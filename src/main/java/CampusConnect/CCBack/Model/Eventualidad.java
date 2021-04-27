@@ -17,7 +17,6 @@ public class Eventualidad {
     private static final double COORDINATE_METER = 0.0001;
     private static final double DISTANCIA_MAX = 50 * COORDINATE_METER;
 
-    @GeneratedValue
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;

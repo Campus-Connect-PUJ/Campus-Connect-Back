@@ -2,6 +2,7 @@ package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,10 @@ import CampusConnect.CCBack.Repository.AsignaturaRepository;
 import CampusConnect.CCBack.Repository.HorarioRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
+import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
+import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
+
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -110,6 +115,10 @@ public class UsuarioGeneralService implements UserDetailsService {
             admin.setRol(Rol.ADMIN);
     }
 
+    public void guardarUsuario(UsuarioGeneral ug){
+        repository.save(ug);
+    }
+
     public Iterable<UsuarioGeneral> findAll() {
         return repository.findAll();
     }
@@ -156,14 +165,32 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral agregarTipAprendizaje(
-        final Long email,
+        String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findById(email).get();
-        List<TipoAprendizaje> tiposAprendizaje = new ArrayList<TipoAprendizaje>();
-        tiposAprendizaje = ug.getEstilosAprendizaje();
-        if(!tiposAprendizaje.contains(taService.findById(idTipoAprendizaje))){
-            tiposAprendizaje.add(taService.findById(idTipoAprendizaje));
+        UsuarioGeneral ug = repository.findByEmail(email);
+        List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
+        TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
+
+    
+        if( !tiposAprendizaje.contains(ta) ){
+            tiposAprendizaje.add(ta);
+            ug.setEstilosAprendizaje(tiposAprendizaje);
+        }
+
+        return repository.save(ug);
+    }
+
+    public UsuarioGeneral borrarTipoAprendizaje(
+        String email,
+        final Long idTipoAprendizaje
+    ){
+        UsuarioGeneral ug = repository.findByEmail(email);
+        List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
+        TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
+        
+        if(tiposAprendizaje.contains(ta)){
+            tiposAprendizaje.remove(ta);
             ug.setEstilosAprendizaje(tiposAprendizaje);
         }
 
@@ -295,25 +322,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.save(ug);
     }
 
-    public void agregarMonitoria(
-        final WrapperMonitoria infoMonitoria,
-        final String email
-    ){
-        UsuarioGeneral ug = this.findByEmail(email);
-
-        List<UsuarioMonitor> monitorDe = ug.getMonitorDe();
-        if(monitorDe.size() > 0 && existeMonitoria(ug, infoMonitoria)){
-            //TODO: Agregar horarios a monitoria
-        }
-        else{
-            //Crear desde 0 monitoria
-            System.out.println("*********************************************");
-            crearMonitoria(ug, infoMonitoria);
-        }
-
-        repository.save(ug);
-
-    }
 
     public Iterable<UsuarioGeneral> findMonitores() {
         ArrayList<UsuarioGeneral> monitores = new ArrayList<>();
@@ -331,78 +339,98 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitores;
     }
 
-    public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
-        UsuarioMonitor monitoria = new UsuarioMonitor();
-        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
-        Asignatura asignatura = asService.findById(Long.parseLong(infoMonitoria.asignatura));
-        Horario horario = new Horario();
+    public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
+        boolean existe = false;
 
-        horario.setFechaInicial(infoMonitoria.getFechaInicial());
-        horario.setFechaFinal(infoMonitoria.getFechaFinal());
-        
-        System.out.println("Asginatura "+asignatura.getNombre());
-        monitoria.setAsignatura(asignatura);
-        monitoria.addHorario(horario);
-        monitoria.setUsuario(ug);
-        monitoria.setCalificacion(Long.valueOf(5));
-        monitoria.setCantidadVotos(Long.valueOf(1));
-        boolean yaexiste = false;
-        boolean agregarHorario = false;
-        int indice = 0;
-        for(int i=0; i<anterioresMonitorias.size(); i++){
-            LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalDate();
-            LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(0).getFechaInicial().toLocalTime();
-            
-            LocalDate localDate = horario.getFechaInicial().toLocalDate();
-            LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
-            System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + tiempoGuardado);
-            System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
-
-            if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
-                yaexiste = true;
+        for(int i=0; i<ug.getMonitorDe().size(); i++){
+            if(ug.getMonitorDe().get(i).getAsignatura().getId() == infoMonitoria.idAsignatura){
+                existe = true;
             }
-            else if(anterioresMonitorias.get(i).getAsignatura().getId() == asignatura.getId()){
-                agregarHorario = true;
-            }
-
-            
         }
 
-        if(!agregarHorario && !yaexiste){
-            horario.setMonitor(monitoria);
+
+        return existe;
+    }
+
+    public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
+        
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        Asignatura asignatura = asService.findById(infoMonitoria.idAsignatura);
+
+        if(!existeMonitoria(ug, infoMonitoria)){
+            monitoria.setAsignatura(asignatura);
+            monitoria.setCalificacion(Long.valueOf(5));
+            monitoria.setCantidadVotos(Long.valueOf(1));
+            monitoria.setUsuario(ug);
+    
             asignatura.addMonitor(monitoria);
             ug.addMonitorDe(monitoria);
     
-            monitorRepository.save(monitoria);
-            asignaturaRepository.save(asignatura);
-            horarioRepository.save(horario);
-            
             repository.save(ug);
-        }
-
-        if(agregarHorario && !yaexiste){
-            monitoria = anterioresMonitorias.get(indice);
-
-            monitoria.addHorario(horario);
-            horario.setMonitor(monitoria);
-    
-            monitorRepository.save(monitoria);
             asignaturaRepository.save(asignatura);
-            horarioRepository.save(horario);
-            
-            repository.save(ug);
+            monitorRepository.save(monitoria);
         }
-
-
 
         return monitoria;
     }
 
-    public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
-        return false;
+    public Horario agregarHorariosMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
+        Horario horario = new Horario();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        boolean yaexiste = false;
+        System.out.println("->"+wpH.fi + " - "+ wpH.ff);
+        horario.setFechaInicial(wpH.getFechaInicial());
+        horario.setFechaFinal(wpH.getFechaFinal());
+        horario.setFi(wpH.fi);
+        horario.setFf(wpH.ff);
+        
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+
+
+                //String str = "2016-03-04 11:30"; 
+                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+                //LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
+
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                
+                
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                }
+            }   
+
+            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
+                monitoria = anterioresMonitorias.get(i);
+            }
+        }
+
+        if(!yaexiste){
+            monitoria.addHorario(horario);
+            ug.addMonitorDe(monitoria);
+            horario.setMonitor(monitoria);
+
+            repository.save(ug);
+            monitorRepository.save(monitoria);
+            horarioRepository.save(horario);
+        }
+
+
+        return horario; 
     }
+
+
+
 
     //Un regimenen alimenticio, nivel de exigencia, lista de comidas favoritas, una ambientación
     public UsuarioGeneral persoRestaurantes(
@@ -438,8 +466,7 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     public UsuarioMonitor votarMonitor(long idMonitor, long calificacion){
         UsuarioMonitor um = monitorRepository.findById(idMonitor).get();
-        System.out.println("Calificiacion " + um.getCalificacion() + " " + calificacion + " " + um.getCantidadVotos());
-        
+
         um.setCalificacion(um.getCalificacion() + calificacion);
         um.setCantidadVotos(um.getCantidadVotos()+1);
         
@@ -450,7 +477,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         List<UsuarioMonitor> monitores = new ArrayList<>();
 
         UsuarioGeneral ug = repository.findById(idMonitor).get();
-        System.out.println("Cantidad de monitorias "+ ug.getMonitorDe().size());
         List<UsuarioMonitor> todasLasMonitorias = ug.getMonitorDe();
         //monitores = todasLasMonitorias;
 
@@ -462,7 +488,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         for(int i=0; i<todasLasMonitorias.size(); i++){
             for(int j=0; j<todasLasMonitorias.get(i).getHorarios().size(); j++){
                 LocalDate localDate = todasLasMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
-                System.out.println(localDate + " "+ hoy + " = " + localDate.isBefore(despues) + " " + despues);
+                
                 if( (localDate.isAfter(hoy) || localDate.equals(hoy)) && localDate.isBefore(despues) && !monitores.contains(todasLasMonitorias.get(i)) ){
                     monitores.add(todasLasMonitorias.get(i));
                 }

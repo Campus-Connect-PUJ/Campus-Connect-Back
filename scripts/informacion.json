@@ -33,77 +33,88 @@
       "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Proyectos prácticos",
       "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Hacer gráficos y mapas",
       "tipoAprendizaje": [
         "Convergente",
         "Visual"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Clasificar información",
       "tipoAprendizaje": [
         "Convergente",
         "Aural"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Ejercicios de memorización",
       "tipoAprendizaje": [
         "Convergente",
         "Visual"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Resolución de problemas prácticos",
       "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Demostraciones prácticas",
       "tipoAprendizaje": [
         "Convergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Lluvia de ideas",
       "tipoAprendizaje": [
         "Divergente",
         "Aural"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Ejercicios de simulación",
       "tipoAprendizaje": [
         "Divergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Proponer nuevos enfoques a un problema",
       "tipoAprendizaje": [
         "Divergente",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Predecir resultados",
       "tipoAprendizaje": [
         "Divergente",
         "Aural"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Emplear analogías",
@@ -112,21 +123,24 @@
         "Visual",
         "Aural",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Realizar experimentos",
       "tipoAprendizaje": [
         "Divergente",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Construir mapas conceptuales",
       "tipoAprendizaje": [
         "Divergente",
         "Visual"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Resolver puzzles",
@@ -135,7 +149,8 @@
         "Visual",
         "LectoEscritura",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Ensamblar rompecabezas",
@@ -143,7 +158,8 @@
         "Divergente",
         "Visual",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Adivinar acertijos",
@@ -151,63 +167,72 @@
         "Divergente",
         "Aural",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Utilizar informes escritos",
       "tipoAprendizaje": [
         "Asimilador",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Investigaciones sobre la materia",
       "tipoAprendizaje": [
         "Asimilador",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 2
     },
     {
-      "descripcion": "Hacerlo tomar apuntes",
+      "descripcion": "Tomar apuntes",
       "tipoAprendizaje": [
         "Asimilador",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Participar en debates",
       "tipoAprendizaje": [
         "Asimilador",
         "Aural"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Asistir a conferencias",
       "tipoAprendizaje": [
         "Asimilador",
         "Aural"
-      ]
+      ],
+      "exigencia": 3
     },
     {
-      "descripcion": "Encomendarle lectura de textos",
+      "descripcion": "Enfocarse en la lectura de textos",
       "tipoAprendizaje": [
         "Asimilador",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Ordenar datos de una investigación",
       "tipoAprendizaje": [
         "Asimilador",
         "Aural"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Trabajos grupales",
       "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Ejercicios de imaginería",
@@ -215,28 +240,32 @@
         "Acomodador",
         "Visual",
         "Aural"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Trabajo de expresión artística",
       "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Lectura de trozos cortos",
       "tipoAprendizaje": [
         "Acomodador",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Discusión socializada",
       "tipoAprendizaje": [
         "Acomodador",
         "Aural"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Composiciones sobre temas puntuales",
@@ -244,21 +273,24 @@
         "Acomodador",
         "Visual",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Gráficos ilustrativos sobre los contenidos",
       "tipoAprendizaje": [
         "Acomodador",
         "Visual"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Actividades de periodismo, entrevistas",
       "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 3
     },
     {
       "descripcion": "Elaborar metáforas sobre contenidos",
@@ -267,49 +299,56 @@
         "Visual",
         "Aural",
         "LectoEscritura"
-      ]
+      ],
+      "exigencia": 1
     },
     {
-      "descripcion": "Hacerle utilizar el ensayo y error.",
+      "descripcion": "Utilizar el ensayo y error.",
       "tipoAprendizaje": [
         "Acomodador",
         "Kinestesico"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Usar distintos colores para subrayar",
       "tipoAprendizaje": [
         "Asimilador",
         "Visual"
-      ]
+      ],
+      "exigencia": 1
     },
     {
       "descripcion": "Cuadros sinopticos",
       "tipoAprendizaje": [
         "Acomodador",
         "Visual"
-      ]
+      ],
+      "exigencia": 1
     },
     {
-      "descripcion": "Instrucciones escritas",
+      "descripcion": "Prefiere estudiar por medio de instrucciones escritas",
       "tipoAprendizaje": [
         "Acomodador",
         "Visual"
-      ]
+      ],
+      "exigencia": 1
     },
     {
-      "descripcion": "Instrucciones verbales",
+      "descripcion": "Prefiere estudiar por medio de instrucciones verbales",
       "tipoAprendizaje": [
         "Asimilador",
         "Aural"
-      ]
+      ],
+      "exigencia": 2
     },
     {
       "descripcion": "Aprender de forma ordenada y en secuencia",
       "tipoAprendizaje": [
         "Convergente",
         "Aural"
-      ]
+      ],
+      "exigencia": 1
     }
   ],
   "grupos": [

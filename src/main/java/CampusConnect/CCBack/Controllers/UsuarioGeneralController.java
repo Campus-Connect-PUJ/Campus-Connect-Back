@@ -28,6 +28,7 @@ import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -129,13 +130,23 @@ class UsuarioGeneralController {
         return ugService.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("{idUsuario}/agregarTipoAprendizaje/{id_tip}")
+    @PostMapping("agregarTipoAprendizaje/{idTipo}")
     public UsuarioGeneral agregarTipAprendizaje(
         //@AuthenticationPrincipal String username,
-        @PathVariable("id_tip") final Long idTipoAprendizaje,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
-        return ugService.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
+        return repository.agregarTipAprendizaje(email, idTipoAprendizaje);
+    }
+
+    @PutMapping("borrarTipoAprendizaje/{idTipo}")
+    public UsuarioGeneral borrarTipoAprendizaje(
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
+    ){
+
+        return repository.borrarTipoAprendizaje(email, idTipoAprendizaje);
+
     }
 
     @PostMapping("login/registro")
@@ -224,16 +235,25 @@ class UsuarioGeneralController {
     }
 
 
-    @PostMapping("agregarMonitoria/{idUsuario}")
+    @PostMapping("agregarMonitoria")
     public void agregarMonitoria(
         @RequestBody final WrapperMonitoria infoMonitoria,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = this.findById(idUsuario);
-
-        ugService.crearMonitoria(ug, infoMonitoria);
-
+        UsuarioGeneral ug = repository.findByEmail(email);
+        repository.crearMonitoria(ug, infoMonitoria);
     }
+
+
+    @PostMapping("agregarHorario")
+    public void agregarHorario(
+        @RequestBody final WrapperHorario infoMonitoria,
+        @AuthenticationPrincipal String email
+    ){
+        UsuarioGeneral ug = repository.findByEmail(email);
+        repository.agregarHorariosMonitoria(ug, infoMonitoria);
+    }
+
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")
     public UsuarioMonitor votarMonitor(
@@ -262,15 +282,6 @@ class UsuarioGeneralController {
         return ugService.obtenerHorarios(idMonitor, dias);
     }
 
-    /*
-    @PostMapping("agregarMonitoria")
-    public void agregarMonitoria(
-        @AuthenticationPrincipal String email,
-        @RequestBody final WrapperMonitoria infoMonitoria
-    ){
-        repository.agregarMonitoria(infoMonitoria, email);
-    }
-*/
     @GetMapping("monitores/all")
     public Iterable<UsuarioGeneral> findMonitores(
     ) {

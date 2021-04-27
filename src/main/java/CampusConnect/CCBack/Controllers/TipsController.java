@@ -8,6 +8,7 @@ import CampusConnect.CCBack.Wrappers.WrapperTip;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,20 +51,31 @@ class TipsController {
         return tService.crear(data);
     }
 
-    @PutMapping("tipsGustados/{idUsuario}/{idTip}")
-    public UsuarioGeneral agregarTipGustado(
-        @PathVariable("idUsuario") final Long idUsuario,
-        @PathVariable("idTip") final Long idTip
+    @PutMapping("borrarTip/{idTip}")
+    public void borrarTip(
+        @PathVariable("idTip") final Long idTip,
+        @AuthenticationPrincipal String email
     ){
-        return tService.agregarTipGustado(idUsuario, idTip);
+        repository.borrarTip(idTip, email);
     }
 
-    @PutMapping("tipsNoGustados/{idUsuario}/{idTip}")
-    public UsuarioGeneral agregarTipNoGustado(
-        @PathVariable("idUsuario") final Long idUsuario,
+
+    @PutMapping("tipsGustados/{idTip}")
+    public UsuarioGeneral agregarTipGustado(
+        @AuthenticationPrincipal String email,
         @PathVariable("idTip") final Long idTip
     ){
-        return tService.agregarTipNoGustado(idUsuario, idTip);
+        return repository.agregarTipGustado(email, idTip);
+
+    }
+
+    @PutMapping("tipsNoGustados/{idTip}")
+    public UsuarioGeneral agregarTipNoGustado(
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTip") final Long idTip
+    ){
+        return repository.agregarTipNoGustado(email, idTip);
+
     }
 
     @PutMapping("sumar/{id}")

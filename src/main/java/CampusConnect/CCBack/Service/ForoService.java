@@ -32,9 +32,9 @@ public class ForoService {
         return repository.findById(id).get();
     }
 
-    public Foro crearForo(final Foro foroData, final Long idUsuario) {
+    public Foro crearForo(final Foro foroData, String email) {
         Foro foro = new Foro();
-        UsuarioGeneral ug = uService.findById(idUsuario);
+        UsuarioGeneral ug = uService.findByEmail(email);
         // no es necesario poner las demas variables, ya que el
         // constructor se encarga, ademas un post al ser creado
         // siempre tendra una lista vacia de respuestas, la fecha
@@ -42,9 +42,36 @@ public class ForoService {
         foro.setDescripcion(foroData.getDescripcion());
         foro.setTitulo(foroData.getTitulo());
         foro.setUsuario(ug);
+        ug.agregarForo(foro);
 
+        uService.guardarUsuario(ug);
         return repository.save(foro);
     }
+
+    public void borrarForo(Long idForo, String email){
+        UsuarioGeneral ug = uService.findByEmail(email);
+        List<Foro> forosUsuario = ug.getForos();
+        Foro foro = repository.findById(idForo).get();
+        
+        if(forosUsuario.contains(foro)){
+            forosUsuario.remove(foro);
+            ug.setForos(forosUsuario);
+            
+            for(int i=0; i<foro.getRespuestas().size(); i++){
+                UsuarioGeneral ugBorrar = foro.getRespuestas().get(i).getUsuario();
+                respuestaRepository.deleteById(foro.getRespuestas().get(i).getId());
+                ugBorrar.borrarRespuestaForo(foro.getRespuestas().get(i));
+                uService.guardarUsuario(ugBorrar);
+            }
+
+        }
+
+        repository.delete(foro);
+        uService.guardarUsuario(ug);
+
+
+    }
+
 
     public void AgregarRespuestaForo(
         final WrapperRespuestaForo respuesta,
@@ -56,13 +83,13 @@ public class ForoService {
 
         nuevaRespuesta.setTexto(respuesta.getTexto());
         nuevaRespuesta.setForo(foro);
+        nuevaRespuesta.setIdForoRespondido(foro.getId());
         nuevaRespuesta.setUsuario(usuarioRespuesta);
         foro.agregarRespuesta(nuevaRespuesta);
 
         repository.save(foro);
         respuestaRepository.save(nuevaRespuesta);
 
-        System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
     }
 
     public Foro sumarVotoAForo(final Long idForo){

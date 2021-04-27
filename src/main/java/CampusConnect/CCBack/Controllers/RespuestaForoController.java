@@ -27,6 +27,13 @@ class RespuestaForoController {
         return rfService.findById(id);
     }
 
+    @GetMapping("usuario/{id}")
+    public Iterable<RespuestaForo> findRespuestasUsuario(
+        @PathVariable("id") final Long id
+    ) {
+        return repository.findRespuestasUsuario(id);
+    }
+
     @PutMapping("sumar/{id}")
     public RespuestaForo sumarVotoAForo(
         @PathVariable("id") final Long idRespuesta
@@ -40,5 +47,7 @@ class RespuestaForoController {
     ){
         return rfService.restarVotoAForo(idRespuesta);
     }
+
+    
     
 }

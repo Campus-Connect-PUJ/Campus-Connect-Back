@@ -28,6 +28,9 @@ public class Horario {
 
 	private LocalDateTime fechaFinal;
 
+	public String fi;
+	public String ff;
+
 	public Horario(){
 
 	}
@@ -63,6 +66,22 @@ public class Horario {
 
 	public void setFechaFinal(LocalDateTime fechaFinal) {
 		this.fechaFinal = fechaFinal;
+	}
+
+	public String getFi() {
+		return fi;
+	}
+
+	public void setFi(String fi) {
+		this.fi = fi;
+	}
+
+	public String getFf() {
+		return ff;
+	}
+
+	public void setFf(String ff) {
+		this.ff = ff;
 	}
 
 	

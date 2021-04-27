@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -18,12 +19,14 @@ public class RespuestaForo {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalTime fecha;
+    private LocalDateTime fecha;
 
     @ManyToOne
     @JoinColumn(name="idForo")
 	@JsonIgnore
     private Foro foro;
+
+	private Long idForoRespondido;
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
@@ -38,7 +41,7 @@ public class RespuestaForo {
     public RespuestaForo () {
         this.reportado = false;
         this.puntaje = 0;
-		this.fecha = LocalTime.now();
+		this.fecha = LocalDateTime.now();
     }
 
     public void like() {
@@ -65,7 +68,7 @@ public class RespuestaForo {
 		this.texto = texto;
 	}
 
-	public LocalTime getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
@@ -77,7 +80,7 @@ public class RespuestaForo {
 		this.reportado = reportado;
 	}
 
-	public void setFecha(LocalTime fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 
@@ -104,5 +107,15 @@ public class RespuestaForo {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public Long getIdForoRespondido() {
+		return idForoRespondido;
+	}
+
+	public void setIdForoRespondido(Long idForoRespondido) {
+		this.idForoRespondido = idForoRespondido;
+	}
+
+	
 
 }

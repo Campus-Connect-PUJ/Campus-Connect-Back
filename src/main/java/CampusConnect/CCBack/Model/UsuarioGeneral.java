@@ -112,9 +112,11 @@ public class UsuarioGeneral implements UserDetails {
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
+	//@JsonIgnore
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+	//@JsonIgnore
 	@ManyToMany(mappedBy = "usuariosNoGustaron")
     private List<Tip> tipsNoGustados;
 
@@ -410,6 +412,15 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.add(tip);
 	}
 
+    public void quitarUsuarioGustaron(Tip tip){
+		this.tipsGustados.remove(tip);
+    }
+
+    public void quitarUsuarioNoGustaron(Tip tip){
+		this.tipsNoGustados.remove(tip);
+    }  
+
+
     public void agregarCaracteristica(Caracteristica c) {
         this.caracteristicas.add(c);
     }
@@ -457,6 +468,14 @@ public class UsuarioGeneral implements UserDetails {
 		this.comidaFavorita.add(comida);
 	}
 
+
+	public void agregarForo(Foro foro){
+		this.foros.add(foro);
+	}
+
+	public void borrarRespuestaForo(RespuestaForo rf){
+		this.respuestasForo.remove(rf);
+  }
 	public void setRestaurantesReco(List<Restaurante> reco){
 		this.restaurantesReco = reco;
 	}

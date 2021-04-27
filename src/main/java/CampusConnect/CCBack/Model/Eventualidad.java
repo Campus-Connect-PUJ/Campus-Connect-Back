@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -16,8 +17,9 @@ public class Eventualidad {
     private static final double COORDINATE_METER = 0.0001;
     private static final double DISTANCIA_MAX = 50 * COORDINATE_METER;
 
-	@Id
     @GeneratedValue
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

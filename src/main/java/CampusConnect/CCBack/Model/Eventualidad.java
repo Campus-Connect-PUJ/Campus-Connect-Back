@@ -11,6 +11,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Eventualidad {
 
+<<<<<<< Updated upstream
+=======
+	// representacion de 1 metro de distancia para coordenadas
+    // TODO: encontrar este valor, de momento me lo estoy inventando
+    private static final double COORDINATE_METER = 0.0001;
+    private static final double DISTANCIA_MAX = 50 * COORDINATE_METER;
+
+
+>>>>>>> Stashed changes
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;

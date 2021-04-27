@@ -236,7 +236,7 @@ class UsuarioGeneralController {
         repository.crearMonitoria(ug, infoMonitoria);
     }
 
-    @PostMapping("agregarHorario/{idUsuario}")
+    @PostMapping("agregarHorario")
     public void agregarHorario(
         @RequestBody final WrapperHorario infoMonitoria,
         @AuthenticationPrincipal String email

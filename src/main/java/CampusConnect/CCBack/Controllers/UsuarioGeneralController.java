@@ -46,6 +46,11 @@ class UsuarioGeneralController {
     @Autowired
     private RESTAuthenticationProvider restap;
 
+    @GetMapping("data")
+    public UsuarioGeneral getData(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
+
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAll() {
         return ugService.findAll();

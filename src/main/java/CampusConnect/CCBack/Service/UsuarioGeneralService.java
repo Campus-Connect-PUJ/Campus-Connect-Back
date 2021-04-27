@@ -422,17 +422,15 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         UsuarioGeneral ug = this.findByEmail(email);
 
-        InformacionUsuario iu = ug.getInformacionUsuario();
-
         ug.reinicioPersoRestaurantes();
 
         Long idReg = wpr.getRegimenAlimenticio();
-        Long nivelExigencia = wpr.getNivelExigencia();
+        int nivelExigencia = wpr.getNivelExigencia();
         RegimenAlimenticio regimen = regService.findById(idReg);
         
         if(ug.getRegimenAlimenticio()==null){
             RegimenAlimenticioUsuario regimenUsuario = rauService.create(
-            regimen, nivelExigencia.intValue(), ug
+                regimen, nivelExigencia, ug
             );
             ug.setRegimenAlimenticio(regimenUsuario);
         }
@@ -440,7 +438,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         String ambientacion = wpr.getAmbientacion();
         ug.setAmbientacion(ambientacion);
         for(Long id: wpr.getComidas()){
-            TipoComida comida =tcService.findById(id);
+            TipoComida comida = tcService.findById(id);
             ug.agregarComida(comida);
         }
 

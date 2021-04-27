@@ -38,13 +38,13 @@ class ReglasDeAsociacionController {
         return repository.crearReglaDeAsociacion(reglaData);
     }
 
-    @GetMapping("usuario/{id}")
+    @GetMapping("usuario")
     public Tip obtenerRecomendacionTip(
-        //@AuthenticationPrincipal String email
-        @PathVariable final long id
+        @AuthenticationPrincipal String email
+        //@PathVariable final long id
         ){
 
-        return repository.obtenerRecomendacionTip(id);
+        return repository.obtenerRecomendacionTip(email);
     }
 
     @DeleteMapping("borrar")

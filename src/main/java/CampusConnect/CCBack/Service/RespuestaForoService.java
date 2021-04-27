@@ -54,13 +54,12 @@ public class RespuestaForoService {
         return repository.save(respuesta);
     }
 
-    public void borrarRespuestaForo(Long idRespuesta, Long idUsuario){
-        UsuarioGeneral ug = uService.findById(idUsuario);
+    public void borrarRespuestaForo(Long idRespuesta, String email){
+        UsuarioGeneral ug = uService.findByEmail(email);
         List<RespuestaForo> respuestasUsuario = ug.getRespuestasForo();
         RespuestaForo respuesta = repository.findById(idRespuesta).get();
         
         if(respuestasUsuario.contains(respuesta)){
-            System.out.println("entra");
             respuestasUsuario.remove(respuesta);
             ug.setRespuestasForo(respuestasUsuario);
         }

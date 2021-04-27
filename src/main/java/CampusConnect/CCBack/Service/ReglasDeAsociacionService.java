@@ -55,11 +55,10 @@ public class ReglasDeAsociacionService {
         return repository.save(regla);
     }
 
-    public Tip obtenerRecomendacionTip(final long email){
+    public Tip obtenerRecomendacionTip(String email){
         // long idTip = 15;
         //UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
-        System.out.println("usuario "+ email);
-        UsuarioGeneral ug = servicioUsuarios.findById(email);
+        UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Tip tipRecomendado = new Tip();
@@ -104,12 +103,10 @@ public class ReglasDeAsociacionService {
                 try{
                     //Intento #2: Por los estilos de aprendizaje
                     tipsGustadosUsuario = obtenerTipsPorTipo(ug);
-                    System.out.println("2entra a lo del tipo");
                     tipRecomendado = tipsGustadosUsuario.get(0);
                 }
                 catch (Exception e2){
                     //Intento #3: El siguiente tip al ultimo
-                    System.out.println("3entra a lo del tipo");
                     tipRecomendado = ultimoRecurso(ug);
                 }
             }
@@ -189,10 +186,6 @@ public class ReglasDeAsociacionService {
         Arrays.sort(miarray);
         reglasOrdenadas = Arrays.asList(miarray);
 
-        for(int i=0; i<reglasOrdenadas.size(); i++){
-            System.out.println("----------------------------- " + reglasOrdenadas.get(i).getRegla().getId());
-        }
-
         return reglasOrdenadas;
     }
 
@@ -207,7 +200,6 @@ public class ReglasDeAsociacionService {
                 for(int k=0; k<tipsSistema.get(j).getTiposAprendizaje().size(); k++){
                     if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j)) && !ug.getTipsGustados().contains(tipsSistema.get(j)) && !ug.getTipsNoGustados().contains(tipsSistema.get(j))){
                         tipsRecomendar.add(tipsSistema.get(j));
-                        System.out.println(tipsSistema.get(j));
                     }
                 }
             }

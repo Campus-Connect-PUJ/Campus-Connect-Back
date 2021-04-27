@@ -163,15 +163,14 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral agregarTipAprendizaje(
-        final Long email,
+        String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findById(email).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
         TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
 
     
-        System.out.println("-> "+ta.getDescripcion());
         if( !tiposAprendizaje.contains(ta) ){
             tiposAprendizaje.add(ta);
             ug.setEstilosAprendizaje(tiposAprendizaje);
@@ -181,10 +180,10 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral borrarTipoAprendizaje(
-        final Long idusuario,
+        String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findById(idusuario).get();
+        UsuarioGeneral ug = repository.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
         TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
         
@@ -381,11 +380,11 @@ public class UsuarioGeneralService implements UserDetailsService {
         horario.setFechaFinal(wpH.getFechaFinal());
         horario.setFi(wpH.fi);
         horario.setFf(wpH.ff);
-        System.out.println("Catnidad de monitorias " + ug.getMonitorDe().size());
+        
         for(int i=0; i<anterioresMonitorias.size(); i++){
-            System.out.println("+++ " + i);
+
             for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
-                System.out.println("+++++++ " + j);
+
 
                 //String str = "2016-03-04 11:30"; 
                 //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
@@ -398,9 +397,7 @@ public class UsuarioGeneralService implements UserDetailsService {
                 
                 LocalDate localDate = horario.getFechaInicial().toLocalDate();
                 LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
-                System.out.println(localDateGuardadoDia.isEqual(localDate) + " = " + localDateGuardadoDia + " " + localDate);
-                System.out.println(tiempoGuardado.equals(tiempoNuevo) + " = " + tiempoGuardado.getHour() + " " + tiempoNuevo.getHour() +  tiempoGuardado.getMinute() + " " + tiempoNuevo.getMinute());
-    
+
                 if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
                     yaexiste = true;
                 }
@@ -461,8 +458,7 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     public UsuarioMonitor votarMonitor(long idMonitor, long calificacion){
         UsuarioMonitor um = monitorRepository.findById(idMonitor).get();
-        System.out.println("Calificiacion " + um.getCalificacion() + " " + calificacion + " " + um.getCantidadVotos());
-        
+
         um.setCalificacion(um.getCalificacion() + calificacion);
         um.setCantidadVotos(um.getCantidadVotos()+1);
         
@@ -473,7 +469,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         List<UsuarioMonitor> monitores = new ArrayList<>();
 
         UsuarioGeneral ug = repository.findById(idMonitor).get();
-        System.out.println("Cantidad de monitorias "+ ug.getMonitorDe().size());
         List<UsuarioMonitor> todasLasMonitorias = ug.getMonitorDe();
         //monitores = todasLasMonitorias;
 
@@ -485,7 +480,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         for(int i=0; i<todasLasMonitorias.size(); i++){
             for(int j=0; j<todasLasMonitorias.get(i).getHorarios().size(); j++){
                 LocalDate localDate = todasLasMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
-                System.out.println(localDate + " "+ hoy + " = " + localDate.isBefore(despues) + " " + despues);
+                
                 if( (localDate.isAfter(hoy) || localDate.equals(hoy)) && localDate.isBefore(despues) && !monitores.contains(todasLasMonitorias.get(i)) ){
                     monitores.add(todasLasMonitorias.get(i));
                 }

@@ -124,21 +124,21 @@ class UsuarioGeneralController {
         return repository.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("{idUsuario}/agregarTipoAprendizaje/{idTipo}")
+    @PostMapping("agregarTipoAprendizaje/{idTipo}")
     public UsuarioGeneral agregarTipAprendizaje(
         //@AuthenticationPrincipal String username,
-        @PathVariable("idTipo") final Long idTipoAprendizaje,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
-        return repository.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
+        return repository.agregarTipAprendizaje(email, idTipoAprendizaje);
     }
 
-    @PutMapping("{idUsuario}/borrarTipoAprendizaje/{idTipo}")
+    @PutMapping("borrarTipoAprendizaje/{idTipo}")
     public UsuarioGeneral borrarTipoAprendizaje(
-        @PathVariable("idTipo") final Long idTipoAprendizaje,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
-        return repository.borrarTipoAprendizaje(idUsuario, idTipoAprendizaje);
+        return repository.borrarTipoAprendizaje(email, idTipoAprendizaje);
     }
 
     @PostMapping("login/registro")
@@ -230,18 +230,18 @@ class UsuarioGeneralController {
     @PostMapping("agregarMonitoria/{idUsuario}")
     public void agregarMonitoria(
         @RequestBody final WrapperMonitoria infoMonitoria,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = this.findById(idUsuario);
+        UsuarioGeneral ug = repository.findByEmail(email);
         repository.crearMonitoria(ug, infoMonitoria);
     }
 
     @PostMapping("agregarHorario/{idUsuario}")
     public void agregarHorario(
         @RequestBody final WrapperHorario infoMonitoria,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = this.findById(idUsuario);
+        UsuarioGeneral ug = repository.findByEmail(email);
         repository.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 

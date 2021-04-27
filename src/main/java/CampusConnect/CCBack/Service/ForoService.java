@@ -32,9 +32,9 @@ public class ForoService {
         return repository.findById(id).get();
     }
 
-    public Foro crearForo(final Foro foroData, final Long idUsuario) {
+    public Foro crearForo(final Foro foroData, String email) {
         Foro foro = new Foro();
-        UsuarioGeneral ug = uService.findById(idUsuario);
+        UsuarioGeneral ug = uService.findByEmail(email);
         // no es necesario poner las demas variables, ya que el
         // constructor se encarga, ademas un post al ser creado
         // siempre tendra una lista vacia de respuestas, la fecha
@@ -48,12 +48,11 @@ public class ForoService {
         return repository.save(foro);
     }
 
-    public void borrarForo(Long idForo, Long idUsuario){
-        UsuarioGeneral ug = uService.findById(idUsuario);
+    public void borrarForo(Long idForo, String email){
+        UsuarioGeneral ug = uService.findByEmail(email);
         List<Foro> forosUsuario = ug.getForos();
         Foro foro = repository.findById(idForo).get();
         
-        System.out.println(" " + ug.getId() + foro.getDescripcion());
         if(forosUsuario.contains(foro)){
             forosUsuario.remove(foro);
             ug.setForos(forosUsuario);
@@ -91,7 +90,6 @@ public class ForoService {
         repository.save(foro);
         respuestaRepository.save(nuevaRespuesta);
 
-        System.out.println("RespuestaForo "+ nuevaRespuesta.getUsuario().getNombre()+ " "+ nuevaRespuesta.getTexto() + " "+ foro.getRespuestas().size());
     }
 
     public Foro sumarVotoAForo(final Long idForo){

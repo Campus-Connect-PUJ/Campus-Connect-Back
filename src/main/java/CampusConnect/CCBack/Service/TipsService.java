@@ -50,13 +50,12 @@ public class TipsService {
         return repository.save(tip);
     }
 
-    public void borrarTip(Long idTip, Long idUsuario){
-        UsuarioGeneral ug = ugService.findById(idUsuario);
+    public void borrarTip(Long idTip, String email){
+        UsuarioGeneral ug = ugService.findByEmail(email);
         List<Tip> tipsUsuario = ug.getTips();
         Tip tip = repository.findById(idTip).get();
         
         if(tipsUsuario.contains(tip)){
-            System.out.println("entra");
             tipsUsuario.remove(tip);
             ug.setTips(tipsUsuario);
         }
@@ -69,13 +68,12 @@ public class TipsService {
 
 
     public UsuarioGeneral agregarTipGustado(
-        final Long idUsuario,
+        String email,
         final Long idTip
     ){
-        System.out.println("Entra a gustar");
         Tip tip = this.findById(idTip);
         
-        UsuarioGeneral ug = ugService.findById(idUsuario);
+        UsuarioGeneral ug = ugService.findByEmail(email);
 
         if(ug.getTipsNoGustados().contains(tip)){
             tip.quitarUsuarioNoGustaron(ug);
@@ -90,18 +88,16 @@ public class TipsService {
         }
         
 
-        System.out.println("Sale a gustar");
         return ugRepository.save(ug);
     }
 
     public UsuarioGeneral agregarTipNoGustado(
-        final Long idUsuario,
+        String email,
         final Long idTip
     ){
-        System.out.println("entra");
         Tip tip = this.findById(idTip);
         
-        UsuarioGeneral ug = ugService.findById(idUsuario);
+        UsuarioGeneral ug = ugService.findByEmail(email);
 
         if(ug.getTipsGustados().contains(tip)){
             tip.quitarUsuarioGustaron(ug);

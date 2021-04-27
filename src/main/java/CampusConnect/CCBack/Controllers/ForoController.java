@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,22 +49,21 @@ class ForoController {
         return fService.findById(id).getRespuestas();
     }
 
-    @PostMapping("{id}")
+    @PostMapping
     public Foro crearForo(
         @RequestBody final Foro foroData,
-        @PathVariable("id") final Long idUsuario
+        @AuthenticationPrincipal String email
         ) {
 
-            return fService.crearForo(foroData, idUsuario);
+            return fService.crearForo(foroData, email);
     }
 
-    @PutMapping("{idUsuario}/borrarForo/{id_foro}")
+    @PutMapping("/borrarForo/{id_foro}")
     public void borrarForo(
         @PathVariable("id_foro") final Long idForo,
-        @PathVariable("idUsuario") final Long idUsuario 
+        @AuthenticationPrincipal String email
     ){
-        System.out.println("Trabaja con " + idForo + " " + idUsuario);
-        fService.borrarForo(idForo, idUsuario);
+        fService.borrarForo(idForo, email);
     }  
 
     @PostMapping("{id}/respuesta")
@@ -74,12 +74,12 @@ class ForoController {
         fService.AgregarRespuestaForo(respuesta, idForo);
     }
 
-    @PutMapping("{idUsuario}/borrarRespuesta/{idRespuesta}")
+    @PutMapping("borrarRespuesta/{idRespuesta}")
     public void borrarRespuestaForo(
         @PathVariable("idRespuesta") final Long idRespuesta,
-        @PathVariable("idUsuario") final Long idUsuario 
+        @AuthenticationPrincipal String email
     ){
-        rfService.borrarRespuestaForo(idRespuesta, idUsuario);
+        rfService.borrarRespuestaForo(idRespuesta, email);
     }
 
     @PutMapping("sumar/{id}")

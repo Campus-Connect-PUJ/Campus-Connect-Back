@@ -32,6 +32,8 @@ import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
@@ -43,6 +45,11 @@ class UsuarioGeneralController {
 
     @Autowired
     private RESTAuthenticationProvider restap;
+
+    @GetMapping("data")
+    public UsuarioGeneral getData(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
 
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAll() {
@@ -269,6 +276,18 @@ class UsuarioGeneralController {
     ) {
         return ugService.findMonitores();
     }
+    
+    @PutMapping("sugeRestaurantes")
+    public UsuarioGeneral sugeRestaurantes(
+        @RequestBody final WrapperSugeRestaurantes wpr) {
 
+        return ugService.RegistarRecomendacionRestaurantes(wpr);
+    }
 
+    @PutMapping("sugeGrupos")
+    public UsuarioGeneral sugeGurpos(
+        @RequestBody final WrapperSugeGrupos wpg){
+
+        return ugService.RegistarRecomendacionGrupos(wpg);
+    }
 }

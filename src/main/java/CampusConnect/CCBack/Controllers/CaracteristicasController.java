@@ -32,11 +32,6 @@ class CaracteristicasController {
         return cService.findById(id);
     }
 
-    @GetMapping("{id}/usuarios")
-    public List<UsuarioGeneral> getUsuarios(@PathVariable("id") final Long id) {
-        return cService.findById(id).getUsuarios();
-    }
-
     @GetMapping("{id}/eventos")
     public List<Eventos> getEventos(@PathVariable("id") final Long id) {
         return cService.findById(id).getEventos();

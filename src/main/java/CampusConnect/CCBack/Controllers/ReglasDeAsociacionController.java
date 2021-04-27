@@ -49,7 +49,7 @@ class ReglasDeAsociacionController {
 
     @DeleteMapping("borrar")
     public Long borrarReglas(){
-        return repository.borrarReglas();
+        return rdaService.borrarReglas();
     }
 
 }

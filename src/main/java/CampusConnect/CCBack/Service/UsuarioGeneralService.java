@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;

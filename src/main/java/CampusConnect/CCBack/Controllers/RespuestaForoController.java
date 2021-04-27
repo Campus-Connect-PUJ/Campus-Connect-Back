@@ -31,7 +31,7 @@ class RespuestaForoController {
     public Iterable<RespuestaForo> findRespuestasUsuario(
         @PathVariable("id") final Long id
     ) {
-        return repository.findRespuestasUsuario(id);
+        return rfService.findRespuestasUsuario(id);
     }
 
     @PutMapping("sumar/{id}")

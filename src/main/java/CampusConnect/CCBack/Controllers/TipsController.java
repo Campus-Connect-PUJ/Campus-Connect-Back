@@ -56,7 +56,7 @@ class TipsController {
         @PathVariable("idTip") final Long idTip,
         @AuthenticationPrincipal String email
     ){
-        repository.borrarTip(idTip, email);
+        tService.borrarTip(idTip, email);
     }
 
 
@@ -65,7 +65,7 @@ class TipsController {
         @AuthenticationPrincipal String email,
         @PathVariable("idTip") final Long idTip
     ){
-        return repository.agregarTipGustado(email, idTip);
+        return tService.agregarTipGustado(email, idTip);
 
     }
 
@@ -74,7 +74,7 @@ class TipsController {
         @AuthenticationPrincipal String email,
         @PathVariable("idTip") final Long idTip
     ){
-        return repository.agregarTipNoGustado(email, idTip);
+        return tService.agregarTipNoGustado(email, idTip);
 
     }
 

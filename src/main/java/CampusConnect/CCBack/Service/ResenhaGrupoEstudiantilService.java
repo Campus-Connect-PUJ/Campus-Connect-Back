@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
-import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ResenhaGrupoEstudiantilRepository;
 

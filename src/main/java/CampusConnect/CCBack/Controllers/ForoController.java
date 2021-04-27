@@ -24,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Service.ForoService;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
+
 @RestController
 @RequestMapping("/foro")
 class ForoController {

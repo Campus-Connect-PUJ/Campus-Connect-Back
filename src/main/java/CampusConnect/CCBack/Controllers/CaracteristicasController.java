@@ -14,7 +14,6 @@ import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Eventos;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.CaracteristicaRepository;
 import CampusConnect.CCBack.Service.CaracteristicasService;
 
 @RestController
@@ -31,11 +30,6 @@ class CaracteristicasController {
     @GetMapping("{id}")
     public Caracteristica findById(@PathVariable("id") final Long id) {
         return cService.findById(id);
-    }
-
-    @GetMapping("{id}/usuarios")
-    public List<UsuarioGeneral> getUsuarios(@PathVariable("id") final Long id) {
-        return cService.findById(id).getUsuarios();
     }
 
     @GetMapping("{id}/eventos")

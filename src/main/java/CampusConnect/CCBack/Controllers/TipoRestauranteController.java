@@ -19,26 +19,26 @@ import CampusConnect.CCBack.Service.TipoRestauranteService;
 class TipoRestauranteController {
 
     @Autowired
-    private TipoRestauranteService repository;
+    private TipoRestauranteService trService;
 
     @GetMapping("all")
     public Iterable<TipoRestaurante> findAll() {
-        return repository.findAll();
+        return trService.findAll();
     }
 
     @GetMapping("{id}")
     public TipoRestaurante findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return trService.findById(id);
     }
 
     @GetMapping("{id}/restaurantes")
     public List<Restaurante> conseguirRestaurantesPorTipo(@PathVariable("id") Long id) {
-        return repository.findById(id).getRestaurantes();
+        return trService.findById(id).getRestaurantes();
     }
 
     @PostMapping
     public TipoRestaurante create(@RequestBody final TipoRestaurante dato) {
-        return repository.create(dato);
+        return trService.create(dato);
     }
 
 }

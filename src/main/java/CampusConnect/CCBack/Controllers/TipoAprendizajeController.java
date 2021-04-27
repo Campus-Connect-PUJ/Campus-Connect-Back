@@ -20,31 +20,31 @@ import CampusConnect.CCBack.Service.TipoAprendizajeService;
 class TipoAprendizajeController {
 
     @Autowired
-    private TipoAprendizajeService repository;
+    private TipoAprendizajeService taService;
 
     @GetMapping("all")
     public Iterable<TipoAprendizaje> findAll() {
-        return repository.findAll();
+        return taService.findAll();
     }
 
     @GetMapping("{id}")
     public TipoAprendizaje findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
+        return taService.findById(id);
     }
 
     @GetMapping("{id}/usuarios")
     public List<UsuarioGeneral> conseguirUsuarios(@PathVariable("id") Long id) {
-        return repository.findById(id).getUsuarios();
+        return taService.findById(id).getUsuarios();
     }
 
     @GetMapping("{id}/tip")
     public List<Tip> conseguirTips(@PathVariable("id") Long id) {
-        return repository.findById(id).getTips();
+        return taService.findById(id).getTips();
     }
 
     @PostMapping
     public TipoAprendizaje create(@RequestBody final TipoAprendizaje dato) {
-        return repository.create(dato);
+        return taService.create(dato);
     }
 
 }

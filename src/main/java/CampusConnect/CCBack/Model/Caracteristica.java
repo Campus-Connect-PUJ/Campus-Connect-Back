@@ -24,14 +24,6 @@ public class Caracteristica {
     @JsonIgnore
     @ManyToMany
     @JoinTable (
-        name = "CaracteristicasUsuario",
-        joinColumns = @JoinColumn(name = "idCaracteristica"),
-        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
-    private List<UsuarioGeneral> usuarios;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable (
         name = "CaracteristicasEvento",
         joinColumns = @JoinColumn(name = "idCaracteristica"),
         inverseJoinColumns = @JoinColumn(name = "idEvento"))
@@ -63,14 +55,6 @@ public class Caracteristica {
 
     public void setEventos(List<Eventos> eventos) {
 		this.eventos = eventos;
-	}
-
-    public List<UsuarioGeneral> getUsuarios() {
-		return usuarios;
-	}
-
-    public void setUsuarios(List<UsuarioGeneral> usuarios) {
-		this.usuarios = usuarios;
 	}
 
     public void setNombre(String nombre) {

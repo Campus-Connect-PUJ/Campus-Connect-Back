@@ -136,7 +136,7 @@ class UsuarioGeneralController {
         @AuthenticationPrincipal String email,
         @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
-        return repository.agregarTipAprendizaje(email, idTipoAprendizaje);
+        return ugService.agregarTipAprendizaje(email, idTipoAprendizaje);
     }
 
     @PutMapping("borrarTipoAprendizaje/{idTipo}")
@@ -145,7 +145,7 @@ class UsuarioGeneralController {
         @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
 
-        return repository.borrarTipoAprendizaje(email, idTipoAprendizaje);
+        return ugService.borrarTipoAprendizaje(email, idTipoAprendizaje);
 
     }
 
@@ -240,8 +240,8 @@ class UsuarioGeneralController {
         @RequestBody final WrapperMonitoria infoMonitoria,
         @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = repository.findByEmail(email);
-        repository.crearMonitoria(ug, infoMonitoria);
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        ugService.crearMonitoria(ug, infoMonitoria);
     }
 
 
@@ -250,8 +250,8 @@ class UsuarioGeneralController {
         @RequestBody final WrapperHorario infoMonitoria,
         @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = repository.findByEmail(email);
-        repository.agregarHorariosMonitoria(ug, infoMonitoria);
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        ugService.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 
 

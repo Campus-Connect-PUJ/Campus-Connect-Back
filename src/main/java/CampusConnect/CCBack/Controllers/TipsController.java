@@ -92,5 +92,4 @@ class TipsController {
         return tService.restarVotoAForo(idForo);
     }
 
-
 }

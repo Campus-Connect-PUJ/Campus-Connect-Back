@@ -383,11 +383,11 @@ public class UsuarioGeneralService implements UserDetailsService {
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();
         boolean yaexiste = false;
-        System.out.println("->"+wpH.fi + " - "+ wpH.ff);
+        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
         horario.setFechaInicial(wpH.getFechaInicial());
         horario.setFechaFinal(wpH.getFechaFinal());
-        horario.setFi(wpH.fi);
-        horario.setFf(wpH.ff);
+        horario.setfechaInicio(wpH.fechaInicio);
+        horario.setfechaFin(wpH.fechaFin);
         
         for(int i=0; i<anterioresMonitorias.size(); i++){
 

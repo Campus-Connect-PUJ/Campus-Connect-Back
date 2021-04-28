@@ -28,8 +28,8 @@ public class Horario {
 
 	private LocalDateTime fechaFinal;
 
-	public String fi;
-	public String ff;
+	public String fechaInicio;
+	public String fechaFin;
 
 	public Horario(){
 
@@ -68,20 +68,20 @@ public class Horario {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public String getFi() {
-		return fi;
+	public String getfechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFi(String fi) {
-		this.fi = fi;
+	public void setfechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
-	public String getFf() {
-		return ff;
+	public String getfechaFin() {
+		return fechaFin;
 	}
 
-	public void setFf(String ff) {
-		this.ff = ff;
+	public void setfechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
 	

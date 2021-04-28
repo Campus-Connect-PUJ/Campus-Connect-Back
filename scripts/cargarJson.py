@@ -243,7 +243,8 @@ def cargar_tips(tips, id_admin):
             "tip": {
                 "descripcion" : tip['descripcion']
             },
-            "tiposAprendizaje": grcar
+            "tiposAprendizaje": grcar,
+            "exigencia": tip['exigencia']
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url, msggrp, auth = LOGINDATA))

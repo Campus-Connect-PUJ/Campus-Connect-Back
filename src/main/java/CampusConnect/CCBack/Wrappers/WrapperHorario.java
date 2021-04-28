@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import CampusConnect.CCBack.Model.Tip;
 
 public class WrapperHorario {
 
@@ -13,12 +12,11 @@ public class WrapperHorario {
 	public Long idAsignatura;
 	public LocalDateTime fechaInicial;
 	public LocalDateTime fechaFinal;
-	public String fi;
-	public String ff;
+	public String fechaInicio;
+	public String fechaFin;
 
 	public WrapperHorario () {
 
-		
     }
 
 	public Long getIdUsuario() {
@@ -53,20 +51,20 @@ public class WrapperHorario {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public String getFi() {
-		return fi;
+	public String getFenchaInicio() {
+		return fechaInicio;
 	}
 
 	public void setFi(String fi) {
-		this.fi = fi;
+		this.fechaInicio = fi;
 	}
 
-	public String getFf() {
-		return ff;
+	public String getFechaFin() {
+		return fechaFin;
 	}
 
 	public void setFf(String ff) {
-		this.ff = ff;
+		this.fechaFin= ff;
 	}
 
 	

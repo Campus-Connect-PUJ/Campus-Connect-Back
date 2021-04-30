@@ -254,7 +254,7 @@ class UsuarioGeneralController {
         ugService.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 
-    @PutMapping("agregarHorario")
+    @PutMapping("borrarHorario")
     public void borrarHorario(
         @RequestBody final WrapperHorario infoMonitoria,
         @AuthenticationPrincipal String email

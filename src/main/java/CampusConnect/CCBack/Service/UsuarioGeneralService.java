@@ -434,6 +434,7 @@ public class UsuarioGeneralService implements UserDetailsService {
                 LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
                 if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
                     yaexiste = true;
+                    horario = anterioresMonitorias.get(i).getHorarios().get(j);
                 }
             }   
             if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
@@ -443,7 +444,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         if(yaexiste){
             monitoria.quitarHorario(horario);
             ug.quitarMonitorDe(monitoria);
-
             horarioRepository.delete(horario);
             repository.save(ug);
             monitorRepository.save(monitoria);

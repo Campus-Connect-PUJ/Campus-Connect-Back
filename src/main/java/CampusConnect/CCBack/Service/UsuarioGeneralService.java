@@ -415,7 +415,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         return horario; 
     }
 
-    public void borrarHorario(UsuarioGeneral ug, WrapperHorario wpH){
+    public void borrarHorarioMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
         Horario horario = new Horario();
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();

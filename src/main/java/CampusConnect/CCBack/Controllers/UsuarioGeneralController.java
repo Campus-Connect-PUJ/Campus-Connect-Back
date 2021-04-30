@@ -254,6 +254,14 @@ class UsuarioGeneralController {
         ugService.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 
+    @PutMapping("agregarHorario")
+    public void borrarHorario(
+        @RequestBody final WrapperHorario infoMonitoria,
+        @AuthenticationPrincipal String email
+    ){
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        ugService.borrarHorarioMonitoria(ug, infoMonitoria);
+    }
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")
     public UsuarioMonitor votarMonitor(

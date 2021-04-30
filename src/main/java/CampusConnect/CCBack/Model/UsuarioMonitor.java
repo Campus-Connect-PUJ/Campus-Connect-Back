@@ -98,4 +98,8 @@ public class UsuarioMonitor {
 		this.horarios.add(horario);
 	}
 
+	public void quitarHorario(Horario horario){
+		this.horarios.remove(horario);
+	}
+
 }

@@ -24,36 +24,17 @@ public class InformacionUsuarioService {
         return repository.findAll();
     }
 
-    public InformacionUsuario findById(Long id) {
+    public InformacionUsuario findById(final Long id) {
         return repository.findById(id).get();
     }
 
-    // public InformacionUsuario create(
-    //     final InformacionUsuario data,
-    //     Long id
-    //     ) {
-    //     InformacionUsuario iu = new InformacionUsuario();
-    //     UsuarioGeneral ug = uService.findById(id);
-
-    //     iu.setFechaNacimiento(data.getFechaNacimiento());
-    //     iu.setIdentidadGenero(data.getIdentidadGenero());
-    //     iu.setLugarOrigen(data.getLugarOrigen());
-    //     iu.setRaza(data.getRaza());
-    //     iu.setUsuario(ug);
-
-    //     repository.save(iu);
-
-    //     ug.setInformacionUsuario(iu);
-    //     return repository.save(iu);
-    // }
-
     public InformacionUsuario cargarInformacionUsuario(
         final WrapperInformacionUsuario data,
-        String email
+        final String email
         ) {
-        UsuarioGeneral ug = uService.findByEmail(email);
+        final UsuarioGeneral ug = uService.findByEmail(email);
 
-        InformacionUsuario iu = new InformacionUsuario();
+        final InformacionUsuario iu = new InformacionUsuario();
 
         iu.setUsuario(ug);
         iu.setFechaNacimiento(data.getFechaNacimiento());
@@ -64,7 +45,7 @@ public class InformacionUsuarioService {
         iu.setIdentidadSexo(data.getSexo());
         iu.setIdentidadGenero(data.getGenero());
 
-        for(Long idCar: data.getCarreras()) {
+        for(final Long idCar: data.getCarreras()) {
             cService.agregarCarrera(idCar, ug);
         }
 

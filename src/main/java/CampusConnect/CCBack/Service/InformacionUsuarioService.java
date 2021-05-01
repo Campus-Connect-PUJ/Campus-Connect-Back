@@ -49,9 +49,9 @@ public class InformacionUsuarioService {
 
     public InformacionUsuario cargarInformacionUsuario(
         final WrapperInformacionUsuario data,
-        Long id
+        String email
         ) {
-        UsuarioGeneral ug = uService.findById(id);
+        UsuarioGeneral ug = uService.findByEmail(email);
 
         InformacionUsuario iu = new InformacionUsuario();
 

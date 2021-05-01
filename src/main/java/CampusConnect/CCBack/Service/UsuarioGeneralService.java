@@ -2,7 +2,6 @@ package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +33,14 @@ import CampusConnect.CCBack.Repository.AsignaturaRepository;
 import CampusConnect.CCBack.Repository.HorarioRepository;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
 import CampusConnect.CCBack.Repository.UsuarioMonitorRepository;
-import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
-import CampusConnect.CCBack.Security.SecurityConstants;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
-
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
-import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
-import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
+import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
+import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @RestController
 public class UsuarioGeneralService implements UserDetailsService {
@@ -128,8 +124,14 @@ public class UsuarioGeneralService implements UserDetailsService {
         return repository.findById(id).get();
     }
 
-    public UsuarioGeneral findByEmail(String email) {
-        return repository.findByEmail(email);
+    public UsuarioGeneral findByEmail(String email) throws UsernameNotFoundException {
+        UsuarioGeneral ul = repository.findByEmail(email);
+        if (ul == null) {
+            throw new UsernameNotFoundException(
+                "Usuario con correo " + email + " no encontrado"
+            );
+        }
+        return ul;
     }
 
     public UsuarioGeneral crearResenhaGrupoEstudiantil(
@@ -148,7 +150,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         final ResenhaRestaurante data,
         final Long idRestaurante
         ) {
-        UsuarioGeneral ug = repository.findByEmail(email);
+        UsuarioGeneral ug = this.findByEmail(email);
         ResenhaRestaurante rr = rrService.create(ug, data, idRestaurante);
         ug.agregarResenhaRestaurante(rr);
         return repository.save(ug);
@@ -169,7 +171,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findByEmail(email);
+        UsuarioGeneral ug = this.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
         TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
 
@@ -186,7 +188,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         String email,
         final Long idTipoAprendizaje
     ){
-        UsuarioGeneral ug = repository.findByEmail(email);
+        UsuarioGeneral ug = this.findByEmail(email);
         List<TipoAprendizaje> tiposAprendizaje = ug.getEstilosAprendizaje();
         TipoAprendizaje ta = taService.findById(idTipoAprendizaje);
         
@@ -204,8 +206,7 @@ public class UsuarioGeneralService implements UserDetailsService {
     }
 
     public UsuarioGeneral login(final WrapperLogin login) {
-		final UsuarioGeneral user = this.loadUserByUsername(login.getUsername());
-        return user;
+        return this.loadUserByUsername(login.getUsername());
     }
 
     @Override
@@ -217,21 +218,16 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
         // admin nunca queda guardado en bd
-        System.out.println("------------------------------");
-        System.out.println(username + " == " + this.admin.getUsername());
 
         if (username.equals(this.admin.getUsername())) {
+            System.out.println("------------------------------");
+            System.out.println(username + " == " + this.admin.getUsername());
             System.out.println("es admin");
             return this.admin;
         }
 
+        UsuarioGeneral ul = this.findByEmail(username);
         System.out.println("*** Retrieving user");
-        UsuarioGeneral ul = repository.findByEmail(username);
-        if (ul == null) {
-            throw new UsernameNotFoundException(
-                "User Not Found with -> username or email: " + username
-            );
-        }
         return ul;
 	}
 

@@ -21,11 +21,11 @@ public class InformacionUsuarioService {
     private CarreraService cService;
 
     public Iterable<InformacionUsuario> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public InformacionUsuario findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public InformacionUsuario cargarInformacionUsuario(
@@ -49,6 +49,6 @@ public class InformacionUsuarioService {
             cService.agregarCarrera(idCar, ug);
         }
 
-        return repository.save(iu);
+        return GenericService.create(repository, iu);
     }
 }

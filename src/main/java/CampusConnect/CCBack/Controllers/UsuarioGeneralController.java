@@ -27,6 +27,7 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Service.HorarioService;
 import CampusConnect.CCBack.Service.InformacionUsuarioService;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
@@ -45,6 +46,9 @@ class UsuarioGeneralController {
 
     @Autowired
     private UsuarioGeneralService ugService;
+
+    @Autowired
+    private HorarioService hService;
 
     @Autowired
     private RESTAuthenticationProvider restap;
@@ -261,7 +265,7 @@ class UsuarioGeneralController {
         @AuthenticationPrincipal String email
     ){
         UsuarioGeneral ug = ugService.findByEmail(email);
-        ugService.agregarHorariosMonitoria(ug, infoMonitoria);
+        hService.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 
 

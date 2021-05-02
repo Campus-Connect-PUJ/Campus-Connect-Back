@@ -18,11 +18,11 @@ public class CarreraService {
     private FacultadesService fService;
 
     public Iterable<Carrera> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Carrera findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Carrera create(final Carrera dato, final Long id) {
@@ -30,14 +30,14 @@ public class CarreraService {
         Facultad f = fService.findById(id);
         c.setNombre(dato.getNombre());
         c.setFacultad(f);
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
     public Carrera agregarCarrera(long idCar, UsuarioGeneral ug) {
         Carrera c = this.findById(idCar);
         ug.agregarCarrera(c);
 
-        return repository.save(c);
+        return GenericService.save(repository, c);
     }
 
 }

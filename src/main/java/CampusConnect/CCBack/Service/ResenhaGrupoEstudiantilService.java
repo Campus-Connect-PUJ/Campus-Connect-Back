@@ -18,11 +18,11 @@ public class ResenhaGrupoEstudiantilService {
     private GruposEstudiantilesService geService;
 
     public Iterable<ResenhaGrupoEstudiantil> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public ResenhaGrupoEstudiantil findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public ResenhaGrupoEstudiantil create(
@@ -35,7 +35,7 @@ public class ResenhaGrupoEstudiantilService {
         rr.setEstrellas(foroData.getEstrellas());
         rr.setGrupoEstudiantil(grupoEstudiantil);
         rr.setUsuario(ug);
-        return repository.save(rr);
+        return GenericService.create(repository, rr);
     }
 
 }

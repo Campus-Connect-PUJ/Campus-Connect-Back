@@ -1,7 +1,9 @@
 package CampusConnect.CCBack.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Repository.CaracteristicaRepository;
@@ -13,17 +15,17 @@ public class CaracteristicasService {
     private CaracteristicaRepository repository;
 
     public Iterable<Caracteristica> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Caracteristica findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Caracteristica create(final Caracteristica dato) {
         Caracteristica c = new Caracteristica();
         c.setNombre(dato.getNombre());
-        return repository.save(c);
+        return GenericService.save(repository, c);
     }
 
 }

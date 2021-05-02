@@ -445,8 +445,17 @@ public class UsuarioGeneralService implements UserDetailsService {
             monitoria.quitarHorario(horario);
             ug.quitarMonitorDe(monitoria);
             horarioRepository.delete(horario);
+
+            if(monitoria.getHorarios().size()==0){
+                monitorRepository.delete(monitoria);
+            }
+            else{
+                monitorRepository.save(monitoria);
+            }
+
+
             repository.save(ug);
-            monitorRepository.save(monitoria);
+            
         }
     }
 

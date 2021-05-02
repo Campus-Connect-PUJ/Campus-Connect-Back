@@ -190,10 +190,6 @@ class UsuarioGeneralController {
         return ug;
     }
 
-    // @PostMapping("printUser")
-    // public void printUserInfo(@AuthenticationPrincipal String username) {
-    //     System.out.println("usuario: " + username);
-    // }
 
     // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
     @GetMapping("rolAdmin/{id}")

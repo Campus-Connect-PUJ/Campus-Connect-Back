@@ -31,6 +31,8 @@ public class Horario {
 	public String fechaInicio;
 	public String fechaFin;
 
+	public String lugar;
+
 	public Horario(){
 
 	}
@@ -82,6 +84,14 @@ public class Horario {
 
 	public void setfechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	

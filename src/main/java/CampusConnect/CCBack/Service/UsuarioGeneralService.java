@@ -388,6 +388,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         horario.setFechaFinal(wpH.getFechaFinal());
         horario.setfechaInicio(wpH.fechaInicio);
         horario.setfechaFin(wpH.fechaFin);
+        horario.lugar = wpH.lugar;
         
         for(int i=0; i<anterioresMonitorias.size(); i++){
             for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){

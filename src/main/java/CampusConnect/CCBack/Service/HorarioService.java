@@ -43,6 +43,7 @@ public class HorarioService {
         horario.setFechaFinal(wpH.getFechaFinal());
         horario.setfechaInicio(wpH.fechaInicio);
         horario.setfechaFin(wpH.fechaFin);
+        horario.lugar = wpH.lugar;
 
         for(int i=0; i<anterioresMonitorias.size(); i++){
 

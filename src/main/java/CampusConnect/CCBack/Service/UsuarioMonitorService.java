@@ -48,4 +48,8 @@ class UsuarioMonitorService {
         return GenericService.save(repository, um);
     }
 
+    public void borrar(UsuarioMonitor um){
+        GenericService.delete(repository, um);
+    }
+
 }

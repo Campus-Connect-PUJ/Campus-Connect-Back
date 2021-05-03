@@ -274,7 +274,7 @@ class UsuarioGeneralController {
         @AuthenticationPrincipal String email
     ){
         UsuarioGeneral ug = ugService.findByEmail(email);
-        ugService.borrarHorarioMonitoria(ug, infoMonitoria);
+        hService.borrarHorarioMonitoria(ug, infoMonitoria);
     }
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")

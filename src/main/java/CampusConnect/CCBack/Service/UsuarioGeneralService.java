@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Hobby;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
@@ -30,6 +32,7 @@ import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -55,9 +58,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private AsignaturaService asService;
-
-    @Autowired
-    private AsignaturaService asignaturaService;
 
     @Autowired
     private UsuarioMonitorService umService;
@@ -358,14 +358,16 @@ public class UsuarioGeneralService implements UserDetailsService {
             ug.addMonitorDe(monitoria);
     
             repository.save(ug);
-            asignaturaRepository.save(asignatura);
-            monitorRepository.save(monitoria);
+            asService.create(asignatura);
+            //asignaturaRepository.save(asignatura);
+            umService.guardar(monitoria);
+            //monitorRepository.save(monitoria);
         }
 
         return monitoria;
     }
 
-
+/*
     public Horario agregarHorariosMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
         Horario horario = new Horario();
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
@@ -452,7 +454,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         }
 
     }
-
+*/
 
     // Un regimenen alimenticio, nivel de exigencia, lista de comidas
     // favoritas, una ambientación

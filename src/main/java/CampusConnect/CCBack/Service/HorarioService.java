@@ -84,5 +84,56 @@ public class HorarioService {
         return horario;
     }
 
+    public void borrarHorarioMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
+        Horario horario = new Horario();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        boolean yaexiste = false;
+        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
+        horario.setFechaInicial(wpH.getFechaInicial());
+        horario.setFechaFinal(wpH.getFechaFinal());
+        horario.setfechaInicio(wpH.fechaInicio);
+        horario.setfechaFin(wpH.fechaFin);
+        
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                    horario = anterioresMonitorias.get(i).getHorarios().get(j);
+                }
+            }   
+            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
+                monitoria = anterioresMonitorias.get(i);
+            }
+        }
+        if(yaexiste){
+            monitoria.quitarHorario(horario);
+            ug.quitarMonitorDe(monitoria);
+            repository.delete(horario);
+
+            if(monitoria.getHorarios().size()==0){
+                umService.borrar(monitoria);
+                //monitorRepository.delete(monitoria);
+            }
+            else{
+                umService.guardar(monitoria);
+                //monitorRepository.save(monitoria);
+            }
+
+            ugService.guardarUsuario(ug);
+            //repository.save(ug);
+            
+        }
+
+    }
+
+
+
+
+
 
 }

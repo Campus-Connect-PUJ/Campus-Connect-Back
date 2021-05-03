@@ -23,15 +23,15 @@ public class EventualidadService {
     private EventualidadRepository repository;
 
     public Iterable<Eventualidad> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Eventualidad findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public void delete(Eventualidad e) {
-        repository.delete(e);
+        GenericService.delete(repository, e);
     }
 
     // borrar todas las eventualidades que sean mas viejas que (hoy - numeroDias)
@@ -68,7 +68,7 @@ public class EventualidadService {
 
         e.setFecha(LocalDate.now());
 
-        return repository.save(e);
+        return GenericService.save(repository, e);
     }
 
     public Iterable<Eventualidad> findCercano(Double lat, Double lon, int cantidad) {

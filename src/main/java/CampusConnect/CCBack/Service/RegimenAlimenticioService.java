@@ -13,17 +13,17 @@ public class RegimenAlimenticioService {
     private RegimenAlimenticioRepository repository;
 
     public Iterable<RegimenAlimenticio> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public RegimenAlimenticio findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public RegimenAlimenticio create(final RegimenAlimenticio dato) {
         RegimenAlimenticio c = new RegimenAlimenticio();
         c.setTipo(dato.getTipo());
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
 }

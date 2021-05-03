@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Eventos;
 import CampusConnect.CCBack.Model.Tematica;
-import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Service.CaracteristicasService;
 
 @RestController

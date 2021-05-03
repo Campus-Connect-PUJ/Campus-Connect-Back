@@ -30,11 +30,11 @@ public class GruposEstudiantilesService {
     private RequisitoService rService;
 
     public Iterable<GrupoEstudiantil> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public GrupoEstudiantil findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public GrupoEstudiantil create(final WrapperGrupoEstudiantil dato) {
@@ -44,7 +44,7 @@ public class GruposEstudiantilesService {
         ug.setDescripcion(dato.getGrupoEstudiantil().getDescripcion());
         ug.setCalificacion(5);
 
-        repository.save(ug);
+        GenericService.save(repository, ug);
 
         // listas
 
@@ -73,7 +73,7 @@ public class GruposEstudiantilesService {
             c.agregarGrupoEstudiantil(ug);
         }
 
-        return repository.save(ug);
+        return GenericService.save(repository, ug);
     }
 
     public void agregarRequisito(final Long idge, final Long idr) {

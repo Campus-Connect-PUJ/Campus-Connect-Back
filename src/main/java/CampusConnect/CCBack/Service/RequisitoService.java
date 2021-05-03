@@ -13,17 +13,17 @@ public class RequisitoService {
     private RequisitoRepository repository;
 
     public Iterable<Requisito> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Requisito findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Requisito create(final Requisito dato) {
         Requisito c = new Requisito();
         c.setNombre(dato.getNombre());
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
 }

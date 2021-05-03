@@ -119,11 +119,17 @@ def main(archivo):
         # parse file
         datos = json.loads(data)
 
+        print("###########################################")
         id_admin = cargar_usuarios(datos['usuarios'])
+        print("###########################################")
         cargar_facultades_y_carreras(datos['facultades'], datos['carreras'])
+        print("###########################################")
         cargar_tips(datos['tips'], id_admin)
+        print("###########################################")
         cargar_grupos_estudiantiles(datos['grupos'])
+        print("###########################################")
         cargar_Asignaturas(datos['asignaturas'])
+        print("###########################################")
         cargar_restaurantes(
             datos['restaurantes'],
             datos['ubicaciones'],
@@ -136,7 +142,6 @@ def cargar_facultades_y_carreras(facultades, carreras):
 
     url = BASEURL + 'facultad'
 
-    print(facultades)
     print("cargando facultades")
     facultades_json = {}
     for facultad in facultades:

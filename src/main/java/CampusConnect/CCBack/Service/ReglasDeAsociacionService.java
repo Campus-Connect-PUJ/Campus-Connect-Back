@@ -27,11 +27,11 @@ public class ReglasDeAsociacionService {
     private TipsService servicioTips;
 
     public Iterable<ReglasDeAsociacion> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public ReglasDeAsociacion findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public ReglasDeAsociacion crearReglaDeAsociacion(
@@ -52,7 +52,7 @@ public class ReglasDeAsociacionService {
             regla.agregarConsecuentes(b);
         }
 
-        return repository.save(regla);
+        return GenericService.save(repository, regla);
     }
 
     public Tip obtenerRecomendacionTip(String email){
@@ -151,8 +151,6 @@ public class ReglasDeAsociacionService {
         return tipRecomendar;
     }
 
-
-
     public int contieneTodos(List<Tip> tipsUsuario, List<Tip> tipsRegla){
         int iguales = 0;
 
@@ -212,7 +210,7 @@ public class ReglasDeAsociacionService {
 
     public Long borrarReglas(){
         repository.deleteAll();
-        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) repository.findAll();
+        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
         Long cantidad = (long) reglas.size();
         return cantidad;
     }

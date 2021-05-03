@@ -27,8 +27,11 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Service.HorarioService;
+import CampusConnect.CCBack.Service.InformacionUsuarioService;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
+import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -45,7 +48,18 @@ class UsuarioGeneralController {
     private UsuarioGeneralService ugService;
 
     @Autowired
+    private HorarioService hService;
+
+    @Autowired
     private RESTAuthenticationProvider restap;
+
+    @Autowired
+    private InformacionUsuarioService iuService;
+
+    @GetMapping
+    public UsuarioGeneral getUsuario(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
 
     @GetMapping("data")
     public UsuarioGeneral getData(@AuthenticationPrincipal String email) {
@@ -110,6 +124,14 @@ class UsuarioGeneralController {
         return ugService.findByEmail(email).getCaracteristicas();
     }
 
+    @PostMapping("informacion")
+    public InformacionUsuario cargarInformacionUsuario(
+        @RequestBody final WrapperInformacionUsuario data,
+        @AuthenticationPrincipal String email)
+        {
+            return iuService.cargarInformacionUsuario(data, email);
+    }
+
     @GetMapping("informacion")
     public InformacionUsuario informacionUsuario(@AuthenticationPrincipal String email) {
         return ugService.findByEmail(email).getInformacionUsuario();
@@ -168,9 +190,6 @@ class UsuarioGeneralController {
         @RequestBody final WrapperLogin login,
         HttpServletResponse response
         ) {
-        System.out.println("login");
-        System.out.println(login.getUsername());
-        System.out.println(login.getPassword());
         final UsuarioGeneral user = ugService.login(login);
         return resp(login, user, response);
     }
@@ -189,7 +208,6 @@ class UsuarioGeneralController {
 
         return ug;
     }
-
 
     // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
     @GetMapping("rolAdmin/{id}")
@@ -247,7 +265,7 @@ class UsuarioGeneralController {
         @AuthenticationPrincipal String email
     ){
         UsuarioGeneral ug = ugService.findByEmail(email);
-        ugService.agregarHorariosMonitoria(ug, infoMonitoria);
+        hService.agregarHorariosMonitoria(ug, infoMonitoria);
     }
 
     @PutMapping("borrarHorario")

@@ -15,11 +15,11 @@ public class RegimenAlimenticioUsuarioService {
     private RegimenAlimenticioUsuarioRepository repository;
 
     public Iterable<RegimenAlimenticioUsuario> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public RegimenAlimenticioUsuario findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public RegimenAlimenticioUsuario create(
@@ -31,7 +31,7 @@ public class RegimenAlimenticioUsuarioService {
         c.setRegimenAlimenticio(dato);
         c.setExigencia(exigencia);
         c.setUsuario(ug);
-        return repository.save(c);
+        return GenericService.save(repository, c);
     }
 
 }

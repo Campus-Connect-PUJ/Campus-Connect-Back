@@ -13,17 +13,17 @@ public class TipoComidaService {
     private TipoComidaRepository repository;
 
     public Iterable<TipoComida> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public TipoComida findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public TipoComida create(final TipoComida dato) {
         TipoComida c = new TipoComida();
         c.setTipo(dato.getTipo());
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
 }

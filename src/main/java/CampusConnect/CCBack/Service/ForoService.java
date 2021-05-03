@@ -25,11 +25,11 @@ public class ForoService {
     private UsuarioGeneralService uService;
 
     public Iterable<Foro> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Foro findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Foro crearForo(final Foro foroData, String email) {
@@ -45,13 +45,13 @@ public class ForoService {
         ug.agregarForo(foro);
 
         uService.guardarUsuario(ug);
-        return repository.save(foro);
+        return GenericService.save(repository, foro);
     }
 
     public void borrarForo(Long idForo, String email){
         UsuarioGeneral ug = uService.findByEmail(email);
         List<Foro> forosUsuario = ug.getForos();
-        Foro foro = repository.findById(idForo).get();
+        Foro foro = GenericService.findById(repository, idForo);
         
         if(forosUsuario.contains(foro)){
             forosUsuario.remove(foro);
@@ -66,12 +66,10 @@ public class ForoService {
 
         }
 
-        repository.delete(foro);
+        GenericService.delete(repository, foro);
         uService.guardarUsuario(ug);
 
-
     }
-
 
     public void AgregarRespuestaForo(
         final WrapperRespuestaForo respuesta,
@@ -87,7 +85,7 @@ public class ForoService {
         nuevaRespuesta.setUsuario(usuarioRespuesta);
         foro.agregarRespuesta(nuevaRespuesta);
 
-        repository.save(foro);
+        GenericService.save(repository, foro);
         respuestaRepository.save(nuevaRespuesta);
 
     }
@@ -95,13 +93,13 @@ public class ForoService {
     public Foro sumarVotoAForo(final Long idForo){
         Foro foro = this.findById(idForo);
         foro.like();
-        return repository.save(foro);
+        return GenericService.save(repository, foro);
     }
 
     public Foro restarVotoAForo(final Long idForo){
         Foro foro = this.findById(idForo);
         foro.dislike();
-        return repository.save(foro);
+        return GenericService.save(repository, foro);
     }
 
 }

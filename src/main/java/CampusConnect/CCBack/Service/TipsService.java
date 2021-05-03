@@ -27,11 +27,11 @@ public class TipsService {
     private TipoAprendizajeService taService;
 
     public Iterable<Tip> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Tip findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Tip crear(final WrapperTip data) {
@@ -47,20 +47,20 @@ public class TipsService {
             tip.agregaTipoAprendizaje(c);
         }
 
-        return repository.save(tip);
+        return GenericService.create(repository, tip);
     }
 
     public void borrarTip(Long idTip, String email){
         UsuarioGeneral ug = ugService.findByEmail(email);
         List<Tip> tipsUsuario = ug.getTips();
-        Tip tip = repository.findById(idTip).get();
+        Tip tip = this.findById(idTip);
         
         if(tipsUsuario.contains(tip)){
             tipsUsuario.remove(tip);
             ug.setTips(tipsUsuario);
         }
 
-        repository.delete(tip);
+        GenericService.delete(repository, tip);
         ugService.guardarUsuario(ug);
 
 
@@ -84,7 +84,7 @@ public class TipsService {
             tip.like();
             tip.agregarUsuarioGustaron(ug);
             ug.agregarTipGustaron(tip);
-            repository.save(tip);
+            GenericService.save(repository, tip);
         }
         
 
@@ -108,7 +108,7 @@ public class TipsService {
             tip.dislike();
             tip.agregarUsuarioNoGustaron(ug);
             ug.agregarTipNoGustaron(tip);
-            repository.save(tip);
+            GenericService.save(repository, tip);
         }
          
         return ugRepository.save(ug);
@@ -119,7 +119,7 @@ public class TipsService {
     ){
         Tip tip = this.findById(idTip);
         tip.like();
-        return repository.save(tip);
+        return GenericService.save(repository, tip);
     }
 
     public Tip restarVotoAForo(
@@ -127,7 +127,7 @@ public class TipsService {
     ){
         Tip tip = this.findById(idForo);
         tip.dislike();
-        return repository.save(tip);
+        return GenericService.save(repository, tip);
     }
 
 

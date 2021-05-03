@@ -356,7 +356,8 @@ public class UsuarioGeneralService implements UserDetailsService {
             asignatura.addMonitor(monitoria);
             ug.addMonitorDe(monitoria);
     
-            repository.save(ug);
+            GenericService.save(repository, ug);
+            //repository.save(ug);
 
             //asService.create(asignatura);
             //asignaturaRepository.save(asignatura);

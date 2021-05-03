@@ -330,7 +330,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
         boolean existe = false;
-
         for(int i=0; i<ug.getMonitorDe().size(); i++){
             if(ug.getMonitorDe().get(i).getAsignatura().getId() == infoMonitoria.idAsignatura){
                 existe = true;
@@ -358,7 +357,8 @@ public class UsuarioGeneralService implements UserDetailsService {
             ug.addMonitorDe(monitoria);
     
             repository.save(ug);
-            asService.create(asignatura);
+
+            //asService.create(asignatura);
             //asignaturaRepository.save(asignatura);
             umService.guardar(monitoria);
             //monitorRepository.save(monitoria);

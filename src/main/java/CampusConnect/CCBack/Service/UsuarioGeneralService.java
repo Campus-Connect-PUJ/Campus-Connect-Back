@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Hobby;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
@@ -30,6 +32,7 @@ import CampusConnect.CCBack.Model.TipoComida;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -55,9 +58,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     @Autowired
     private AsignaturaService asService;
-
-    @Autowired
-    private AsignaturaService asignaturaService;
 
     @Autowired
     private UsuarioMonitorService umService;
@@ -330,7 +330,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
     public boolean existeMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
         boolean existe = false;
-
         for(int i=0; i<ug.getMonitorDe().size(); i++){
             if(ug.getMonitorDe().get(i).getAsignatura().getId() == infoMonitoria.idAsignatura){
                 existe = true;
@@ -353,17 +352,110 @@ public class UsuarioGeneralService implements UserDetailsService {
             monitoria.setCantidadVotos(Long.valueOf(1));
             monitoria.setUsuario(ug);
 
+    
             asignatura.addMonitor(monitoria);
             ug.addMonitorDe(monitoria);
-
+    
             GenericService.save(repository, ug);
-            asignaturaService.create(asignatura);
+            //repository.save(ug);
+
+            //asService.create(asignatura);
+            //asignaturaRepository.save(asignatura);
             umService.guardar(monitoria);
+            //monitorRepository.save(monitoria);
         }
 
         return monitoria;
     }
 
+/*
+    public Horario agregarHorariosMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
+        Horario horario = new Horario();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        boolean yaexiste = false;
+        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
+        horario.setFechaInicial(wpH.getFechaInicial());
+        horario.setFechaFinal(wpH.getFechaFinal());
+        horario.setfechaInicio(wpH.fechaInicio);
+        horario.setfechaFin(wpH.fechaFin);
+        horario.lugar = wpH.lugar;
+        
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                }
+            }   
+            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
+                monitoria = anterioresMonitorias.get(i);
+            }
+        }
+        if(!yaexiste){
+            //monitoria.addHorario(horario);
+
+
+            //asignatura.addMonitor(monitoria);
+
+            //ug.addMonitorDe(monitoria);
+
+            GenericService.save(repository, ug);
+            asignaturaService.create(asignatura);
+            umService.guardar(monitoria);
+        }
+        return horario; 
+    }
+
+
+    public void borrarHorarioMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
+        Horario horario = new Horario();
+        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
+        UsuarioMonitor monitoria = new UsuarioMonitor();
+        boolean yaexiste = false;
+        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
+        horario.setFechaInicial(wpH.getFechaInicial());
+        horario.setFechaFinal(wpH.getFechaFinal());
+        horario.setfechaInicio(wpH.fechaInicio);
+        horario.setfechaFin(wpH.fechaFin);
+        
+        for(int i=0; i<anterioresMonitorias.size(); i++){
+            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
+                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
+                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
+                LocalDate localDate = horario.getFechaInicial().toLocalDate();
+                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
+                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
+                    yaexiste = true;
+                    horario = anterioresMonitorias.get(i).getHorarios().get(j);
+                }
+            }   
+            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
+                monitoria = anterioresMonitorias.get(i);
+            }
+        }
+        if(yaexiste){
+            monitoria.quitarHorario(horario);
+            ug.quitarMonitorDe(monitoria);
+            horarioRepository.delete(horario);
+
+            if(monitoria.getHorarios().size()==0){
+                monitorRepository.delete(monitoria);
+            }
+            else{
+                monitorRepository.save(monitoria);
+            }
+
+
+            repository.save(ug);
+            
+        }
+
+    }
+*/
 
     // Un regimenen alimenticio, nivel de exigencia, lista de comidas
     // favoritas, una ambientación

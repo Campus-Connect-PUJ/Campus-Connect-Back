@@ -14,6 +14,7 @@ public class WrapperHorario {
 	public LocalDateTime fechaFinal;
 	public String fechaInicio;
 	public String fechaFin;
+	public String lugar;
 
 	public WrapperHorario () {
 
@@ -65,6 +66,14 @@ public class WrapperHorario {
 
 	public void setFf(String ff) {
 		this.fechaFin= ff;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	

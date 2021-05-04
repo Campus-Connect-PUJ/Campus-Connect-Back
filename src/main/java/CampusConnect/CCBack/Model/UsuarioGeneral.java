@@ -448,6 +448,10 @@ public class UsuarioGeneral implements UserDetails {
 		this.monitorDe.add(monitoria);
 	}
 
+	public void quitarMonitorDe(UsuarioMonitor monitoria){
+		this.monitorDe.remove(monitoria);
+	}
+
 	public String getAmbientacion(){
 		return this.ambientacion;
 	}

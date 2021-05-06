@@ -4,6 +4,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 BASEURL = 'http://localhost:8080/'
+# BASEURL = 'https://campusconnectjava.herokuapp.com/'
 
 LOGINDATA = {}
 

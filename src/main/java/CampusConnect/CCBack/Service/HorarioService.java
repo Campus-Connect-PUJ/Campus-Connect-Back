@@ -38,11 +38,8 @@ public class HorarioService {
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();
         boolean yaexiste = false;
-        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
         horario.setFechaInicial(wpH.getFechaInicial());
         horario.setFechaFinal(wpH.getFechaFinal());
-        horario.setfechaInicio(wpH.fechaInicio);
-        horario.setfechaFin(wpH.fechaFin);
         horario.lugar = wpH.lugar;
 
         for(int i=0; i<anterioresMonitorias.size(); i++){
@@ -90,12 +87,9 @@ public class HorarioService {
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();
         boolean yaexiste = false;
-        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
         horario.setFechaInicial(wpH.getFechaInicial());
         horario.setFechaFinal(wpH.getFechaFinal());
-        horario.setfechaInicio(wpH.fechaInicio);
-        horario.setfechaFin(wpH.fechaFin);
-        
+
         for(int i=0; i<anterioresMonitorias.size(); i++){
             for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
                 LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
@@ -126,15 +120,8 @@ public class HorarioService {
             }
 
             ugService.guardarUsuario(ug);
-            //repository.save(ug);
-            
         }
 
     }
-
-
-
-
-
 
 }

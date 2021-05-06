@@ -14,8 +14,6 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.yaml.snakeyaml.util.ArrayUtils;
-
 @Entity
 public class Tip implements Comparable<Tip>{
 

@@ -1,9 +1,6 @@
 package CampusConnect.CCBack.Wrappers;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class WrapperHorario {
@@ -12,8 +9,6 @@ public class WrapperHorario {
 	public Long idAsignatura;
 	public LocalDateTime fechaInicial;
 	public LocalDateTime fechaFinal;
-	public String fechaInicio;
-	public String fechaFin;
 	public String lugar;
 
 	public WrapperHorario () {

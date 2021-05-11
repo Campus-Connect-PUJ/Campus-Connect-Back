@@ -81,7 +81,6 @@ public class ForoService {
 
         nuevaRespuesta.setTexto(respuesta.getTexto());
         nuevaRespuesta.setForo(foro);
-        nuevaRespuesta.setIdForoRespondido(foro.getId());
         nuevaRespuesta.setUsuario(usuarioRespuesta);
         foro.agregarRespuesta(nuevaRespuesta);
 

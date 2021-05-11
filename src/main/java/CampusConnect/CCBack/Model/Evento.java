@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Eventos {
+public class Evento {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

@@ -14,8 +14,6 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.yaml.snakeyaml.util.ArrayUtils;
-
 @Entity
 public class Tip implements Comparable<Tip>{
 
@@ -25,14 +23,17 @@ public class Tip implements Comparable<Tip>{
 
     private String descripcion;
 
+    private Long idUsuarioCreador;
+
+    private int puntaje;
+
+    private Long nivelExigencia;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
 
-    private Long idUsuarioCreador;
-
-    // @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     @ManyToMany
     @JoinTable (
         name = "TipoAprendizajeTip",
@@ -55,10 +56,6 @@ public class Tip implements Comparable<Tip>{
         joinColumns = @JoinColumn(name = "idTipNoGusto"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
     private List<UsuarioGeneral> usuariosNoGustaron;
-
-    private int puntaje;
-
-    private Long nivelExigencia;
 
     public Tip() {
         this.tiposAprendizaje = new ArrayList<>();

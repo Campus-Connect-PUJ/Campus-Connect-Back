@@ -23,6 +23,7 @@ public class ActividadAsignatura {
 
     private String nombre;
 
+    // TODO: esto se podria conectar con la clase Horario
     private LocalTime fecha;
 
     private float duracion;

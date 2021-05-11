@@ -67,6 +67,4 @@ public class RespuestaForoService {
         uService.guardarUsuario(ug);
     }
 
-
-    
 }

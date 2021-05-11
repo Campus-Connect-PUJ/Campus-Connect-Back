@@ -95,7 +95,6 @@ public class UsuarioGeneral implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioMonitor> monitorDe;
 
-
     // relaciones muchos a muchos  ---------------------
 
     @ManyToMany
@@ -128,12 +127,6 @@ public class UsuarioGeneral implements UserDetails {
 
 	@ManyToMany
 	private List<TipoComida> comidaFavorita;
-
-	@ManyToMany
-	private List<Restaurante> restaurantesReco;
-
-	@ManyToMany
-	private List<GrupoEstudiantil> grupoEstudiantilReco;
 
 	public UsuarioGeneral(
         String email,
@@ -478,40 +471,13 @@ public class UsuarioGeneral implements UserDetails {
 	}
 
 	public void borrarRespuestaForo(RespuestaForo rf){
-		this.respuestasForo.remove(rf);
-  }
-	public void setRestaurantesReco(List<Restaurante> reco){
-		this.restaurantesReco = reco;
-	}
+        this.respuestasForo.remove(rf);
+    }
 
-	public List<Restaurante> getRestaurantesReco(){
-		return this.restaurantesReco;
-	}
-
-	public void agregarRestauranteReco(Restaurante restaurante){
-		if(!this.restaurantesReco.contains(restaurante)){
-			this.restaurantesReco.add(restaurante);
-		}
-	}
-
-	public void setGrupoReco(List<GrupoEstudiantil> reco){
-		this.grupoEstudiantilReco = reco;
-	}
-
-	public List<GrupoEstudiantil> getGrupoReco(){
-		return this.grupoEstudiantilReco;
-	}
-
-	public void agregarGRupoReco(GrupoEstudiantil reco){
-		if(!this.grupoEstudiantilReco.contains(reco)){
-			this.grupoEstudiantilReco.add(reco);
-		}
-	}
-
-	public void reinicioPersoGrupos(){
-		this.caracteristicas.clear();
-		this.actividadInteres.clear();
-	}
+    public void reinicioPersoGrupos(){
+        this.caracteristicas.clear();
+        this.actividadInteres.clear();
+    }
 
 	public void reinicioPersoRestaurantes(){
 		this.comidaFavorita.clear();

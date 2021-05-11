@@ -27,7 +27,7 @@ public class Caracteristica {
         name = "CaracteristicasEvento",
         joinColumns = @JoinColumn(name = "idCaracteristica"),
         inverseJoinColumns = @JoinColumn(name = "idEvento"))
-    private List<Eventos> eventos;
+    private List<Evento> eventos;
 
     @JsonIgnore
     @ManyToMany
@@ -49,11 +49,11 @@ public class Caracteristica {
 		return nombre;
 	}
 
-    public List<Eventos> getEventos() {
+    public List<Evento> getEventos() {
 		return eventos;
 	}
 
-    public void setEventos(List<Eventos> eventos) {
+    public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
 

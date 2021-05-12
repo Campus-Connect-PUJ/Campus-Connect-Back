@@ -99,6 +99,8 @@ public class ForoService {
         
         if(foro.getUsuariosNoGustaron().contains(ug)){
             foro.quitarUsuarioNoGustaron(ug);
+            foro.like();
+            return GenericService.save(repository, foro);
         }
         if(!foro.getUsuariosGustaron().contains(ug)){
             foro.like();
@@ -117,6 +119,8 @@ public class ForoService {
 
         if(foro.getUsuariosGustaron().contains(ug)){
             foro.quitarUsuarioGustaron(ug);
+            foro.dislike();
+            return GenericService.save(repository, foro);
         }
         if(!foro.getUsuariosNoGustaron().contains(ug)){
             foro.dislike();

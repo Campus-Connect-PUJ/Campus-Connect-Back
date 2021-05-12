@@ -96,7 +96,10 @@ class ForoController {
     }
 
     @PutMapping("restar/{id}")
-    public Foro restarVotoAForo(@AuthenticationPrincipal String email, @PathVariable("id") final Long idForo){
+    public Foro restarVotoAForo(
+        @AuthenticationPrincipal String email, 
+        @PathVariable("id") final Long idForo
+    ){
         return fService.restarVotoAForo(email, idForo);
     }
 

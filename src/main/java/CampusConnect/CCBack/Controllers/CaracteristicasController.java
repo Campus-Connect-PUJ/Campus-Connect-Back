@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.Eventos;
+import CampusConnect.CCBack.Model.Evento;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Service.CaracteristicasService;
 
@@ -32,7 +32,7 @@ class CaracteristicasController {
     }
 
     @GetMapping("{id}/eventos")
-    public List<Eventos> getEventos(@PathVariable("id") final Long id) {
+    public List<Evento> getEventos(@PathVariable("id") final Long id) {
         return cService.findById(id).getEventos();
     }
 

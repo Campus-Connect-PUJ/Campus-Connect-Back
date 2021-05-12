@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Foro {
 
@@ -23,10 +21,6 @@ public class Foro {
 
     private LocalTime fecha;
 
-    @ManyToOne
-    @JoinColumn(name="idUsuario")
-    private UsuarioGeneral usuario;
-
     private String titulo;
 
     private String descripcion;
@@ -34,6 +28,10 @@ public class Foro {
     private Boolean reportado;
 
     private int puntaje;
+
+    @ManyToOne
+    @JoinColumn(name="idUsuario")
+    private UsuarioGeneral usuario;
 
     @ManyToMany(mappedBy = "foro")
     private List<RespuestaForo> respuestas;

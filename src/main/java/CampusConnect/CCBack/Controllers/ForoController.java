@@ -88,13 +88,16 @@ class ForoController {
     }
 
     @PutMapping("sumar/{id}")
-    public Foro sumarVotoAForo(@PathVariable("id") final Long idForo){
-        return fService.sumarVotoAForo(idForo);
+    public Foro sumarVotoAForo(
+        @AuthenticationPrincipal String email,
+        @PathVariable("id") final Long idForo
+    ){
+        return fService.sumarVotoAForo(email, idForo);
     }
 
     @PutMapping("restar/{id}")
-    public Foro restarVotoAForo(@PathVariable("id") final Long idForo){
-        return fService.restarVotoAForo(idForo);
+    public Foro restarVotoAForo(@AuthenticationPrincipal String email, @PathVariable("id") final Long idForo){
+        return fService.restarVotoAForo(email, idForo);
     }
 
 }

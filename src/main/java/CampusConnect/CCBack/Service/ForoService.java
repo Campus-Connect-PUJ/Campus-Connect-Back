@@ -89,15 +89,40 @@ public class ForoService {
 
     }
 
-    public Foro sumarVotoAForo(final Long idForo){
+    public Foro sumarVotoAForo(
+        String email,
+        final Long idForo
+    ){
         Foro foro = this.findById(idForo);
-        foro.like();
+        UsuarioGeneral ug = uService.findByEmail(email);
+
+        
+        if(foro.getUsuariosNoGustaron().contains(ug)){
+            foro.quitarUsuarioNoGustaron(ug);
+        }
+        if(!foro.getUsuariosGustaron().contains(ug)){
+            foro.like();
+            foro.agregarUsuarioGustaron(ug);
+        }
+
         return GenericService.save(repository, foro);
     }
 
-    public Foro restarVotoAForo(final Long idForo){
+    public Foro restarVotoAForo(
+        String email,
+        final Long idForo
+    ){
         Foro foro = this.findById(idForo);
-        foro.dislike();
+        UsuarioGeneral ug = uService.findByEmail(email);
+
+        if(foro.getUsuariosGustaron().contains(ug)){
+            foro.quitarUsuarioGustaron(ug);
+        }
+        if(!foro.getUsuariosNoGustaron().contains(ug)){
+            foro.dislike();
+            foro.agregarUsuarioNoGustaron(ug);
+        }
+
         return GenericService.save(repository, foro);
     }
 

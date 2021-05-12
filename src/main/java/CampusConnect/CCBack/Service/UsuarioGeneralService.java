@@ -520,6 +520,8 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitores;
     }
 
+
+/*
     public UsuarioGeneral RegistarRecomendacionGrupos(final WrapperSugeGrupos wsg){
         UsuarioGeneral ug = this.findById(wsg.getIdUsuario());
 
@@ -541,7 +543,7 @@ public class UsuarioGeneralService implements UserDetailsService {
 
         return GenericService.save(repository, ug);
     }
-
+*/
     public UsuarioGeneral guardarUsuario(UsuarioGeneral ug) {
         return GenericService.save(repository, ug);
     }

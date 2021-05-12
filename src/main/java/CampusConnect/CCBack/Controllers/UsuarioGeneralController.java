@@ -310,6 +310,7 @@ class UsuarioGeneralController {
         return ugService.findMonitores();
     }
     
+    /*
     @PutMapping("sugeRestaurantes")
     public UsuarioGeneral sugeRestaurantes(
         @RequestBody final WrapperSugeRestaurantes wpr) {
@@ -323,4 +324,6 @@ class UsuarioGeneralController {
 
         return ugService.RegistarRecomendacionGrupos(wpg);
     }
+    */
 }
+

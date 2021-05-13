@@ -413,7 +413,6 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.remove(tip);
     }  
 
-
     public void agregarCaracteristica(Caracteristica c) {
         this.caracteristicas.add(c);
     }
@@ -464,7 +463,6 @@ public class UsuarioGeneral implements UserDetails {
 	public void agregarComida(TipoComida comida){
 		this.comidaFavorita.add(comida);
 	}
-
 
 	public void agregarForo(Foro foro){
 		this.foros.add(foro);

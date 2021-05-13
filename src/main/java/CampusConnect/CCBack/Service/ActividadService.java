@@ -3,7 +3,6 @@ package CampusConnect.CCBack.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 import CampusConnect.CCBack.Model.Actividad;
@@ -20,7 +19,7 @@ public class ActividadService {
         return GenericService.findAll(repository);
     }
 
-    public Actividad findById(@PathVariable("id") Long id) {
+    public Actividad findById(Long id) {
         return GenericService.findById(repository, id);
     }
 
@@ -28,7 +27,8 @@ public class ActividadService {
         try {
             return repository.findByNombre(name);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto con nombre " + name + " no encontrado", e);
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Objeto con nombre " + name + " no encontrado", e);
         }
     }
 

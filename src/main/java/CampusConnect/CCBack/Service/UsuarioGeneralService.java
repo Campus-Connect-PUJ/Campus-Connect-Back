@@ -520,28 +520,6 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitores;
     }
 
-    public UsuarioGeneral RegistarRecomendacionGrupos(final WrapperSugeGrupos wsg){
-        UsuarioGeneral ug = this.findById(wsg.getIdUsuario());
-
-        for (Long id: wsg.getIdsGrupos()){
-            GrupoEstudiantil g = geService.findById(id);
-            ug.agregarGRupoReco(g);
-        }
-
-        return GenericService.save(repository, ug);
-    }
-
-    public UsuarioGeneral RegistarRecomendacionRestaurantes(final WrapperSugeRestaurantes wsr){
-        UsuarioGeneral ug = this.findById(wsr.getIdUsuario());
-
-        for (Long id: wsr.getIdsRestaurantes()){
-            Restaurante r = rService.findById(id);
-            ug.agregarRestauranteReco(r);
-        }
-
-        return GenericService.save(repository, ug);
-    }
-
     public UsuarioGeneral guardarUsuario(UsuarioGeneral ug) {
         return GenericService.save(repository, ug);
     }

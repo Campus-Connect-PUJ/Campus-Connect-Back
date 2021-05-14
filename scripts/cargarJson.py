@@ -401,7 +401,8 @@ def cargar_restaurantes(
                 "franquicia": restaurante['franquicia'],
                 "precioMax": restaurante['precioMax'],
                 "precioMin": restaurante['precioMin'],
-                "tiempoEntrega": restaurante['tiempoEntrega']
+                "tiempoEntrega": restaurante['tiempoEntrega'],
+                "contacto": restaurante['contacto']
             },
             "idLugar": loc,
             "tiposRestaurante": tipo_res_id,

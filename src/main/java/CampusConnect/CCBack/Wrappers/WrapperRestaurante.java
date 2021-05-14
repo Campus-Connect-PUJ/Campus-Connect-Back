@@ -17,11 +17,12 @@ public class WrapperRestaurante {
 
     public List<Long> tiposComida;
 
+    private String contacto;
+
     public WrapperRestaurante () {
         this.tiposRestaurante = new ArrayList<>();
         this.regimenesAlimenticios = new ArrayList<>();
         this.tiposComida = new ArrayList<>();
-
     }
 
 	public Restaurante getRestaurante() {
@@ -63,5 +64,13 @@ public class WrapperRestaurante {
 	public void setTiposComida(List<Long> tiposComida) {
 		this.tiposComida = tiposComida;
 	}
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
 
 }

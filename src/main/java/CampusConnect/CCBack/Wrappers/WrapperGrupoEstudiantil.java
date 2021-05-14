@@ -17,6 +17,8 @@ public class WrapperGrupoEstudiantil {
 
     public List<Long> requisitos;
 
+	private String contacto;
+
     public WrapperGrupoEstudiantil() {
         this.caracteristicas = new ArrayList<>();
         this.tematicas = new ArrayList<>();
@@ -64,4 +66,11 @@ public class WrapperGrupoEstudiantil {
 		this.requisitos = requisitos;
 	}
 
+	public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
 }

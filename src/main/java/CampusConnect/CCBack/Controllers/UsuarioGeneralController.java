@@ -309,5 +309,7 @@ class UsuarioGeneralController {
     ) {
         return ugService.findMonitores();
     }
-    
+
+
 }
+

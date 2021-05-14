@@ -4,6 +4,9 @@ run: maven
 maven:
 	mvn spring-boot:run
 
+test:
+	mvn clean test
+
 docker:
 	cd config && docker-compose up
 

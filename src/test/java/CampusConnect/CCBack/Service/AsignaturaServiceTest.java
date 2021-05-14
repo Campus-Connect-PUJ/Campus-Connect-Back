@@ -1,18 +1,14 @@
-package CampusConnect.CCBack.Test;
+package CampusConnect.CCBack.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import CampusConnect.CCBack.Service.AsignaturaService;
+import org.junit.Test;
 
 
 public class AsignaturaServiceTest {
 
-    @Autowired
-    private AsignaturaService repository;
-
     @Test
     public void prueba() {
+        System.out.println("prueba");
+
         // assertThat
     }
 

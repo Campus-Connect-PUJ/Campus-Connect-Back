@@ -12,8 +12,12 @@ import CampusConnect.CCBack.Repository.ActividadRepository;
 @Service
 public class ActividadService {
 
-    @Autowired
     private ActividadRepository repository;
+
+    @Autowired
+    public ActividadService(ActividadRepository repository) {
+        this.repository = repository;
+    }
 
     public Iterable<Actividad> findAll() {
         return GenericService.findAll(repository);
@@ -32,7 +36,7 @@ public class ActividadService {
         }
     }
 
-    public Actividad crear(String name){
+    public Actividad create(String name){
         Actividad actividad = new Actividad();
         actividad.setNombre(name);
 

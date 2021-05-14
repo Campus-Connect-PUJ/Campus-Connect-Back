@@ -271,7 +271,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             if(a!=null){
                 ug.agregarActividadInteres(a);
             }else{
-                aService.crear(nombre);
+                aService.create(nombre);
                 a = aService.findByName(nombre);
                 ug.agregarActividadInteres(a);
                 aService.agregarUsuario(a.getId(), ug);

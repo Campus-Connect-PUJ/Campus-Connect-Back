@@ -298,7 +298,7 @@ def cargar_grupos_estudiantiles(grupos, facultades):
             "grupoEstudiantil": {
                 "nombre": grupo["nombre"],
                 "descripcion" : grupo['descripcion'],
-                "contacto": contacto
+                "contacto": grupo['contacto']
             },
             "caracteristicas": grcar,
             "tematicas": grtem,

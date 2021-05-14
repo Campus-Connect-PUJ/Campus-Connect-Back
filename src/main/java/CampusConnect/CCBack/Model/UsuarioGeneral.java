@@ -128,6 +128,9 @@ public class UsuarioGeneral implements UserDetails {
 	@ManyToMany
 	private List<TipoComida> comidaFavorita;
 
+	@ManyToMany
+    private List<UsuarioMonitor> monitoresVotados;
+
 	public UsuarioGeneral(
         String email,
         String password,
@@ -160,6 +163,7 @@ public class UsuarioGeneral implements UserDetails {
         this.respuestasForo = new ArrayList<>();
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
+		this.monitoresVotados = new ArrayList<>();
         this.tips = new ArrayList<>();
         this.roles = new ArrayList<>();
         this.actividadInteres = new ArrayList<>();
@@ -481,4 +485,15 @@ public class UsuarioGeneral implements UserDetails {
 		this.comidaFavorita.clear();
 	}
 
+	public List<UsuarioMonitor> getMonitoresVotaron() {
+		return monitoresVotados;
+	}
+
+	public void setMonitoresVotaron(List<UsuarioMonitor> monitoresVotados) {
+		this.monitoresVotados = monitoresVotados;
+	}
+
+	public void addMonitoresVotados(UsuarioMonitor monitor){
+		this.monitoresVotados.add(monitor);
+	}
 }

@@ -486,11 +486,16 @@ public class UsuarioGeneralService implements UserDetailsService {
         return GenericService.save(repository, ug);
     }
 
-    public UsuarioMonitor votarMonitor(long idMonitor, long calificacion){
+    public UsuarioMonitor votarMonitor(UsuarioGeneral ug, long idMonitor, long calificacion){
         UsuarioMonitor um = umService.findById(idMonitor);
+        System.out.println(um.getAsignatura());
+        if(!ug.getMonitoresVotaron().contains(um)){
+            um.setCalificacion(um.getCalificacion() + calificacion);
+            um.setCantidadVotos(um.getCantidadVotos()+1);
 
-        um.setCalificacion(um.getCalificacion() + calificacion);
-        um.setCantidadVotos(um.getCantidadVotos()+1);
+            ug.addMonitoresVotados(um);
+            GenericService.save(repository, ug);
+        }
 
         return umService.guardar(um);
     }

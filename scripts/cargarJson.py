@@ -293,18 +293,20 @@ def cargar_grupos_estudiantiles(grupos, facultades):
         grreq = []
         for car in grupo['requisitos']:
             grreq += [int(requisitos[car])]
+
         msggrp = {
             "grupoEstudiantil": {
                 "nombre": grupo["nombre"],
-                "descripcion" : grupo['descripcion']
+                "descripcion" : grupo['descripcion'],
+                "contacto": contacto
             },
             "caracteristicas": grcar,
             "tematicas": grtem,
             "facultades": grfac,
-	        "requisitos": grreq,
-            "contacto": grupo['contacto']
+	        "requisitos": grreq
         }
-        print(post(url, msggrp, auth = LOGINDATA))
+        print(msggrp)
+        post(url, msggrp, auth = LOGINDATA)
 
 def cargar_restaurantes(
         restaurantes,

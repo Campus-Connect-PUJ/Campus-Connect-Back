@@ -399,9 +399,9 @@ def cargar_restaurantes(
                 "ambientacion": 'no esta en el json',
                 "descripcionlugar": restaurante['localizacion']['descripcion'],
                 "franquicia": restaurante['franquicia'],
-                "preciomax": restaurante['precioMax'],
-                "preciomin": restaurante['precioMin'],
-                "tiempoentrega": restaurante['tiempoEntrega']
+                "precioMax": restaurante['precioMax'],
+                "precioMin": restaurante['precioMin'],
+                "tiempoEntrega": restaurante['tiempoEntrega']
             },
             "idLugar": loc,
             "tiposRestaurante": tipo_res_id,

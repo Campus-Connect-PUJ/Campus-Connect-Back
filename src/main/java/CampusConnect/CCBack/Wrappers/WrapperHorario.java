@@ -55,6 +55,4 @@ public class WrapperHorario {
 		this.lugar = lugar;
 	}
 
-	
-
 }

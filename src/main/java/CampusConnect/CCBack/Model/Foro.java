@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Foro {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalTime fecha;
+    private LocalDateTime fecha;
 
     private String titulo;
 
@@ -45,7 +46,7 @@ public class Foro {
     public Foro () {
         this.reportado = false;
         this.respuestas = new ArrayList<RespuestaForo>();
-        this.fecha = LocalTime.now();
+        this.fecha = LocalDateTime.now();
         this.puntaje = 0;
     }
 
@@ -73,7 +74,7 @@ public class Foro {
 		this.titulo = titulo;
 	}
 
-	public LocalTime getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
@@ -93,7 +94,7 @@ public class Foro {
 		this.reportado = reportado;
 	}
 
-	public void setFecha(LocalTime fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 

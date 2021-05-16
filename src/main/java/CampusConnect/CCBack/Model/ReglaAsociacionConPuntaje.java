@@ -1,24 +1,10 @@
 package CampusConnect.CCBack.Model;
 
-import java.time.LocalTime;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class ReglaAsociacionConPuntaje implements Comparable<ReglaAsociacionConPuntaje>{
 
 	private float puntaje;
 
 	private ReglasDeAsociacion regla;
-
 
 	public ReglaAsociacionConPuntaje(){
 
@@ -50,6 +36,5 @@ public class ReglaAsociacionConPuntaje implements Comparable<ReglaAsociacionConP
         }
         return 0;
     }
-
 
 }

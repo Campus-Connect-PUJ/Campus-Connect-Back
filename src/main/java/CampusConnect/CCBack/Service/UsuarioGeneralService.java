@@ -16,14 +16,12 @@ import org.springframework.web.server.ResponseStatusException;
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Hobby;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
 import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Rol;
 import CampusConnect.CCBack.Model.TipoAprendizaje;
 import CampusConnect.CCBack.Model.TipoComida;
@@ -34,8 +32,6 @@ import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
 import CampusConnect.CCBack.Wrappers.WrapperPersoRestaurantes;
-import CampusConnect.CCBack.Wrappers.WrapperSugeGrupos;
-import CampusConnect.CCBack.Wrappers.WrapperSugeRestaurantes;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 @Service
@@ -79,12 +75,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private GruposEstudiantilesService geService;
-
-    @Autowired
-    private RestaurantesService rService;
 
     private UsuarioGeneral admin;
 
@@ -340,7 +330,6 @@ public class UsuarioGeneralService implements UserDetailsService {
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
         UsuarioMonitor monitoria = new UsuarioMonitor();
-        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         Asignatura asignatura = asService.findById(infoMonitoria.idAsignatura);
 
         if(!existeMonitoria(ug, infoMonitoria)){

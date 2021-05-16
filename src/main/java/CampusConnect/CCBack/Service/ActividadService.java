@@ -12,12 +12,8 @@ import CampusConnect.CCBack.Repository.ActividadRepository;
 @Service
 public class ActividadService {
 
-    private ActividadRepository repository;
-
     @Autowired
-    public ActividadService(ActividadRepository repository) {
-        this.repository = repository;
-    }
+    private ActividadRepository repository;
 
     public Iterable<Actividad> findAll() {
         return GenericService.findAll(repository);

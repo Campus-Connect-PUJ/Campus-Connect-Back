@@ -1,17 +1,11 @@
 package CampusConnect.CCBack.Wrappers;
 
-import java.util.List;
-
-import CampusConnect.CCBack.Model.Tip;
-
 public class WrapperRespuestaForo {
 
 	public String texto;
 
 	public long idUsuario;
 
-
-	
 	public String getTexto() {
 		return texto;
 	}

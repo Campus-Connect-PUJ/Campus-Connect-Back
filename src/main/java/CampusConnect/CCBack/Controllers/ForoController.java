@@ -1,21 +1,9 @@
 package CampusConnect.CCBack.Controllers;
 
-import CampusConnect.CCBack.Model.Foro;
-import CampusConnect.CCBack.Model.RespuestaForo;
-import CampusConnect.CCBack.Model.UsuarioGeneral;
-import CampusConnect.CCBack.Repository.ForoRepository;
-import CampusConnect.CCBack.Repository.RespuestaForoRepository;
-import CampusConnect.CCBack.Repository.UsuarioGeneralRepository;
-import CampusConnect.CCBack.Service.ForoService;
-import CampusConnect.CCBack.Service.RespuestaForoService;
-import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Service.ForoService;
+import CampusConnect.CCBack.Service.RespuestaForoService;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 @RestController
@@ -58,9 +47,8 @@ class ForoController {
     public Foro crearForo(
         @RequestBody final Foro foroData,
         @AuthenticationPrincipal String email
-        ) {
-
-            return fService.crearForo(foroData, email);
+    ) {
+        return fService.crearForo(foroData, email);
     }
 
     @PutMapping("/borrarForo/{id_foro}")

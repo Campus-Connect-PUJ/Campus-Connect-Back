@@ -133,10 +133,7 @@ public class ReglasDeAsociacionService {
 //Adicionales----------------------------------------------------------------
 
     public Tip ultimoRecurso(UsuarioGeneral ug){
-        long idTipParaRecomendar = 0;
         List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
-        List<Tip> tipsRecomendar = new ArrayList<Tip>();
-        Tip buscarSiExiste = new Tip();
         Tip tipRecomendar = new Tip();
         boolean sale = false;
         int i = 0;

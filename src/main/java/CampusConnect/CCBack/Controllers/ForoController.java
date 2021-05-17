@@ -48,7 +48,7 @@ class ForoController {
         @RequestBody final Foro foroData,
         @AuthenticationPrincipal String email
     ) {
-        return fService.crearForo(foroData, email);
+        return fService.create(foroData, email);
     }
 
     @PutMapping("/borrarForo/{id_foro}")

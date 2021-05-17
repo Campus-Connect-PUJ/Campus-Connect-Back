@@ -15,9 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import CampusConnect.CCBack.Model.Carrera;
 import CampusConnect.CCBack.Model.Eventualidad;
-import CampusConnect.CCBack.Model.Facultad;
 
 @ActiveProfiles("tests")
 

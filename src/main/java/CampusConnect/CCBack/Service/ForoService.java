@@ -32,7 +32,7 @@ public class ForoService {
         return GenericService.findById(repository, id);
     }
 
-    public Foro crearForo(final Foro foroData, String email) {
+    public Foro create(final Foro foroData, String email) {
         Foro foro = new Foro();
         UsuarioGeneral ug = uService.findByEmail(email);
         // no es necesario poner las demas variables, ya que el

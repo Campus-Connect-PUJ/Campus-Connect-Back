@@ -60,7 +60,6 @@ public class UsuarioGeneral implements UserDetails {
 //                                final login                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)

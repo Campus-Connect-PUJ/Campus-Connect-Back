@@ -5,6 +5,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GenericServiceTest {
 
+    static public void printAll(final Object o) {
+        for (var field : o.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            String name = field.getName();
+            Object value = null;
+			try {
+				value = field.get(o);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            System.out.printf("%s: %s%n", name, value);
+        }
+    }
 
     static public boolean equal(Object o1, Object o2) {
         // if (o1 instanceof PersistentBag) {

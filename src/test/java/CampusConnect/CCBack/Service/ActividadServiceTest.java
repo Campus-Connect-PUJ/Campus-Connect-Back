@@ -1,37 +1,17 @@
 package CampusConnect.CCBack.Service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
-import CampusConnect.CCBack.CcBackApplication;
-import CampusConnect.CCBack.Model.Actividad;
-import CampusConnect.CCBack.Repository.ActividadRepository;
-
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-// @Profile("test")
-// @ExtendWith(SpringExtension.class)
-// @ContextConfiguration(classes = { CcBackApplication.class })
-// @RunWith(SpringJUnit4ClassRunner.class)
-// @WebAppConfiguration
+import CampusConnect.CCBack.Model.Actividad;
 
 @ActiveProfiles("tests")
 
@@ -58,24 +38,9 @@ public class ActividadServiceTest {
         // this.service.create("f");
     }
 
-    private void printAll(Object o) {
-        for (var field : o.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            String name = field.getName();
-            Object value = null;
-			try {
-				value = field.get(o);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            System.out.printf("%s: %s%n", name, value);
-        }
-    }
-
     @Test
-    @DisplayName("Prueba no funciona")
-    public void pruebaCrear() {
+    @DisplayName("Prueba crear actividad no funciona")
+    public void pruebaCrearBuscar() {
 
         System.out.println("Prueba crear");
 
@@ -93,10 +58,10 @@ public class ActividadServiceTest {
         assertNotNull(aConseguida);
 
         System.out.println("conseguida: " + aConseguida);
-        printAll(aConseguida);
+        GenericServiceTest.printAll(aConseguida);
 
         System.out.println("pre: " + aConseguida);
-        printAll(a);
+        GenericServiceTest.printAll(a);
 
         assertEquals(aConseguida.getNombre(), a.getNombre());
         // GenericServiceTest.compareAllExceptId(a, aConseguida);

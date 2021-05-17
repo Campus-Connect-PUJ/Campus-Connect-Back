@@ -41,15 +41,43 @@ public class RespuestaForoService {
         return respuestasUsuario;
     }
 
-    public RespuestaForo sumarVotoAForo(final Long idRespuesta){
+    public RespuestaForo sumarVotoAForo(
+        String email, 
+        final Long idRespuesta
+    ){
         RespuestaForo respuesta = this.findById(idRespuesta);
-        respuesta.like();
+        UsuarioGeneral ug = uService.findByEmail(email);
+
+        if(respuesta.getUsuariosNoGustaron().contains(ug)){
+            respuesta.quitarUsuarioNoGustaron(ug);
+            respuesta.like();
+            return GenericService.save(repository, respuesta);
+        }
+        if(!respuesta.getUsuariosGustaron().contains(ug)){
+            respuesta.like();
+            respuesta.agregarUsuarioGustaron(ug);
+        }
+
         return GenericService.save(repository, respuesta);
     }
 
-    public RespuestaForo restarVotoAForo(final Long idRespuesta){
+    public RespuestaForo restarVotoAForo(        
+        String email, 
+        final Long idRespuesta
+    ){
         RespuestaForo respuesta = this.findById(idRespuesta);
-        respuesta.dislike();
+        UsuarioGeneral ug = uService.findByEmail(email);
+
+        if(respuesta.getUsuariosGustaron().contains(ug)){
+            respuesta.quitarUsuarioGustaron(ug);
+            respuesta.dislike();
+            return GenericService.save(repository, respuesta);
+        }
+        if(!respuesta.getUsuariosNoGustaron().contains(ug)){
+            respuesta.dislike();
+            respuesta.agregarUsuarioNoGustaron(ug);
+        }
+   
         return GenericService.save(repository, respuesta);
     }
 

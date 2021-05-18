@@ -279,9 +279,11 @@ class UsuarioGeneralController {
     public UsuarioMonitor votarMonitor(
         //@PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("idMonitor") final Long idMonitor,
-        @PathVariable("calificacion") final Long calificacion
+        @PathVariable("calificacion") final Long calificacion,
+        @AuthenticationPrincipal String email
     ){
-        return ugService.votarMonitor(idMonitor, calificacion);
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        return ugService.votarMonitor(ug, idMonitor, calificacion);
 
     }
 
@@ -309,3 +311,4 @@ class UsuarioGeneralController {
     }
 
 }
+

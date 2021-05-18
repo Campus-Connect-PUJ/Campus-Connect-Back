@@ -21,7 +21,6 @@ public class WrapperRestaurante {
         this.tiposRestaurante = new ArrayList<>();
         this.regimenesAlimenticios = new ArrayList<>();
         this.tiposComida = new ArrayList<>();
-
     }
 
 	public Restaurante getRestaurante() {

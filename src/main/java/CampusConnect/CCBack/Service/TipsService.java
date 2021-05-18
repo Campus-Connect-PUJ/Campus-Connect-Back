@@ -78,6 +78,9 @@ public class TipsService {
         if(ug.getTipsNoGustados().contains(tip)){
             tip.quitarUsuarioNoGustaron(ug);
             ug.quitarUsuarioNoGustaron(tip);
+            tip.like();
+            GenericService.save(repository, tip);
+            return ugRepository.save(ug);
         }
 
         if(!ug.getTipsGustados().contains(tip)){
@@ -102,6 +105,9 @@ public class TipsService {
         if(ug.getTipsGustados().contains(tip)){
             tip.quitarUsuarioGustaron(ug);
             ug.quitarUsuarioGustaron(tip);
+            tip.dislike();
+            GenericService.save(repository, tip);
+            return ugRepository.save(ug);
         }
 
         if(!ug.getTipsNoGustados().contains(tip)){

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -35,6 +36,7 @@ public class UsuarioMonitor {
 
     @OneToMany(mappedBy = "monitor")
     private List<Horario> horarios;
+
 
 	public Long getCalificacion() {
 		return calificacion;
@@ -98,4 +100,6 @@ public class UsuarioMonitor {
 		this.horarios.remove(horario);
 	}
 
+
+	
 }

@@ -64,6 +64,7 @@ public class RestaurantesService {
         res.setLugar(lugar);
 
         res.setAmbientacion(rd.getAmbientacion());
+        res.setContacto(rd.getContacto());
         res.setDescripcion(rd.getDescripcion());
         res.setDescripcionLugar(rd.getDescripcionLugar());
         res.setFranquicia(rd.getFranquicia());

@@ -360,11 +360,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [2],
       "caracteristicas" : [
-        "investigación",
-        "reflexión"
-      ]
+        "Investigación",
+        "Reflexión"
+      ],
+      "contacto":"academospuj@gmail.com"
     },
     {
       "nombre" : "ACI",
@@ -374,12 +375,13 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
         "investigación",
-        "búsqueda",
-        "desarrollo"
-      ]
+        "Búsqueda",
+        "Desarrollo"
+      ],
+      "contacto":"acijaveriano@javeriana.edu.co"
     },
     {
       "nombre" : "ACM",
@@ -389,11 +391,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
-        "investigación",
-        "educativo"
-      ]
+        "Investigación",
+        "Educativo"
+      ],
+      "contacto":"acm@javeriana.edu.co"
     },
     {
       "nombre" : "Benkos",
@@ -403,10 +406,11 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "dialogo"
-      ]
+        "Dialogo"
+      ],
+      "contacto":"observatoriobenkosbioho@gmail.com"
     },
     {
       "nombre" : "Derecho Crítico",
@@ -416,11 +420,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [4],
       "caracteristicas" : [
-        "discusión",
-        "política"
-      ]
+        "Discusión",
+        "Política"
+      ],
+      "contacto":"grupoestudiantil.derechocritico@gmail.com"
     },
     {
       "nombre" : "IEEE",
@@ -430,12 +435,13 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
-        "innovación",
-        "tecnología",
-        "desarrollo"
-      ]
+        "Innovación",
+        "Tecnología",
+        "Desarrollo"
+      ],
+      "contacto":"ieeepuj@gmail.com"
     },
     {
       "nombre" : "IISE",
@@ -445,11 +451,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
-        "innovación",
-        "desarrollo"
-      ]
+        "Innovación",
+        "Desarrollo"
+      ],
+      "contacto":"iiecapitulojaveriano@gmail.com"
     },
     {
       "nombre" : "IMIG",
@@ -459,10 +466,11 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
-        "medicina"
-      ]
+        "Medicina"
+      ],
+      "contacto":"imigjaveriana@gmail.com"
     },
     {
       "nombre" : "Ingeniería sin Fronteras",
@@ -472,10 +480,11 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
-        "educativo"
-      ]
+        "Educativo"
+      ],
+      "contacto":"@ingsingronteras"
     },
     {
       "nombre" : "JADE",
@@ -485,11 +494,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "debate",
-        "dialogo"
-      ]
+        "Debate",
+        "Dialogo"
+      ],
+      "contacto":"javerianadebate@gmail.com"
     },
     {
       "nombre" : "MAJIIS",
@@ -499,11 +509,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
-        "investigación",
-        "medicina"
-      ]
+        "Investigación",
+        "Medicina"
+      ],
+      "contacto":"majisjaverianabogota@gmail.com"
     },
     {
       "nombre" : "MENTE",
@@ -513,10 +524,11 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
-        "salud mental"
-      ]
+        "Salud mental"
+      ],
+      "contacto":"ri-laura@javeriana.edu.co"
     },
     {
       "nombre" : "NOVAINGENIO",
@@ -526,9 +538,10 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
-      ]
+      ],
+      "contacto":""
     },
     {
       "nombre" : "ONUJ",
@@ -538,11 +551,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [6],
       "caracteristicas" : [
-        "capacitación",
+        "Capacitación",
         "MUN"
-      ]
+      ],
+      "contacto":"onujaveriana@gmail.com"
     },
     {
       "nombre" : "SUMAK",
@@ -552,11 +566,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [7],
       "caracteristicas" : [
-        "interdiciplinario",
-        "solución de problemas"
-      ]
+        "Interdiciplinario",
+        "Solución de problemas"
+      ],
+      "contacto":"sumakkawsay.polecon@rethinkeconomics.org"
     },
     {
       "nombre" : "AES",
@@ -566,12 +581,13 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [8],
       "caracteristicas" : [
         "Estudios musicales",
         "Facultad de artes",
         "Talento"
-      ]
+      ],
+      "contacto":"ayaldem@javeriana.edu.co"
     },
     {
       "nombre" : "AIESEC",
@@ -581,11 +597,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
         "Interfacultades",
         "Lideres"
-      ]
+      ],
+      "contacto":"universidades.javeriana@aieseccolombia.org"
     },
     {
       "nombre" : "Angie Baquiro",
@@ -595,12 +612,13 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
         "Facultad de Médicina",
         "Acompañamiento",
         "Paciente pediátrico"
-      ]
+      ],
+      "contacto":"grupoangiebaquirodpuj@gmail.com"
     },
     {
       "nombre" : "Constructores de sonrisas",
@@ -610,11 +628,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [9],
       "caracteristicas" : [
         "Facultad de Odontología",
         "Prevenir enfermedades"
-      ]
+      ],
+      "contacto":"contructoresdesonrisaspuj@gmail.com"
     },
     {
       "nombre" : "Creemos",
@@ -624,11 +643,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
         "Facultad de Médicina",
-        "excelencia académica"
-      ]
+        "Excelencia académica"
+      ],
+      "contacto":"creemosmedicina@gmail.com"
     },
     {
       "nombre" : "El propio",
@@ -638,11 +658,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [1],
       "caracteristicas" : [
         "Facultad de ingeniería",
         "Ingeniería electrónica"
-      ]
+      ],
+      "contacto":"elpropiopuj@gmail.com"
     },
     {
       "nombre" : "Entretejiendo",
@@ -652,10 +673,11 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Tejidos"
-      ]
+      ],
+      "contacto":"entretejiendojaveriana@gmail.com"
     },
     {
       "nombre" : "Javeriano apoya javeriano",
@@ -665,11 +687,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "interfacultades",
-        "recaudar fondos"
-      ]
+        "Interfacultades",
+        "Recaudar fondos"
+      ],
+      "contacto":"javerianoapoya@gmail.com"
     },
     {
       "nombre" : "Lenguaje coeur",
@@ -679,14 +702,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [10],
       "caracteristicas" : [
         "Facultad de comunicación",
         "Licenciatura en Lenguas Modernas",
         "Inglés",
         "Francés",
         "Habilidades pedagógicas"
-      ]
+      ],
+      "contacto":"tutoriasingles@javeriana.edu.co"
     },
     {
       "nombre" : "Out of town",
@@ -696,12 +720,13 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "interfacultades",
-        "bienvenida",
-        "estudiantes de intercambio"
-      ]
+        "Interfacultades",
+        "Bienvenida",
+        "Estudiantes de intercambio"
+      ],
+      "contacto":"outoftown@javeriana.edu.co"
     },
     {
       "nombre" : "Somos Colombia",
@@ -711,11 +736,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "interfacultades",
-        "regiones de Colombia"
-      ]
+        "Interfacultades",
+        "Regiones de Colombia"
+      ],
+      "contacto":"somoscolombiapuj@gmail.com"
     },
     {
       "nombre" : "Vitae",
@@ -725,11 +751,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [5],
       "caracteristicas" : [
-        "Médicina",
+        "Medicina",
         "Bienestar pacientes"
-      ]
+      ],
+      "contacto":"vitaejaveriana@gmail.com"
     },
     {
       "nombre" : "CEAE-Comité estudiantil de administración de empresas",
@@ -739,11 +766,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [7],
       "caracteristicas" : [
         "Ciencias económicas y administrativas",
         "Administración de empresas"
-      ]
+      ],
+      "contacto":"comiteceae@javeriana.edu.co"
     },
     {
       "nombre" : "CEE-Comité de estudiantes de economía",
@@ -753,11 +781,12 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [7],
       "caracteristicas" : [
         "Ciencias económicas y administrativas",
         "Economía"
-      ]
+      ],
+      "contacto":"comite.economia@javeriana.edu.co"
     },
     {
       "nombre" : "DEJ-Desarrollo empresarial universitario",
@@ -767,14 +796,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [7],
       "caracteristicas" : [
         "Ciencias económicas y administrativas",
         "Formación",
         "Investigación",
         "Emprendimiento",
         "Interdisciplinar"
-      ]
+      ],
+      "contacto":"depujcu@gmail.com"
     },
     {
       "nombre" : "Serendipia",
@@ -784,14 +814,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [11],
       "caracteristicas" : [
         "Ciencias económicas y administrativas",
         "Arquitectura",
         "Diseño",
         "Ultimos semestres",
         "Extracurriculares"
-      ]
+      ],
+      "contacto":"serendipiapuj@gmail.com"
     },
     {
       "nombre" : "Faro",
@@ -801,14 +832,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Interfacultades",
         "Dios",
         "Espiritual",
         "Formación",
         "Relacionamiento"
-      ]
+      ],
+      "contacto":"farobogota@gmail.com"
     },
     {
       "nombre" : "Kung-fu",
@@ -818,7 +850,7 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Interfacultades",
         "Kung Fu",
@@ -826,7 +858,8 @@
         "Disciplinar",
         "Cuerpo",
         "Mente"
-      ]
+      ],
+      "contacto":"taikuchien@gmail.com"
     },
     {
       "nombre" : "Uranio",
@@ -836,14 +869,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Interfacultades",
         "Jesus",
         "Vida",
         "Espiritual",
         "Personal"
-      ]
+      ],
+      "contacto":"info@uranioenlau.org"
     },
     {
       "nombre" : "CRU-Vida para la universidad",
@@ -853,14 +887,15 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Interfacultades",
         "Espiritual",
         "Jesus",
         "Proyectos",
         "Servir"
-      ]
+      ],
+      "contacto":"j_fuentes@javeriana.edu.co"
     },
     {
       "nombre" : "EcoArte",
@@ -870,13 +905,14 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [12],
       "caracteristicas" : [
         "Estudios ambientales y rurales",
         "Ambiental",
         "Social",
         "Ecológico"
-      ]
+      ],
+      "contacto":"eco.ecoartesanias@gmail.com"
     },
     {
       "nombre" : "Grupo javeriano de herpetologia",
@@ -886,7 +922,7 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [12],
       "caracteristicas" : [
         "Estudios ambientales",
         "Ambiental",
@@ -895,7 +931,8 @@
         "Anfibios",
         "Cientifico",
         "Biodiversidad"
-      ]
+      ],
+      "contacto":"herpetospuj@gmail.com"
     },
     {
       "nombre" : "Grupo javeriano de ornitologia",
@@ -905,13 +942,14 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [12],
       "caracteristicas" : [
         "Estudios ambientales",
         "Aves",
         "Proyectos",
         "Cientifico"
-      ]
+      ],
+      "contacto":"ornitologiajaveriana@gmail.com"
     },
     {
       "nombre" : "Primatologia javeriana",
@@ -921,13 +959,14 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [12],
       "caracteristicas" : [
         "Estudios ambientales",
         "Primates",
         "Cientifico",
         "Divulgación"
-      ]
+      ],
+      "contacto":"grupoprimatespuj@gmail.com"
     },
     {
       "nombre" : "Protección animal javeriana",
@@ -937,13 +976,14 @@
       ],
       "calificacion" : 0,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
         "Interfacultades",
         "Animales",
         "Adopción",
         "Domesticos"
-      ]
+      ],
+      "contacto":"proteccionanimal.javeriana@gmail.com"
     },
     {
       "nombre" : "Degénero",
@@ -953,12 +993,13 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [13],
       "caracteristicas" : [
-        "diversidad",
-        "discusión",
-        "inclusión"
-      ]
+        "Diversidad",
+        "Discusión",
+        "Inclusión"
+      ],
+      "contacto":"grupoestudiosgenero@gmail.com"
     },
     {
       "nombre" : "Polifonía",
@@ -968,11 +1009,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "diversidad",
-        "discusión"
-      ]
+        "Diversidad",
+        "Discusión"
+      ],
+      "contacto":"polifoniagenero@gmail.com"
     },
     {
       "nombre" : "Best Buddies",
@@ -982,11 +1024,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "diversidad",
-        "acompañamiento"
-      ]
+        "Diversidad",
+        "Acompañamiento"
+      ],
+      "contacto":"javerianabestbuddies@gmail.com"
     },
     {
       "nombre" : "Stonewall Javeriano",
@@ -996,11 +1039,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [3],
       "caracteristicas" : [
-        "diversidad",
-        "acompañamiento"
-      ]
+        "Diversidad",
+        "Acompañamiento"
+      ],
+      "contacto":"stonewall.javer@gmail.com"
     },
     {
       "nombre" : "Perioódico Ágora",
@@ -1010,11 +1054,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [14],
       "caracteristicas" : [
         "Medios Comunicación",
         "Debate"
-      ]
+      ],
+      "contacto":"agora.medioalternativo@gmail.com"
     },
     {
       "nombre" : "Revista código javeriana",
@@ -1024,11 +1069,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [14],
       "caracteristicas" : [
         "Medios Comunicación",
         "Publicación"
-      ]
+      ],
+      "contacto":"revistacodigojaveriana@gmail.com"
     },
     {
       "nombre" : "Revista Cuadrante Phi",
@@ -1038,11 +1084,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [15],
       "caracteristicas" : [
         "Medios Comunicación",
         "Publicación"
-      ]
+      ],
+      "contacto":"@cuadrantephi"
     },
     {
       "nombre" : "Foro javeriano",
@@ -1052,11 +1099,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [14],
       "caracteristicas" : [
         "Medios Comunicación",
         "Publicación"
-      ]
+      ],
+      "contacto":"forojaverianopuj@gmail.com"
     },
     {
       "nombre" : "Periódico obelisco",
@@ -1066,11 +1114,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [6],
       "caracteristicas" : [
         "Medios Comunicación",
         "Publicación"
-      ]
+      ],
+      "contacto":"@obeliscojaveriana"
     },
     {
       "nombre" : "Radiando variando",
@@ -1080,11 +1129,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [10],
       "caracteristicas" : [
         "Medios Comunicación",
         "Difusión"
-      ]
+      ],
+      "contacto":"radiandoyvariandopuj@gmail.com"
     },
     {
       "nombre" : "Revista 20/20",
@@ -1094,11 +1144,12 @@
       ],
       "calificacion" : 5,
       "requisitos" : [],
-      "facultades" : [],
+      "facultades" : [16],
       "caracteristicas" : [
         "Medios Comunicación",
         "Publicación"
-      ]
+      ],
+      "contacto":"revista2020puj@javeriana.edu.co"
     }
   ],
   "restaurantes" : [
@@ -1113,8 +1164,8 @@
         "lasaña",
         "sopa",
         "sandwiches",
-        "panaderia",
-        "pasterelira",
+        "panadería",
+        "pastelelira",
         "postres"
       ],
       "descripcion" : "Disfruta en el posto de exquisitas recetas artesanales italianas, que incluyen una rica variedad de sándwiches, pastas, pizzas, sopas, pastelería y postres. Productos frescos, saludables y recién horneados",
@@ -1130,7 +1181,8 @@
         "carnivoro"
       ],
       "precioMin":6000,
-      "precioMax":30000
+      "precioMax":30000,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/restaurantes"
     },
     {
       "nombre" : "La Central",
@@ -1138,14 +1190,14 @@
         "to go",
         "buffet",
         "comida rápida",
-        "comida tipica"
+        "comida típica"
       ],
       "tipoComida":[
         "desayunos",
         "cocina italiana",
         "parilla",
         "hamburgesa",
-        "comida tipica",
+        "comida típica",
         "pizza",
         "perros",
         "pasta",
@@ -1170,7 +1222,8 @@
         "saludable"
       ],
       "precioMin":7100,
-      "precioMax":19200
+      "precioMax":19200,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/restaurantes"
     },
     {
       "nombre" : "El Italiano",
@@ -1205,7 +1258,8 @@
         "carnivoro"
       ],
       "precioMin":7700,
-      "precioMax":26300
+      "precioMax":26300,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/restaurantes"
     },
     {
       "nombre" : "Mirador",
@@ -1224,7 +1278,7 @@
         "pollo",
         "cerdo",
         "mariscos",
-        "comida tipica",
+        "comida típica",
         "postres"
       ],
       "descripcion" : "El restaurante Mirador cuenta con una variedad de comida internacional, tenemos la mejor selección de platos, garantizandote una excelente experiencia gastronomica.",
@@ -1240,7 +1294,8 @@
         "carnivoro"
       ],
       "precioMin":11500,
-      "precioMax":33000
+      "precioMax":33000,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/restaurantes"
     },
     {
       "nombre" : "La Creperia",
@@ -1257,7 +1312,7 @@
         "ensalada",
         "creps"
       ],
-      "descripcion" : "En La Creperia brindamos un menu balanceado, natural y rico en variedad de sabores, inspirado en los conceptos de armonía, salud y equilibrio.",
+      "descripcion" : "En La Creperia brindamos un menú balanceado, natural y rico en variedad de sabores, inspirado en los conceptos de armonía, salud y equilibrio.",
       "localizacion" : {
         "id": 5,
         "descripcion": "Entrada peatonal, junto al edificio"
@@ -1269,7 +1324,8 @@
         "carnivoro"
       ],
       "precioMin":6400,
-      "precioMax":17200
+      "precioMax":17200,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/restaurantes"
     },
     {
       "nombre" : "Subway",
@@ -1292,7 +1348,8 @@
         "carnivoro"
       ],
       "precioMin":7000,
-      "precioMax":30000
+      "precioMax":30000,
+      "contacto":"https://www.subway.com/es-CO/MenuNutrition/Menu/All"
     },
     {
       "nombre" : "Dominos",
@@ -1314,7 +1371,8 @@
         "carnivoro"
       ],
       "precioMin":10000,
-      "precioMax":35000
+      "precioMax":35000,
+      "contacto":"https://www.dominos.com.co"
     },
     {
       "nombre" : "El corral",
@@ -1341,7 +1399,8 @@
         "carnivoro"
       ],
       "precioMin":13000,
-      "precioMax":33900
+      "precioMax":33900,
+      "contacto":"https://pideenlinea.elcorral.com"
     },
     {
       "nombre" : "Crepes & Waffles",
@@ -1372,15 +1431,16 @@
         "saludable"
       ],
       "precioMin":9200,
-      "precioMax":31900
+      "precioMax":31900,
+      "contacto":"https://crepesywaffles.com/"
     },
     {
-      "nombre" : "Juan Valez",
+      "nombre" : "Juan Valdez",
       "tipoRestaurante": [
         "De especialidad"
       ],
       "tipoComida":[
-        "cafe",
+        "café",
         "desayunos"
       ],
       "descripcion" : "Generar valor compartido para caficultores, colaboradores, consumidores, accionistas y aliados comerciales.",
@@ -1395,7 +1455,8 @@
         "carnivoro"
       ],
       "precioMin":5000,
-      "precioMax":30000
+      "precioMax":30000,
+      "contacto":"https://tiendajuanvaldez.com"
     },
     {
       "nombre" : "OMA",
@@ -1403,7 +1464,7 @@
         "De especialidad"
       ],
       "tipoComida":[
-        "cafe",
+        "café",
         "desayunos"
       ],
       "descripcion" : "En OMA buscamos “Alcanzar el 100% de satisfacción en nuestros clientes”, para ello existen cuatro principios básicos que a lo largo de la trayectoria y experiencia nos ha llevado a ser una de las principales cadenas de Cafés Restaurantes y Barras de Café.",
@@ -1418,7 +1479,8 @@
         "carnivoro"
       ],
       "precioMin":5000,
-      "precioMax":30000
+      "precioMax":30000,
+      "contacto":"https://cafeoma.com/"
     },
     {
       "nombre" : "Frisby",
@@ -1442,7 +1504,8 @@
         "carnivoro"
       ],
       "precioMin":7100,
-      "precioMax":66700
+      "precioMax":66700,
+      "contacto":"https://frisby.com.co/"
     },
     {
       "nombre" : "Presto",
@@ -1469,7 +1532,8 @@
         "carnivoro"
       ],
       "precioMin":13000,
-      "precioMax":33900
+      "precioMax":33900,
+      "contacto":"https://presto.com.co/"
     },
     {
       "nombre" : "Kiosco Urapanes",
@@ -1477,7 +1541,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1494,7 +1558,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "La pecera",
@@ -1502,7 +1567,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1519,7 +1584,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Ático",
@@ -1527,7 +1593,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1544,7 +1610,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Barón",
@@ -1552,7 +1619,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1569,7 +1636,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Biblioteca",
@@ -1577,7 +1645,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1594,7 +1662,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Catañula",
@@ -1602,7 +1671,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1619,7 +1688,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Ingeniería",
@@ -1627,7 +1697,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1644,7 +1714,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "La arboleda",
@@ -1652,7 +1723,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1669,7 +1740,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "La Estación",
@@ -1677,7 +1749,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1694,7 +1766,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Urgencias",
@@ -1702,7 +1775,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1719,7 +1792,8 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Sauce",
@@ -1727,7 +1801,7 @@
         "Cafes y Kioscos"
       ],
       "tipoComida":[
-        "panaderia",
+        "panadería",
         "desayunos"
       ],
       "descripcion" : "",
@@ -1744,12 +1818,13 @@
         "saludable"
       ],
       "precioMin":1500,
-      "precioMax":10900
+      "precioMax":10900,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafes-y-kioskos"
     },
     {
       "nombre" : "Básicas",
       "tipoRestaurante": [
-        "Cafeteria"
+        "Cafetería"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1771,12 +1846,13 @@
         "saludable"
       ],
       "precioMin":9000,
-      "precioMax":19700
+      "precioMax":19700,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafeterias"
     },
     {
       "nombre" : "Giraldo",
       "tipoRestaurante": [
-        "Cafeteria"
+        "Cafetería"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1798,12 +1874,13 @@
         "saludable"
       ],
       "precioMin":9000,
-      "precioMax":19700
+      "precioMax":19700,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafeterias"
     },
     {
       "nombre" : "HUSI",
       "tipoRestaurante": [
-        "Cafeteria"
+        "Cafetería"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1825,12 +1902,13 @@
         "saludable"
       ],
       "precioMin":9000,
-      "precioMax":19700
+      "precioMax":19700,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafeterias"
     },
     {
       "nombre" : "Bienestar",
       "tipoRestaurante": [
-        "Cafeteria"
+        "Cafetería"
       ],
       "tipoComida":[
         "hamburgesa",
@@ -1852,7 +1930,8 @@
         "saludable"
       ],
       "precioMin":9000,
-      "precioMax":19700
+      "precioMax":19700,
+      "contacto":"https://www.javeriana.edu.co/serv-alimentacion/cafeterias"
     }
   ],
   "ubicaciones": [
@@ -1922,13 +2001,13 @@
       "tipo":"comida rápida"
     },
     {
-      "tipo":"comida tipica"
+      "tipo":"comida típica"
     },
     {
       "tipo":"Cafes y Kioscos"
     },
     {
-      "tipo":"Cafeteria"
+      "tipo":"Cafetería"
     }
   ],
   "TipoCocina":[
@@ -1948,10 +2027,10 @@
       "tipo":"sandwiches"
     },
     {
-      "tipo":"panaderia"
+      "tipo":"panadería"
     },
     {
-      "tipo":"pasterelira"
+      "tipo":"pastelelira"
     },
     {
       "tipo":"postres"
@@ -1990,7 +2069,7 @@
       "tipo":"pizza"
     },
     {
-      "tipo":"comida tipica"
+      "tipo":"comida típica"
     },
     {
       "tipo":"rissotos"
@@ -2029,6 +2108,12 @@
       "tipo":"malteadas"
     },
     {
+      "tipo":"café"
+    },
+    {
+      "tipo":"panaderia"
+    },
+    {
       "tipo":"wraps"
     },
     {
@@ -2041,13 +2126,73 @@
       "tipo":"brunch"
     },
     {
-      "tipo":"cafe"
+      "tipo":"café"
     }
   ],
   "facultades" : [
     {
       "id": 1,
-      "nombre" : "ingenieria"
+      "nombre" : "Ingeniería"
+    },
+    {
+      "id": 2,
+      "nombre" : "Psicología"
+    },
+    {
+      "id": 3,
+      "nombre" : "Interfacultades"
+    },
+    {
+      "id": 4,
+      "nombre" : "Ciencias Jurídicas"
+    },
+    {
+      "id": 5,
+      "nombre" : "Medicina"
+    },
+    {
+      "id": 6,
+      "nombre" : "Ciencias Políticas y Relaciones Internacionales"
+    },
+    {
+      "id": 7,
+      "nombre" : "Ciencias Económicas y Administrativas"
+    },
+    {
+      "id": 8,
+      "nombre" : "Artes"
+    },
+    {
+      "id": 9,
+      "nombre" : "Odontología"
+    },
+    {
+      "id": 10,
+      "nombre" : "Comunicación"
+    },
+    {
+      "id": 11,
+      "nombre" : "Arqui Diseño"
+    },
+    {
+      "id": 12,
+      "nombre" : "Estudios Ambientales y Rurales"
+    },
+    {
+      "id": 13,
+      "nombre" : "Ciencias Sociales"
+    },
+    {
+      "id": 14,
+      "nombre" : "Ciencias Jurídicas"
+    },
+    {
+      "id": 15,
+      "nombre" : "Filosofía"
+    },
+    {
+      "id": 16,
+      "nombre" : "Ciencias Sociales"
     }
   ],
   "carreras": [

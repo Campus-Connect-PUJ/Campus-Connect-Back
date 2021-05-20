@@ -13,8 +13,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Requisito;
+import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
 import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Facultad;
 
 @ActiveProfiles("tests")
 
@@ -28,8 +31,16 @@ public class GruposEstudiantilesServiceTest {
     @Autowired
     private CaracteristicasService cService;
 
+    @Autowired
+    private RequisitoService rService;
+
+    @Autowired
+    private TematicasService tService;
+
+    @Autowired
+    private FacultadesService fService;
+
     public void pruebaCaracteristicas() {
-        System.out.println("Prueba crear");
 
         String nombre = "hola";
 
@@ -43,32 +54,66 @@ public class GruposEstudiantilesServiceTest {
         Caracteristica aConseguida = this.cService.findById(creado.getId());
 
         assertNotNull(aConseguida);
-
-        System.out.println("conseguida: " + aConseguida);
-        GenericServiceTest.printAll(aConseguida);
-
-        System.out.println("pre: " + aConseguida);
-        GenericServiceTest.printAll(a);
-
-        assertEquals(aConseguida.getNombre(), a.getNombre());
         assertEquals(aConseguida, creado);
-        // GenericServiceTest.compareAllExceptId(a, aConseguida);
     }
 
     public void pruebaTematicas() {
+
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Tematica a = new Tematica();
+        a.setNombre(nombre);
+
+        Tematica creado = this.tService.create(a);
+
+        // se busca el objeto
+        Tematica tConseguida = this.tService.findById(creado.getId());
+
+        assertNotNull(tConseguida);
+        assertEquals(tConseguida, creado);
 
     }
 
     public void pruebaFacultades() {
 
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Facultad a = new Facultad();
+        a.setNombre(nombre);
+
+        Facultad creado = this.fService.create(a);
+
+        // se busca el objeto
+        Facultad fConseguida = this.fService.findById(creado.getId());
+
+        assertNotNull(fConseguida);
+        assertEquals(fConseguida, creado);
+
     }
 
     public void pruebaRequisitos() {
 
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Requisito a = new Requisito();
+        a.setNombre(nombre);
+
+        Requisito creado = this.rService.create(a);
+
+        assertEquals(creado.getNombre(), nombre);
+
+        // se busca el objeto
+        Requisito rConseguido = this.rService.findById(creado.getId());
+
+        assertNotNull(rConseguido);
+        assertEquals(rConseguido, creado);
+
     }
 
     public void pruebaGruposEstudiantiles() {
-
         String nombre = "grupo";
         String descripcion = "descripcion";
 

@@ -3,6 +3,9 @@ package CampusConnect.CCBack.Service;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -14,8 +17,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import CampusConnect.CCBack.Model.Actividad;
+import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Foro;
+import CampusConnect.CCBack.Model.Horario;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 import junit.framework.TestCase;
 
@@ -31,6 +38,12 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private UsuarioGeneralService ugService;
+
+    @Autowired
+    private HorarioService hService;
+
+    @Autowired
+    private AsignaturaService aService;
 
     private String emailUsuario = "email";
 
@@ -93,6 +106,68 @@ public class UsuarioGeneralTest extends TestCase {
         Foro fConseguido = fService.findById(fCreado.getId());
         assertNotNull(fConseguido);
         assertEquals(fCreado, fConseguido);
+    }
+
+    @Test
+    public void pruebaAsignaturaHorario() {
+        String lugar = "lugar";
+
+        Asignatura a = pruebaAgregarAsignatura();
+
+        WrapperHorario wph= new WrapperHorario();
+        wph.setIdAsignatura(a.getId());
+        wph.setLugar(lugar);
+        wph.setFechaInicial(LocalDateTime.now());
+        wph.setFechaFinal(LocalDateTime.now());
+
+        // conseguir usuario
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+
+        System.out.println("usuario utilizado:");
+
+        GenericServiceTest.printAll(ug);
+
+        pruebaAgregarHorario(ug, wph);
+    }
+
+    public Asignatura pruebaAgregarAsignatura() {
+        String nombre = "hola";
+        String descripcion = "descripcion";
+
+        // se crea con el servicio
+        Asignatura a = new Asignatura();
+        a.setNombre(nombre);
+        a.setDescripcion(descripcion);
+
+        Asignatura creado = this.aService.create(a);
+
+        // se busca el objeto
+        Asignatura aConseguida = aService.findById(creado.getId());
+        assertNotNull(aConseguida);
+
+        assertEquals(aConseguida, creado);
+
+        return aConseguida;
+    }
+
+    public void pruebaAgregarHorario(UsuarioGeneral ug, WrapperHorario wph) {
+
+        // se crea con el servicio
+        Horario hCreado = this.hService.agregarHorariosMonitoria(ug, wph);
+
+        UsuarioGeneral ugm = hCreado.getMonitor().getUsuario();
+        assertAll(
+            () -> assertEquals(hCreado.getFechaInicial() , wph.getFechaInicial()),
+            () -> assertEquals(hCreado.getFechaFinal() , wph.getFechaFinal()),
+            () -> assertEquals(hCreado.getLugar(), wph.getLugar()),
+            () -> assertEquals(ugm, ug)
+            );
+
+        // se busca el objeto
+        Horario hConseguido = hService.findById(hCreado.getId());
+        assertNotNull(hConseguido);
+        assertEquals(hConseguido, hCreado);
+        // GenericServiceTest.compareAllExceptId(a, aConseguida);
     }
 
 }

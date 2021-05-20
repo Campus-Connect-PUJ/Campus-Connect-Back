@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 public class WrapperHorario {
 
-	public Long idUsuario;
 	public Long idAsignatura;
 	public LocalDateTime fechaInicial;
 	public LocalDateTime fechaFinal;
@@ -14,14 +13,6 @@ public class WrapperHorario {
 	public WrapperHorario () {
 
     }
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
 
 	public Long getIdAsignatura() {
 		return idAsignatura;

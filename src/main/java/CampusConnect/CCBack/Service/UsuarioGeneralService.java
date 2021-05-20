@@ -273,7 +273,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             if (h!=null){
                iu.agregarHobby(h);
             }else{
-                hService.crear(nombre);
+                hService.create(nombre);
                 h = hService.findByName(nombre);
                 iu.agregarHobby(h);
             }

@@ -4,6 +4,7 @@ package CampusConnect.CCBack.Service;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
@@ -21,8 +22,10 @@ import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.Horario;
+import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
+import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 import junit.framework.TestCase;
 
@@ -41,6 +44,9 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private HorarioService hService;
+
+    @Autowired
+    private InformacionUsuarioService iuService;
 
     @Autowired
     private AsignaturaService aService;
@@ -109,6 +115,45 @@ public class UsuarioGeneralTest extends TestCase {
     }
 
     @Test
+    public void pruebaInformacionUsuario() {
+
+        // conseguir usuario
+        WrapperInformacionUsuario wiu = new WrapperInformacionUsuario();
+
+        LocalDate nacimiento = LocalDate.now();
+        String religion = "religion";
+        Boolean origen = true;
+        String etnica = "etnica";
+        String sexo = "sexo";
+        String genero = "genero";
+
+		wiu.setFechaNacimiento(nacimiento);
+		wiu.setReligion(religion);
+        wiu.setLocal(origen);
+        wiu.setGrupoEtnico(etnica);
+		wiu.setSexo(sexo);
+		wiu.setGenero(genero);
+
+        InformacionUsuario creado = this.iuService.cargarInformacionUsuario(
+            wiu, this.emailUsuario);
+
+        assertAll(
+            () -> assertEquals(creado.getFechaNacimiento(), nacimiento),
+            () -> assertEquals(creado.getIdentidadReligiosa(), religion),
+            () -> assertEquals(creado.getLugarOrigen(), origen),
+            () -> assertEquals(creado.getIdentidadEtnica(), etnica),
+            () -> assertEquals(creado.getIdentidadSexo(), sexo),
+            () -> assertEquals(creado.getIdentidadGenero(), genero)
+        );
+
+        // se busca el objeto
+        InformacionUsuario iuConseguida = iuService.findById(creado.getId());
+        assertNotNull(iuConseguida);
+        assertEquals(iuConseguida, creado);
+
+    }
+
+    @Test
     public void pruebaAsignaturaHorario() {
         String lugar = "lugar";
 
@@ -122,11 +167,6 @@ public class UsuarioGeneralTest extends TestCase {
 
         // conseguir usuario
         UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
-
-        System.out.println("usuario utilizado:");
-
-        GenericServiceTest.printAll(ug);
-
         pruebaAgregarHorario(ug, wph);
     }
 
@@ -144,7 +184,6 @@ public class UsuarioGeneralTest extends TestCase {
         // se busca el objeto
         Asignatura aConseguida = aService.findById(creado.getId());
         assertNotNull(aConseguida);
-
         assertEquals(aConseguida, creado);
 
         return aConseguida;

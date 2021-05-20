@@ -24,6 +24,7 @@ import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Requisito;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
@@ -40,6 +41,7 @@ import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
@@ -56,6 +58,9 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private ForoService fService;
+
+    @Autowired
+    private RespuestaForoService rfService;
 
     @Autowired
     private UsuarioGeneralService ugService;
@@ -142,8 +147,7 @@ public class UsuarioGeneralTest extends TestCase {
 
     }
 
-    @Test
-    public void pruebaForos() {
+    public long pruebaForos() {
 
         String titulo = "titulo";
         String descripcion = "descripcion";
@@ -163,6 +167,39 @@ public class UsuarioGeneralTest extends TestCase {
         Foro fConseguido = fService.findById(fCreado.getId());
         assertNotNull(fConseguido);
         assertEquals(fCreado, fConseguido);
+
+        return fCreado.getId();
+    }
+
+    public void pruebaRespuestaForo(long idForo) {
+
+        Foro foro = this.fService.findById(idForo);
+        WrapperRespuestaForo wrf = new WrapperRespuestaForo();
+        String texto = "texto";
+        wrf.setTexto(texto);
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+
+        // se crea con el servicio
+        RespuestaForo rfCreado = this.rfService.create(wrf, foro, ug);
+        assertAll(
+            () -> assertEquals(rfCreado.getForo(), foro),
+            () -> assertEquals(rfCreado.getUsuario(), ug),
+            () -> assertEquals(rfCreado.getTexto(), texto)
+            );
+
+        // se busca el objeto
+        RespuestaForo rfConseguido = rfService.findById(rfCreado.getId());
+        assertNotNull(rfConseguido);
+        assertEquals(rfCreado, rfConseguido);
+
+    }
+
+    @Test
+    public void pruebasForos() {
+
+        long idForo = pruebaForos();
+        pruebaRespuestaForo(idForo);
+
     }
 
     @Test

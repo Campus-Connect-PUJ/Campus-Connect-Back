@@ -9,7 +9,6 @@ import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ForoRepository;
-import CampusConnect.CCBack.Repository.RespuestaForoRepository;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 @Service
@@ -19,10 +18,10 @@ public class ForoService {
     private ForoRepository repository;
 
     @Autowired
-    private RespuestaForoRepository respuestaRepository;
+    private UsuarioGeneralService uService;
 
     @Autowired
-    private UsuarioGeneralService uService;
+    private RespuestaForoService rfService;
 
     public Iterable<Foro> findAll() {
         return GenericService.findAll(repository);
@@ -59,7 +58,7 @@ public class ForoService {
             
             for(int i=0; i<foro.getRespuestas().size(); i++){
                 UsuarioGeneral ugBorrar = foro.getRespuestas().get(i).getUsuario();
-                respuestaRepository.deleteById(foro.getRespuestas().get(i).getId());
+                this.rfService.deleteById(foro.getRespuestas().get(i).getId());
                 ugBorrar.borrarRespuestaForo(foro.getRespuestas().get(i));
                 uService.guardarUsuario(ugBorrar);
             }
@@ -71,22 +70,17 @@ public class ForoService {
 
     }
 
-    public void AgregarRespuestaForo(
+    public Foro AgregarRespuestaForo(
         final WrapperRespuestaForo respuesta,
         final Long idForo
     ){
-        RespuestaForo nuevaRespuesta = new RespuestaForo();
         Foro foro = this.findById(idForo);
         UsuarioGeneral usuarioRespuesta = uService.findById(respuesta.getIdUsuario());
+        RespuestaForo nuevaRespuesta = rfService.create(respuesta, foro, usuarioRespuesta);
 
-        nuevaRespuesta.setTexto(respuesta.getTexto());
-        nuevaRespuesta.setForo(foro);
-        nuevaRespuesta.setUsuario(usuarioRespuesta);
         foro.agregarRespuesta(nuevaRespuesta);
 
-        GenericService.save(repository, foro);
-        respuestaRepository.save(nuevaRespuesta);
-
+        return GenericService.save(repository, foro);
     }
 
     public Foro sumarVotoAForo(

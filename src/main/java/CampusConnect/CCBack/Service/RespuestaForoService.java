@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.RespuestaForoRepository;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 
 @Service
@@ -23,6 +25,11 @@ public class RespuestaForoService {
     public Iterable<RespuestaForo> findAll() {
         return GenericService.findAll(repository);
     }
+
+    public void deleteById(long id) {
+        GenericService.delete(repository, this.findById(id));
+    }
+
 
     public RespuestaForo findById(final Long id) {
         return GenericService.findById(repository, id);
@@ -93,6 +100,20 @@ public class RespuestaForoService {
 
         GenericService.delete(repository, respuesta);
         uService.guardarUsuario(ug);
+    }
+
+    public RespuestaForo create(
+        final WrapperRespuestaForo respuesta,
+        final Foro foro,
+        final UsuarioGeneral ug
+    ){
+        RespuestaForo nuevaRespuesta = new RespuestaForo();
+
+        nuevaRespuesta.setTexto(respuesta.getTexto());
+        nuevaRespuesta.setForo(foro);
+        nuevaRespuesta.setUsuario(ug);
+
+        return GenericService.save(repository, nuevaRespuesta);
     }
 
 }

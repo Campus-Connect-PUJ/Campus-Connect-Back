@@ -1,6 +1,7 @@
 package CampusConnect.CCBack.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,17 +37,20 @@ class RespuestaForoController {
 
     @PutMapping("sumar/{id}")
     public RespuestaForo sumarVotoAForo(
-        @PathVariable("id") final Long idRespuesta
+        @AuthenticationPrincipal String email,
+        @PathVariable("id") final Long idForo
     ){
-        return rfService.sumarVotoAForo(idRespuesta);
+        return rfService.sumarVotoAForo(email, idForo);
     }
 
     @PutMapping("restar/{id}")
     public RespuestaForo restarVotoAForo(
-        @PathVariable("id") final Long idRespuesta
+        @AuthenticationPrincipal String email, 
+        @PathVariable("id") final Long idForo
     ){
-        return rfService.restarVotoAForo(idRespuesta);
+        return rfService.restarVotoAForo(email, idForo);
     }
+
 
     
     

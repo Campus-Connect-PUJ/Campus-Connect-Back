@@ -43,6 +43,7 @@ public class GruposEstudiantilesService {
         ug.setNombre(dato.getGrupoEstudiantil().getNombre());
         ug.setDescripcion(dato.getGrupoEstudiantil().getDescripcion());
         ug.setCalificacion(5);
+        ug.setContacto(dato.getGrupoEstudiantil().getContacto());
 
         GenericService.save(repository, ug);
 

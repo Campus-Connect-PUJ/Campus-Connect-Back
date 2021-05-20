@@ -1,12 +1,14 @@
 package CampusConnect.CCBack.Model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,6 +36,12 @@ public class RespuestaForo {
     @ManyToOne
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
+
+	@ManyToMany
+    private List<UsuarioGeneral> usuariosGustaron;
+
+	@ManyToMany
+    private List<UsuarioGeneral> usuariosNoGustaron;
 
     public RespuestaForo () {
         this.reportado = false;
@@ -104,5 +112,37 @@ public class RespuestaForo {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public List<UsuarioGeneral> getUsuariosGustaron() {
+		return usuariosGustaron;
+	}
+
+	public void setUsuariosGustaron(List<UsuarioGeneral> usuariosGustaron) {
+		this.usuariosGustaron = usuariosGustaron;
+	}
+
+	public List<UsuarioGeneral> getUsuariosNoGustaron() {
+		return usuariosNoGustaron;
+	}
+
+	public void setUsuariosNoGustaron(List<UsuarioGeneral> usuariosNoGustaron) {
+		this.usuariosNoGustaron = usuariosNoGustaron;
+	}
+
+	public void agregarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.add(ug);
+    }
+	
+	public void agregarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.add(ug);
+    }
+
+	public void quitarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.remove(ug);
+    }
+
+    public void quitarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.remove(ug);
+    } 
 
 }

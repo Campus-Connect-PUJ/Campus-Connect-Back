@@ -24,6 +24,7 @@ import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.Requisito;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
 import CampusConnect.CCBack.Model.Caracteristica;
@@ -35,9 +36,11 @@ import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 
 import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
@@ -89,6 +92,15 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private ResenhaGrupoEstudiantilService rgeService;
+
+    @Autowired
+    private ResenhaRestauranteService rrService;
+
+    @Autowired
+    private RestaurantesService resService;
+
+    @Autowired
+    private LugarService lService;
 
     private String emailUsuario = "email";
 
@@ -433,7 +445,7 @@ public class UsuarioGeneralTest extends TestCase {
     }
 
     @Test
-    public void pruebas() {
+    public void pruebasGruposEstudiantiles() {
         pruebaCaracteristicas();
         pruebaTematicas();
         pruebaFacultades();
@@ -441,6 +453,101 @@ public class UsuarioGeneralTest extends TestCase {
         long idgrupoest = pruebaGruposEstudiantiles();
         UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
         pruebaResenhaGrupoEstudiantil(ug, idgrupoest);
+    }
+
+    public void pruebaResenhaRestaurante(UsuarioGeneral ug, long idRestaurante) {
+
+        ResenhaRestaurante resenha = new ResenhaRestaurante();
+        float estrellas = 5;
+		resenha.setEstrellas(estrellas);
+
+        // se crea con el servicio
+        ResenhaRestaurante rgeCreada = this.rrService.create(
+            ug, resenha,idRestaurante);
+
+        assertEquals(rgeCreada.getEstrellas(), estrellas);
+        assertEquals(rgeCreada.getUsuario(), ug);
+        long idGeConseguido = rgeCreada.getRestaurante().getId();
+        assertEquals(idGeConseguido, idRestaurante);
+
+        // se busca el objeto
+        ResenhaRestaurante rgeConseguida = rrService.findById(rgeCreada.getId());
+        assertNotNull(rgeConseguida);
+        assertEquals(rgeConseguida, rgeCreada);
+    }
+
+    public long pruebaRestaurantes(long idLugar) {
+
+        String ambientacion = "ambientacion";
+        float calificacion = 5;
+        String contacto = "contacto";
+        String descripcion = "descripcion";
+        String franquicia = "franquicia";
+        String nombre = "nombre";
+        float precioMax = 10;
+        float precioMin = 5;
+        float tiempoEntrega = 20;
+
+        Restaurante restaurante = new Restaurante();
+		restaurante.setAmbientacion(ambientacion);
+		restaurante.setCalificacion(calificacion);
+		restaurante.setContacto(contacto);
+		restaurante.setDescripcion(descripcion);
+		restaurante.setFranquicia(franquicia);
+		restaurante.setNombre(nombre);
+		restaurante.setPrecioMax(precioMax);
+		restaurante.setPrecioMin(precioMin);
+		restaurante.setTiempoEntrega(tiempoEntrega);
+
+        WrapperRestaurante wr = new WrapperRestaurante();
+        wr.setIdLugar(idLugar);
+        wr.setRestaurante(restaurante);
+
+        Restaurante resCreado = this.resService.create(wr);
+
+        assertEquals(resCreado.getAmbientacion(), ambientacion);
+        assertEquals(resCreado.getCalificacion(), calificacion);
+        assertEquals(resCreado.getContacto(), contacto);
+        assertEquals(resCreado.getDescripcion(), descripcion);
+        assertEquals(resCreado.getFranquicia(), franquicia);
+        assertEquals(resCreado.getNombre(), nombre);
+        assertEquals(resCreado.getPrecioMax(), precioMax);
+        assertEquals(resCreado.getPrecioMin(), precioMin);
+        assertEquals(resCreado.getTiempoEntrega(), tiempoEntrega);
+
+        Restaurante resConseguido = this.resService.findById(resCreado.getId());
+        assertEquals(resConseguido, resCreado);
+
+        return resConseguido.getId();
+
+    }
+
+    public long pruebaLugar() {
+        String nombre = "hola";
+
+        Lugar l = new Lugar();
+        l.setNombre(nombre);
+
+        // se crea con el servicio
+        Lugar lCreado = this.lService.create(l);
+
+        assertEquals(lCreado.getNombre(), nombre);
+
+        // se busca el objeto
+        Lugar lConseguido = lService.findById(lCreado.getId());
+        assertNotNull(lConseguido);
+        assertEquals(lConseguido, lCreado);
+        // GenericServiceTest.compareAllExceptId(a, aConseguida);
+
+        return lConseguido.getId();
+    }
+
+    @Test
+    public void pruebasRestaurantes() {
+        long idlugar = pruebaLugar();
+        long idrestaurante = pruebaRestaurantes(idlugar);
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+        pruebaResenhaRestaurante(ug, idrestaurante);
     }
 
 }

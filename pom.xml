@@ -14,7 +14,7 @@
 	<name>CCBack</name>
 	<description>Back-end campus-connect </description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,18 +39,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- <dependency> -->
-		<!-- 	<groupId>org.testcontainers</groupId> -->
-		<!-- 	<artifactId>testcontainers</artifactId> -->
-		<!-- 	<version>1.10.6</version> -->
-		<!-- 	<scope>test</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- 	<groupId>org.testcontainers</groupId> -->
-		<!-- 	<artifactId>postgresql</artifactId> -->
-		<!-- 	<version>42.2.5</version> -->
-		<!-- 	<scope>test</scope> -->
-		<!-- </dependency> -->
+        <!-- <dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>1.10.6</version>
+			<scope>test</scope>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
+			<scope>test</scope>
+		</dependency> -->
 
         <dependency>
             <groupId>org.mockito</groupId>

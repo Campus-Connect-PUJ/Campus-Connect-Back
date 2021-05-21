@@ -60,7 +60,6 @@ public class UsuarioGeneral implements UserDetails {
 //                                final login                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
@@ -86,7 +85,6 @@ public class UsuarioGeneral implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<ResenhaRestaurante> resenhaRestaurantes;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "usuario",
               fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
@@ -95,7 +93,6 @@ public class UsuarioGeneral implements UserDetails {
     //@JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioMonitor> monitorDe;
-
 
     // relaciones muchos a muchos  ---------------------
 
@@ -106,17 +103,18 @@ public class UsuarioGeneral implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "idTipoAprendizaje"))
     private List<TipoAprendizaje> estilosAprendizaje;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     private List<Caracteristica> caracteristicas;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Carrera> carrerasUsuario;
 
+	//@JsonIgnore
     @ManyToMany(mappedBy = "usuariosGustaron")
     private List<Tip> tipsGustados;
 
+	//@JsonIgnore
 	@ManyToMany(mappedBy = "usuariosNoGustaron")
     private List<Tip> tipsNoGustados;
 
@@ -128,6 +126,9 @@ public class UsuarioGeneral implements UserDetails {
 
 	@ManyToMany
 	private List<TipoComida> comidaFavorita;
+
+	@ManyToMany
+    private List<UsuarioMonitor> monitoresVotados;
 
 	public UsuarioGeneral(
         String email,
@@ -161,9 +162,11 @@ public class UsuarioGeneral implements UserDetails {
         this.respuestasForo = new ArrayList<>();
         this.tipsGustados = new ArrayList<>();
 		this.tipsNoGustados = new ArrayList<>();
+		this.monitoresVotados = new ArrayList<>();
         this.tips = new ArrayList<>();
         this.roles = new ArrayList<>();
         this.actividadInteres = new ArrayList<>();
+		this.comidaFavorita = new ArrayList<>();
 
         this.enabled = true;
         this.accountNonExpired = true;
@@ -405,6 +408,14 @@ public class UsuarioGeneral implements UserDetails {
 		this.tipsNoGustados.add(tip);
 	}
 
+    public void quitarUsuarioGustaron(Tip tip){
+		this.tipsGustados.remove(tip);
+    }
+
+    public void quitarUsuarioNoGustaron(Tip tip){
+		this.tipsNoGustados.remove(tip);
+    }  
+
     public void agregarCaracteristica(Caracteristica c) {
         this.caracteristicas.add(c);
     }
@@ -432,6 +443,10 @@ public class UsuarioGeneral implements UserDetails {
 		this.monitorDe.add(monitoria);
 	}
 
+	public void quitarMonitorDe(UsuarioMonitor monitoria){
+		this.monitorDe.remove(monitoria);
+	}
+
 	public String getAmbientacion(){
 		return this.ambientacion;
 	}
@@ -452,4 +467,32 @@ public class UsuarioGeneral implements UserDetails {
 		this.comidaFavorita.add(comida);
 	}
 
+	public void agregarForo(Foro foro){
+		this.foros.add(foro);
+	}
+
+	public void borrarRespuestaForo(RespuestaForo rf){
+        this.respuestasForo.remove(rf);
+    }
+
+    public void reinicioPersoGrupos(){
+        this.caracteristicas.clear();
+        this.actividadInteres.clear();
+    }
+
+	public void reinicioPersoRestaurantes(){
+		this.comidaFavorita.clear();
+	}
+
+	public List<UsuarioMonitor> getMonitoresVotaron() {
+		return monitoresVotados;
+	}
+
+	public void setMonitoresVotaron(List<UsuarioMonitor> monitoresVotados) {
+		this.monitoresVotados = monitoresVotados;
+	}
+
+	public void addMonitoresVotados(UsuarioMonitor monitor){
+		this.monitoresVotados.add(monitor);
+	}
 }

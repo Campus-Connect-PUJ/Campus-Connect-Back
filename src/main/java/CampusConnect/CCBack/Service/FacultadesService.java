@@ -13,17 +13,17 @@ public class FacultadesService {
     private FacultadRepository repository;
 
     public Iterable<Facultad> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Facultad findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Facultad create(final Facultad dato) {
         Facultad f = new Facultad();
         f.setNombre(dato.getNombre());
-        return repository.save(f);
+        return GenericService.save(repository, f);
     }
 
 }

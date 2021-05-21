@@ -39,6 +39,8 @@ public class Restaurante {
 
     private float precioMin;
 
+	private String contacto;
+
     // descripcion breve de la ubicacion en la que se encuentra el restaurante
     private String descripcionLugar;
 
@@ -64,7 +66,7 @@ public class Restaurante {
         inverseJoinColumns = @JoinColumn(name = "idTipoComida"))
     private List<TipoComida> tiposComida;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToMany
     @JoinTable (
         name = "RegimenesAlimenticiosRestaurante",
@@ -77,7 +79,6 @@ public class Restaurante {
     private List<ResenhaRestaurante> resenhas;
 
 	public Restaurante() {
-        this.calificacion = 0;
         this.resenhas = new ArrayList<>();
         this.regimenesAlimenticios = new ArrayList<>();
         this.tiposComida = new ArrayList<>();
@@ -215,5 +216,13 @@ public class Restaurante {
 	public void agregarRegimenAlimenticio(RegimenAlimenticio c) {
         this.regimenesAlimenticios.add(c);
 	}
+
+	public void setContacto(String contacto){
+        this.contacto= contacto;
+    }
+
+    public String getContacto(){
+        return this.contacto;
+    }
 
 }

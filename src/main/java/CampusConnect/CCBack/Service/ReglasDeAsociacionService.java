@@ -27,21 +27,23 @@ public class ReglasDeAsociacionService {
     private TipsService servicioTips;
 
     public Iterable<ReglasDeAsociacion> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public ReglasDeAsociacion findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public ReglasDeAsociacion crearReglaDeAsociacion(
         final WrapperReglaAsociacion reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
-        
         regla.setSoporte(reglaData.getSoporte());
         regla.setConfianza(reglaData.getConfianza());
         regla.setLift(reglaData.getLift());
         
+        
+        GenericService.save(repository, regla);
+
         for(int i=0; i<reglaData.getAntecedentes().size(); i++){
             Tip a = this.servicioTips.findById(reglaData.getAntecedentes().get(i));
             regla.agregarAntecedentes(a);
@@ -52,11 +54,12 @@ public class ReglasDeAsociacionService {
             regla.agregarConsecuentes(b);
         }
 
-        return repository.save(regla);
+        return GenericService.save(repository, regla);
     }
 
-    public Tip obtenerRecomendacionTip(final String email){
+    public Tip obtenerRecomendacionTip(String email){
         // long idTip = 15;
+        //UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
         UsuarioGeneral ug = servicioUsuarios.findByEmail(email);
         List<Tip> tipsGustadosUsuario = ug.getTipsGustados();
         List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
@@ -102,12 +105,10 @@ public class ReglasDeAsociacionService {
                 try{
                     //Intento #2: Por los estilos de aprendizaje
                     tipsGustadosUsuario = obtenerTipsPorTipo(ug);
-                    System.out.println("2entra a lo del tipo");
                     tipRecomendado = tipsGustadosUsuario.get(0);
                 }
                 catch (Exception e2){
                     //Intento #3: El siguiente tip al ultimo
-                    System.out.println("3entra a lo del tipo");
                     tipRecomendado = ultimoRecurso(ug);
                 }
             }
@@ -134,18 +135,19 @@ public class ReglasDeAsociacionService {
 //Adicionales----------------------------------------------------------------
 
     public Tip ultimoRecurso(UsuarioGeneral ug){
-        long idTipParaRecomendar = 0;
         List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
+        Tip tipRecomendar = new Tip();
         boolean sale = false;
-        Tip buscarSiExiste = new Tip();
-        for(Long i= tipsSistema.get(0).getId(); i < tipsSistema.size() && !sale ; i++){
-            idTipParaRecomendar = i;
-            buscarSiExiste = servicioTips.findById(idTipParaRecomendar);
-            if(!ug.getTipsNoGustados().contains(buscarSiExiste) && !ug.getTipsGustados().contains(buscarSiExiste)){
+        int i = 0;
+        while(!sale){
+            tipRecomendar = this.ordenarLista(tipsSistema).get(i);
+            if(!ug.getTipsGustados().contains(tipRecomendar) && !ug.getTipsNoGustados().contains(tipRecomendar) || i == tipsSistema.size()){
                 sale = true;
-            }
+            } 
+            i++;
         }
-        return buscarSiExiste;
+        
+        return tipRecomendar;
     }
 
     public int contieneTodos(List<Tip> tipsUsuario, List<Tip> tipsRegla){
@@ -181,10 +183,6 @@ public class ReglasDeAsociacionService {
         Arrays.sort(miarray);
         reglasOrdenadas = Arrays.asList(miarray);
 
-        for(int i=0; i<reglasOrdenadas.size(); i++){
-            System.out.println("----------------------------- " + reglasOrdenadas.get(i).getRegla().getId());
-        }
-
         return reglasOrdenadas;
     }
 
@@ -199,7 +197,6 @@ public class ReglasDeAsociacionService {
                 for(int k=0; k<tipsSistema.get(j).getTiposAprendizaje().size(); k++){
                     if(tipsSistema.get(j).getTiposAprendizaje().get(k).getId() == ug.getEstilosAprendizaje().get(i).getId() && !tipsRecomendar.contains(tipsSistema.get(j)) && !ug.getTipsGustados().contains(tipsSistema.get(j)) && !ug.getTipsNoGustados().contains(tipsSistema.get(j))){
                         tipsRecomendar.add(tipsSistema.get(j));
-                        System.out.println(tipsSistema.get(j));
                     }
                 }
             }
@@ -208,6 +205,13 @@ public class ReglasDeAsociacionService {
         tipsRecomendar = ordenarLista(tipsRecomendar);
         
         return tipsRecomendar;
+    }
+
+    public Long borrarReglas(){
+        repository.deleteAll();
+        List<ReglasDeAsociacion> reglas = (List<ReglasDeAsociacion>) this.findAll();
+        Long cantidad = (long) reglas.size();
+        return cantidad;
     }
 
 }

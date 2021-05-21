@@ -1,17 +1,12 @@
 package CampusConnect.CCBack.Model;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ReglasDeAsociacion {
@@ -85,7 +80,6 @@ public class ReglasDeAsociacion {
     public void setConsecuencias(List<Tip> consecuencias) {
         this.consecuencias = consecuencias;
     }
-
 
     public void agregarAntecedentes(Tip tip) {
         this.antecedentes.add(tip);

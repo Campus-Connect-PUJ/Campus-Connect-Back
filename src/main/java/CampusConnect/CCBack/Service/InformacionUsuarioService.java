@@ -21,39 +21,20 @@ public class InformacionUsuarioService {
     private CarreraService cService;
 
     public Iterable<InformacionUsuario> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
-    public InformacionUsuario findById(Long id) {
-        return repository.findById(id).get();
+    public InformacionUsuario findById(final Long id) {
+        return GenericService.findById(repository, id);
     }
-
-    // public InformacionUsuario create(
-    //     final InformacionUsuario data,
-    //     Long id
-    //     ) {
-    //     InformacionUsuario iu = new InformacionUsuario();
-    //     UsuarioGeneral ug = uService.findById(id);
-
-    //     iu.setFechaNacimiento(data.getFechaNacimiento());
-    //     iu.setIdentidadGenero(data.getIdentidadGenero());
-    //     iu.setLugarOrigen(data.getLugarOrigen());
-    //     iu.setRaza(data.getRaza());
-    //     iu.setUsuario(ug);
-
-    //     repository.save(iu);
-
-    //     ug.setInformacionUsuario(iu);
-    //     return repository.save(iu);
-    // }
 
     public InformacionUsuario cargarInformacionUsuario(
         final WrapperInformacionUsuario data,
-        Long id
+        final String email
         ) {
-        UsuarioGeneral ug = uService.findById(id);
+        final UsuarioGeneral ug = uService.findByEmail(email);
 
-        InformacionUsuario iu = new InformacionUsuario();
+        final InformacionUsuario iu = new InformacionUsuario();
 
         iu.setUsuario(ug);
         iu.setFechaNacimiento(data.getFechaNacimiento());
@@ -64,10 +45,10 @@ public class InformacionUsuarioService {
         iu.setIdentidadSexo(data.getSexo());
         iu.setIdentidadGenero(data.getGenero());
 
-        for(Long idCar: data.getCarreras()) {
+        for(final Long idCar: data.getCarreras()) {
             cService.agregarCarrera(idCar, ug);
         }
 
-        return repository.save(iu);
+        return GenericService.create(repository, iu);
     }
 }

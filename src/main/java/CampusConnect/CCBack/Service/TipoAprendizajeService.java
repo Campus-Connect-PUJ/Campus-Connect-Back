@@ -13,17 +13,17 @@ public class TipoAprendizajeService {
     private TipoAprendizajeRepository repository;
 
     public Iterable<TipoAprendizaje> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public TipoAprendizaje findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public TipoAprendizaje create(final TipoAprendizaje dato) {
         TipoAprendizaje c = new TipoAprendizaje();
         c.setDescripcion(dato.getDescripcion());
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
 }

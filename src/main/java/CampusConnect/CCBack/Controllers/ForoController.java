@@ -3,6 +3,7 @@ package CampusConnect.CCBack.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Service.ForoService;
+import CampusConnect.CCBack.Service.RespuestaForoService;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 
 @RestController
@@ -22,6 +24,9 @@ class ForoController {
 
     @Autowired
     private ForoService fService;
+
+    @Autowired
+    private RespuestaForoService rfService;
 
     @GetMapping("all")
     public Iterable<Foro> findAll() {
@@ -38,14 +43,21 @@ class ForoController {
         return fService.findById(id).getRespuestas();
     }
 
-    @PostMapping("{id}")
+    @PostMapping
     public Foro crearForo(
         @RequestBody final Foro foroData,
-        @PathVariable("id") final Long idUsuario
-        ) {
-
-            return fService.crearForo(foroData, idUsuario);
+        @AuthenticationPrincipal String email
+    ) {
+        return fService.create(foroData, email);
     }
+
+    @PutMapping("/borrarForo/{id_foro}")
+    public void borrarForo(
+        @PathVariable("id_foro") final Long idForo,
+        @AuthenticationPrincipal String email
+    ){
+        fService.borrarForo(idForo, email);
+    }  
 
     @PostMapping("{id}/respuesta")
     public void AgregarRespuestaForo(
@@ -55,14 +67,28 @@ class ForoController {
         fService.AgregarRespuestaForo(respuesta, idForo);
     }
 
+    @PutMapping("borrarRespuesta/{idRespuesta}")
+    public void borrarRespuestaForo(
+        @PathVariable("idRespuesta") final Long idRespuesta,
+        @AuthenticationPrincipal String email
+    ){
+        rfService.borrarRespuestaForo(idRespuesta, email);
+    }
+
     @PutMapping("sumar/{id}")
-    public Foro sumarVotoAForo(@PathVariable("id") final Long idForo){
-        return fService.sumarVotoAForo(idForo);
+    public Foro sumarVotoAForo(
+        @AuthenticationPrincipal String email,
+        @PathVariable("id") final Long idForo
+    ){
+        return fService.sumarVotoAForo(email, idForo);
     }
 
     @PutMapping("restar/{id}")
-    public Foro restarVotoAForo(@PathVariable("id") final Long idForo){
-        return fService.restarVotoAForo(idForo);
+    public Foro restarVotoAForo(
+        @AuthenticationPrincipal String email, 
+        @PathVariable("id") final Long idForo
+    ){
+        return fService.restarVotoAForo(email, idForo);
     }
 
 }

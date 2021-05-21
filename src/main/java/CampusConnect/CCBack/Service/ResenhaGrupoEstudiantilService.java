@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
-import CampusConnect.CCBack.Model.ResenhaRestaurante;
-import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Repository.ResenhaGrupoEstudiantilRepository;
 
@@ -20,24 +18,24 @@ public class ResenhaGrupoEstudiantilService {
     private GruposEstudiantilesService geService;
 
     public Iterable<ResenhaGrupoEstudiantil> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public ResenhaGrupoEstudiantil findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public ResenhaGrupoEstudiantil create(
         final UsuarioGeneral ug,
-        final ResenhaGrupoEstudiantil foroData,
+        final ResenhaGrupoEstudiantil resenha,
         final Long idGrupoEstudiantil
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         GrupoEstudiantil grupoEstudiantil = geService.findById(idGrupoEstudiantil);
-        rr.setEstrellas(foroData.getEstrellas());
+        rr.setEstrellas(resenha.getEstrellas());
         rr.setGrupoEstudiantil(grupoEstudiantil);
         rr.setUsuario(ug);
-        return repository.save(rr);
+        return GenericService.create(repository, rr);
     }
 
 }

@@ -33,27 +33,27 @@ public class RestaurantesService {
     private TipoRestauranteService trService;
 
     public Iterable<Restaurante> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Restaurante findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public List<TipoRestaurante> conseguirTiposRestaurante(Long id) {
-        return repository.findById(id).get().getTiposRestaurante();
+        return this.findById(id).getTiposRestaurante();
     }
 
     public List<TipoComida> conseguirTiposComidaRestaurante(Long id) {
-        return repository.findById(id).get().getTiposComida();
+        return this.findById(id).getTiposComida();
     }
 
     public List<RegimenAlimenticio> conseguirRegimenesAlimenticiosRestaurante(Long id) {
-        return repository.findById(id).get().getRegimenesAlimenticios();
+        return this.findById(id).getRegimenesAlimenticios();
     }
 
     public List<ResenhaRestaurante> conseguirResenhasRestaurante(Long id) {
-        return repository.findById(id).get().getResenhas();
+        return this.findById(id).getResenhas();
     }
 
     public Restaurante create(final WrapperRestaurante dato) {
@@ -64,6 +64,8 @@ public class RestaurantesService {
         res.setLugar(lugar);
 
         res.setAmbientacion(rd.getAmbientacion());
+        res.setContacto(rd.getContacto());
+        res.setCalificacion(rd.getCalificacion());
         res.setDescripcion(rd.getDescripcion());
         res.setDescripcionLugar(rd.getDescripcionLugar());
         res.setFranquicia(rd.getFranquicia());
@@ -72,7 +74,7 @@ public class RestaurantesService {
         res.setPrecioMin(rd.getPrecioMin());
         res.setTiempoEntrega(rd.getTiempoEntrega());
 
-        repository.save(res);
+        GenericService.save(repository, res);
 
         // listas
 
@@ -95,7 +97,7 @@ public class RestaurantesService {
             c.agregarRestaurante(res);
         }
 
-        return repository.save(res);
+        return GenericService.create(repository, res);
     }
 
 }

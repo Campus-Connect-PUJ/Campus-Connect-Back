@@ -1,12 +1,14 @@
 package CampusConnect.CCBack.Model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +20,13 @@ public class RespuestaForo {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalTime fecha;
+    private LocalDateTime fecha;
+
+    private String texto;
+
+    private Boolean reportado;
+
+    private int puntaje;
 
     @ManyToOne
     @JoinColumn(name="idForo")
@@ -29,16 +37,16 @@ public class RespuestaForo {
     @JoinColumn(name="idUsuario")
     private UsuarioGeneral usuario;
 
-    private String texto;
+	@ManyToMany
+    private List<UsuarioGeneral> usuariosGustaron;
 
-    private Boolean reportado;
-
-    private int puntaje;
+	@ManyToMany
+    private List<UsuarioGeneral> usuariosNoGustaron;
 
     public RespuestaForo () {
         this.reportado = false;
         this.puntaje = 0;
-		this.fecha = LocalTime.now();
+		this.fecha = LocalDateTime.now();
     }
 
     public void like() {
@@ -65,7 +73,7 @@ public class RespuestaForo {
 		this.texto = texto;
 	}
 
-	public LocalTime getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
@@ -77,7 +85,7 @@ public class RespuestaForo {
 		this.reportado = reportado;
 	}
 
-	public void setFecha(LocalTime fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 
@@ -104,5 +112,37 @@ public class RespuestaForo {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public List<UsuarioGeneral> getUsuariosGustaron() {
+		return usuariosGustaron;
+	}
+
+	public void setUsuariosGustaron(List<UsuarioGeneral> usuariosGustaron) {
+		this.usuariosGustaron = usuariosGustaron;
+	}
+
+	public List<UsuarioGeneral> getUsuariosNoGustaron() {
+		return usuariosNoGustaron;
+	}
+
+	public void setUsuariosNoGustaron(List<UsuarioGeneral> usuariosNoGustaron) {
+		this.usuariosNoGustaron = usuariosNoGustaron;
+	}
+
+	public void agregarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.add(ug);
+    }
+	
+	public void agregarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.add(ug);
+    }
+
+	public void quitarUsuarioGustaron(UsuarioGeneral ug){
+        this.usuariosGustaron.remove(ug);
+    }
+
+    public void quitarUsuarioNoGustaron(UsuarioGeneral ug){
+        this.usuariosNoGustaron.remove(ug);
+    } 
 
 }

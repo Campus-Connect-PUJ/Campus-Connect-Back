@@ -16,12 +16,12 @@ public class LugarService {
 
     @GetMapping("all")
     public Iterable<Lugar> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     @GetMapping("{id}")
     public Lugar findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     @PostMapping
@@ -29,7 +29,7 @@ public class LugarService {
         Lugar c = new Lugar();
         c.setNombre(dato.getNombre());
         c.setUbicacion(dato.getUbicacion());
-        return repository.save(c);
+        return GenericService.create(repository, c);
     }
 
 }

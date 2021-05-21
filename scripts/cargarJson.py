@@ -4,6 +4,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 BASEURL = 'http://localhost:8080/'
+# BASEURL = 'https://campusconnectjava.herokuapp.com/'
 
 LOGINDATA = {}
 
@@ -119,11 +120,17 @@ def main(archivo):
         # parse file
         datos = json.loads(data)
 
+        print("###########################################")
         id_admin = cargar_usuarios(datos['usuarios'])
-        cargar_facultades_y_carreras(datos['facultades'], datos['carreras'])
+        print("###########################################")
+        facultades = cargar_facultades_y_carreras(datos['facultades'], datos['carreras'])
+        print("###########################################")
         cargar_tips(datos['tips'], id_admin)
-        cargar_grupos_estudiantiles(datos['grupos'])
+        print("###########################################")
+        cargar_grupos_estudiantiles(datos['grupos'], facultades)
+        print("###########################################")
         cargar_Asignaturas(datos['asignaturas'])
+        print("###########################################")
         cargar_restaurantes(
             datos['restaurantes'],
             datos['ubicaciones'],
@@ -136,7 +143,6 @@ def cargar_facultades_y_carreras(facultades, carreras):
 
     url = BASEURL + 'facultad'
 
-    print(facultades)
     print("cargando facultades")
     facultades_json = {}
     for facultad in facultades:
@@ -164,6 +170,7 @@ def cargar_facultades_y_carreras(facultades, carreras):
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url + '/{}'.format(id_fac) , msggrp, auth = LOGINDATA))
+    return facultades_json
 
 def cargar_Asignaturas(asignaturas):
     url = BASEURL + 'asignatura'
@@ -243,16 +250,17 @@ def cargar_tips(tips, id_admin):
             "tip": {
                 "descripcion" : tip['descripcion']
             },
-            "tiposAprendizaje": grcar
+            "tiposAprendizaje": grcar,
+            "exigencia": tip['exigencia']
         }
         print(json.dumps(msggrp, indent=4, sort_keys=True))
         print(post(url, msggrp, auth = LOGINDATA))
 
-def cargar_grupos_estudiantiles(grupos):
+def cargar_grupos_estudiantiles(grupos, facultades):
 
     caracteristicas = {}
     tematicas = {}
-    facultades = {}
+    # facultades = {}
     requisitos = {}
 
     print("cargando caracteristicas, tematicas, facultades y requisitos")
@@ -260,7 +268,7 @@ def cargar_grupos_estudiantiles(grupos):
         caracteristicas = agrupar(
             caracteristicas, grupo['caracteristicas'], "nombre", 'caracteristica')
         tematicas  = agrupar(tematicas,  grupo['tematicas'],  "nombre", 'tematica' )
-        facultades = agrupar(facultades, grupo['facultades'], "nombre", 'facultad')
+        # facultades = agrupar(facultades, grupo['facultades'], "nombre", 'facultad')
         requisitos = agrupar(requisitos, grupo['requisitos'], "nombre", 'requisito')
 
     # print("caracteristicas", json.dumps(caracteristicas, indent=4, sort_keys=True))
@@ -284,19 +292,21 @@ def cargar_grupos_estudiantiles(grupos):
             grfac += [int(facultades[car])]
         grreq = []
         for car in grupo['requisitos']:
-            grfac += [int(requisitos[car])]
+            grreq += [int(requisitos[car])]
 
         msggrp = {
             "grupoEstudiantil": {
                 "nombre": grupo["nombre"],
-                "descripcion" : grupo['descripcion']
+                "descripcion" : grupo['descripcion'],
+                "contacto": grupo['contacto']
             },
             "caracteristicas": grcar,
             "tematicas": grtem,
             "facultades": grfac,
 	        "requisitos": grreq
         }
-        print(post(url, msggrp, auth = LOGINDATA))
+        print(msggrp)
+        post(url, msggrp, auth = LOGINDATA)
 
 def cargar_restaurantes(
         restaurantes,
@@ -391,9 +401,10 @@ def cargar_restaurantes(
                 "ambientacion": 'no esta en el json',
                 "descripcionlugar": restaurante['localizacion']['descripcion'],
                 "franquicia": restaurante['franquicia'],
-                "preciomax": restaurante['precioMax'],
-                "preciomin": restaurante['precioMin'],
-                "tiempoentrega": restaurante['tiempoEntrega']
+                "precioMax": restaurante['precioMax'],
+                "precioMin": restaurante['precioMin'],
+                "tiempoEntrega": restaurante['tiempoEntrega'],
+                "contacto": restaurante['contacto']
             },
             "idLugar": loc,
             "tiposRestaurante": tipo_res_id,

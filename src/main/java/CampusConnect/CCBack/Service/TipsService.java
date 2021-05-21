@@ -1,5 +1,7 @@
 package CampusConnect.CCBack.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,58 +27,94 @@ public class TipsService {
     private TipoAprendizajeService taService;
 
     public Iterable<Tip> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Tip findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
-    public Tip crear(final WrapperTip data) {
+    public Tip create(final WrapperTip data) {
         Tip tip = new Tip();
         UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
         tip.setDescripcion(data.getTip().getDescripcion());
         tip.setUsuario(ug);
+        tip.setNivelExigencia(data.getExigencia());
+        tip.setIdUsuarioCreador(ug.getId());
 
         for(Long id: data.getTiposAprendizaje()) {
             TipoAprendizaje c = taService.findById(id);
             tip.agregaTipoAprendizaje(c);
         }
 
-        return repository.save(tip);
+        return GenericService.create(repository, tip);
     }
 
-    public UsuarioGeneral agregarTipGustado(
-        final Long idUsuario,
-        final Long idTip
-    ){
-        System.out.println("Entra a gustar");
+    public void borrarTip(Long idTip, String email){
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        List<Tip> tipsUsuario = ug.getTips();
         Tip tip = this.findById(idTip);
-        tip.like();
-        UsuarioGeneral ug = ugService.findById(idUsuario);
-
-        if(!ug.getTipsGustados().contains(tip)){
-            tip.agregarUsuarioGustaron(ug);
-            ug.agregarTipGustaron(tip);
-            repository.save(tip);
+        
+        if(tipsUsuario.contains(tip)){
+            tipsUsuario.remove(tip);
+            ug.setTips(tipsUsuario);
         }
 
-        System.out.println("Sale a gustar");
+        GenericService.delete(repository, tip);
+        ugService.guardarUsuario(ug);
+
+
+    }
+
+
+    public UsuarioGeneral agregarTipGustado(
+        String email,
+        final Long idTip
+    ){
+        Tip tip = this.findById(idTip);
+        
+        UsuarioGeneral ug = ugService.findByEmail(email);
+
+        if(ug.getTipsNoGustados().contains(tip)){
+            tip.quitarUsuarioNoGustaron(ug);
+            ug.quitarUsuarioNoGustaron(tip);
+            tip.like();
+            GenericService.save(repository, tip);
+            return ugRepository.save(ug);
+        }
+
+        if(!ug.getTipsGustados().contains(tip)){
+            tip.like();
+            tip.agregarUsuarioGustaron(ug);
+            ug.agregarTipGustaron(tip);
+            GenericService.save(repository, tip);
+        }
+        
+
         return ugRepository.save(ug);
     }
 
     public UsuarioGeneral agregarTipNoGustado(
-        final Long idUsuario,
+        String email,
         final Long idTip
     ){
-        System.out.println("entra");
         Tip tip = this.findById(idTip);
-        tip.dislike();
-        UsuarioGeneral ug = ugService.findById(idUsuario);
+        
+        UsuarioGeneral ug = ugService.findByEmail(email);
+
+        if(ug.getTipsGustados().contains(tip)){
+            tip.quitarUsuarioGustaron(ug);
+            ug.quitarUsuarioGustaron(tip);
+            tip.dislike();
+            GenericService.save(repository, tip);
+            return ugRepository.save(ug);
+        }
+
         if(!ug.getTipsNoGustados().contains(tip)){
+            tip.dislike();
             tip.agregarUsuarioNoGustaron(ug);
             ug.agregarTipNoGustaron(tip);
-            repository.save(tip);
+            GenericService.save(repository, tip);
         }
          
         return ugRepository.save(ug);
@@ -87,7 +125,7 @@ public class TipsService {
     ){
         Tip tip = this.findById(idTip);
         tip.like();
-        return repository.save(tip);
+        return GenericService.save(repository, tip);
     }
 
     public Tip restarVotoAForo(
@@ -95,7 +133,7 @@ public class TipsService {
     ){
         Tip tip = this.findById(idForo);
         tip.dislike();
-        return repository.save(tip);
+        return GenericService.save(repository, tip);
     }
 
 

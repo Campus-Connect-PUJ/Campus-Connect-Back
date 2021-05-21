@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,18 +25,10 @@ public class Caracteristica {
     @JsonIgnore
     @ManyToMany
     @JoinTable (
-        name = "CaracteristicasUsuario",
-        joinColumns = @JoinColumn(name = "idCaracteristica"),
-        inverseJoinColumns = @JoinColumn(name = "idUsuario"))
-    private List<UsuarioGeneral> usuarios;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable (
         name = "CaracteristicasEvento",
         joinColumns = @JoinColumn(name = "idCaracteristica"),
         inverseJoinColumns = @JoinColumn(name = "idEvento"))
-    private List<Eventos> eventos;
+    private List<Evento> eventos;
 
     @JsonIgnore
     @ManyToMany
@@ -53,24 +46,22 @@ public class Caracteristica {
         inverseJoinColumns = @JoinColumn(name = "idTematica"))
     private List<Tematica> tematicas;
 
+    public Caracteristica(){
+        this.eventos = new ArrayList<>();
+        this.gruposEstudiantiles = new ArrayList<>();
+        this.tematicas = new ArrayList<>();
+	}
+
     public String getNombre() {
 		return nombre;
 	}
 
-    public List<Eventos> getEventos() {
+    public List<Evento> getEventos() {
 		return eventos;
 	}
 
-    public void setEventos(List<Eventos> eventos) {
+    public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
-	}
-
-    public List<UsuarioGeneral> getUsuarios() {
-		return usuarios;
-	}
-
-    public void setUsuarios(List<UsuarioGeneral> usuarios) {
-		this.usuarios = usuarios;
 	}
 
     public void setNombre(String nombre) {

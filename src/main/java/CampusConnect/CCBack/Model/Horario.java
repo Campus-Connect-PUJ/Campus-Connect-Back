@@ -1,6 +1,5 @@
 package CampusConnect.CCBack.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -19,18 +18,16 @@ public class Horario {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="idMonitor")
-    private UsuarioMonitor monitor;
-
     private LocalDateTime fechaInicial;
 
 	private LocalDateTime fechaFinal;
 
-	public Horario(){
+	public String lugar;
 
-	}
+	@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="idMonitor")
+    private UsuarioMonitor monitor;
 
     public Long getId() {
 		return id;
@@ -65,6 +62,12 @@ public class Horario {
 		this.fechaFinal = fechaFinal;
 	}
 
-	
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
 
 }

@@ -13,17 +13,17 @@ public class CaracteristicasService {
     private CaracteristicaRepository repository;
 
     public Iterable<Caracteristica> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public Caracteristica findById(final Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public Caracteristica create(final Caracteristica dato) {
         Caracteristica c = new Caracteristica();
         c.setNombre(dato.getNombre());
-        return repository.save(c);
+        return GenericService.save(repository, c);
     }
 
 }

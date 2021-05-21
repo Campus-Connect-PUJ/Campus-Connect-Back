@@ -27,6 +27,8 @@ public class GrupoEstudiantil {
 
     private float calificacion;
 
+    private String contacto;
+
     // @JsonIgnore
     @ManyToMany(mappedBy = "gruposEstudiantiles")
     private List<Caracteristica> caracteristicas;
@@ -156,6 +158,14 @@ public class GrupoEstudiantil {
 
     public void agregarResenha(ResenhaGrupoEstudiantil r) {
         this.resenhas.add(r);
+    }
+
+    public void setContacto(String contacto){
+        this.contacto= contacto;
+    }
+
+    public String getContacto(){
+        return this.contacto;
     }
 
 }

@@ -21,6 +21,10 @@ public class UsuarioMonitor {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
+	private Long calificacion;
+
+	private Long cantidadVotos;
+
 	@JsonIgnore
     @ManyToOne
     @JoinColumn(name="idUsuario")
@@ -33,12 +37,6 @@ public class UsuarioMonitor {
     @OneToMany(mappedBy = "monitor")
     private List<Horario> horarios;
 
-	private Long calificacion;
-
-	private Long cantidadVotos;
-
-
-	
 
 	public Long getCalificacion() {
 		return calificacion;
@@ -98,4 +96,10 @@ public class UsuarioMonitor {
 		this.horarios.add(horario);
 	}
 
+	public void quitarHorario(Horario horario){
+		this.horarios.remove(horario);
+	}
+
+
+	
 }

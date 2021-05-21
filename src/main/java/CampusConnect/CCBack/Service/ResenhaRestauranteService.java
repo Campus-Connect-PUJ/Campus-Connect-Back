@@ -18,11 +18,11 @@ public class ResenhaRestauranteService {
     private RestaurantesService rService;
 
     public Iterable<ResenhaRestaurante> findAll() {
-        return repository.findAll();
+        return GenericService.findAll(repository);
     }
 
     public ResenhaRestaurante findById(Long id) {
-        return repository.findById(id).get();
+        return GenericService.findById(repository, id);
     }
 
     public ResenhaRestaurante create(
@@ -35,7 +35,7 @@ public class ResenhaRestauranteService {
         rr.setEstrellas(foroData.getEstrellas());
         rr.setRestaurante(restaurante);
         rr.setUsuario(ug);
-        return repository.save(rr);
+        return GenericService.create(repository, rr);
     }
 
 }

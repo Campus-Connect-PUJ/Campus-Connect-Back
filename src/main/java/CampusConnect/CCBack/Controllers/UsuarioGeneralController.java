@@ -27,7 +27,11 @@ import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Security.RESTAuthenticationProvider;
 import CampusConnect.CCBack.Security.SecurityConstants;
+import CampusConnect.CCBack.Service.HorarioService;
+import CampusConnect.CCBack.Service.InformacionUsuarioService;
 import CampusConnect.CCBack.Service.UsuarioGeneralService;
+import CampusConnect.CCBack.Wrappers.WrapperHorario;
+import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperLogin;
 import CampusConnect.CCBack.Wrappers.WrapperMonitoria;
 import CampusConnect.CCBack.Wrappers.WrapperPersoGrupos;
@@ -42,7 +46,23 @@ class UsuarioGeneralController {
     private UsuarioGeneralService ugService;
 
     @Autowired
+    private HorarioService hService;
+
+    @Autowired
     private RESTAuthenticationProvider restap;
+
+    @Autowired
+    private InformacionUsuarioService iuService;
+
+    @GetMapping
+    public UsuarioGeneral getUsuario(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
+
+    @GetMapping("data")
+    public UsuarioGeneral getData(@AuthenticationPrincipal String email) {
+        return ugService.findByEmail(email);
+    }
 
     @GetMapping("all")
     public Iterable<UsuarioGeneral> findAll() {
@@ -102,6 +122,14 @@ class UsuarioGeneralController {
         return ugService.findByEmail(email).getCaracteristicas();
     }
 
+    @PostMapping("informacion")
+    public InformacionUsuario cargarInformacionUsuario(
+        @RequestBody final WrapperInformacionUsuario data,
+        @AuthenticationPrincipal String email)
+        {
+            return iuService.cargarInformacionUsuario(data, email);
+    }
+
     @GetMapping("informacion")
     public InformacionUsuario informacionUsuario(@AuthenticationPrincipal String email) {
         return ugService.findByEmail(email).getInformacionUsuario();
@@ -122,13 +150,23 @@ class UsuarioGeneralController {
         return ugService.findByEmail(email).getCarrerasUsuario();
     }
 
-    @PostMapping("{idUsuario}/agregarTipoAprendizaje/{id_tip}")
+    @PostMapping("agregarTipoAprendizaje/{idTipo}")
     public UsuarioGeneral agregarTipAprendizaje(
         //@AuthenticationPrincipal String username,
-        @PathVariable("id_tip") final Long idTipoAprendizaje,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
     ){
-        return ugService.agregarTipAprendizaje(idUsuario, idTipoAprendizaje);
+        return ugService.agregarTipAprendizaje(email, idTipoAprendizaje);
+    }
+
+    @PutMapping("borrarTipoAprendizaje/{idTipo}")
+    public UsuarioGeneral borrarTipoAprendizaje(
+        @AuthenticationPrincipal String email,
+        @PathVariable("idTipo") final Long idTipoAprendizaje
+    ){
+
+        return ugService.borrarTipoAprendizaje(email, idTipoAprendizaje);
+
     }
 
     @PostMapping("login/registro")
@@ -150,9 +188,6 @@ class UsuarioGeneralController {
         @RequestBody final WrapperLogin login,
         HttpServletResponse response
         ) {
-        System.out.println("login");
-        System.out.println(login.getUsername());
-        System.out.println(login.getPassword());
         final UsuarioGeneral user = ugService.login(login);
         return resp(login, user, response);
     }
@@ -171,11 +206,6 @@ class UsuarioGeneralController {
 
         return ug;
     }
-
-    // @PostMapping("printUser")
-    // public void printUserInfo(@AuthenticationPrincipal String username) {
-    //     System.out.println("usuario: " + username);
-    // }
 
     // TODO: verificar que el usuario que realizar el cambio ya tenga rol admin
     @GetMapping("rolAdmin/{id}")
@@ -217,24 +247,43 @@ class UsuarioGeneralController {
     }
 
 
-    @PostMapping("agregarMonitoria/{idUsuario}")
+    @PostMapping("agregarMonitoria")
     public void agregarMonitoria(
         @RequestBody final WrapperMonitoria infoMonitoria,
-        @PathVariable("idUsuario") final Long idUsuario
+        @AuthenticationPrincipal String email
     ){
-        UsuarioGeneral ug = this.findById(idUsuario);
-
+        UsuarioGeneral ug = ugService.findByEmail(email);
         ugService.crearMonitoria(ug, infoMonitoria);
+    }
 
+
+    @PostMapping("agregarHorario")
+    public void agregarHorario(
+        @RequestBody final WrapperHorario infoMonitoria,
+        @AuthenticationPrincipal String email
+    ){
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        hService.agregarHorariosMonitoria(ug, infoMonitoria);
+    }
+
+    @PutMapping("borrarHorario")
+    public void borrarHorario(
+        @RequestBody final WrapperHorario infoMonitoria,
+        @AuthenticationPrincipal String email
+    ){
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        hService.borrarHorarioMonitoria(ug, infoMonitoria);
     }
 
     @PutMapping("/monitor/{idMonitor}/{calificacion}")
     public UsuarioMonitor votarMonitor(
         //@PathVariable("idUsuario") final Long idUsuario,
         @PathVariable("idMonitor") final Long idMonitor,
-        @PathVariable("calificacion") final Long calificacion
+        @PathVariable("calificacion") final Long calificacion,
+        @AuthenticationPrincipal String email
     ){
-        return ugService.votarMonitor(idMonitor, calificacion);
+        UsuarioGeneral ug = ugService.findByEmail(email);
+        return ugService.votarMonitor(ug, idMonitor, calificacion);
 
     }
 
@@ -255,20 +304,11 @@ class UsuarioGeneralController {
         return ugService.obtenerHorarios(idMonitor, dias);
     }
 
-    /*
-    @PostMapping("agregarMonitoria")
-    public void agregarMonitoria(
-        @AuthenticationPrincipal String email,
-        @RequestBody final WrapperMonitoria infoMonitoria
-    ){
-        repository.agregarMonitoria(infoMonitoria, email);
-    }
-*/
     @GetMapping("monitores/all")
     public Iterable<UsuarioGeneral> findMonitores(
     ) {
         return ugService.findMonitores();
     }
 
-
 }
+

@@ -46,6 +46,8 @@ public class Foro {
     public Foro () {
         this.reportado = false;
         this.respuestas = new ArrayList<RespuestaForo>();
+		this.usuariosGustaron = new ArrayList<>();
+		this.usuariosNoGustaron = new ArrayList<>();
         this.fecha = LocalDateTime.now();
         this.puntaje = 0;
     }

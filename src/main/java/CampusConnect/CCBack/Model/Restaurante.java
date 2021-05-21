@@ -79,7 +79,6 @@ public class Restaurante {
     private List<ResenhaRestaurante> resenhas;
 
 	public Restaurante() {
-        this.calificacion = 0;
         this.resenhas = new ArrayList<>();
         this.regimenesAlimenticios = new ArrayList<>();
         this.tiposComida = new ArrayList<>();

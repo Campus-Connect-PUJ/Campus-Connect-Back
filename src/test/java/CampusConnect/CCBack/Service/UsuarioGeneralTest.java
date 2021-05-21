@@ -20,13 +20,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
+import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Requisito;
+import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
+import CampusConnect.CCBack.Model.ResenhaRestaurante;
+import CampusConnect.CCBack.Model.RespuestaForo;
+import CampusConnect.CCBack.Model.Restaurante;
+import CampusConnect.CCBack.Model.Tematica;
+import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
+import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Facultad;
+
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.Horario;
+import CampusConnect.CCBack.Model.Actividad;
+import CampusConnect.CCBack.Model.GrupoEstudiantil;
+
 import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
+import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
+import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
+
+import CampusConnect.CCBack.Model.RegimenAlimenticio;
+import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import junit.framework.TestCase;
 
 @ActiveProfiles("tests")
@@ -40,6 +60,9 @@ public class UsuarioGeneralTest extends TestCase {
     private ForoService fService;
 
     @Autowired
+    private RespuestaForoService rfService;
+
+    @Autowired
     private UsuarioGeneralService ugService;
 
     @Autowired
@@ -50,6 +73,39 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private AsignaturaService aService;
+
+    @Autowired
+    private RegimenAlimenticioService raService;
+
+    @Autowired
+    private RegimenAlimenticioUsuarioService rauService;
+
+    @Autowired
+    private GruposEstudiantilesService geService;
+
+    @Autowired
+    private CaracteristicasService cService;
+
+    @Autowired
+    private RequisitoService rService;
+
+    @Autowired
+    private TematicasService tService;
+
+    @Autowired
+    private FacultadesService faService;
+
+    @Autowired
+    private ResenhaGrupoEstudiantilService rgeService;
+
+    @Autowired
+    private ResenhaRestauranteService rrService;
+
+    @Autowired
+    private RestaurantesService resService;
+
+    @Autowired
+    private LugarService lService;
 
     private String emailUsuario = "email";
 
@@ -91,8 +147,7 @@ public class UsuarioGeneralTest extends TestCase {
 
     }
 
-    @Test
-    public void pruebaForos() {
+    public long pruebaForos() {
 
         String titulo = "titulo";
         String descripcion = "descripcion";
@@ -112,6 +167,39 @@ public class UsuarioGeneralTest extends TestCase {
         Foro fConseguido = fService.findById(fCreado.getId());
         assertNotNull(fConseguido);
         assertEquals(fCreado, fConseguido);
+
+        return fCreado.getId();
+    }
+
+    public void pruebaRespuestaForo(long idForo) {
+
+        Foro foro = this.fService.findById(idForo);
+        WrapperRespuestaForo wrf = new WrapperRespuestaForo();
+        String texto = "texto";
+        wrf.setTexto(texto);
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+
+        // se crea con el servicio
+        RespuestaForo rfCreado = this.rfService.create(wrf, foro, ug);
+        assertAll(
+            () -> assertEquals(rfCreado.getForo(), foro),
+            () -> assertEquals(rfCreado.getUsuario(), ug),
+            () -> assertEquals(rfCreado.getTexto(), texto)
+            );
+
+        // se busca el objeto
+        RespuestaForo rfConseguido = rfService.findById(rfCreado.getId());
+        assertNotNull(rfConseguido);
+        assertEquals(rfCreado, rfConseguido);
+
+    }
+
+    @Test
+    public void pruebasForos() {
+
+        long idForo = pruebaForos();
+        pruebaRespuestaForo(idForo);
+
     }
 
     @Test
@@ -207,6 +295,296 @@ public class UsuarioGeneralTest extends TestCase {
         assertNotNull(hConseguido);
         assertEquals(hConseguido, hCreado);
         // GenericServiceTest.compareAllExceptId(a, aConseguida);
+    }
+
+    public long pruebaRegimenAlimenticio() {
+
+        String tipo = "tipo";
+
+        RegimenAlimenticio l = new RegimenAlimenticio();
+		l.setTipo(tipo);
+
+        // se crea con el servicio
+        RegimenAlimenticio lCreado = this.raService.create(l);
+
+        assertEquals(lCreado.getTipo(), tipo);
+
+        // se busca el objeto
+        RegimenAlimenticio lConseguido = raService.findById(lCreado.getId());
+        assertNotNull(lConseguido);
+        assertEquals(lConseguido, lCreado);
+        // GenericServiceTest.compareAllExceptId(a, aConseguida);
+
+        return lCreado.getId();
+    }
+
+    public void pruebaRegimenAlimenticioUsuario(long idregimen) {
+
+        RegimenAlimenticio ra = this.raService.findById(idregimen);
+
+        int exigencia = 1;
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+
+        RegimenAlimenticioUsuario l = new RegimenAlimenticioUsuario();
+		l.setRegimenAlimenticio(ra);
+		l.setExigencia(exigencia);
+        l.setUsuario(ug);
+
+        // se crea con el servicio
+        RegimenAlimenticioUsuario rauCreado = this.rauService.create(ra, exigencia, ug);
+
+        assertEquals(rauCreado.getExigencia(), exigencia);
+        assertEquals(rauCreado.getUsuario(), ug);
+        assertEquals(rauCreado.getRegimenAlimenticio(), ra);
+
+        // se busca el objeto
+        RegimenAlimenticioUsuario rauConseguido = rauService.findById(rauCreado.getId());
+        assertNotNull(rauConseguido);
+        assertEquals(rauConseguido, rauCreado);
+    }
+
+    @Test
+    public void pruebaRegimenes() {
+        long idregimen = pruebaRegimenAlimenticio();
+        pruebaRegimenAlimenticioUsuario(idregimen);
+    }
+
+    public void pruebaResenhaGrupoEstudiantil(UsuarioGeneral ug, long idGe) {
+
+        ResenhaGrupoEstudiantil resenha = new ResenhaGrupoEstudiantil();
+        float estrellas = 5;
+		resenha.setEstrellas(estrellas);
+
+        // se crea con el servicio
+        ResenhaGrupoEstudiantil rgeCreada = this.rgeService.create(ug, resenha,idGe);
+
+        assertEquals(rgeCreada.getEstrellas(), estrellas);
+        assertEquals(rgeCreada.getUsuario(), ug);
+        long idGeConseguido = rgeCreada.getGrupoEstudiantil().getId();
+        assertEquals(idGeConseguido, idGe);
+
+        // se busca el objeto
+        ResenhaGrupoEstudiantil rgeConseguida = rgeService.findById(rgeCreada.getId());
+        assertNotNull(rgeConseguida);
+        assertEquals(rgeConseguida, rgeCreada);
+    }
+
+    public void pruebaCaracteristicas() {
+
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Caracteristica a = new Caracteristica();
+        a.setNombre(nombre);
+
+        Caracteristica creado = this.cService.create(a);
+
+        // se busca el objeto
+        Caracteristica aConseguida = this.cService.findById(creado.getId());
+
+        assertNotNull(aConseguida);
+        assertEquals(aConseguida, creado);
+    }
+
+    public void pruebaTematicas() {
+
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Tematica a = new Tematica();
+        a.setNombre(nombre);
+
+        Tematica creado = this.tService.create(a);
+
+        // se busca el objeto
+        Tematica tConseguida = this.tService.findById(creado.getId());
+
+        assertNotNull(tConseguida);
+        assertEquals(tConseguida, creado);
+
+    }
+
+    public void pruebaFacultades() {
+
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Facultad a = new Facultad();
+        a.setNombre(nombre);
+
+        Facultad creado = this.faService.create(a);
+
+        // se busca el objeto
+        Facultad fConseguida = this.faService.findById(creado.getId());
+
+        assertNotNull(fConseguida);
+        assertEquals(fConseguida, creado);
+
+    }
+
+    public void pruebaRequisitos() {
+
+        String nombre = "hola";
+
+        // se crea con el servicio
+        Requisito a = new Requisito();
+        a.setNombre(nombre);
+
+        Requisito creado = this.rService.create(a);
+
+        assertEquals(creado.getNombre(), nombre);
+
+        // se busca el objeto
+        Requisito rConseguido = this.rService.findById(creado.getId());
+
+        assertNotNull(rConseguido);
+        assertEquals(rConseguido, creado);
+
+    }
+
+    public long pruebaGruposEstudiantiles() {
+        String nombre = "grupo";
+        String descripcion = "descripcion";
+        float calificacion = 5;
+        String contacto = "contacto";
+
+        GrupoEstudiantil ge = new GrupoEstudiantil();
+		ge.setCalificacion(calificacion);
+		ge.setContacto(contacto);
+		ge.setDescripcion(descripcion);
+        ge.setNombre(nombre);
+
+        // TODO: poner para que se cree el grupo con Caracteristicas,
+        // Tematicas, Facultades y Requisitos
+
+        WrapperGrupoEstudiantil dato = new WrapperGrupoEstudiantil();
+        dato.setGrupoEstudiantil(ge);
+
+        GrupoEstudiantil geCreado = this.geService.create(dato);
+
+        // la informacion sea la misma
+        assertAll(
+            () -> assertEquals(geCreado.getNombre(), nombre),
+            () -> assertEquals(geCreado.getDescripcion(), descripcion),
+            () -> assertEquals(geCreado.getContacto(), contacto),
+            () -> assertEquals(geCreado.getCalificacion(), calificacion)
+            );
+
+        // se retorna correctamente el objeto
+        assertNotNull(geCreado);
+        GrupoEstudiantil geConseguido = this.geService.findById(geCreado.getId());
+        // se verifica que el objeto fue creado en la bd
+        assertNotNull(geConseguido);
+        assertEquals(geCreado, geConseguido);
+
+        return geCreado.getId();
+
+    }
+
+    @Test
+    public void pruebasGruposEstudiantiles() {
+        pruebaCaracteristicas();
+        pruebaTematicas();
+        pruebaFacultades();
+        pruebaRequisitos();
+        long idgrupoest = pruebaGruposEstudiantiles();
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+        pruebaResenhaGrupoEstudiantil(ug, idgrupoest);
+    }
+
+    public void pruebaResenhaRestaurante(UsuarioGeneral ug, long idRestaurante) {
+
+        ResenhaRestaurante resenha = new ResenhaRestaurante();
+        float estrellas = 5;
+		resenha.setEstrellas(estrellas);
+
+        // se crea con el servicio
+        ResenhaRestaurante rgeCreada = this.rrService.create(
+            ug, resenha,idRestaurante);
+
+        assertEquals(rgeCreada.getEstrellas(), estrellas);
+        assertEquals(rgeCreada.getUsuario(), ug);
+        long idGeConseguido = rgeCreada.getRestaurante().getId();
+        assertEquals(idGeConseguido, idRestaurante);
+
+        // se busca el objeto
+        ResenhaRestaurante rgeConseguida = rrService.findById(rgeCreada.getId());
+        assertNotNull(rgeConseguida);
+        assertEquals(rgeConseguida, rgeCreada);
+    }
+
+    public long pruebaRestaurantes(long idLugar) {
+
+        String ambientacion = "ambientacion";
+        float calificacion = 5;
+        String contacto = "contacto";
+        String descripcion = "descripcion";
+        String franquicia = "franquicia";
+        String nombre = "nombre";
+        float precioMax = 10;
+        float precioMin = 5;
+        float tiempoEntrega = 20;
+
+        Restaurante restaurante = new Restaurante();
+		restaurante.setAmbientacion(ambientacion);
+		restaurante.setCalificacion(calificacion);
+		restaurante.setContacto(contacto);
+		restaurante.setDescripcion(descripcion);
+		restaurante.setFranquicia(franquicia);
+		restaurante.setNombre(nombre);
+		restaurante.setPrecioMax(precioMax);
+		restaurante.setPrecioMin(precioMin);
+		restaurante.setTiempoEntrega(tiempoEntrega);
+
+        WrapperRestaurante wr = new WrapperRestaurante();
+        wr.setIdLugar(idLugar);
+        wr.setRestaurante(restaurante);
+
+        Restaurante resCreado = this.resService.create(wr);
+
+        assertEquals(resCreado.getAmbientacion(), ambientacion);
+        assertEquals(resCreado.getCalificacion(), calificacion);
+        assertEquals(resCreado.getContacto(), contacto);
+        assertEquals(resCreado.getDescripcion(), descripcion);
+        assertEquals(resCreado.getFranquicia(), franquicia);
+        assertEquals(resCreado.getNombre(), nombre);
+        assertEquals(resCreado.getPrecioMax(), precioMax);
+        assertEquals(resCreado.getPrecioMin(), precioMin);
+        assertEquals(resCreado.getTiempoEntrega(), tiempoEntrega);
+
+        Restaurante resConseguido = this.resService.findById(resCreado.getId());
+        assertEquals(resConseguido, resCreado);
+
+        return resConseguido.getId();
+
+    }
+
+    public long pruebaLugar() {
+        String nombre = "hola";
+
+        Lugar l = new Lugar();
+        l.setNombre(nombre);
+
+        // se crea con el servicio
+        Lugar lCreado = this.lService.create(l);
+
+        assertEquals(lCreado.getNombre(), nombre);
+
+        // se busca el objeto
+        Lugar lConseguido = lService.findById(lCreado.getId());
+        assertNotNull(lConseguido);
+        assertEquals(lConseguido, lCreado);
+        // GenericServiceTest.compareAllExceptId(a, aConseguida);
+
+        return lConseguido.getId();
+    }
+
+    @Test
+    public void pruebasRestaurantes() {
+        long idlugar = pruebaLugar();
+        long idrestaurante = pruebaRestaurantes(idlugar);
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+        pruebaResenhaRestaurante(ug, idrestaurante);
     }
 
 }

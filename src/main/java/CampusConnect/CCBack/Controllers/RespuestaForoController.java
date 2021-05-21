@@ -51,7 +51,4 @@ class RespuestaForoController {
         return rfService.restarVotoAForo(email, idForo);
     }
 
-
-    
-    
 }

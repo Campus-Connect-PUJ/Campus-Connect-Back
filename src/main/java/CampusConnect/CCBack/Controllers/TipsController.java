@@ -48,7 +48,7 @@ class TipsController {
     public Tip crear(
         @RequestBody final WrapperTip data
     ) {
-        return tService.crear(data);
+        return tService.create(data);
     }
 
     @PutMapping("borrarTip/{idTip}")

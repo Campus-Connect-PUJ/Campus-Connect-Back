@@ -27,12 +27,12 @@ public class ResenhaGrupoEstudiantilService {
 
     public ResenhaGrupoEstudiantil create(
         final UsuarioGeneral ug,
-        final ResenhaGrupoEstudiantil foroData,
+        final ResenhaGrupoEstudiantil resenha,
         final Long idGrupoEstudiantil
         ) {
         ResenhaGrupoEstudiantil rr = new ResenhaGrupoEstudiantil();
         GrupoEstudiantil grupoEstudiantil = geService.findById(idGrupoEstudiantil);
-        rr.setEstrellas(foroData.getEstrellas());
+        rr.setEstrellas(resenha.getEstrellas());
         rr.setGrupoEstudiantil(grupoEstudiantil);
         rr.setUsuario(ug);
         return GenericService.create(repository, rr);

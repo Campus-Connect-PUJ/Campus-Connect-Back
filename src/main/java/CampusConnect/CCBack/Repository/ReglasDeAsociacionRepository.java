@@ -1,6 +1,5 @@
 package CampusConnect.CCBack.Repository;
 
-import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.ReglasDeAsociacion;
 
 import org.springframework.data.repository.CrudRepository;

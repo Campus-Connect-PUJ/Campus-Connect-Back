@@ -37,6 +37,7 @@ public class HorarioService {
         Horario horario = new Horario();
         List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         UsuarioMonitor monitoria = new UsuarioMonitor();
+        monitoria.setUsuario(ug);
         boolean yaexiste = false;
         horario.setFechaInicial(wpH.getFechaInicial());
         horario.setFechaFinal(wpH.getFechaFinal());

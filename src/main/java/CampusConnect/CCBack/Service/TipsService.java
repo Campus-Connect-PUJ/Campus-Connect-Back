@@ -34,7 +34,7 @@ public class TipsService {
         return GenericService.findById(repository, id);
     }
 
-    public Tip crear(final WrapperTip data) {
+    public Tip create(final WrapperTip data) {
         Tip tip = new Tip();
         UsuarioGeneral ug = ugService.findById(data.getIdUsuario());
         tip.setDescripcion(data.getTip().getDescripcion());

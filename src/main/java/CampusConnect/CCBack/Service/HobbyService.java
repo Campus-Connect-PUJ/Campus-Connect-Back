@@ -35,7 +35,7 @@ class HobbyService {
         }
     }
 
-    public Hobby crear(String name){
+    public Hobby create(String name){
         Hobby hobby = new Hobby();
         hobby.setNombre(name);
 

@@ -1,9 +1,7 @@
 package CampusConnect.CCBack.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Repository.CaracteristicaRepository;

@@ -1,8 +1,5 @@
 package CampusConnect.CCBack.Wrappers;
 
-import java.lang.reflect.Array;
-import java.time.LocalDateTime;
-
 public class WrapperMonitoria {
 
 	public Long idUsuario;
@@ -10,7 +7,6 @@ public class WrapperMonitoria {
 
 	public WrapperMonitoria () {
 
-		
     }
 
 	public Long getIdUsuario() {

@@ -76,12 +76,6 @@ public class UsuarioGeneralService implements UserDetailsService {
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private GruposEstudiantilesService geService;
-
-    @Autowired
-    private RestaurantesService rService;
-
     private UsuarioGeneral admin;
 
 	public UsuarioGeneralService() {
@@ -267,7 +261,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             if(a!=null){
                 ug.agregarActividadInteres(a);
             }else{
-                aService.crear(nombre);
+                aService.create(nombre);
                 a = aService.findByName(nombre);
                 ug.agregarActividadInteres(a);
                 aService.agregarUsuario(a.getId(), ug);
@@ -279,7 +273,7 @@ public class UsuarioGeneralService implements UserDetailsService {
             if (h!=null){
                iu.agregarHobby(h);
             }else{
-                hService.crear(nombre);
+                hService.create(nombre);
                 h = hService.findByName(nombre);
                 iu.agregarHobby(h);
             }
@@ -336,7 +330,6 @@ public class UsuarioGeneralService implements UserDetailsService {
     public UsuarioMonitor crearMonitoria(UsuarioGeneral ug, WrapperMonitoria infoMonitoria){
 
         UsuarioMonitor monitoria = new UsuarioMonitor();
-        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
         Asignatura asignatura = asService.findById(infoMonitoria.idAsignatura);
 
         if(!existeMonitoria(ug, infoMonitoria)){
@@ -361,94 +354,7 @@ public class UsuarioGeneralService implements UserDetailsService {
         return monitoria;
     }
 
-/*
-    public Horario agregarHorariosMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
-        Horario horario = new Horario();
-        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
-        UsuarioMonitor monitoria = new UsuarioMonitor();
-        boolean yaexiste = false;
-        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
-        horario.setFechaInicial(wpH.getFechaInicial());
-        horario.setFechaFinal(wpH.getFechaFinal());
-        horario.setfechaInicio(wpH.fechaInicio);
-        horario.setfechaFin(wpH.fechaFin);
-        horario.lugar = wpH.lugar;
-        
-        for(int i=0; i<anterioresMonitorias.size(); i++){
-            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
-                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
-                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
-                LocalDate localDate = horario.getFechaInicial().toLocalDate();
-                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
-                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
-                    yaexiste = true;
-                }
-            }   
-            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
-                monitoria = anterioresMonitorias.get(i);
-            }
-        }
-        if(!yaexiste){
-            //monitoria.addHorario(horario);
 
-
-            //asignatura.addMonitor(monitoria);
-
-            //ug.addMonitorDe(monitoria);
-
-            GenericService.save(repository, ug);
-            asignaturaService.create(asignatura);
-            umService.guardar(monitoria);
-        }
-        return horario; 
-    }
-
-
-    public void borrarHorarioMonitoria(UsuarioGeneral ug, WrapperHorario wpH){
-        Horario horario = new Horario();
-        List<UsuarioMonitor> anterioresMonitorias = ug.getMonitorDe();
-        UsuarioMonitor monitoria = new UsuarioMonitor();
-        boolean yaexiste = false;
-        System.out.println("->"+wpH.fechaInicio + " - "+ wpH.fechaFin);
-        horario.setFechaInicial(wpH.getFechaInicial());
-        horario.setFechaFinal(wpH.getFechaFinal());
-        horario.setfechaInicio(wpH.fechaInicio);
-        horario.setfechaFin(wpH.fechaFin);
-        
-        for(int i=0; i<anterioresMonitorias.size(); i++){
-            for(int j=0; j<anterioresMonitorias.get(i).getHorarios().size(); j++){
-                LocalDate localDateGuardadoDia = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalDate();
-                LocalTime tiempoGuardado = anterioresMonitorias.get(i).getHorarios().get(j).getFechaInicial().toLocalTime();
-                LocalDate localDate = horario.getFechaInicial().toLocalDate();
-                LocalTime tiempoNuevo = horario.getFechaInicial().toLocalTime();
-                if(localDateGuardadoDia.isEqual(localDate) && (tiempoGuardado.getHour() == tiempoNuevo.getHour() && tiempoGuardado.getMinute() == tiempoNuevo.getMinute())){
-                    yaexiste = true;
-                    horario = anterioresMonitorias.get(i).getHorarios().get(j);
-                }
-            }   
-            if(anterioresMonitorias.get(i).getAsignatura().getId() == wpH.getIdAsignatura()){
-                monitoria = anterioresMonitorias.get(i);
-            }
-        }
-        if(yaexiste){
-            monitoria.quitarHorario(horario);
-            ug.quitarMonitorDe(monitoria);
-            horarioRepository.delete(horario);
-
-            if(monitoria.getHorarios().size()==0){
-                monitorRepository.delete(monitoria);
-            }
-            else{
-                monitorRepository.save(monitoria);
-            }
-
-
-            repository.save(ug);
-            
-        }
-
-    }
-*/
 
     // Un regimenen alimenticio, nivel de exigencia, lista de comidas
     // favoritas, una ambientación

@@ -37,11 +37,13 @@ public class ReglasDeAsociacionService {
     public ReglasDeAsociacion crearReglaDeAsociacion(
         final WrapperReglaAsociacion reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
-        
         regla.setSoporte(reglaData.getSoporte());
         regla.setConfianza(reglaData.getConfianza());
         regla.setLift(reglaData.getLift());
         
+        
+        GenericService.save(repository, regla);
+
         for(int i=0; i<reglaData.getAntecedentes().size(); i++){
             Tip a = this.servicioTips.findById(reglaData.getAntecedentes().get(i));
             regla.agregarAntecedentes(a);
@@ -133,10 +135,7 @@ public class ReglasDeAsociacionService {
 //Adicionales----------------------------------------------------------------
 
     public Tip ultimoRecurso(UsuarioGeneral ug){
-        long idTipParaRecomendar = 0;
         List<Tip> tipsSistema = (List<Tip>) this.servicioTips.findAll();
-        List<Tip> tipsRecomendar = new ArrayList<Tip>();
-        Tip buscarSiExiste = new Tip();
         Tip tipRecomendar = new Tip();
         boolean sale = false;
         int i = 0;

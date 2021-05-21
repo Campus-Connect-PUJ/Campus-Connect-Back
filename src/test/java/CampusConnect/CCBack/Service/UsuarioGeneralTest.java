@@ -27,14 +27,13 @@ import CampusConnect.CCBack.Model.ResenhaRestaurante;
 import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Tematica;
+import CampusConnect.CCBack.Model.Tip;
 import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
 import CampusConnect.CCBack.Model.Caracteristica;
 import CampusConnect.CCBack.Model.Facultad;
 
 import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.Horario;
-import CampusConnect.CCBack.Model.Actividad;
-import CampusConnect.CCBack.Model.GrupoEstudiantil;
 
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.Lugar;
@@ -44,6 +43,7 @@ import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
+import CampusConnect.CCBack.Wrappers.WrapperTip;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
 
 import CampusConnect.CCBack.Model.RegimenAlimenticio;
@@ -111,6 +111,8 @@ public class UsuarioGeneralTest extends TestCase {
     @Autowired
     private LugarService lService;
 
+    @Autowired
+    private TipsService temService;
 
     private String emailUsuario = "email";
 
@@ -626,7 +628,33 @@ public class UsuarioGeneralTest extends TestCase {
         // GenericServiceTest.compareAllExceptId(a, aConseguida);
     }
 
-    
+    @Test
+    public void pruebaTips() {
 
+        WrapperTip wt = new WrapperTip();
+
+        Long exigencia = (long) 1;
+        Long idUsuario = this.ugService.findByEmail(this.emailUsuario).getId();
+        Tip tip = new Tip();
+        String descripcion = "descipcion";
+
+		tip.setDescripcion(descripcion);
+
+		wt.setExigencia(exigencia);
+		wt.setTip(tip);
+		wt.setIdUsuario(idUsuario);
+
+        // se crea con el servicio
+        Tip tCreada = this.temService.create(wt);
+
+        assertEquals(tCreada.getNivelExigencia(), exigencia);
+        assertEquals(tCreada.getDescripcion(), tip.getDescripcion());
+        assertEquals(tCreada.getUsuario().getId(), idUsuario);
+
+        // se busca el objeto
+        Tip aConseguida = temService.findById(tCreada.getId());
+        assertNotNull(aConseguida);
+        assertEquals(aConseguida, tCreada);
+    }
 
 }

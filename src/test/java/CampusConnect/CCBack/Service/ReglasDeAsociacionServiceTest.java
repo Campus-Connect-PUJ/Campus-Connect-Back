@@ -114,13 +114,13 @@ public class ReglasDeAsociacionServiceTest {
         tipos.add((long)1);
         datoTip.setTiposAprendizaje(tipos);
 
-        Tip tcreado = this.servicioTips.crear(datoTip);
-        
+        Tip tcreado = this.servicioTips.create(datoTip);
+
         assertAll(
-            () -> assertEquals( tcreado.getNivelExigencia() , exigencia), 
+            () -> assertEquals( tcreado.getNivelExigencia() , exigencia),
             () -> assertEquals( tcreado.getUsuario().getId() , idUsuario)
         );
-        
+
         assertNotNull(tcreado);
 
         // se busca el objeto
@@ -139,7 +139,7 @@ public class ReglasDeAsociacionServiceTest {
         tipos.add((long)1);
         datoTip.setTiposAprendizaje(tipos);
 
-        this.servicioTips.crear(datoTip);
+        this.servicioTips.create(datoTip);
 
         datoTip = new WrapperTip();
         datoTip.setExigencia(exigencia);
@@ -149,7 +149,7 @@ public class ReglasDeAsociacionServiceTest {
         tipos.add((long)1);
         datoTip.setTiposAprendizaje(tipos);
 
-        this.servicioTips.crear(datoTip);
+        this.servicioTips.create(datoTip);
 
     }
 

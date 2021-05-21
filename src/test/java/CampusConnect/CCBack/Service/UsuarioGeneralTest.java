@@ -1,14 +1,13 @@
 package CampusConnect.CCBack.Service;
 
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +17,16 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import CampusConnect.CCBack.Model.Actividad;
 import CampusConnect.CCBack.Model.Asignatura;
+import CampusConnect.CCBack.Model.Caracteristica;
+import CampusConnect.CCBack.Model.Facultad;
+import CampusConnect.CCBack.Model.Foro;
 import CampusConnect.CCBack.Model.GrupoEstudiantil;
+import CampusConnect.CCBack.Model.Horario;
+import CampusConnect.CCBack.Model.InformacionUsuario;
+import CampusConnect.CCBack.Model.Lugar;
+import CampusConnect.CCBack.Model.RegimenAlimenticio;
+import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import CampusConnect.CCBack.Model.Requisito;
 import CampusConnect.CCBack.Model.ResenhaGrupoEstudiantil;
 import CampusConnect.CCBack.Model.ResenhaRestaurante;
@@ -28,31 +34,20 @@ import CampusConnect.CCBack.Model.RespuestaForo;
 import CampusConnect.CCBack.Model.Restaurante;
 import CampusConnect.CCBack.Model.Tematica;
 import CampusConnect.CCBack.Model.Tip;
-import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
-import CampusConnect.CCBack.Model.Caracteristica;
-import CampusConnect.CCBack.Model.Facultad;
-
-import CampusConnect.CCBack.Model.Foro;
-import CampusConnect.CCBack.Model.Horario;
-
-import CampusConnect.CCBack.Model.InformacionUsuario;
-import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
 import CampusConnect.CCBack.Model.UsuarioMonitor;
+import CampusConnect.CCBack.Wrappers.WrapperGrupoEstudiantil;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
 import CampusConnect.CCBack.Wrappers.WrapperRestaurante;
 import CampusConnect.CCBack.Wrappers.WrapperTip;
 import CampusConnect.CCBack.Wrappers.WrapperUsuarioGeneral;
-
-import CampusConnect.CCBack.Model.RegimenAlimenticio;
-import CampusConnect.CCBack.Model.RegimenAlimenticioUsuario;
 import junit.framework.TestCase;
 
-@ActiveProfiles("tests")
 
 // en esta clase se realizan todas las pruebas que requieran de un usuario
+@ActiveProfiles("tests")
 @DataJpaTest
 @RunWith(SpringRunner.class)
 public class UsuarioGeneralTest extends TestCase {

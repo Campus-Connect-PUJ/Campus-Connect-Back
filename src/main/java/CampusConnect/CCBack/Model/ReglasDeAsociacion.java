@@ -81,7 +81,6 @@ public class ReglasDeAsociacion {
         this.consecuencias = consecuencias;
     }
 
-
     public void agregarAntecedentes(Tip tip) {
         this.antecedentes.add(tip);
     }

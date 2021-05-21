@@ -8,7 +8,7 @@ test:
 	mvn clean test
 
 docker:
-	cd config && docker-compose up
+	cd config && docker compose up
 
 load:
 	python3 ./scripts/cargarJson.py ./scripts/informacion.json

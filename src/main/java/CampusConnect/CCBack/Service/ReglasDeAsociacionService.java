@@ -37,11 +37,13 @@ public class ReglasDeAsociacionService {
     public ReglasDeAsociacion crearReglaDeAsociacion(
         final WrapperReglaAsociacion reglaData) {
         ReglasDeAsociacion regla = new ReglasDeAsociacion();
-        
         regla.setSoporte(reglaData.getSoporte());
         regla.setConfianza(reglaData.getConfianza());
         regla.setLift(reglaData.getLift());
         
+        
+        GenericService.save(repository, regla);
+
         for(int i=0; i<reglaData.getAntecedentes().size(); i++){
             Tip a = this.servicioTips.findById(reglaData.getAntecedentes().get(i));
             regla.agregarAntecedentes(a);

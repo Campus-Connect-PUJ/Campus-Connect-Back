@@ -38,11 +38,14 @@ public class ReglasDeAsociacionServiceTest {
     @Autowired
     private TipoAprendizajeService servicioTipoAprendizaje;
 
+    @Autowired
+    private UsuarioMonitorService servicioUsuarioMonitor;
+
 
     public void pruebaTipoAprendizaje(){
         String descripcion = "descripcion";
         TipoAprendizaje tipo = new TipoAprendizaje();
-        tipo.setDescripcion("descripcion");
+        tipo.setDescripcion(descripcion);
         
         TipoAprendizaje tipoCreado = this.servicioTipoAprendizaje.create(tipo);
 
@@ -58,6 +61,7 @@ public class ReglasDeAsociacionServiceTest {
 
         assertNotNull(tipoConseguido);
         assertEquals(tipoCreado, tipoConseguido);
+
 
     }
 

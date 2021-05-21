@@ -39,6 +39,7 @@ import CampusConnect.CCBack.Model.GrupoEstudiantil;
 import CampusConnect.CCBack.Model.InformacionUsuario;
 import CampusConnect.CCBack.Model.Lugar;
 import CampusConnect.CCBack.Model.UsuarioGeneral;
+import CampusConnect.CCBack.Model.UsuarioMonitor;
 import CampusConnect.CCBack.Wrappers.WrapperHorario;
 import CampusConnect.CCBack.Wrappers.WrapperInformacionUsuario;
 import CampusConnect.CCBack.Wrappers.WrapperRespuestaForo;
@@ -64,6 +65,9 @@ public class UsuarioGeneralTest extends TestCase {
 
     @Autowired
     private UsuarioGeneralService ugService;
+
+    @Autowired
+    private UsuarioMonitorService umService;
 
     @Autowired
     private HorarioService hService;
@@ -107,6 +111,7 @@ public class UsuarioGeneralTest extends TestCase {
     @Autowired
     private LugarService lService;
 
+
     private String emailUsuario = "email";
 
     @Override
@@ -146,6 +151,9 @@ public class UsuarioGeneralTest extends TestCase {
         assertEquals(ugConseguido, ugCreado);
 
     }
+
+
+
 
     public long pruebaForos() {
 
@@ -586,5 +594,39 @@ public class UsuarioGeneralTest extends TestCase {
         UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
         pruebaResenhaRestaurante(ug, idrestaurante);
     }
+
+    @Test
+    public void pruebasMonitores(){
+        Long idAsignatura = (long) 1;
+        UsuarioGeneral ug = this.ugService.findByEmail(this.emailUsuario);
+        UsuarioMonitor um = new UsuarioMonitor();
+        
+        Asignatura asig = pruebaAgregarAsignatura();
+
+        um.setUsuario(ug);
+        um.setAsignatura(asig);
+        pruebaUsuarioMonitor(um, ug, asig);
+
+    }
+
+    public void pruebaUsuarioMonitor(UsuarioMonitor um, UsuarioGeneral ug, Asignatura asignatura){
+
+
+        // se crea con el servicio
+        UsuarioMonitor umCreado = this.umService.guardar(um);
+        assertAll(
+            () -> assertEquals(umCreado.getUsuario(), ug),
+            () -> assertEquals(umCreado.getAsignatura(), asignatura)
+            );
+
+        // se busca el objeto
+        UsuarioMonitor umConseguido = umService.findById(umCreado.getId());
+        assertNotNull(umConseguido);
+        assertEquals(umConseguido, umCreado);
+        // GenericServiceTest.compareAllExceptId(a, aConseguida);
+    }
+
+    
+
 
 }

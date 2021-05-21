@@ -1,5 +1,6 @@
 package CampusConnect.CCBack.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -44,6 +45,12 @@ public class Caracteristica {
         joinColumns = @JoinColumn(name = "idCaracteristica"),
         inverseJoinColumns = @JoinColumn(name = "idTematica"))
     private List<Tematica> tematicas;
+
+    public Caracteristica(){
+        this.eventos = new ArrayList<>();
+        this.gruposEstudiantiles = new ArrayList<>();
+        this.tematicas = new ArrayList<>();
+	}
 
     public String getNombre() {
 		return nombre;

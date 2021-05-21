@@ -31,7 +31,6 @@ class UsuarioMonitorService {
     }
 
     public UsuarioMonitor create(
-        final WrapperUsuarioGeneral data,
         String email,
         @PathVariable("id") Long id
         ) {

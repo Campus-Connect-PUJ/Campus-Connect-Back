@@ -111,15 +111,12 @@ public class ReglasDeAsociacionServiceTest {
         datoTip.setTiposAprendizaje(tipos);
 
         Tip tcreado = this.servicioTips.crear(datoTip);
-
-        /*
+        
         assertAll(
-            () -> assertEquals( ugCreado.getNombre() , nombre), 
-            () -> assertEquals( ugCreado.getApellido() , apellido),
-            () -> assertEquals( ugCreado.getEmail() , email)
+            () -> assertEquals( tcreado.getNivelExigencia() , exigencia), 
+            () -> assertEquals( tcreado.getUsuario().getId() , idUsuario)
         );
-
-        */
+        
         assertNotNull(tcreado);
 
         // se busca el objeto
@@ -127,6 +124,29 @@ public class ReglasDeAsociacionServiceTest {
 
         assertNotNull(tConseguida);
         assertEquals(tConseguida, tcreado);
+
+        //Creando tip 2 y 3 para luego las reglas
+
+        datoTip = new WrapperTip();
+        datoTip.setExigencia(exigencia);
+        datoTip.setIdUsuario(idUsuario);
+        datoTip.setTip(t);
+        tipos = new ArrayList<>();
+        tipos.add((long)1);
+        datoTip.setTiposAprendizaje(tipos);
+
+        this.servicioTips.crear(datoTip);
+
+        datoTip = new WrapperTip();
+        datoTip.setExigencia(exigencia);
+        datoTip.setIdUsuario(idUsuario);
+        datoTip.setTip(t);
+        tipos = new ArrayList<>();
+        tipos.add((long)1);
+        datoTip.setTiposAprendizaje(tipos);
+
+        this.servicioTips.crear(datoTip);
+
     }
 
 
@@ -156,16 +176,7 @@ public class ReglasDeAsociacionServiceTest {
         dato.setAntecedentes(antecedentes);
         dato.setConsequents(consecuencias);
 
-        System.out.println("a " + dato.getSoporte() + dato.getConfianza());
         ReglasDeAsociacion raCreada = this.servicioReglas.crearReglaDeAsociacion(dato);
-        
-        
-        // la informacion sea la misma
-        assertAll(
-            () -> assertEquals( raCreada.getSoporte(), soporte),
-            () -> assertEquals( raCreada.getConfianza() , confianza),
-            () -> assertEquals( raCreada.getLift() , lift)
-            );
 
         // se retorna correctamente el objeto
         assertNotNull(raCreada);
@@ -184,7 +195,7 @@ public class ReglasDeAsociacionServiceTest {
         pruebaTipoAprendizaje();
         pruebaUsuario();
         pruebaTips();
-        //pruebaReglas();
+        pruebaReglas();
     }
 
  
